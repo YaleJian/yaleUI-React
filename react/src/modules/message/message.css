@@ -1,0 +1,55 @@
+.ya-messages {
+  position: fixed;
+  top: 0;
+  z-index: 1010;
+  width: 100%;
+  pointer-events: none;
+  transition: all 0.3s;
+}
+.ya-messages .ya-message {
+  padding: 8px;
+  text-align: center;
+  font-size: 13px;
+}
+.ya-messages .ya-message .ya-message-container {
+  display: inline-block;
+  background: #fff;
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  pointer-events: all;
+  vertical-align: middle;
+}
+.ya-messages .ya-message .ya-message-container .ya-message-title {
+  padding: 10px 10px 0;
+  font-weight: 800;
+}
+.ya-messages .ya-message .ya-message-container .ya-message-content {
+  padding: 10px 30px 10px 30px;
+  max-height: 800px;
+  overflow-x: auto;
+}
+.ya-messages .ya-message .ya-message-container .closeBtn {
+  display: none;
+  position: absolute;
+  top: 10px;
+  right: 8px;
+  margin: 0;
+  padding: 0;
+  color: #929292;
+}
+.ya-messages .ya-message .ya-message-container > .ya-groupBtn {
+  display: flex;
+}
+.ya-messages .ya-message .ya-message-container > .ya-groupBtn button {
+  flex: 1;
+}
+.ya-messages .ya-message .ya-message-container > .ya-groupBtn button:first-child {
+  border-bottom-left-radius: 5px;
+}
+.ya-messages .ya-message .ya-message-container > .ya-groupBtn button:last-child {
+  border-bottom-right-radius: 5px;
+}
+.ya-messages .ya-message:hover .closeBtn {
+  display: inline-block;
+}
+/*# sourceMappingURL=message.css.map */

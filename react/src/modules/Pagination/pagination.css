@@ -1,0 +1,24 @@
+.ya-pagination {
+  display: flex;
+  padding: 5px 0;
+  width: 160px;
+  align-items: center;
+  text-align: center;
+}
+.ya-pagination .item {
+  flex: 1;
+  display: inline-block;
+  font-size: 14px;
+}
+.ya-pagination .item svg {
+  fill: black;
+}
+.ya-pagination .pageItem .ya-popUp-content {
+  height: 150px;
+}
+.ya-pagination .pageItem .page {
+  width: 20px;
+  text-align: center;
+  color: black;
+}
+/*# sourceMappingURL=pagination.css.map */

@@ -1,0 +1,45 @@
+@baseBoxShadow: 0 2px 16px #eaeaea;
+@basePadding : 5px;
+.cloudDrive {
+  margin: 5px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: @baseBoxShadow;
+  min-height: 500px;
+
+  .fileTools{
+    height: 35px;
+    display: flex;
+    .title {
+      text-align: center;
+      font-size: 20px;
+      font-weight: 800;
+      padding: @basePadding;
+      width: 100px;
+    }
+  }
+  .cloudBody {
+    display: flex;
+    flex: auto;
+
+    .leftBar {
+      flex: none;
+      padding: @basePadding;
+      width: 150px;
+
+      .ya-tree{
+        max-height: 600px;
+        border: 1px solid #d6d6d6;
+        border-radius: 5px;
+        overflow: auto;
+      }
+    }
+
+    .rightMain {
+      flex: auto;
+      padding: 0 5px;
+
+    }
+  }
+
+}
