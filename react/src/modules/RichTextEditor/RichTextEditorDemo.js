@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import Header from './BasePage/Header';
-import Menu from './BasePage/Menu';
-import Main from './BasePage/Main';
-import RichTextEditor from '../modules/RichTextEditor/RichTextEditor'
+import Header from '../../pages/common/Header';
+import Menu from '../../pages/common/Menu';
+import Main from '../../pages/common/Main';
+import RichTextEditor from './RichTextEditor'
 
 const article = {
     title: "标题",
@@ -19,16 +19,10 @@ const article = {
 /**
  * 富文本
  */
-class RichTextEditorPage extends Component {
+class RichTextEditorDemo extends Component {
     render() {
-        return (
-            <>
-                <Header/>
-                <Menu indexId={3}/>
-                <Main content={<RichTextEditor data={article}/>}/>
-            </>
-        );
+        return <RichTextEditor data={article}/>;
     }
 }
 
-export default RichTextEditorPage;
+export default RichTextEditorDemo;
