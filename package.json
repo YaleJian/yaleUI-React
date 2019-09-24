@@ -1,0 +1,24 @@
+{
+  "name": "yale",
+  "version": "0.0.1",
+  "description": "See More",
+  "main": "main.js",
+  "scripts": {
+    "electron-start": "electron . --icon=icon.icns",
+    "electron-packager": "electron-packager . Yale --platform=darwin --arch=x64 --icon=icon.icns"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YaleJian/yaleui.git"
+  },
+  "author": "Yale Jian",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/YaleJian/yaleui/issues"
+  },
+  "homepage": ".",
+  "devDependencies": {
+    "electron": "^6.0.10",
+    "electron-packager": "^14.0.6"
+  }
+}

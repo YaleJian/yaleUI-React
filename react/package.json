@@ -2,13 +2,11 @@
   "name": "yaleui",
   "version": "0.1.0",
   "private": true,
-  "main": "main.js",
-  "homepage": ".",
+  "main": "../main.js",
   "dependencies": {
     "axios": "^0.19.0",
     "classnames": "^2.2.6",
     "cos-js-sdk-v5": "^0.5.17",
-    "electron": "^6.0.10",
     "express": "^4.17.1",
     "md5": "^2.2.1",
     "normalize.css": "^8.0.1",
@@ -31,9 +29,7 @@
     "test-original": "react-scripts test",
     "test": "react-app-rewired test --env=jsdom",
     "eject": "react-scripts eject",
-    "mock-server": "node ./src/mock/server.js",
-    "electron-start": "electron .",
-    "electron-packager": "electron-packager . yaleui --platform=darwin --arch=x64 "
+    "mock-server": "node ./src/mock/server.js"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -46,7 +42,6 @@
   ],
   "devDependencies": {
     "cors": "^2.8.5",
-    "electron-packager": "^14.0.6",
     "mockjs": "^1.0.1-beta3",
     "react-app-rewired": "^2.1.3"
   },
