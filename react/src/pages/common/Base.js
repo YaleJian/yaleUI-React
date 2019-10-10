@@ -27,7 +27,7 @@ class Base extends Component {
                     </div>
                 </div>
                 <div className={"ya-footer"}>
-                    隐私政策 | 条款与条件 | 版权所有 © 2019 Yale Jian 保留所有权利
+                    隐私和条款 | 版权所有 © 2019 Yale Jian 保留所有权利 | 备案号: 苏ICP备18013414号
                 </div>
             </>
         );
