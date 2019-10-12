@@ -8,6 +8,7 @@
   vertical-align: middle;
   width: 150px;
   -moz-appearance: textfield;
+  -webkit-appearance: none;
 }
 .ya-input::-webkit-outer-spin-button,
 .ya-input::-webkit-inner-spin-button {

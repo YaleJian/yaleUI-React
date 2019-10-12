@@ -18,6 +18,8 @@ class Input extends React.Component {
         selectIcon : true,
         onChange: () => {
         },
+        onSearch: () =>{
+        },
     };
 
     constructor(props) {
@@ -76,6 +78,7 @@ class Input extends React.Component {
                       autoComplete={this.props.autoComplete}
                       onChange={this.onChange.bind(this)}
                       onClick={this.onClick.bind(this)}
+                      onKeyDown={this.onKeyDown.bind(this)}
                       ref={inputRef => this.inputRef = inputRef}
         />;
     };
@@ -117,12 +120,20 @@ class Input extends React.Component {
         this.props.onChange(e.target.value, e);
     };
 
-    iconClick = () => {
+    iconClick = (e) => {
         if (this.props.type === "password") this.setState({passwordHide: !this.state.passwordHide})
+        if (this.props.type === "search") {
+            this.props.onSearch(e);
+        }
     };
     onClick = (e) => {
         if (this.props.type === "popUp" || this.props.type === "select") {
             this.setState({showContent: !this.state.showContent});
+        }
+    };
+    onKeyDown = (e) =>{
+        if (e.keyCode === 13 && this.props.type === "search") {
+            this.props.onSearch(e);
         }
     };
     cancel = (maskTag, e) => {

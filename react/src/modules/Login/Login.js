@@ -10,6 +10,7 @@ import md5 from "md5";
 import User from "../User/User";
 import result from "../utils/result";
 import Cookie from "../utils/cookie";
+import Button from "../Button/Button";
 
 const defaultUser = {
     phoneNumber: "",
@@ -63,6 +64,7 @@ class Login extends BaseComponent {
             pin4: "",
             passwordShow: false,
             confirmPasswordShow: false,
+            mini: false,
         };
     }
 
@@ -136,23 +138,28 @@ class Login extends BaseComponent {
 
         noLogin: () => {
             let noLoginClass = "noLogin ";
-            noLoginClass = this.state.authState === Login.NO_LOGIN ? "" : noLoginClass + "active";
+            noLoginClass = this.state.authState === Login.NO_LOGIN ? noLoginClass : noLoginClass + "active";
+            let loginPage = <>
+                {this.state.authState === Login.NO_LOGIN || this.state.type === Login.TYPE_LOGIN ?
+                    <span className="loginEntrance" onClick={() => this.setState({
+                        type: Login.TYPE_LOGIN,
+                        authState: Login.AUTH_CORE_PASSWORD
+                    })}>登陆</span> : ""}
+                {this.state.authState === Login.NO_LOGIN || this.state.type === Login.TYPE_REGISTER ?
+                    <span className="registerEntrance" onClick={() => this.setState({
+                        type: Login.TYPE_REGISTER,
+                        authState: Login.AUTH_CORE_PASSWORD
+                    })}>注册</span> : ""}
+                {this.state.authState !== Login.NO_LOGIN ?
+                    <span className="close" onClick={() => this.setState({authState: Login.NO_LOGIN})}><Icon
+                        name="i-BAI-guanbi"/></span> : ""}
+            </>;
+            let hideBtn = <Button className={"hideBtn white"}
+                                  content={<Icon name={this.state.mini ? "i-BAI-zuojiantou" : "i-BAI-youjiantou"}/>}
+                                  onClick={() => this.setState({mini : !this.state.mini})}/>;
             return <>
-                <div className={noLoginClass}>
-                    {this.state.authState === Login.NO_LOGIN || this.state.type === Login.TYPE_LOGIN ?
-                        <span className="loginEntrance" onClick={() => this.setState({
-                            type: Login.TYPE_LOGIN,
-                            authState: Login.AUTH_CORE_PASSWORD
-                        })}>登陆</span> : ""}
-                    {this.state.authState === Login.NO_LOGIN || this.state.type === Login.TYPE_REGISTER ?
-                        <span className="registerEntrance" onClick={() => this.setState({
-                            type: Login.TYPE_REGISTER,
-                            authState: Login.AUTH_CORE_PASSWORD
-                        })}>注册</span> : ""}
-                    {this.state.authState !== Login.NO_LOGIN ?
-                        <span className="close" onClick={() => this.setState({authState: Login.NO_LOGIN})}><Icon
-                            name="i-BAI-guanbi"/></span> : ""}
-                </div>
+                {this.state.authState === Login.NO_LOGIN ? hideBtn : ""}
+                {this.state.mini ? "" : <div className={noLoginClass}> {loginPage}</div>}
             </>
         },
         loginSuccess: () => {
@@ -340,7 +347,8 @@ class Login extends BaseComponent {
         },
 
         back: () => {
-            return <div className="loginBack" onClick={() => this.setState({authState: Login.AUTH_CORE_PASSWORD})}>返回</div>
+            return <div className="loginBack"
+                        onClick={() => this.setState({authState: Login.AUTH_CORE_PASSWORD})}>返回</div>
         },
         phoneNumberEnter: (e) => {
             this.setState({phoneNumber: e.target.value.replace(/[^\d]/g, '')});
@@ -491,7 +499,7 @@ class Login extends BaseComponent {
     logout = () => {
         Cookie.delCookie("userToken");
         localStorage.removeItem("userToken");
-        this.setState({authState : Login.NO_LOGIN});
+        this.setState({authState: Login.NO_LOGIN});
     };
     getUser = () => {
         axios.post('/user/getUser', "", {withCredentials: true})
