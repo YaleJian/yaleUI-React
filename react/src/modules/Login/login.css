@@ -25,6 +25,10 @@
     padding: 8px 8px 8px 0;
     float: right;
 }
+.ya-login .noLogin.active {
+    padding: 8px 8px 0 8px;
+    float: none;
+}
 
 .loginEntrance, .registerEntrance {
     border: 1px solid white;
@@ -260,7 +264,7 @@
 }
 
 .autoLogin {
-    margin: 10px 10px 0;
+    margin: 10px 10px 5px;
     color: #6f6f6f;
     font-size: 9px;
     text-align: center;
