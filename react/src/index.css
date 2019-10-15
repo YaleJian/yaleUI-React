@@ -33,6 +33,9 @@ code {
 button {
   outline: medium;
 }
+input {
+  -webkit-appearance: none;
+}
 .ya-nav-simple {
   text-align: center;
   color: white;
@@ -368,75 +371,5 @@ strong {
   height: 100%;
   pointer-events: auto;
   background: #ffffff00;
-}
-/* 主页 */
-.ya-homePage {
-  margin-top: 65px;
-  padding: 10%;
-}
-.ya-homePage .ya-h-search {
-  text-align: center;
-  height: 40px;
-}
-.ya-homePage .ya-h-search .inputGroup {
-  width: 100%;
-}
-.ya-homePage .ya-h-search .inputGroup .ya-h-search-input {
-  width: 100%;
-  height: 40px;
-  max-width: 800px;
-}
-.ya-homePage .ya-h-search .inputGroup .inputIcon {
-  line-height: 38px;
-  margin-left: -36px !important;
-}
-.ya-homePage .ya-h-search .inputGroup .inputIcon svg {
-  height: 20px;
-  width: 20px;
-}
-.ya-homePage .ya-apps {
-  text-align: center;
-  padding: 20px;
-}
-.ya-homePage .ya-apps a {
-  display: inline-block;
-}
-.ya-homePage .ya-apps a .app {
-  width: 85px;
-  height: 85px;
-  margin: 16px 16px 5px 16px;
-  border-radius: 20px;
-  box-shadow: 0 5px 28px 0 rgba(0, 0, 0, 0.1);
-}
-.ya-homePage .ya-apps a .app svg {
-  width: 65px;
-  height: 65px;
-}
-.ya-homePage .ya-apps a .appName {
-  padding: 6px 0;
-}
-.ya-homePage .ya-apps a .appName button {
-  background: #f0f3f6;
-}
-.ya-footer {
-  position: absolute;
-  bottom: 0;
-  font-size: 10px;
-  color: #6f6f6f;
-  text-align: center;
-  width: 100%;
-}
-.ya-header {
-  display: flex;
-  align-items: center;
-}
-.ya-header .name {
-  font-weight: 600;
-  font-size: 20px;
-}
-.ya-header svg {
-  height: 48px;
-  width: 48px;
-  margin: 5px;
 }
 /*# sourceMappingURL=index.css.map */
