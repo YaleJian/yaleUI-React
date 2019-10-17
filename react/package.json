@@ -43,7 +43,8 @@
   "devDependencies": {
     "cors": "^2.8.5",
     "mockjs": "^1.0.1-beta3",
-    "react-app-rewired": "^2.1.3"
+    "react-app-rewired": "^2.1.3",
+    "cos-webpack": "^1.0.6"
   },
   "annotation": {
     "proxyLocal": "http://localhost:8082",
