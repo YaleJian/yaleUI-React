@@ -469,7 +469,7 @@ class Login extends BaseComponent {
             alert("需要同意协议");
             return;
         }
-        axios.post('/user/register', Qs.stringify(this.auth.getData()), {withCredentials: true})
+        axios.post('/service/user/register', Qs.stringify(this.auth.getData()), {withCredentials: true})
             .then((res) => {
                 result(res, () => {
                     let user = res.data;
@@ -484,7 +484,7 @@ class Login extends BaseComponent {
     };
 
     login = (user) => {
-        axios.post('/user/login', Qs.stringify(user), {withCredentials: true})
+        axios.post('/service/user/login', Qs.stringify(user), {withCredentials: true})
             .then((res) => {
                 result(res, (res) => {
                     this.setUser(res)
@@ -502,7 +502,7 @@ class Login extends BaseComponent {
         this.setState({authState: Login.NO_LOGIN});
     };
     getUser = () => {
-        axios.post('/user/getUser', "", {withCredentials: true})
+        axios.post('/service/user/getUser', "", {withCredentials: true})
             .then((res) => {
                 result(res, (res) => {
                     this.setUser(res)
@@ -533,7 +533,7 @@ class Login extends BaseComponent {
             if (!isNaN(this.state.countdown60)) return;
 
             let user = {phoneNumber: this.state.phoneNumber};
-            axios.post('/sms/single', Qs.stringify(user), {withCredentials: true})
+            axios.post('/service/sms/single', Qs.stringify(user), {withCredentials: true})
                 .then((res) => {
                     result(res, () => {
                         this.setState({countdown60: 60});
