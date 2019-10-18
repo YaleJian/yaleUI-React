@@ -4,8 +4,8 @@
   "description": "See More",
   "main": "main.js",
   "scripts": {
-    "electron-start": "../node_modules/.bin/electron . --icon=icon.icns",
-    "electron-packager": "../node_modules/.bin/electron-packager . Yale --platform=darwin --arch=x64 --icon=icon.icns"
+    "electron-start": "node_modules/.bin/electron . --icon=icon.icns",
+    "electron-packager": "node_modules/.bin/electron-packager . YaleJian --platform=darwin --arch=x64 --icon=icon.icns"
   },
   "repository": {
     "type": "git",

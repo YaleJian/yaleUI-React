@@ -20,7 +20,7 @@ class Desktop extends React.Component {
 
     render() {
         let data = [
-            {name: "APP下载", link: "pic", icon: "i-ziyuan", bg: "grey"},
+            {name: "APP下载", link: "appDownload", icon: "i-ziyuan", bg: "grey"},
             {name: "Yale UI", link: "api", icon: "i-uicn", bg: "grey"},
             {name: "摄影展", link: "pic", icon: "i-chongwusheying", bg: ""},
             {name: "文章", link: "pic", icon: "i-book-2", bg: "green"},

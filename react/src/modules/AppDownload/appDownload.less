@@ -1,0 +1,114 @@
+.ya-appDownload {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  background: linear-gradient(to right, #fbf2f2, #f0f0fb);
+
+  .header {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 50px;
+    padding: 10px;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 8px 12px #ebedf0;
+    background: #f0fbf570;
+
+    .logo {
+      flex: auto;
+      text-align: right;
+      margin-right: 5px;
+
+      svg {
+        height: 40px;
+        width: 40px;
+      }
+    }
+
+    .title {
+      flex: auto;
+      text-align: left;
+    }
+  }
+
+  .content {
+    text-align: center;
+    padding: 40px 10%;
+    margin-top: 70px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    .preview {
+      width: 100%;
+      box-shadow: 0 8px 12px #ebedf0;
+    }
+
+    .right {
+      padding: 10px;
+      line-height: 22px;
+      text-align: center;
+      float: right;
+
+      .name {
+        font-size: 18px;
+        line-height: 28px;
+      }
+
+      .desc {
+        font-size: 28px;
+        line-height: 38px;
+      }
+
+      .downloadBtn {
+        margin: 30px;
+
+        .ya-btn {
+          margin: 8px;
+        }
+
+        button span {
+          padding: 0 5px;
+        }
+      }
+
+      .updateInfo {
+        color: #646464;
+        line-height: 30px;
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 900px) {
+  .ya-appDownload {
+    .content {
+      flex-wrap: nowrap;
+      padding: 12% 0 12% 5%;
+      .preview {
+        width: 1000px;
+      }
+      .right {
+        .downloadBtn {
+          .ya-btn{
+            margin: 12px 18px;
+            svg {
+              height: 30px;
+              width: 30px;
+            }
+          }
+          button span {
+            font-size: 28px;
+          }
+        }
+        .updateInfo {
+        }
+      }
+    }
+
+  }
+}

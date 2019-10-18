@@ -21,7 +21,7 @@ function createWindow () {
     win.loadURL('https://yalejian.com/');
 
     // 打开开发者工具，默认不打开
-    win.webContents.openDevTools();
+    // win.webContents.openDevTools();
 
     // 关闭window时触发下列事件.
     win.on('closed', function () {
