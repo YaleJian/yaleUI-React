@@ -18,11 +18,13 @@ class AppDownload extends Component {
                 <div className={"right"}>
                     <div className={"desc"}>轻装上线</div>
                     <div className={"downloadBtn"}>
-                        <a href={"https://file.yalejian.com/download/YaleJian.dmg"} >
+                        <a href={"http://file.yalejian.com/download/YaleJian.dmg"} >
                             <Button className={"green"} content={<><Icon name={"i-mac"}/><span>立即下载</span></>}/>
                         </a>
                         <Button className={"green"} content={<><Icon name={"i-ios"}/><span>正在开发</span></> }/>
-                        <Button className={"green"} content={<><Icon name={"i-Android"}/><span>正在开发</span></>}/>
+                        <a href={"http://file.yalejian.com/download/YaleJian.apk"} >
+                            <Button className={"green"} content={<><Icon name={"i-Android"}/><span>立即下载</span></>}/>
+                        </a>
                         <Button className={"green"} content={<><Icon name={"i-win"}/><span>正在开发</span></>}/>
                         <Button className={"green"} content={<><Icon name={"i-linux-"}/><span>正在开发</span></>}/>
                     </div>
