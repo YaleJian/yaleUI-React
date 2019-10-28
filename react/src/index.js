@@ -9,6 +9,7 @@ import Login from './modules/Login/Login';
 import UI from "./pages/UI/UI";
 import Base from "./pages/common/Base";
 import AppDownload from "./pages/AppDownload/AppDownload";
+import Photo from "./pages/Photo/Photo";
 
 let root = <>
     <Login/>
@@ -17,6 +18,7 @@ let root = <>
             <Route exact path={'/'} component={Base}/>
             <Route path={'/ui'} component={UI}/>
             <Route path={'/appDownload'} component={AppDownload}/>
+            <Route path={'/photo'} component={Photo}/>
         </Switch>
     </BrowserRouter>
 </>;
