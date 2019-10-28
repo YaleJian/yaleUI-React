@@ -50,5 +50,6 @@
     "proxyLocal": "http://localhost:8082",
     "proxyOnline": "https://140.143.200.121/",
     "proxy127": "http://127.0.0.1:8081/service/"
-  }
+  },
+  "proxy": "https://140.143.200.121/"
 }
