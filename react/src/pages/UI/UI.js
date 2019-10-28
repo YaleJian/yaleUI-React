@@ -5,8 +5,8 @@ import Main from '../common/Main';
 import ButtonDemo from "../../modules/Button/ButtonDemo";
 import TreeDemo from "../../modules/Tree/TreeDemo";
 import {Route, Switch} from "react-router";
-import DesignStandardPage from "./DesignStandardPage";
-import TypographyPage from "./TypographyPage";
+import DesignStandard from "./DesignStandard";
+import Typography from "./Typography";
 import RichTextEditorDemo from "../../modules/RichTextEditor/RichTextEditorDemo";
 import CloudDrive from "../../modules/CloudDrive/CloudDrive";
 import InputDemo from "../../modules/Input/InputDemo";
@@ -17,13 +17,13 @@ import PaginationDemo from "../../modules/Pagination/PaginationDemo";
 /**
  * API文档
  */
-class ApiPage extends Component {
+class UI extends Component {
     render() {
         let path = this.props.match.path;
         let content = <>
-            <Route exact path={path} component={DesignStandardPage}/>
-            <Route path={`${path}/designStandard`} component={DesignStandardPage}/>
-            <Route path={`${path}/typography`} component={TypographyPage}/>
+            <Route exact path={path} component={DesignStandard}/>
+            <Route path={`${path}/designStandard`} component={DesignStandard}/>
+            <Route path={`${path}/typography`} component={Typography}/>
             <Route path={`${path}/tree`} component={TreeDemo}/>
             <Route path={`${path}/richTextEditor`} component={RichTextEditorDemo}/>
             <Route path={`${path}/cloudDrive`} component={CloudDrive}/>
@@ -44,4 +44,4 @@ class ApiPage extends Component {
     }
 }
 
-export default ApiPage;
+export default UI;

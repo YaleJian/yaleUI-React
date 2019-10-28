@@ -1,8 +1,8 @@
 import React from 'react';
-import Icon from "../utils/Icon";
-import Input from "../Input/Input";
+import Icon from "../../modules/utils/Icon";
+import Input from "../../modules/Input/Input";
 import {Link} from "react-router-dom";
-import Button from "../Button/Button";
+import Button from "../../modules/Button/Button";
 import './desktop.css';
 
 /**

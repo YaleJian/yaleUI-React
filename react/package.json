@@ -48,7 +48,7 @@
   },
   "annotation": {
     "proxyLocal": "http://localhost:8082",
-    "proxyOnline": "https://yalejian.com/service/",
+    "proxyOnline": "https://140.143.200.121/",
     "proxy127": "http://127.0.0.1:8081/service/"
   }
 }

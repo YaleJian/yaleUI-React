@@ -1,6 +1,8 @@
 import React from "react";
 
 /**
+ * 组件已经被销毁的时候就不调用setState方法
+ * 解决react内存泄漏的问题
  * @author yalejian
  */
 function inject_unmount (target){

@@ -6,9 +6,9 @@ import Checkbox from "../../modules/Checkbox/Checkbox";
 import Radio from "../../modules/Radio/Radio";
 
 /**
- * 提示
+ * 排版
  */
-class TypographyPage extends Component {
+class Typography extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -161,4 +161,4 @@ class TypographyPage extends Component {
     }
 }
 
-export default TypographyPage;
+export default Typography;

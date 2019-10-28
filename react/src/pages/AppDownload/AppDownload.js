@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import Icon from "../utils/Icon";
-import Button from "../Button/Button";
+import Icon from "../../modules/utils/Icon";
+import Button from "../../modules/Button/Button";
 import "./appDownload.css";
 /**
  * 下载页面

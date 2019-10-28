@@ -6,16 +6,16 @@ import * as serviceWorker from './serviceWorker';
 import {Route, Switch} from "react-router";
 import {BrowserRouter} from "react-router-dom";
 import Login from './modules/Login/Login';
-import ApiPage from "./pages/api/ApiPage";
+import UI from "./pages/UI/UI";
 import Base from "./pages/common/Base";
-import AppDownload from "./modules/AppDownload/AppDownload";
+import AppDownload from "./pages/AppDownload/AppDownload";
 
 let root = <>
     <Login/>
     <BrowserRouter>
         <Switch>
             <Route exact path={'/'} component={Base}/>
-            <Route path={'/api'} component={ApiPage}/>
+            <Route path={'/ui'} component={UI}/>
             <Route path={'/appDownload'} component={AppDownload}/>
         </Switch>
     </BrowserRouter>

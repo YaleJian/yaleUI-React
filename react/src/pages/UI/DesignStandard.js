@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 /**
  * 设计规范
  */
-class DesignStandardPage extends Component {
+class DesignStandard extends Component {
 
     render() {
         return <>
@@ -13,4 +13,4 @@ class DesignStandardPage extends Component {
     }
 }
 
-export default DesignStandardPage;
+export default DesignStandard;
