@@ -23,10 +23,10 @@ class AppDownload extends Component {
                         </a>
                         <Button className={"green"} content={<><Icon name={"i-ios"}/><span>IOS</span><Icon name={"i-download"}/></> }/>
                         <a href={"http://file.yalejian.com/download/YaleJian.dmg"} >
-                            <Button className={"green"} content={<><Icon name={"i-mac1"}/><span>Mac</span><Icon name={"i-download"}/></>}/>
+                            <Button className={"green"} content={<><Icon name={"i-mac1"}/><span>MacOS</span><Icon name={"i-download"}/></>}/>
                         </a>
                         <a href={"http://file.yalejian.com/download/YaleJian.exe"} >
-                            <Button className={"green"} content={<><Icon name={"i-win"}/><span>Win</span><Icon name={"i-download"}/></>}/>
+                            <Button className={"green"} content={<><Icon name={"i-win"}/><span>Windows</span><Icon name={"i-download"}/></>}/>
                         </a>
                     </div>
                     <div className={"updateInfo"}>
