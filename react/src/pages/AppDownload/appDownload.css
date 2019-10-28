@@ -62,9 +62,12 @@
 }
 .ya-appDownload .content .right .downloadBtn .ya-btn {
   margin: 8px;
+  padding: 5px 10px;
 }
-.ya-appDownload .content .right .downloadBtn button span {
-  padding: 0 5px;
+.ya-appDownload .content .right .downloadBtn span {
+  display: inline-block;
+  width: 80px;
+  text-align: center;
 }
 .ya-appDownload .content .right .updateInfo {
   color: #646464;
@@ -73,20 +76,20 @@
 @media only screen and (min-width: 900px) {
   .ya-appDownload .content {
     flex-wrap: nowrap;
-    padding: 12% 0 12% 5%;
+    padding: 5% 0 5% 5%;
   }
   .ya-appDownload .content .preview {
-    width: 1000px;
+    width: 800px;
   }
   .ya-appDownload .content .right .downloadBtn .ya-btn {
-    margin: 12px 18px;
+    margin: 12px 22px;
   }
   .ya-appDownload .content .right .downloadBtn .ya-btn svg {
-    height: 30px;
-    width: 30px;
+    height: 20px;
+    width: 20px;
   }
   .ya-appDownload .content .right .downloadBtn button span {
-    font-size: 28px;
+    font-size: 20px;
   }
 }
 /*# sourceMappingURL=appDownload.css.map */

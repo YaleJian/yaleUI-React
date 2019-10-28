@@ -18,20 +18,21 @@ class AppDownload extends Component {
                 <div className={"right"}>
                     <div className={"desc"}>轻装上线</div>
                     <div className={"downloadBtn"}>
-                        <a href={"http://file.yalejian.com/download/YaleJian.dmg"} >
-                            <Button className={"green"} content={<><Icon name={"i-mac"}/><span>立即下载</span></>}/>
-                        </a>
-                        <Button className={"green"} content={<><Icon name={"i-ios"}/><span>正在开发</span></> }/>
                         <a href={"http://file.yalejian.com/download/YaleJian.apk"} >
-                            <Button className={"green"} content={<><Icon name={"i-Android"}/><span>立即下载</span></>}/>
+                            <Button className={"green"} content={<><Icon name={"i-Android"}/><span>Android</span><Icon name={"i-download"}/></>}/>
                         </a>
-                        <Button className={"green"} content={<><Icon name={"i-win"}/><span>正在开发</span></>}/>
-                        <Button className={"green"} content={<><Icon name={"i-linux-"}/><span>正在开发</span></>}/>
+                        <Button className={"green"} content={<><Icon name={"i-ios"}/><span>IOS</span><Icon name={"i-download"}/></> }/>
+                        <a href={"http://file.yalejian.com/download/YaleJian.dmg"} >
+                            <Button className={"green"} content={<><Icon name={"i-mac1"}/><span>Mac</span><Icon name={"i-download"}/></>}/>
+                        </a>
+                        <a href={"http://file.yalejian.com/download/YaleJian.exe"} >
+                            <Button className={"green"} content={<><Icon name={"i-win"}/><span>Win</span><Icon name={"i-download"}/></>}/>
+                        </a>
                     </div>
                     <div className={"updateInfo"}>
                         <div>当前版本：0.0.1</div>
-                        <div>运行要求：各设备最新系统</div>
-                        <div>更新时间：2019年10月18日</div>
+                        <div>运行要求：各设备最新x64系统</div>
+                        <div>更新时间：2019年10月28日</div>
                     </div>
                 </div>
             </div>
