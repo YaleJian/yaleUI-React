@@ -1,13 +1,26 @@
-.ya-photo{
-  display:flex;
-  flex-wrap:wrap;
-  margin: 2px;
-  .item{
-    margin: 2px;
-    background-color: violet;
+.ya-photo {
+  display: flex;
+  flex-wrap: wrap;
+
+  &::after {
+    //解决最后一排拍不满的问题，拍不满，after一个grow很大的空位
+    content: '';
+    flex-grow: 20;
+    min-width: 280px;
+    height: 0;
+  }
+
+  .item {
     position: relative;
-    img{
-      position: absolute;
+    display: none;
+    margin: 5px;
+
+    i {
+      display: block;
+      line-height: 0;
+    }
+
+    img {
       vertical-align: bottom;
       top: 0;
       width: 100%;

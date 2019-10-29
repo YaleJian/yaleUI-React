@@ -28,16 +28,34 @@ class Photo extends React.Component {
             })
         }
         let photos = photoGroup.list.map((item, key) => {
-            return <span className={"item"}>
-                <img src={item.url}/>
-                <span>
-
-                </span>
-            </span>
+            return <div className={"item"} key={key}>
+                <i/>
+                <img src={item.url} onLoad={this.imgOnLoad.bind(this)}/>
+            </div>
         });
         return <div className={"ya-photo"}>
             {photos}
         </div>
+    }
+
+    imgOnLoad = (e) => {
+
+        //加载完获取图片宽高
+        let width = e.target.width;
+        let height = e.target.height;
+
+        //设置容器：平均分布按照长宽比，宽度重置为按照长宽比的
+        e.target.parentNode.style.flexGrow = width / height;
+        e.target.parentNode.style.width = width / height * 280 + "px";
+
+        //撑开容器
+        e.target.previousSibling.style.paddingBottom = height / width * 100 + "%";
+
+        //图片相对容器撑满
+        e.target.style.position = "absolute";
+
+        //显示图片
+        e.target.parentNode.style.display = "block"
     }
 }
 
