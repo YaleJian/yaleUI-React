@@ -1,31 +1,34 @@
 .ya-photo {
-  display: flex;
-  flex-wrap: wrap;
+  .home {
 
-  &::after {
-    //解决最后一排拍不满的问题，拍不满，after一个grow很大的空位
-    content: '';
-    flex-grow: 20;
-    min-width: 280px;
-    height: 0;
-  }
+    display: flex;
+    flex-wrap: wrap;
 
-  .item {
-    position: relative;
-    display: none;
-    margin: 5px;
-
-    i {
-      display: block;
-      line-height: 0;
+    &::after {
+      //解决最后一排拍不满的问题，拍不满，after一个grow很大的空位
+      content: '';
+      flex-grow: 20;
+      min-width: 280px;
+      height: 0;
     }
 
-    img {
-      vertical-align: bottom;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+    .item {
+      position: relative;
+      display: none;
+      margin: 5px;
+
+      i {
+        display: block;
+        line-height: 0;
+      }
+
+      img {
+        vertical-align: bottom;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
     }
   }
 }

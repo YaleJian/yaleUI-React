@@ -48,30 +48,4 @@
 .ya-homePage .ya-apps a .appName button {
   background: #f0f3f6;
 }
-.ya-footer {
-  position: fixed;
-  bottom: 0;
-  font-size: 10px;
-  color: #8c8c8c;
-  text-align: center;
-  width: 100%;
-}
-.ya-footer .copyright {
-  color: #8c8c8c;
-  text-decoration: none;
-  cursor: pointer;
-}
-.ya-header {
-  display: flex;
-  align-items: center;
-}
-.ya-header .name {
-  font-weight: 600;
-  font-size: 20px;
-}
-.ya-header svg {
-  height: 40px;
-  width: 40px;
-  margin: 5px;
-}
 /*# sourceMappingURL=desktop.css.map */

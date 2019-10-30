@@ -47,13 +47,33 @@ input[type=text] {
   top: 0;
   z-index: 100;
 }
+.ya-absolute {
+  position: absolute;
+  top: 0;
+  z-index: 100;
+}
 .ya-menu {
-  width: 15%;
-  margin: 30px 0;
-  background: #f9f9f9;
+  width: 150px;
+  position: fixed;
+  left: 0;
+  top: 0;
+  margin: 50px 0 0 0;
+}
+.ya-menu.hide + .ya-main {
+  padding: 60px 10px 10px 10px;
+}
+.ya-menu .content {
+  display: inline-block;
+}
+.ya-menu .content.hide {
+  display: none;
+}
+.ya-menu .toggle {
+  position: absolute;
+  margin: 0 0 0 1px;
 }
 .ya-main {
-  padding: 30px 0 0 16%;
+  padding: 60px 10px 10px 160px;
 }
 /** iconfont */
 .icon {
@@ -371,5 +391,31 @@ strong {
   height: 100%;
   pointer-events: auto;
   background: #ffffff00;
+}
+.ya-footer {
+  position: fixed;
+  bottom: 0;
+  font-size: 10px;
+  color: #8c8c8c;
+  text-align: center;
+  width: 100%;
+}
+.ya-footer .copyright {
+  color: #8c8c8c;
+  text-decoration: none;
+  cursor: pointer;
+}
+.ya-header {
+  display: flex;
+  align-items: center;
+}
+.ya-header .name {
+  font-weight: 600;
+  font-size: 20px;
+}
+.ya-header svg {
+  height: 40px;
+  width: 40px;
+  margin: 5px;
 }
 /*# sourceMappingURL=index.css.map */

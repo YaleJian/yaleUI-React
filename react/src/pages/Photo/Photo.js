@@ -1,5 +1,6 @@
 import React from 'react'
 import './photo.css';
+import Header from "../common/Header";
 
 /**
  * 摄影展
@@ -40,7 +41,10 @@ class Photo extends React.Component {
             </div>
         });
         return <div className={"ya-photo"}>
-            {photos}
+            <Header children={"Photographic Exhibition"}/>
+            <div className={"home"}>
+                {photos}
+            </div>
         </div>
     }
 

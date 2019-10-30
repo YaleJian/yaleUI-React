@@ -20,7 +20,8 @@ import PaginationDemo from "../../modules/Pagination/PaginationDemo";
 class UI extends Component {
     render() {
         let path = this.props.match.path;
-        let content = <>
+
+        let pages = <>
             <Route exact path={path} component={DesignStandard}/>
             <Route path={`${path}/designStandard`} component={DesignStandard}/>
             <Route path={`${path}/typography`} component={Typography}/>
@@ -32,13 +33,15 @@ class UI extends Component {
             <Route path={`${path}/message`} component={MessageDemo}/>
             <Route path={`${path}/date`} component={DatepickerDemo}/>
             <Route path={`${path}/pagination`} component={PaginationDemo}/>
-        </>;
+            </>;
 
         return (
             <>
-                <Header/>
+                <Header children={"Yale JS"}/>
                 <Menu indexId={1} path={this.props.location.pathname}/>
-                <Main content={content}/>
+                <Main>
+                    {pages}
+                </Main>
             </>
         );
     }

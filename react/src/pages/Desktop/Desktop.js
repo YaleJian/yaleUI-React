@@ -4,6 +4,7 @@ import Input from "../../modules/Input/Input";
 import {Link} from "react-router-dom";
 import Button from "../../modules/Button/Button";
 import './desktop.css';
+import Header from "../common/Header";
 
 /**
  * 桌面
@@ -37,10 +38,7 @@ class Desktop extends React.Component {
             </Link>
         });
         return <>
-            <div className="ya-header ya-nav-simple ya-fixed">
-                <Icon name={"i-logo"}/>
-                <span className={"name"}>扬歌YaleJian</span>
-            </div>
+            <Header children={"扬歌YaleJian"}/>
             <div className={"ya-homePage"}>
                 <div className={"ya-h-search"}>
                     <Input type="search" className="ya-h-search-input right" placeholder={"搜索网页"}

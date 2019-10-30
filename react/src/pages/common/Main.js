@@ -7,7 +7,7 @@ class Main extends Component{
 
         return (
             <div className="ya-main">
-                {this.props.content}
+                {this.props.children}
             </div>
         )
     }
