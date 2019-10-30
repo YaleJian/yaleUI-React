@@ -13,6 +13,10 @@ class Photo extends React.Component {
     }
 
     render() {
+
+        //获取cos临时密钥
+
+        //测试代码
         let array = Array(28).fill(null).map((_, h) => h < 9 ? "0" + (h + 1) : h + 1);
         let photoGroup = {
             list: [],
@@ -20,6 +24,8 @@ class Photo extends React.Component {
             shootingTime: new Date(),
             releaseTime: new Date(),
         };
+
+
         for (let i in array) {
             photoGroup.list.push({
                 name: "图片" + i,
