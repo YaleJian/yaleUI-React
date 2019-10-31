@@ -60,7 +60,7 @@ input[type=text] {
   margin: 50px 0 0 0;
 }
 .ya-menu.hide + .ya-main {
-  padding: 60px 10px 10px 10px;
+  padding: 50px 10px 10px 20px;
 }
 .ya-menu .content {
   display: inline-block;
@@ -70,10 +70,11 @@ input[type=text] {
 }
 .ya-menu .toggle {
   position: absolute;
-  margin: 0 0 0 1px;
+  margin: 18px 0 0 1px;
+  padding: 2px 1px;
 }
 .ya-main {
-  padding: 60px 10px 10px 160px;
+  padding: 50px 10px 10px 165px;
 }
 /** iconfont */
 .icon {
@@ -145,7 +146,7 @@ input[type=text] {
   background: white;
   box-shadow: 0 8px 12px #ebedf0;
   padding: 10px;
-  margin: 10px;
+  margin: 10px 5px;
   border-radius: 5px;
 }
 h1,
@@ -154,7 +155,7 @@ h3,
 h4,
 h5,
 h6 {
-  margin: 15px 0 10px 0;
+  margin: 12px 0 5px 0;
 }
 h1 {
   color: black;
@@ -413,9 +414,15 @@ strong {
   font-weight: 600;
   font-size: 20px;
 }
-.ya-header svg {
+.ya-header a svg {
+  transition: all 0.3s;
   height: 40px;
   width: 40px;
   margin: 5px;
+}
+.ya-header a svg:hover {
+  height: 46px;
+  width: 46px;
+  margin: 2px;
 }
 /*# sourceMappingURL=index.css.map */

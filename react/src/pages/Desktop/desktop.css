@@ -1,12 +1,13 @@
 /* 主页 */
 .ya-homePage {
   margin-top: 50px;
-  padding: 10%;
+  padding: 10% 4% 0 4%;
   margin-bottom: 20px;
 }
 .ya-homePage .ya-h-search {
   text-align: center;
   height: 40px;
+  margin: 0 14px;
 }
 .ya-homePage .ya-h-search .inputGroup {
   width: 100%;

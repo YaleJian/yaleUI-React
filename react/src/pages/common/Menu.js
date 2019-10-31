@@ -52,7 +52,7 @@ class Menu extends Component {
                               }}
                         />
                     </div>
-                    <Button className={"white toggle"} content={<Icon name={"i-BAI-zuojiantou"}/>}
+                    <Button className={"white toggle"} content={<Icon name={this.state.isHide ? "i-BAI-youjiantou" : "i-BAI-zuojiantou"}/>}
                             onClick={this.toggle.bind(this)}/>
                 </div>
 
