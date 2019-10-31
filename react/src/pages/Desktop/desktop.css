@@ -1,8 +1,15 @@
 /* 主页 */
+html,
+body {
+  height: 100%;
+}
+#root {
+  height: 100%;
+}
 .ya-homePage {
+  height: calc(90% - 70px);
   margin-top: 50px;
-  padding: 10% 4% 0 4%;
-  margin-bottom: 20px;
+  padding: 8% 4% 0 4%;
 }
 .ya-homePage .ya-h-search {
   text-align: center;
@@ -26,6 +33,7 @@
   width: 20px;
 }
 .ya-homePage .ya-apps {
+  height: 100%;
   text-align: center;
   padding: 20px 0;
 }

@@ -9,8 +9,8 @@ class AppDownload extends Component {
 
     render() {
         return <div className={"ya-appDownload"}>
-            <div className={"header"}>
-                <span className={"logo"}><Icon name={"i-logo"}/></span>
+            <div className={"ya-header header"}>
+                <a href={"/"} className={"logo"}><Icon name={"i-logo"}/></a>
                 <span className={"title"}>扬歌YaleJian · 客户端下载</span>
             </div>
             <div className={"content"}>

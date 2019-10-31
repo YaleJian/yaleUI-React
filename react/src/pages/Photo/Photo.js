@@ -1,6 +1,7 @@
 import React from 'react'
 import './photo.css';
 import Header from "../common/Header";
+import Main from "../common/Main";
 
 /**
  * 摄影展
@@ -34,18 +35,28 @@ class Photo extends React.Component {
                 shootingTime: new Date(),
             })
         }
-        let photos = photoGroup.list.map((item, key) => {
+        let list = photoGroup.list.map((item, key) => {
             return <div className={"item"} key={key}>
                 <i/>
                 <img src={item.url} onLoad={this.imgOnLoad.bind(this)}/>
             </div>
         });
-        return <div className={"ya-photo"}>
-            <Header children={"Photographic Exhibition"}/>
-            <div className={"home"}>
-                {photos}
-            </div>
-        </div>
+        let photos = <div className={"stream"}>{list}</div>;
+        return <>
+            <Header children={"Photographic Exhibition"} className={"center"}/>
+            <Main>
+                <div className={"ya-photo"}>
+                    <ul className={"p-header"}>
+                        <li>Home</li>
+                        <li>Scenery</li>
+                        <li>Portrait</li>
+                        <li>Abort</li>
+                        <li>Pricing</li>
+                    </ul>
+                    {photos}
+                </div>
+            </Main>
+        </>
     }
 
     imgOnLoad = (e) => {

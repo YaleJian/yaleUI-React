@@ -6,7 +6,7 @@ class Main extends Component{
     render() {
 
         return (
-            <div className="ya-main">
+            <div className={"ya-main " + this.props.className}>
                 {this.props.children}
             </div>
         )

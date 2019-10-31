@@ -5,6 +5,7 @@ import {Link} from "react-router-dom";
 import Button from "../../modules/Button/Button";
 import './desktop.css';
 import Header from "../common/Header";
+import Footer from "../common/Footer";
 
 /**
  * 桌面
@@ -25,6 +26,7 @@ class Desktop extends React.Component {
             {name: "Yale UI", link: "ui", icon: "i-uicn", bg: "grey"},
             {name: "摄影展", link: "photo", icon: "i-chongwusheying", bg: ""},
             {name: "文章", link: "pic", icon: "i-book-2", bg: "green"},
+            {name: "天气", link: "weather", icon: "i-duoyun1", bg: "white"},
             {name: "云盘", link: "pic", icon: "i-yunpan2", bg: "grey"},
             {name: "账号设置", link: "pic", icon: "i-anquan", bg: "orange"},
             {name: "后台管理", link: "pic", icon: "i-huabanfuben1", bg: "blue"},

@@ -39,7 +39,7 @@ class UI extends Component {
             <>
                 <Header children={"Yale JS"}/>
                 <Menu indexId={1} path={this.props.location.pathname}/>
-                <Main>
+                <Main className={"left"}>
                     {pages}
                 </Main>
             </>
