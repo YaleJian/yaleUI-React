@@ -6,14 +6,14 @@ let Region = 'ap-beijing';
 let cos = new COS({
     getAuthorization: function (options, callback) {
         // 异步获取临时密钥
-
-        let url = 'http://127.0.0.1:8081/service/qCloud/getSts';
+        let url = 'https://yalejian.com/service/qCloud/getSts';
         let xhr = new XMLHttpRequest();
         xhr.open('GET', url, true);
         xhr.onload = function (e) {
             let credentials;
+            let data ={};
             try {
-                let data = JSON.parse(e.target.responseText);
+                data = JSON.parse(e.target.responseText);
                 credentials = data.credentials;
             } catch (e) {
             }
@@ -37,6 +37,19 @@ export var cosUpload = (e, folderName) => {
         Body: file,
     }, function (err, data) {
         console.log(err || data);
+    });
+};
+export var cosList = (folderName,func) => {
+    cos.getBucket({
+        Bucket: Bucket,
+        Region: Region,
+        Prefix: folderName,
+        qs : {
+            delimiter : "/",
+        }
+    }, function (err,data) {
+        console.log(err || data.Body);
+        func(data.Contents);
     });
 };
 export var cosDownload = (url) => {
