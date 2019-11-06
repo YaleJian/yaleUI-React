@@ -11,7 +11,7 @@ let cos = new COS({
         xhr.open('GET', url, true);
         xhr.onload = function (e) {
             let credentials;
-            let data ={};
+            let data = {};
             try {
                 data = JSON.parse(e.target.responseText);
                 credentials = data.credentials;
@@ -39,16 +39,19 @@ export var cosUpload = (e, folderName) => {
         console.log(err || data);
     });
 };
-export var cosList = (folderName,func) => {
-    cos.getBucket({
+//获取文件列表
+export var cosList = (folderName, func, delimiter, nextMarker, size) => {
+
+    let param = {
         Bucket: Bucket,
         Region: Region,
         Prefix: folderName,
-        qs : {
-            delimiter : "/",
-        }
-    }, function (err,data) {
-        console.log(err || data.Body);
+    };
+    if (delimiter) param.Delimiter = delimiter;
+    if (nextMarker) param.Marker = nextMarker;
+    if (size) param.MaxKeys = size;
+
+    cos.getBucket(param, function (err, data) {
         func(data.Contents);
     });
 };

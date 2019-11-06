@@ -18,6 +18,7 @@ let root = <>
             <Route exact path={'/'} component={Base}/>
             <Route path={'/ui'} component={UI}/>
             <Route path={'/appDownload'} component={AppDownload}/>
+            <Route path={'/photo/:c/:g/'} component={Photo}/>
             <Route path={'/photo'} component={Photo}/>
         </Switch>
     </BrowserRouter>
