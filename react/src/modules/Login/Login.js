@@ -1,7 +1,7 @@
 import React from "react";
 import BaseComponent from "../BaseComponent";
 import "./login.css";
-import "./../animate.css";
+import "../animate/animate.css";
 import QRCode from 'qrcode.react';
 import axios from './../utils/Axios';
 import Qs from 'qs';

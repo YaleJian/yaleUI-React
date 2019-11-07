@@ -13,6 +13,7 @@ import InputDemo from "../../modules/Input/InputDemo";
 import MessageDemo from "../../modules/message/MessageDemo";
 import DatepickerDemo from "../../modules/Datepicker/DatepickerDemo";
 import PaginationDemo from "../../modules/Pagination/PaginationDemo";
+import Animation from "../../modules/animate/Animate";
 
 /**
  * API文档
@@ -25,6 +26,7 @@ class UI extends Component {
             <Route exact path={path} component={DesignStandard}/>
             <Route path={`${path}/designStandard`} component={DesignStandard}/>
             <Route path={`${path}/typography`} component={Typography}/>
+            <Route path={`${path}/animation`} component={Animation}/>
             <Route path={`${path}/tree`} component={TreeDemo}/>
             <Route path={`${path}/richTextEditor`} component={RichTextEditorDemo}/>
             <Route path={`${path}/cloudDrive`} component={CloudDrive}/>

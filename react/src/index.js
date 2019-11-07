@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 // import "normalize.css";
+import './modules/animate/animate.css'
 import * as serviceWorker from './serviceWorker';
 import {Route, Switch} from "react-router";
 import {BrowserRouter} from "react-router-dom";

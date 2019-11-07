@@ -66,7 +66,7 @@ class Photo extends React.Component {
         //分页
         let _this = this;
         window.onscroll = function () {
-            if (document.body.scrollHeight - window.scrollY - document.body.offsetHeight === 0) {
+            if (document.body.scrollHeight - window.scrollY - document.body.offsetHeight < 60) {
                 _this.setState({loadingCount: _this.state.loadingCount += 5});
             }
         };
@@ -74,13 +74,15 @@ class Photo extends React.Component {
 
     pages = {
         loading: () => {
-            return "加载中";
+            return <div className={"ya-loading"}>
+                <div className="loader3"><span/><span/></div>
+            </div>;
         },
         header: () => {
             //模版
             let li = (c) => {
                 return <li className={c === this.state.showType ? "active" : ""} key={c}
-                    onClick={this.classifyClick.bind(this, c)}>
+                           onClick={this.classifyClick.bind(this, c)}>
                     <Link to={"/photo"}>{c}</Link>
                 </li>
 
@@ -135,13 +137,54 @@ class Photo extends React.Component {
             return <div className={"findMe"}>
                 <Icon className="headPortrait" name={"i-yalejian"}/>
                 <div className={"introduce"}>
-                    <div>E-mail:boss@yalejian.com</div>
-                    <div>微信：</div>
-                    <div>QQ：</div>
-                    <div>微博：</div>
+                    <div>E-mail：boss@yalejian.com</div>
+                    <div>微信：YangZi_3351</div>
+                    <div>QQ：1558556540</div>
+                    <div>微博：扬歌YaleJian</div>
                 </div>
                 <div className={"price"}>
-
+                    拍摄价格：
+                    <table border="1">
+                        <thead>
+                        <tr>
+                            <th>类型</th>
+                            <th>价格</th>
+                            <th>拍摄张数</th>
+                            <th>拍摄天数</th>
+                            <th>描述</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>手机拍摄</td>
+                            <td>1288元</td>
+                            <td>20张成片</td>
+                            <td>1天</td>
+                            <td>使用iPhone8P拍摄</td>
+                        </tr>
+                        <tr>
+                            <td>写真</td>
+                            <td>1888元</td>
+                            <td>15张成片</td>
+                            <td>1天</td>
+                            <td>使用单反拍摄</td>
+                        </tr>
+                        <tr>
+                            <td>定制</td>
+                            <td>2888元</td>
+                            <td>20张成片</td>
+                            <td>1天</td>
+                            <td>使用单反拍摄</td>
+                        </tr>
+                        <tr>
+                            <td>婚纱</td>
+                            <td>5888元</td>
+                            <td>40张成片</td>
+                            <td>1-2天</td>
+                            <td>使用单反拍摄</td>
+                        </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         },

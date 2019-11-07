@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import Tree from "../../modules/Tree/Tree";
 import Icon from "../../modules/utils/Icon";
 import Button from "../../modules/Button/Button";
+import Animation from "../../modules/animate/Animate";
 
 const menuData = [
     {id: 1, name: "设计规范", link: "/ui/designStandard", sort: 1},
@@ -14,6 +15,7 @@ const menuData = [
     {id: 7, name: "提示", link: "/ui/message", sort: 8},
     {id: 9, name: "日期", link: "/ui/date", sort: 9},
     {id: 10, name: "分页", link: "/ui/pagination", sort: 10},
+    {id: 11, name: "动画", link: "/ui/animation", sort: 11},
 ];
 
 class Menu extends Component {
