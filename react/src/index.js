@@ -11,6 +11,8 @@ import UI from "./pages/UI/UI";
 import Base from "./pages/common/Base";
 import AppDownload from "./pages/AppDownload/AppDownload";
 import Photo from "./pages/Photo/Photo";
+import EatToday from "./pages/EatToday/EatToday";
+import Weather from "./pages/Weather/Weather";
 
 let root = <>
     <Login/>
@@ -19,8 +21,10 @@ let root = <>
             <Route exact path={'/'} component={Base}/>
             <Route path={'/ui'} component={UI}/>
             <Route path={'/appDownload'} component={AppDownload}/>
+            <Route path={'/eatToday'} component={EatToday}/>
             <Route path={'/photo/:c/:g/'} component={Photo}/>
             <Route path={'/photo'} component={Photo}/>
+            <Route path={'/weather'} component={Weather}/>
         </Switch>
     </BrowserRouter>
 </>;

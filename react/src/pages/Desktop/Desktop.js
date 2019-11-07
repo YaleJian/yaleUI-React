@@ -28,6 +28,7 @@ class Desktop extends React.Component {
             {name: "文章", link: "pic", icon: "i-book-2", bg: "green"},
             {name: "天气", link: "weather", icon: "i-duoyun1", bg: "white"},
             {name: "云盘", link: "pic", icon: "i-yunpan2", bg: "grey"},
+            {name: "今天吃什么", link: "eatToday", icon: "i-zuofan", bg: ""},
             {name: "账号设置", link: "pic", icon: "i-anquan", bg: "orange"},
             {name: "后台管理", link: "pic", icon: "i-huabanfuben1", bg: "blue"},
             {name: "留言反馈", link: "pic", icon: "i-fankui1", bg: "grey"},
