@@ -95,6 +95,8 @@ class Login extends BaseComponent {
             case Login.AGREEMENT :
                 authPage = this.pages.agreement();
                 break;
+            default:
+                break;
         }
         return <>
             {this.state.authState === Login.AUTH_PIN ? <div className="pin-mask">Lock</div> : ""}

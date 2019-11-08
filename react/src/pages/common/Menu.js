@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import Tree from "../../modules/Tree/Tree";
 import Icon from "../../modules/utils/Icon";
 import Button from "../../modules/Button/Button";
-import Animation from "../../modules/animate/Animate";
 
 const menuData = [
     {id: 1, name: "设计规范", link: "/ui/designStandard", sort: 1},

@@ -122,6 +122,7 @@ class Tree extends BaseComponent {
 
         //初始化
         this.state = {
+            treeData: this.props.treeData,
             jsonData: this.init(this.props),
             selectedIds: this.props.selectedIds || [],
             openIds: this.props.openIds || [],
@@ -140,7 +141,7 @@ class Tree extends BaseComponent {
 
     }
 
-    componentWillReceiveProps(nextProps, nextContext) {
+    /*componentWillReceiveProps(nextProps, nextContext) {
 
         //入参变化时更新树
         if (this.props.treeData !== nextProps.treeData || this.props.selectedIds !== nextProps.selectedIds ||
@@ -152,27 +153,50 @@ class Tree extends BaseComponent {
                 openIds: nextProps.openIds || []
             });
         }
+    }*/
+
+    static getDerivedStateFromProps(nextProps, prevState) {
+        const {treeData, selectedIds, openIds, indexId} = nextProps;
+        // 入参变化时更新树
+        if (treeData !== prevState.treeData || selectedIds !== prevState.selectedIds || openIds !== prevState.openIds || indexId !== prevState.indexId) {
+            //更新树
+            return {
+                treeData,
+                selectedIds,
+                openIds,
+                indexId,
+            };
+        }
+        // 否则，对于state不进行任何操作
+        return null;
+    }
+
+    shouldComponentUpdate(nextProps, nextState, nextContext) {
+        //渲染前计算
+        if (nextProps.treeData !== nextState.treeData) {
+            let jsonData = this.init(nextProps);
+            this.setState({jsonData});
+        }
+        return true;
     }
 
     render() {
         let jsonData = {...this.state.jsonData};
-        if (!this.props.treeData || this.props.treeData.length === 0) return null;
+        if (!this.props.treeData || this.props.treeData.length === 0 || Object.keys(jsonData).length === 0) return null;
         let theme = this.props.theme ? "theme " : "";
         let treeStyle = "ya-tree " + theme + this.state.displayMode;
 
         let treeBodyStyle = "ya-treeBody";
         if (this.TREE_MENU) treeBodyStyle += " ya-menuTree " + this.props.menuStyle;
         if (this.TREE_NAV) treeBodyStyle += " ya-nav ";
-        return (
-            <div className={treeStyle}>
-                {this.props.indexBar ? this.index.indexBar(jsonData) : ""}
-                {this.search.autoSearch(jsonData)}
-                <div className={treeBodyStyle} ref={treeBody => this.treeBody = treeBody}>
-                    {this.rendering.tree(jsonData, !this.TREE_SINGLE ? this.rootNode.childIds : null)}
-                </div>
-                {this.state.rightClickMenu}
+        return <div className={treeStyle}>
+            {this.props.indexBar ? this.index.indexBar(jsonData) : ""}
+            {this.search.autoSearch(jsonData)}
+            <div className={treeBodyStyle} ref={treeBody => this.treeBody = treeBody}>
+                {this.rendering.tree(jsonData, !this.TREE_SINGLE ? this.rootNode.childIds : null)}
             </div>
-        )
+            {this.state.rightClickMenu}
+        </div>;
     }
 
     componentDidMount() {
@@ -187,11 +211,6 @@ class Tree extends BaseComponent {
                 _this.setState({scrollTop: scrollTop})
             };
         }
-    }
-
-    componentDidUpdate(prevProps, prevState, snapshot) {
-        //搜索结果点击后，索引改变时自动滚动
-        this.autoScroll();
     }
 
     componentWillUnmount() {
@@ -569,9 +588,9 @@ class Tree extends BaseComponent {
                         //节点属性不可以打开，且打开的节点没有子节点，或者索引的id和拖曳的id相等，则默认打开父级，此节点显示选中样式
                         let parentNode = jsonData[node.parentId] || this.rootNode;
                         if ((child.length === 0 || this.state.indexId === this.state.dragNodeId)) child = parentNode.childIds;
-                    }else {
+                    } else {
                         //如果可以打开、但没有子节点
-                        if(child && child.length === 0) {
+                        if (child && child.length === 0) {
                             return <div className="noData">
                                 <Icon name="i--expressionless"/>
                                 <div>No Data</div>
@@ -652,12 +671,12 @@ class Tree extends BaseComponent {
         //根据排序字段排序(冒泡排序)
         childSort(child, jsonData) {
             let len = child.length, i, j, d;
-            if (len < 2 || !jsonData[child[0]].sort) return child;
+            if (len === 0) return child;
             for (i = len; i--;) {
                 for (j = 0; j < i; j++) {
                     let z = j + 1;//下一个
-                    let thisSort = jsonData[child[j]].sort;
-                    let nextSort = jsonData[child[z]].sort;
+                    let thisSort = jsonData[child[j]].sort || 0;
+                    let nextSort = jsonData[child[z]].sort || 0;
                     if (thisSort > nextSort) {
                         //排序字段大的在后面
                         d = child[j];
@@ -854,14 +873,14 @@ class Tree extends BaseComponent {
                     let prevId = id;
                     while (jsonData[prevId]) {
                         let node = jsonData[prevId];
-                        list.unshift(<span  key={node.id} className="item node-group animated fastest fadeInLeft"
-                           ref={IndexBarItem => this.lastIndexBarItem = IndexBarItem}
-                          onClick={this.index.indexBarClick.bind(this, node)}
-                          onDragEnd={this.drag.onDragEnd.bind(this, node.id)}
-                          onDragOver={this.drag.onDragOver.bind(this, node.id)}
-                          onDragLeave={this.drag.onDragLeave.bind(this, node.id)}
-                          onDrop={this.drag.onDrop.bind(this, node.id)}
-                    >{node.name}</span>);
+                        list.unshift(<span key={node.id} className="item node-group animated fastest fadeInLeft"
+                                           ref={IndexBarItem => this.lastIndexBarItem = IndexBarItem}
+                                           onClick={this.index.indexBarClick.bind(this, node)}
+                                           onDragEnd={this.drag.onDragEnd.bind(this, node.id)}
+                                           onDragOver={this.drag.onDragOver.bind(this, node.id)}
+                                           onDragLeave={this.drag.onDragLeave.bind(this, node.id)}
+                                           onDrop={this.drag.onDrop.bind(this, node.id)}
+                        >{node.name}</span>);
                         prevId = jsonData[prevId].parentId;//获取上一个父级ID
                     }
                 }
@@ -880,9 +899,9 @@ class Tree extends BaseComponent {
 
         //索引点击事件
         indexBarClick: (node, e) => {
-            if(node) {
+            if (node) {
                 this.setState({indexId: node.id});
-            }else {
+            } else {
                 this.setState({indexId: this.rootNode.id});
             }
 

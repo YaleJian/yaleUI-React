@@ -100,7 +100,7 @@ export var getNavData = () => {
             sort: i
         });
     }
-    console.log("navData" + navData);
+    console.log("navData:",navData);
 
     return navData;
 };

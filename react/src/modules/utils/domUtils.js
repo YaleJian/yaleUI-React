@@ -1,4 +1,3 @@
-let animated_down = " animated fastest fadeInDown";
 let animated_up = " animated fastest fadeOutUp";
 let DomUtils = {
     remove : (obj)=>{

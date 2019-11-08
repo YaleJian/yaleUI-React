@@ -297,7 +297,10 @@ class TreeDemo extends Component {
     }
 
     componentDidMount() {
-        if (this.state.loading) this.setState({navData: getNavData(), loading: false});
+        if (this.state.loading){
+            let navData = getNavData();
+            this.setState({navData, loading: false});
+        }
     }
 
     //异步树，分页查询子节点方法

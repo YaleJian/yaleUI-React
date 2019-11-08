@@ -14,7 +14,7 @@ class AppDownload extends Component {
                 <span className={"title"}>扬歌YaleJian · 客户端下载</span>
             </div>
             <div className={"content"}>
-                <img className={"preview"} src={"https://cdn.yalejian.com/system/img/jietu%402x.png"} />
+                <img className={"preview"} src={"https://cdn.yalejian.com/system/img/jietu%402x.png"} alt={"preview"}/>
                 <div className={"right"}>
                     <div className={"desc"}>轻装上线</div>
                     <div className={"downloadBtn"}>

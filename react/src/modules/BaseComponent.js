@@ -5,7 +5,7 @@ import React from "react";
  * 解决react内存泄漏的问题
  * @author yalejian
  */
-function inject_unmount (target){
+/*function inject_unmount (target){
     // 改装componentWillUnmount，销毁的时候记录一下,解决异步请求中setstate导致的内存溢出问题
     let next = target.prototype.componentWillUnmount;
     target.prototype.componentWillUnmount = function () {
@@ -18,7 +18,7 @@ function inject_unmount (target){
         if ( this.unmount ) return ;
         setState.call(this, ...arguments)
     }
-}
+}*/
 // @inject_unmount
 class BaseComponent extends React.Component{
 

@@ -1,6 +1,6 @@
 import React from "react";
 import Icon from "../utils/Icon";
-import userCss from "./user.css";
+import "./user.css";
 
 class User extends React.Component {
     static MINI = 0;
@@ -33,6 +33,8 @@ class User extends React.Component {
                 break;
             case User.HOME :
                 page = this.pages.home();
+                break;
+            default:
                 break;
         }
 

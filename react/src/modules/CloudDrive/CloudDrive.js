@@ -1,7 +1,6 @@
 import React from "react"
 import "./cloudDrive.css"
 import Tree from "../Tree/Tree";
-import Icon from "../utils/Icon";
 import {testTreeData} from "../Tree/TreeUtil";
 /**
  * 云盘

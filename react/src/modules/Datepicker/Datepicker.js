@@ -94,6 +94,10 @@ class Datepicker extends React.Component {
                 content = "";
                 contentClass += " time";
                 break;
+            default:
+                content = "";
+                contentClass += " time";
+                break;
         }
         return (
             <div className={'ya-datepicker ' + contentClass}>
@@ -370,8 +374,6 @@ class Datepicker extends React.Component {
         let selectDay = this.state.selectDay;
         let selectMonth = this.state.selectMonth;
         let selectYear = this.state.selectYear;
-        let thisDate = new Date(selectYear, selectMonth, selectDay);
-        let fistDay = new Date(selectYear, selectMonth, 1);
         let lastDay = new Date(selectYear, selectMonth + 1, 0);
         let prevLastDay = new Date(selectYear, selectMonth, 0);
         if (this.state.showType === Datepicker.WEEKS) {

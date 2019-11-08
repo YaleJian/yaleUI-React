@@ -4,7 +4,7 @@ import Menu from '../common/Menu';
 import Main from '../common/Main';
 import ButtonDemo from "../../modules/Button/ButtonDemo";
 import TreeDemo from "../../modules/Tree/TreeDemo";
-import {Route, Switch} from "react-router";
+import {Route} from "react-router";
 import DesignStandard from "./DesignStandard";
 import Typography from "./Typography";
 import RichTextEditorDemo from "../../modules/RichTextEditor/RichTextEditorDemo";

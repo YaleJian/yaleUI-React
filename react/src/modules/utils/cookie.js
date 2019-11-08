@@ -23,7 +23,8 @@ let Cookie = {
     getCookie : function (name) {
         let arr;
         let reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
-        return (arr = document.cookie.match(reg)) ? unescape(arr[2]) : null;
+        arr = document.cookie.match(reg);
+        return arr ? unescape(arr[2]) : null;
     },
 
     /**

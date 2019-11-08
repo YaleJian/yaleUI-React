@@ -105,7 +105,7 @@ class Photo extends React.Component {
             let photoList = this.state.photoList;
             let img = photoList[Math.floor(Math.random() * photoList.length)] || {url: ""};
             return <div className={"home"}>
-                <img className={"mainImg"} src={img.url}/>
+                <img className={"mainImg"} src={img.url} alt={img.name}/>
             </div>
         },
         cover: () => {

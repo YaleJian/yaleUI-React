@@ -1,7 +1,4 @@
 import React, {Component} from 'react';
-import Header from '../../pages/common/Header';
-import Menu from '../../pages/common/Menu';
-import Main from '../../pages/common/Main';
 import RichTextEditor from './RichTextEditor'
 
 const article = {
