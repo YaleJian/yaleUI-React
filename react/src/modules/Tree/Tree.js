@@ -122,7 +122,7 @@ class Tree extends BaseComponent {
 
         //初始化
         this.state = {
-            treeData: this.props.treeData,
+            // treeData: this.props.treeData,
             jsonData: this.init(this.props),
             selectedIds: this.props.selectedIds || [],
             openIds: this.props.openIds || [],
@@ -141,7 +141,7 @@ class Tree extends BaseComponent {
 
     }
 
-    /*componentWillReceiveProps(nextProps, nextContext) {
+    UNSAFE_componentWillReceiveProps(nextProps, nextContext) {
 
         //入参变化时更新树
         if (this.props.treeData !== nextProps.treeData || this.props.selectedIds !== nextProps.selectedIds ||
@@ -153,9 +153,9 @@ class Tree extends BaseComponent {
                 openIds: nextProps.openIds || []
             });
         }
-    }*/
+    }
 
-    static getDerivedStateFromProps(nextProps, prevState) {
+    /*static getDerivedStateFromProps(nextProps, prevState) {
         const {treeData, selectedIds, openIds, indexId} = nextProps;
         // 入参变化时更新树
         if (treeData !== prevState.treeData || selectedIds !== prevState.selectedIds || openIds !== prevState.openIds || indexId !== prevState.indexId) {
@@ -173,12 +173,12 @@ class Tree extends BaseComponent {
 
     shouldComponentUpdate(nextProps, nextState, nextContext) {
         //渲染前计算
-        if (nextProps.treeData !== nextState.treeData) {
+        if (nextState.treeData !== this.state.treeData) {
             let jsonData = this.init(nextProps);
             this.setState({jsonData});
         }
         return true;
-    }
+    }*/
 
     render() {
         let jsonData = {...this.state.jsonData};
