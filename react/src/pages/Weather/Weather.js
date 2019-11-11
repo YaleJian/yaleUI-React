@@ -6,11 +6,41 @@ import axios from "../../modules/utils/Axios";
 import result from "../../modules/utils/result";
 
 const AMap = window.AMap;
+const STATE = {
+    skycon: {
+        "CLEAR_DAY": "晴",
+        "CLEAR_NIGHT": "晴",
+        "PARTLY_CLOUDY_DAY": "多云",
+        "PARTLY_CLOUDY_NIGHT": "多云",
+        "CLOUDY": "阴",
+        "WIND": "大风",
+        "HAZE": "雾霾",
+        "RAIN": "雨",
+        "SNOW": "雪",
+    },
+    ultraviolet: ["无", "很弱", "弱", "中等", "强", "很强", "极强"],
+    comfort: ["闷热", "酷热", "很热", "热", "温暖", "舒适", "凉爽", "冷", "很冷", "寒冷", "极冷", "刺骨的冷", "湿冷", "干冷"],
+    carWashing: ["适宜", "较适宜", "较不适宜", "不适应"],
+    coldRisk: ["少发", "较易发", "易发", "极易发"],
+    rainOrSnowFall: (level, type) => {
+        let desc = Number.parseInt(level);
+        if (0.03 < level < 0.25) desc = "小";
+        if (0.03 < level < 0.25) desc = "中";
+        if (0.03 < level < 0.25) desc = "大";
+        if (0.03 < level < 0.25) desc = "暴";
+        desc += type || "";
+        if (type !== "雨" && type !== "雨") desc = "无";
+        return desc;
+    }
+};
+
 class Weather extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            poi: [],
+            state: 0,
+            location: [],
+            data: false,
         }
     }
 
@@ -19,11 +49,56 @@ class Weather extends Component {
     };
 
     render() {
+
+        let widget = <div className="loader3"><span/><span/></div>;
+        let data = this.state.data;
+        let result = data.result;
+        if (data) {
+            widget = <div className={"content"}>
+                <div className={"row"}>
+                    <div className={"location"}>经度：{data.location[0]}，纬度：{data.location[1]}</div>
+                    <div className={"temperature"}>温度：{result.temperature}℃</div>
+                    <div className={"pres"}>地面气压:{result.pres}Pa</div>
+                    <div className={"humidity"}>相对湿度:{result.humidity}%</div>
+                </div>
+                <div className={"row"}>
+                    <div className={"windDirection"}>风向：{result.wind.direction}°</div>
+                    <div className={"windSpeed"}>风速：{result.wind.speed}（km/h）</div>
+                </div>
+                <div className={"row"}>
+                    <div className={"nearestDistance"}>最近降水距离：{result.precipitation.nearest.distance}km</div>
+                    <div
+                        className={"nearestIntensity"}>最近降水强度：{STATE.rainOrSnowFall(result.precipitation.nearest.intensity)}</div>
+                    <div
+                        className={"localIntensity"}>本地降水强度：{STATE.rainOrSnowFall(result.precipitation.local.intensity, STATE.skycon[result.skycon])}</div>
+                </div>
+                <div className={"row"}>
+                    <div className={"cloudrate"}>云量：{result.cloudrate}</div>
+                    <div className={"dswrf"}>短波辐射：{result.dswrf}(W/M2)</div>
+                    <div className={"visibility"}>能见度：{result.visibility}m</div>
+                    <div className={"skycon"}>天气状况：{STATE.skycon[result.skycon]}</div>
+                    <div className={"comfort"}>舒适度指数：{STATE.skycon[result.comfort.index]}</div>
+                    <div
+                        className={"ultraviolet"}>紫外线指数：{result.ultraviolet.index},{STATE.ultraviolet[result.ultraviolet.index % 2]}</div>
+                </div>
+                <div className={"row"}>
+                    <div className={"pm25"}>PM25浓度：{result.pm25}(μg/m3)</div>
+                    <div className={"pm10"}>PM10浓度：{result.pm10}(μg/m3)</div>
+                    <div className={"o3"}>臭氧浓度：{result.o3}(μg/m3)</div>
+                    <div className={"no2"}>二氧化氮浓度：{result.no2}(μg/m3)</div>
+                    <div className={"so2"}>二氧化硫浓度：{result.so2}(μg/m3)</div>
+                    <div className={"co"}>一氧化碳浓度：{result.co}(μg/m3)</div>
+                </div>
+            </div>
+        }
         return (<>
-                <Header title={"天气"}/>
+                <Header>天气</Header>
                 <Main>
                     <div className={"ya-weather"}>
                         <div id="container" className="map"/>
+                        <div className={"widget"}>
+                            {widget}
+                        </div>
                     </div>
                 </Main>
             </>
@@ -40,22 +115,20 @@ class Weather extends Component {
 
         //解析定位结果
         let onComplete = (data) => {
-            let poi = data.position.toString().split(',')
+            let location = data.position.toString().split(',')
 
             //获取天气信息
-            let token = "izqe37yftnNrln7z";
-            let pois = poi.toString();
-            let url = "https://api.caiyunapp.com/v2/"+token+"/"+pois+"/realtime.json";
-            console.log(url)
-            axios.get(url,{withCredentials:true}).then((res) => {
-                    result(res, () => {
-                        console.log(res)
+            let url = "http://127.0.0.1:8081/service/weather/getRealTime?location=" + location.toString();
+            axios.get(url, {withCredentials: true})
+                .then((res) => {
+                    result(res, (data) => {
+                        console.log(data);
+                        this.setState({location, data});
                     });
                 })
                 .catch(function (res) {
                     console.log(res);
                 });
-            this.setState({poi});
         };
 
         map.plugin('AMap.Geolocation', () => {
@@ -63,7 +136,7 @@ class Weather extends Component {
                 enableHighAccuracy: true, //是否使用高精度定位，默认:true
                 timeout: 10000, //超过10秒后停止定位，默认：无穷大
                 zoomToAccuracy: true, //定位成功后调整地图视野范围使定位位置及精度范围视野内可见，默认：false
-                buttonPosition: 'RB'
+                buttonPosition: 'RT'
             });
             map.addControl(geolocation);
             geolocation.getCurrentPosition();

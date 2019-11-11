@@ -28,6 +28,7 @@
   padding: 10px 30px 10px 30px;
   max-height: 800px;
   overflow-x: auto;
+  word-break: break-all;
 }
 .ya-messages .ya-message .ya-message-container .closeBtn {
   display: none;

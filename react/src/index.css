@@ -418,6 +418,7 @@ strong {
   padding: 2px 1px;
 }
 .ya-main {
+  height: calc(100% - 50px);
   padding: 50px 20px 10px 20px;
 }
 .ya-main.left {

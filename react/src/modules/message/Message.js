@@ -10,9 +10,16 @@ import dataUtils from "../utils/dataUtils";
  * 提示框
  */
 let Message = (content, config, autoRemove) => {
+
+    //数据格式校验处理
+    if(content){
+        if(typeof content === "object") content = JSON.stringify(content);
+    }else {
+        return;
+    }
+
     let isConfirm = config || false;
     config = config || {yes: "Yes", no: "No"};
-    content = content || "这是一个提示";
     let animated_down = " animated fastest fadeInDown";
     let messageContainer = <>
         <div className={"ya-message-container" + animated_down}>

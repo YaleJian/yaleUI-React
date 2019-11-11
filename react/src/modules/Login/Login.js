@@ -473,8 +473,7 @@ class Login extends BaseComponent {
         }
         axios.post('/service/user/register', Qs.stringify(this.auth.getData()), {withCredentials: true})
             .then((res) => {
-                result(res, () => {
-                    let user = res.data;
+                result(res, (user) => {
                     //如果开启了PIN
                     if (user.pin) localStorage.setItem("pin", user.pin);
                     this.setState({authState: Login.LOGIN_SUCCESS, user});
@@ -488,8 +487,8 @@ class Login extends BaseComponent {
     login = (user) => {
         axios.post('/service/user/login', Qs.stringify(user), {withCredentials: true})
             .then((res) => {
-                result(res, (res) => {
-                    this.setUser(res)
+                result(res, (user) => {
+                    this.setUser(user)
                 });
 
                 //登陆错误超过2次，开启动作验证
@@ -506,16 +505,15 @@ class Login extends BaseComponent {
     getUser = () => {
         axios.post('/service/user/getUser', "", {withCredentials: true})
             .then((res) => {
-                result(res, (res) => {
-                    this.setUser(res)
+                result(res, (user) => {
+                    this.setUser(user)
                 });
             })
             .catch(function (e) {
                 console.log(e);
             });
     };
-    setUser = (res) => {
-        let user = res.data;
+    setUser = (user) => {
         if (localStorage.getItem("autoLogin")) {
             //配置了自动登录，使用localStorage存储的登录记录
             localStorage.setItem("userToken", Cookie.getCookie("userToken"));

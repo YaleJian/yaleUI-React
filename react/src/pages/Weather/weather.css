@@ -9,4 +9,25 @@
   width: 100%;
   height: 100%;
 }
+.ya-weather .widget {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+.ya-weather .widget .loader3 {
+  background: white;
+}
+.ya-weather .widget .content {
+  width: calc(100% - 20px);
+  margin: 10px 10px 0;
+}
+.ya-weather .widget .content .row {
+  margin: 5px 0;
+  padding: 10px;
+  background: white;
+}
+.amap-logo,
+.amap-copyright {
+  display: none!important;
+}
 /*# sourceMappingURL=weather.css.map */
