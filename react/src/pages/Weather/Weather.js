@@ -118,7 +118,7 @@ class Weather extends Component {
             let location = data.position.toString().split(',')
 
             //获取天气信息
-            let url = "http://127.0.0.1:8081/service/weather/getRealTime?location=" + location.toString();
+            let url = "/service/weather/getRealTime?location=" + location.toString();
             axios.get(url, {withCredentials: true})
                 .then((res) => {
                     result(res, (data) => {
