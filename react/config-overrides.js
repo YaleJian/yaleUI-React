@@ -12,10 +12,10 @@ module.exports = function override(config, env) {
     };
 
     // 去除css，js名称中的哈希
-    config.output.filename = 'static/js/[name].js';
+    /*config.output.filename = 'static/js/[name].js';
     config.output.chunkFilename = 'static/js/[name].chunk.js';
     config.plugins[5].options.filename = "static/css/[name].css";
-    config.plugins[5].options.chunkFilename = "static/css/[name].chunk.css";
+    config.plugins[5].options.chunkFilename = "static/css/[name].chunk.css";*/
 
     if (process.env.NODE_ENV === 'production') {
 

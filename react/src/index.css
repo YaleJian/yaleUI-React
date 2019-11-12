@@ -224,72 +224,6 @@ strong {
   width: fit-content;
   margin: 5px 0;
 }
-.with10 {
-  width: 10px;
-}
-.with20 {
-  width: 20px;
-}
-.with50 {
-  width: 50px;
-}
-.with100 {
-  width: 100px;
-}
-.with200 {
-  width: 200px;
-}
-.with400 {
-  width: 400px;
-}
-.height10 {
-  height: 10px;
-  line-height: 10px;
-}
-.height20 {
-  height: 20px;
-  line-height: 20px;
-}
-.height50 {
-  height: 50px;
-  line-height: 50px;
-}
-.height100 {
-  height: 100px;
-  line-height: 100px;
-}
-.height200 {
-  height: 200px;
-  line-height: 200px;
-}
-.height400 {
-  height: 400px;
-  line-height: 400px;
-}
-.padding0 {
-  padding: 0;
-}
-.padding0-10 {
-  padding: 0 10px;
-}
-.padding10 {
-  padding: 10px;
-}
-.margin0-10 {
-  padding: 0 10px;
-}
-.margin10 {
-  padding: 10px;
-}
-.ya-radius5 {
-  border-radius: 5px;
-}
-.ya-radius10 {
-  border-radius: 10px;
-}
-.center {
-  text-align: center;
-}
 /* 行列 */
 .ya-rows {
   display: flex;
@@ -396,15 +330,14 @@ strong {
   flex: 1.5;
   text-align: left;
 }
+.ya-header-occupied {
+  height: 50px;
+  content: " ";
+}
 .ya-menu {
   width: 150px;
   position: fixed;
   left: 0;
-  top: 0;
-  margin: 50px 0 0 0;
-}
-.ya-menu.hide + .ya-main {
-  padding: 50px 10px 10px 20px;
 }
 .ya-menu .content {
   display: inline-block;
@@ -414,15 +347,11 @@ strong {
 }
 .ya-menu .toggle {
   position: absolute;
-  margin: 18px 0 0 1px;
+  margin: 8px 0 0 1px;
   padding: 2px 1px;
 }
 .ya-main {
-  height: calc(100% - 50px);
-  padding: 50px 20px 10px 20px;
-}
-.ya-main.left {
-  padding: 50px 10px 10px 165px;
+  padding: 20px 10px;
 }
 .ya-footer {
   position: fixed;
@@ -445,8 +374,79 @@ strong {
   bottom: 0;
   background: white;
   text-align: center;
+  overflow: hidden;
 }
 .ya-loading .loader3 {
   margin: calc(100% - 60px) calc(50% - 50px);
+}
+.with10 {
+  width: 10px;
+}
+.with20 {
+  width: 20px;
+}
+.with50 {
+  width: 50px;
+}
+.with100 {
+  width: 100px;
+}
+.with200 {
+  width: 200px;
+}
+.with400 {
+  width: 400px;
+}
+.height10 {
+  height: 10px;
+  line-height: 10px;
+}
+.height20 {
+  height: 20px;
+  line-height: 20px;
+}
+.height50 {
+  height: 50px;
+  line-height: 50px;
+}
+.height100 {
+  height: 100px;
+  line-height: 100px;
+}
+.height200 {
+  height: 200px;
+  line-height: 200px;
+}
+.height400 {
+  height: 400px;
+  line-height: 400px;
+}
+.heightFull {
+  height: 100%;
+  box-sizing: border-box;
+}
+.padding0 {
+  padding: 0;
+}
+.padding0-10 {
+  padding: 0 10px;
+}
+.padding10 {
+  padding: 10px;
+}
+.margin0-10 {
+  padding: 0 10px;
+}
+.margin10 {
+  padding: 10px;
+}
+.ya-radius5 {
+  border-radius: 5px;
+}
+.ya-radius10 {
+  border-radius: 10px;
+}
+.center {
+  text-align: center;
 }
 /*# sourceMappingURL=index.css.map */

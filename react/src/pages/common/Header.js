@@ -6,6 +6,7 @@ class Header extends Component {
     static defaultProps = {
         title: "",
         className:"",
+        occupied : true
     };
 
     constructor(props) {
@@ -15,10 +16,13 @@ class Header extends Component {
 
     render() {
         return (
+            <>
             <div className={"ya-header ya-nav-simple ya-fixed " + this.props.className}>
                 <a href={"/"}><Icon name={"i-logo"}/></a>
                 <span className={"name"}>{this.props.children}</span>
             </div>
+                {this.props.occupied ? <div className={"ya-header-occupied"}/> : ""}
+            </>
         );
     }
 }

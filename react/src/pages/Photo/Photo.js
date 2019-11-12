@@ -18,6 +18,8 @@ class Photo extends React.Component {
     static FindMe = "联系我";
     static Group = 4;
 
+    static PageSize = 5;
+
     constructor(props) {
         super(props);
 
@@ -25,7 +27,7 @@ class Photo extends React.Component {
             showType: Photo.Loading,
             photoList: [],//全部照片
             photoData: this.getPhotos(),//图片结构化数据
-            loadingCount: 2,//需要加载的图片数量，用于分页
+            loadingCount: Photo.PageSize,//需要加载的图片数量，用于分页
         }
     }
 
@@ -67,7 +69,9 @@ class Photo extends React.Component {
         let _this = this;
         window.onscroll = function () {
             if (document.body.scrollHeight - window.scrollY - document.body.offsetHeight < 60) {
-                _this.setState({loadingCount: _this.state.loadingCount += 5});
+                if (_this.state.showType !== Photo.Loading && _this.state.showType !== Photo.Home && _this.state.showType !== Photo.FindMe) {
+                    _this.setState({loadingCount: _this.state.loadingCount += 5});
+                }
             }
         };
     }
@@ -123,7 +127,8 @@ class Photo extends React.Component {
                             }
                         }
                     }
-                    list.push(<div className={"item"} key={i} onClick={() => this.setState({showType: Photo.Group})}>
+                    list.push(<div className={"item"} key={i}
+                                   onClick={() => this.setState({showType: Photo.Group, loadingCount: Photo.PageSize})}>
                         <i/>
                         <Link to={"/photo/" + item.classify + "/" + item.groupName + "/"}>
                             <img src={item.url} alt={item.name} onLoad={this.imgOnLoad.bind(this)}/>
