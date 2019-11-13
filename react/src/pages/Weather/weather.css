@@ -9,6 +9,7 @@
   width: 100%;
   position: absolute;
   padding-top: 414px;
+  color: #6f6f6f;
 }
 .ya-weather .widget .loader3 {
   background: white;
@@ -22,9 +23,64 @@
   padding: 10px;
   background: white;
   border-radius: 10px;
+  line-height: 24px;
+  font-size: 16px;
 }
-.ya-weather .widget .content .temperature {
-  font-size: 30px;
+.ya-weather .widget .content .row .icon {
+  width: 18px;
+  height: 18px;
+}
+.ya-weather .widget .content .row .content {
+  padding: 0 5px;
+}
+.ya-weather .widget .content .row .column {
+  flex: 1;
+  height: 50px;
+  line-height: 50px;
+}
+.ya-weather .widget .content .row .main {
+  display: flex;
+  align-items: center;
+}
+.ya-weather .widget .content .row .main .temperature {
+  font-size: 43px;
+  font-weight: 300;
+}
+.ya-weather .widget .content .row .main .temperature .icon {
+  width: 36px;
+  height: 42px;
+  margin-left: -10px;
+}
+.ya-weather .widget .content .row .main .min {
+  flex: 1.4;
+  font-size: 12px;
+  color: #6f6f6f;
+  line-height: 20px;
+  padding: 5px;
+  box-sizing: border-box;
+}
+.ya-weather .widget .content .row .main .min .top .skycon {
+  font-size: 15px;
+  font-weight: 400;
+  color: black;
+  width: 30px;
+}
+.ya-weather .widget .content .row .main .min .top .air {
+  margin: 5px;
+  padding: 0 2px;
+}
+.ya-weather .widget .content .row .main .min .top .air span {
+  margin: 2px;
+}
+.ya-weather .widget .content .row .main .min .bottom span {
+  margin-right: 10px;
+}
+.ya-weather .widget .content .row .main .weatherIcon {
+  flex: 0.5;
+}
+.ya-weather .widget .content .row .main .weatherIcon .icon {
+  height: 45px;
+  width: 45px;
 }
 .amap-logo,
 .amap-copyright {

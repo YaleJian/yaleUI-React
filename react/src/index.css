@@ -374,7 +374,6 @@ strong {
   bottom: 0;
   background: white;
   text-align: center;
-  overflow: hidden;
 }
 .ya-loading .loader3 {
   margin: calc(100% - 60px) calc(50% - 50px);
@@ -448,5 +447,10 @@ strong {
 }
 .center {
   text-align: center;
+}
+.ya-greenBorder {
+  color: #00af00;
+  border: 1px solid #00af00;
+  border-radius: 5px;
 }
 /*# sourceMappingURL=index.css.map */
