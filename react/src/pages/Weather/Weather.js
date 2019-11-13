@@ -123,11 +123,11 @@ class Weather extends Component {
                     <div className={"row"}>
                         <div className={"humidity"}>
                             <Icon name={"i-shidu"}/>
-                            <span className={"content"}>{Math.floor(realtime.humidity * 100) + "%"}</span>
+                            <span className={"content"}>湿度：{Math.floor(realtime.humidity * 100) + "%"}</span>
                         </div>
                         <div className={"windDirection"}>
                             <Icon name={"i-fengxiang"}/>
-                            <span className={"content"}>{STATE.windDirection(realtime.wind.direction)}</span>
+                            <span className={"content"}>风向：{STATE.windDirection(realtime.wind.direction)}</span>
                         </div>
                         <div className={"windSpeed"}>
                             <Icon name={"i-icon-fengsu-"}/>
@@ -135,7 +135,7 @@ class Weather extends Component {
                         </div>
                         <div className={"pres"}>
                             <Icon name={"i-daqiyali"}/>
-                            <span className={"content"}>气压：{Math.floor(realtime.pressure / 1000)}KPA</span>
+                            <span className={"content"}>气压：{Math.floor(realtime.pressure / 1000)} KPA</span>
                         </div>
                     </div>
                     <div className={"row"}>
@@ -171,7 +171,7 @@ class Weather extends Component {
                         </div>
                         <div className={"comfort"}>
                             <Icon name={"i-shushiduzhishu"}/>
-                            <span className={"content"}>舒适度指数：{realtime.life_index.comfort.desc}</span>
+                            <span className={"content"}>舒适度：{realtime.life_index.comfort.desc}</span>
                         </div>
                         <div className={"apparent_temperature"}>
                             <Icon name={"i---rentitu"}/>
@@ -183,7 +183,7 @@ class Weather extends Component {
                         </div>
                         <div className={"dswrf"}>
                             <Icon name={"i-radiation"}/>
-                            <span className={"content"}>短波辐射：{realtime.dswrf}(W/M2)</span>
+                            <span className={"content"}>短波辐射：{realtime.dswrf}（W/㎡）</span>
                         </div>
                     </div>
                     <div className={"row"}>
@@ -224,7 +224,7 @@ class Weather extends Component {
             </div>
         }
         return (<>
-                <Header occupied={false}> </Header>
+                <Header occupied={false}>天气</Header>
                 <Main className={"padding0 heightFull"}>
                     <div id="container" className="map"/>
                     <div className={"ya-weather"}>{widget}</div>
