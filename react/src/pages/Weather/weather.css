@@ -8,7 +8,7 @@
 .ya-weather .widget {
   width: 100%;
   position: absolute;
-  padding-top: 414px;
+  transform: translateY(400px);
 }
 .ya-weather .widget .loader3 {
   background: white;
@@ -35,6 +35,16 @@
 .ya-weather .widget .content .row .column {
   flex: 1;
   height: 50px;
+}
+.ya-weather .widget .content .row.locationName {
+  font-size: 12px;
+  color: #6f6f6f;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.ya-weather .widget .content .row.locationName .icon {
+  vertical-align: middle;
 }
 .ya-weather .widget .content .row .main {
   display: flex;

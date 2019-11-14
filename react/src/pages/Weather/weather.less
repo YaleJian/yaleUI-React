@@ -10,7 +10,7 @@
   .widget{
     width: 100%;
     position: absolute;
-    padding-top: 414px;
+    transform: translateY(400px);
     .loader3{
       background: white;
     }
@@ -34,6 +34,16 @@
         .column{
           flex: 1;
           height: 50px;
+        }
+        &.locationName{
+          font-size: 12px;
+          color: #6f6f6f;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          overflow: hidden;
+          .icon{
+            vertical-align: middle;
+          }
         }
         .main{
           display: flex;
