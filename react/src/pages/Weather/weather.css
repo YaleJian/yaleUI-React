@@ -35,7 +35,6 @@
 .ya-weather .widget .content .row .column {
   flex: 1;
   height: 50px;
-  line-height: 50px;
 }
 .ya-weather .widget .content .row .main {
   display: flex;
@@ -44,6 +43,7 @@
 .ya-weather .widget .content .row .main .temperature {
   font-size: 43px;
   font-weight: 300;
+  line-height: 50px;
 }
 .ya-weather .widget .content .row .main .temperature .icon {
   width: 36px;
@@ -64,13 +64,6 @@
   color: black;
   width: 30px;
 }
-.ya-weather .widget .content .row .main .min .top .air {
-  margin: 5px;
-  padding: 0 2px;
-}
-.ya-weather .widget .content .row .main .min .top .air span {
-  margin: 2px;
-}
 .ya-weather .widget .content .row .main .min .bottom span {
   margin-right: 10px;
 }
@@ -80,6 +73,14 @@
 .ya-weather .widget .content .row .main .weatherIcon .icon {
   height: 45px;
   width: 45px;
+}
+.ya-weather .widget .content .row.future3Day {
+  display: flex;
+  text-align: center;
+  font-size: 13px;
+}
+.ya-weather .widget .content .row.future3Day .bottom .sky {
+  margin-left: 5px;
 }
 .amap-logo,
 .amap-copyright {

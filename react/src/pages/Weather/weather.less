@@ -34,7 +34,6 @@
         .column{
           flex: 1;
           height: 50px;
-          line-height: 50px;
         }
         .main{
           display: flex;
@@ -42,6 +41,7 @@
           .temperature{
             font-size: 43px;
             font-weight: 300;
+            line-height: 50px;
             .icon{
               width: 36px;
               height: 42px;
@@ -62,14 +62,6 @@
                 color: black;
                 width: 30px;
               }
-              .air{
-                margin: 5px;
-                padding: 0 2px;
-                span{
-                  margin: 2px;
-                }
-              }
-
             }
             .bottom{
               span{
@@ -85,7 +77,16 @@
             }
           }
         }
-
+        &.future3Day{
+          display: flex;
+          text-align: center;
+          font-size: 13px;
+          .bottom{
+            .sky{
+              margin-left: 5px;
+            }
+          }
+        }
       }
 
     }

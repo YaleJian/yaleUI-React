@@ -120,6 +120,7 @@ class Weather extends Component {
                             </div>
                         </div>
                     </div>
+                    {this.pages.recentDay3(daily)}
                     <div className={"row"}>
                         <div className={"humidity"}>
                             <Icon name={"i-shidu"}/>
@@ -233,6 +234,26 @@ class Weather extends Component {
         )
     }
 
+    pages =  {
+        recentDay3: (daily)=>{
+            let days = ["今天","明天","后天"];
+            let day3Tag = days.map((item, index)=>{
+                return <div className={"column"}>
+                    <div className={"top"}>
+                        {item}
+                        <span className={"air ya-greenBorder"}>
+                            <span>{Math.floor(daily.air_quality.aqi[index].avg.chn)}</span>
+                        </span>
+                    </div>
+                    <div className={"bottom"}>
+                        <span>{Math.floor(daily.temperature[index].min) + "° ~ " + Math.floor(daily.temperature[index].max)+"°"}</span>
+                        <span className={"sky"}>{STATE.skycon[daily.skycon[index].value]}</span>
+                    </div>
+                </div>
+            });
+            return <div className={"row future3Day"}>{day3Tag}</div>
+        }
+    };
     //获取当前定位
     getLocation = () => {
         let map, geolocation;
