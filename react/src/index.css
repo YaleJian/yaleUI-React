@@ -454,6 +454,7 @@ strong {
   border-radius: 5px;
   margin: 5px;
   padding: 0 2px;
+  text-align: center;
 }
 .ya-greenBorder span {
   margin: 2px;

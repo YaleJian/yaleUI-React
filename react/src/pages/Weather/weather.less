@@ -1,100 +1,133 @@
 #container {
-  position: fixed!important;
+  position: fixed !important;
   left: 0;
   right: 0;
   bottom: 0;
   top: 0;
-}
-.ya-weather{
 
-  .widget{
+}
+
+.ya-weather {
+
+  .widget {
     width: 100%;
     position: absolute;
     transform: translateY(400px);
-    .loader3{
+
+    &::-webkit-scrollbar {
+      width: 0;
+      height: 0;
+    }
+
+    .loader3 {
       background: white;
     }
-    .content{
-      width: calc(100% - 20px);
+
+    .main {
       margin: 10px 10px 0;
-      .row{
+
+      .row {
         margin: 5px 0;
         padding: 10px;
         background: white;
         border-radius: 10px;
         line-height: 24px;
         font-size: 16px;
-        .icon{
+
+        .icon {
           width: 18px;
           height: 18px;
+          vertical-align: -5px;
         }
-        .content{
-          padding: 0 5px;
-        }
-        .column{
+
+        .column {
           flex: 1;
-          height: 50px;
         }
-        &.locationName{
+
+        .content {
+          padding: 0 5px;
+          line-height: 18px;
+        }
+
+      }
+
+      .location {
+        display: flex;
+        font-size: 13px;
+        color: #6f6f6f;
+        line-height: 16px;
+        white-space: nowrap;
+
+        .address {
+          text-overflow: ellipsis;
+          overflow: hidden;
+        }
+
+        .longLat {
+        }
+
+        .content {
+
+        }
+      }
+
+      .tips {
+        .forecastKeyPoint {
+          font-size: 12px;
+        }
+      }
+
+      .realTime {
+        display: flex;
+        align-items: center;
+
+        .temperature {
+          font-size: 43px;
+          font-weight: 300;
+          line-height: 50px;
+
+          .icon {
+            width: 36px;
+            height: 42px;
+            margin-left: -10px;
+          }
+        }
+
+        .skyCon {
+          .text{
+            font-size: 15px;
+            font-weight: 400;
+            color: black;
+          }
+        }
+
+        .min {
+          flex: 1.5;
           font-size: 12px;
           color: #6f6f6f;
-          text-overflow: ellipsis;
-          white-space: nowrap;
-          overflow: hidden;
-          .icon{
-            vertical-align: middle;
-          }
+          line-height: 20px;
+          box-sizing: border-box;
         }
-        .main{
-          display: flex;
-          align-items: center;
-          .temperature{
-            font-size: 43px;
-            font-weight: 300;
-            line-height: 50px;
-            .icon{
-              width: 36px;
-              height: 42px;
-              margin-left: -10px;
-            }
-          }
-          .min{
-            flex: 1.4;
-            font-size: 12px;
-            color: #6f6f6f;
-            line-height: 20px;
-            padding: 5px;
-            box-sizing: border-box;
-            .top{
-              .skycon{
-                font-size: 15px;
-                font-weight: 400;
-                color: black;
-                width: 30px;
-              }
-            }
-            .bottom{
-              span{
-                margin-right: 10px;
-              }
-            }
-          }
-          .weatherIcon{
-            flex: 0.5;
-            .icon{
-              height: 45px;
-              width: 45px;
-            }
-          }
-        }
-        &.future3Day{
-          display: flex;
+
+        .weatherIcon {
           text-align: center;
-          font-size: 13px;
-          .bottom{
-            .sky{
-              margin-left: 5px;
-            }
+          .icon {
+            height: 45px;
+            width: 45px;
+          }
+
+
+        }
+      }
+
+      .future3Day {
+        display: flex;
+        text-align: center;
+        font-size: 13px;
+
+        .bottom {
+          .sky {
+            margin-left: 5px;
           }
         }
       }
@@ -102,6 +135,7 @@
     }
   }
 }
-.amap-logo,.amap-copyright{
-  display: none!important;
+
+.amap-logo, .amap-copyright {
+  display: none !important;
 }

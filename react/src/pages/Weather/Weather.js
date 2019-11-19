@@ -8,60 +8,7 @@ import Icon from "../../modules/utils/Icon";
 import Message from "../../modules/message/Message";
 
 const AMap = window.AMap;
-const STATE = {
-    skycon: {
-        "CLEAR_DAY": "晴",
-        "CLEAR_NIGHT": "晴",
-        "PARTLY_CLOUDY_DAY": "多云",
-        "PARTLY_CLOUDY_NIGHT": "多云",
-        "CLOUDY": "阴",
-        "LIGHT_HAZE": "轻度雾霾",
-        "MODERATE_HAZE": "中度雾霾",
-        "HEAVY_HAZE": "重度雾霾",
-        "LIGHT_RAIN": "小雨",
-        "MODERATE_RAIN": "中雨",
-        "HEAVY_RAIN": "大雨",
-        "STORM_RAIN": "暴雨",
-        "FOG": "雾",
-        "LIGHT_SNOW": "小雪",
-        "MODERATE_SNOW": "中雪",
-        "HEAVY_SNOW": "大雪",
-        "STORM_SNOW": "暴雪",
-        "DUST": "浮尘",
-        "SAND": "沙尘",
-        "WIND": "大风",
-        "THUNDER_SHOWER": "雷阵雨",
-        "HAIL": "冰雹",
-        "SLEET": "雨夹雪",
-    },
-    ultraviolet: ["无", "很弱", "弱", "中等", "强", "很强", "极强"],
-    comfort: ["闷热", "酷热", "很热", "热", "温暖", "舒适", "凉爽", "冷", "很冷", "寒冷", "极冷", "刺骨的冷", "湿冷", "干冷"],
-    carWashing: ["适宜", "较适宜", "较不适宜", "不适应"],
-    coldRisk: ["少发", "较易发", "易发", "极易发"],
-    rainOrSnowFall: (level, type) => {
-        let desc = Number.parseInt(level);
-        if (level > 0) desc = "小";
-        if (level > 0.25) desc = "中";
-        if (level > 0.35) desc = "大";
-        if (level > 0.48) desc = "暴";
-        desc += type || "";
-        if (type !== "雨" && type !== "雨") desc = "无";
-        return desc;
-    },
-    windDirection: (direction) => {
-        let i = Math.floor(direction / 22.5);
-        let dName = ["北", "东北偏北", "东北", "东北偏东", "东", "东南偏东", "东南", "东南偏南", "南", "西南偏南", "西南", "西南偏西", "西", "西北偏西", "西北", "西北偏北"];
-        return dName[i] + "风";
-    },
-    windSpeed: (speed) => {
-        if (speed < 1) return "无风";
-        if (speed < 6) return "轻风";
-        if (speed < 28) return "微风";
-        if (speed < 38) return "摆风";
-        if (speed < 61) return "强风";
-        if (speed > 61) return "风暴";
-    }
-};
+const weekName = ["日", "一", "二", "三", "四", "五", "六"];
 
 class Weather extends Component {
     constructor(props) {
@@ -76,6 +23,7 @@ class Weather extends Component {
     componentDidMount = () => {
         this.getLocation();
     };
+
 
     render() {
 
@@ -92,141 +40,13 @@ class Weather extends Component {
             let daily = weatherData.result.daily;
             widget = <>
                 <div className={"widget"}>
-                    <div className={"content"}>
-                        <div className={"row locationName"}>
-                            <Icon name={"i-zu-copy"}/>
-                            <span className={"content"}>{this.state.locationData.formattedAddress}</span>
-                        </div>
-                        <div className={"row now"}>
-                            <Icon name={"i-tongzhi1"}/>
-                            <span className={"content"}>{weatherData.result.forecast_keypoint}</span>
-                        </div>
-                        <div className={"row"}>
-                            <div className={"main"}>
-                                <div className={"column temperature"}>
-                                    <Icon name={"i-wendu"}/>
-                                    <span>{Math.floor(realtime.temperature)}°</span>
-                                </div>
-                                <div className={"column min"}>
-                                    <div className={"top"}>
-                                        <span className={"skycon"}>{STATE.skycon[realtime.skycon]}</span>
-                                        <span className={"air ya-greenBorder"}>
-                                        <span>{realtime.air_quality.aqi.chn}</span>
-                                        <span>{realtime.air_quality.description.chn}</span>
-                                    </span>
-                                    </div>
-                                    <div className={"bottom"}>
-                                        <span>{STATE.windSpeed(realtime.wind.speed)}</span>
-                                        <span>紫外线：{STATE.ultraviolet[realtime.life_index.ultraviolet.index % 2]}</span>
-                                    </div>
-                                </div>
-                                <div className={"column weatherIcon"}>
-                                    <Icon name={"i-yun"}/>
-                                </div>
-                            </div>
-                        </div>
-                        {this.pages.recentDay3(daily)}
-                        <div className={"row"}>
-                            <div className={"humidity"}>
-                                <Icon name={"i-shidu"}/>
-                                <span className={"content"}>湿度：{Math.floor(realtime.humidity * 100) + "%"}</span>
-                            </div>
-                            <div className={"windDirection"}>
-                                <Icon name={"i-fengxiang"}/>
-                                <span className={"content"}>风向：{STATE.windDirection(realtime.wind.direction)}</span>
-                            </div>
-                            <div className={"windSpeed"}>
-                                <Icon name={"i-icon-fengsu-"}/>
-                                <span className={"content"}>风速：{STATE.windSpeed(realtime.wind.speed)}</span>
-                            </div>
-                            <div className={"pres"}>
-                                <Icon name={"i-daqiyali"}/>
-                                <span className={"content"}>气压：{Math.floor(realtime.pressure / 1000)} KPA</span>
-                            </div>
-                        </div>
-                        <div className={"row"}>
-                            <div className={"location"}>
-                                <Icon name={"i-zhengsheyingxiangzhuanhuanweijingweidugeshi"}/>
-                                <span
-                                    className={"content"}>经度：{weatherData.location[0]}，纬度：{weatherData.location[1]}</span>
-                            </div>
-                        </div>
-                        <div className={"row"}>
-                            <div className={"cloudrate"}>
-                                <Icon name={"i-yun"}/>
-                                <span className={"content"}>云量：{realtime.cloudrate}</span>
-                            </div>
-                            <div className={"localIntensity"}>
-                                <Icon name={"i-qiangjiangshui"}/>
-                                <span
-                                    className={"content"}>本地降水强度：{STATE.rainOrSnowFall(realtime.precipitation.local.intensity, STATE.skycon[result.skycon])}</span>
-                            </div>
-                            <div className={"nearestDistance"}>
-                                <Icon name={"i-qiangjiangshui"}/>
-                                <span className={"content"}>最近降水距离：{realtime.precipitation.nearest.distance}km</span>
-                            </div>
-                            <div className={"nearestIntensity"}>
-                                <Icon name={"i-qiangjiangshui"}/>
-                                <span
-                                    className={"content"}>最近降水强度：{STATE.rainOrSnowFall(realtime.precipitation.nearest.intensity)}</span>
-                            </div>
-                        </div>
-                        <div className={"row"}>
-                            <div className={"ultraviolet"}>
-                                <Icon name={"i-ziwaixian"}/>
-                                <span className={"content"}>紫外线指数：{realtime.life_index.ultraviolet.index}</span>
-                            </div>
-                            <div className={"comfort"}>
-                                <Icon name={"i-shushiduzhishu"}/>
-                                <span className={"content"}>舒适度：{realtime.life_index.comfort.desc}</span>
-                            </div>
-                            <div className={"apparent_temperature"}>
-                                <Icon name={"i---rentitu"}/>
-                                <span className={"content"}>体感温度：{realtime.apparent_temperature}℃</span>
-                            </div>
-                            <div className={"visibility"}>
-                                <Icon name={"i-nengjiandu"}/>
-                                <span className={"content"}>能见度：{realtime.visibility}m</span>
-                            </div>
-                            <div className={"dswrf"}>
-                                <Icon name={"i-radiation"}/>
-                                <span className={"content"}>短波辐射：{realtime.dswrf}（W/㎡）</span>
-                            </div>
-                        </div>
-                        <div className={"row"}>
-                            <div className={"airDescription"}>
-                                <Icon name={"i-kongqizhiliang"}/>
-                                <span className={"content"}>
-                                <span>空气质量：{realtime.air_quality.aqi.chn}，{realtime.air_quality.description.chn}</span>
-                            </span>
-                            </div>
-                            <div>
-                                <div>
-                                    <Icon name={"i-pmcopy"}/>
-                                    <span className={"content"}>PM25浓度：{realtime.air_quality.pm25}（μg/m³）</span>
-                                </div>
-                                <div>
-                                    <Icon name={"i-PM"}/>
-                                    <span className={"content"}>PM10浓度：{realtime.air_quality.pm10}（μg/m³）</span>
-                                </div>
-                                <div>
-                                    <Icon name={"i-chouyang"}/>
-                                    <span className={"content"}>臭氧浓度：{realtime.air_quality.o3}（μg/m³）</span>
-                                </div>
-                                <div>
-                                    <Icon name={"i-eryanghuadan"}/>
-                                    <span className={"content"}>二氧化氮浓度：{realtime.air_quality.no2}（μg/m³）</span>
-                                </div>
-                                <div>
-                                    <Icon name={"i-eryanghualiu2"}/>
-                                    <span className={"content"}>二氧化硫浓度：{realtime.air_quality.so2}（μg/m³）</span>
-                                </div>
-                                <div>
-                                    <Icon name={"i-yiyanghuatan"}/>
-                                    <span className={"content"}>一氧化碳浓度：{realtime.air_quality.co}（μg/m³）</span>
-                                </div>
-                            </div>
-                        </div>
+                    <div className={"main"}>
+                        {this.pages.location()}
+                        {this.pages.tips(realtime)}
+                        {this.pages.realTime(realtime)}
+                        {this.pages.today(realtime)}
+                        {this.pages.recentDays(daily)}
+                        {this.pages.airDetail(realtime)}
                     </div>
                 </div>
             </>
@@ -241,9 +61,133 @@ class Weather extends Component {
         )
     }
 
+    data = {
+        //获取今天是第几周
+        getWeek: () => {
+            let thisDate = new Date(),
+                january = new Date(thisDate.getFullYear(), 0, 1),
+                d = Math.round((thisDate.valueOf() - january.valueOf()) / 86400000);
+            return Math.ceil((d + ((january.getDay() + 1) - 1)) / 7);
+        },
+        //天气状况
+        skyCon: {
+            "CLEAR_DAY": "晴",
+            "CLEAR_NIGHT": "晴",
+            "PARTLY_CLOUDY_DAY": "多云",
+            "PARTLY_CLOUDY_NIGHT": "多云",
+            "CLOUDY": "阴",
+            "LIGHT_HAZE": "轻度雾霾",
+            "MODERATE_HAZE": "中度雾霾",
+            "HEAVY_HAZE": "重度雾霾",
+            "LIGHT_RAIN": "小雨",
+            "MODERATE_RAIN": "中雨",
+            "HEAVY_RAIN": "大雨",
+            "STORM_RAIN": "暴雨",
+            "FOG": "雾",
+            "LIGHT_SNOW": "小雪",
+            "MODERATE_SNOW": "中雪",
+            "HEAVY_SNOW": "大雪",
+            "STORM_SNOW": "暴雪",
+            "DUST": "浮尘",
+            "SAND": "沙尘",
+            "WIND": "大风",
+            "THUNDER_SHOWER": "雷阵雨",
+            "HAIL": "冰雹",
+            "SLEET": "雨夹雪",
+        },
+        //紫外线
+        ultraviolet: ["无", "很弱", "弱", "中等", "强", "很强", "极强"],
+        //舒适度
+        comfort: ["闷热", "酷热", "很热", "热", "温暖", "舒适", "凉爽", "冷", "很冷", "寒冷", "极冷", "刺骨的冷", "湿冷", "干冷"],
+        //洗车指数
+        carWashing: ["适宜", "较适宜", "较不适宜", "不适应"],
+
+        coldRisk: ["少发", "较易发", "易发", "极易发"],
+        rainOrSnowFall: (level, sky) => {
+            if ((sky !== undefined && !sky.includes("雨") && !sky.includes("雪")) || level < 0.03) return 0;
+            let desc = Number.parseInt(level);
+            if (level > 0) desc = "小";
+            if (level > 0.03) desc = "小";
+            if (level > 0.25) desc = "中";
+            if (level > 0.35) desc = "大";
+            if (level > 0.48) desc = "暴";
+            desc += sky || "";
+            return desc;
+        },
+        direction: (direction) => {
+            let i = Math.floor(direction / 22.5);
+            let dName = ["北", "东北偏北", "东北", "东北偏东", "东", "东南偏东", "东南", "东南偏南", "南", "西南偏南", "西南", "西南偏西", "西", "西北偏西", "西北", "西北偏北"];
+            return dName[i];
+        },
+        windSpeed: (speed) => {
+            if (speed < 1) return "无风";
+            if (speed < 6) return "轻风";
+            if (speed < 28) return "微风";
+            if (speed < 38) return "摆风";
+            if (speed < 61) return "强风";
+            if (speed > 61) return "风暴";
+        },
+    };
     pages = {
-        recentDay3: (daily) => {
-            let days = ["今天", "明天", "后天"];
+        location: () => {
+            return <div className={"row location"}>
+                <div className={"address"}>
+                    <Icon name={"i-zu-copy"}/>
+                    <span className={"content"}>{this.state.locationData.formattedAddress}</span>
+                </div>
+                <div className={"longLat"}>
+                    <Icon name={"i-zhengsheyingxiangzhuanhuanweijingweidugeshi"}/>
+                    <span
+                        className={"content"}>{this.state.weatherData.location[0]}° {this.state.weatherData.location[1]}°</span>
+                </div>
+            </div>
+        },
+        tips: () => {
+            return <div className={"row tips"}>
+                <div className={"forecastKeyPoint"}>
+                    <Icon name={"i-tongzhi1"}/>
+                    <span className={"content"}> {this.state.weatherData.result.forecast_keypoint}</span>
+                </div>
+            </div>
+        },
+        realTime: (realtime) => {
+            return <div className={"row realTime"}>
+                <div className={"column"}>
+
+                    <div className={"temperature"}>
+                        <Icon name={"i-wendu"}/>
+                        <span>{Math.floor(realtime.temperature)}°</span>
+                    </div>
+                </div>
+
+                <div className={"column min"}>
+                    <div className={"skyCon"}>
+                        <span className={"text"}>{this.data.skyCon[realtime.skycon]}</span>
+                        <span className={"ya-greenBorder"}>
+                            <span>{realtime.air_quality.aqi.chn}</span>
+                            <span>{realtime.air_quality.description.chn}</span>
+                        </span>
+                    </div>
+                    <span className={"col wind"}>
+                        <Icon name={"i-icon-fengsu-"}/>
+                        <span className={"content"}> {this.data.windSpeed(realtime.wind.speed)}</span>
+                    </span>
+                    <span className={"uv"}>
+                        <Icon name={"i-ziwaixian"}/>
+                        <span
+                            className={"content"}>{this.data.ultraviolet[realtime.life_index.ultraviolet.index % 2]}</span>
+                    </span>
+                </div>
+                <div className={"col column weatherIcon"}>
+
+                    <div><Icon name={"i-yun"}/></div>
+                </div>
+
+
+            </div>
+        },
+        recentDays: (daily) => {
+            let days = ["今天", "明天", "后天", "周" + weekName[this.data.getWeek()], "周" + weekName[this.data.getWeek() + 1]];
             let day3Tag = days.map((item, index) => {
                 return <div className={"column"} key={index}>
                     <div className={"top"}>
@@ -254,11 +198,66 @@ class Weather extends Component {
                     </div>
                     <div className={"bottom"}>
                         <span>{Math.floor(daily.temperature[index].min) + "° ~ " + Math.floor(daily.temperature[index].max) + "°"}</span>
-                        <span className={"sky"}>{STATE.skycon[daily.skycon[index].value]}</span>
+                        <span className={"sky"}>{this.data.skyCon[daily.skycon[index].value]}</span>
                     </div>
                 </div>
             });
             return <div className={"row future3Day"}>{day3Tag}</div>
+        },
+        today: (realtime) => {
+            return <div className={"row today"}>
+                <span className={"bodyFeelingTemp"}>
+                    <Icon name={"i---rentitu"}/>
+                    <span
+                        className={"content"}>{realtime.apparent_temperature}° {realtime.life_index.comfort.desc}</span>
+                </span>
+                <span className={"bodyFeelingTemp"}>
+                    <Icon name={"i-fengxiang"}/>
+                    <span className={"content"}>{this.data.direction(realtime.wind.direction)}</span>
+                </span>
+                <span className={"humidity"}>
+                            <Icon name={"i-shidu"}/>
+                            <span className={"content"}>{Math.floor(realtime.humidity * 100)}%</span>
+                        </span>
+                <span className={"col pres"}>
+                            <Icon name={"i-daqiyali"}/>
+                            <span className={"content"}>{Math.floor(realtime.pressure / 1000)}kpa</span>
+                        </span>
+                <span className={"visibility"}>
+                            <Icon name={"i-nengjiandu"}/>
+                            <span className={"content"}>{realtime.visibility}km</span>
+                        </span>
+            </div>
+        },
+        airDetail: (realtime) => {
+            return <div className={"row airDetail"}>
+                <div>
+                    <div>
+                        <Icon name={"i-pmcopy"}/>
+                        <span className={"content"}>PM25浓度：{realtime.air_quality.pm25}（μg/m³）</span>
+                    </div>
+                    <div>
+                        <Icon name={"i-PM"}/>
+                        <span className={"content"}>PM10浓度：{realtime.air_quality.pm10}（μg/m³）</span>
+                    </div>
+                    <div>
+                        <Icon name={"i-chouyang"}/>
+                        <span className={"content"}>臭氧浓度：{realtime.air_quality.o3}（μg/m³）</span>
+                    </div>
+                    <div>
+                        <Icon name={"i-eryanghuadan"}/>
+                        <span className={"content"}>二氧化氮浓度：{realtime.air_quality.no2}（μg/m³）</span>
+                    </div>
+                    <div>
+                        <Icon name={"i-eryanghualiu2"}/>
+                        <span className={"content"}>二氧化硫浓度：{realtime.air_quality.so2}（μg/m³）</span>
+                    </div>
+                    <div>
+                        <Icon name={"i-yiyanghuatan"}/>
+                        <span className={"content"}>一氧化碳浓度：{realtime.air_quality.co}（μg/m³）</span>
+                    </div>
+                </div>
+            </div>
         }
     };
     //获取当前定位
