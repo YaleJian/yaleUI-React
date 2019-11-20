@@ -17,6 +17,22 @@ class Weather extends Component {
             state: 0,
             location: [],
             weatherData: false,
+            realtime: {
+                apparentTemperature: 0,//体感温度
+                temperature: 0,//温度
+                windSpeed: 0,//风速
+                windDirection: 0,//风向
+                uv: 0,//紫外线
+                aqi: 0,//空气质量
+                visibility: 0,//能见度
+                humidity: 0,//湿度
+                airPressure: 0,//气压
+                cloudCover: 0,//云量
+                shortwaveRadiation: 0,//短波辐射
+                precipitationIntensity: 0,//降水强度
+                closestPrecipitationDistance: 0,//最近降水距离
+                closestPrecipitationIntensity: 0,//最近降水强度
+            }
         }
     }
 
@@ -62,6 +78,32 @@ class Weather extends Component {
     }
 
     data = {
+        //处理数据
+        setData: (weatherData) => {
+            let r = weatherData.realTime;
+            let realtime = {
+                apparentTemperature: r.apparent_temperature,//体感温度
+                temperature: r.temperature,//温度
+                windSpeed: r.wind.speed,//风速
+                windDirection: r.wind.direction,//风向
+                uv: [r.life_index.ultraviolet.index,r.life_index.ultraviolet.desc],//紫外线
+                AQI: [r.air_quality.aqi.chn,r.air_quality.aqi.description.chn],//空气质量
+                visibility: r.visibility,//能见度
+                humidity: r.humidity,//湿度
+                airPressure: r.pressure,//气压
+                cloudCover: r.cloudrate,//云量
+                shortwaveRadiation: r.dswrf,//短波辐射
+                precipitationIntensity: r.precipitation.local.intensity,//降水强度
+                closestPrecipitationDistance: r.precipitation.nearest.distance,//最近降水距离
+                closestPrecipitationIntensity: r.precipitation.nearest.intensity,//最近降水强度
+                co:r.air_quality.co,
+                no2:r.air_quality.no2,
+                o3:r.air_quality.o3,
+                pm10:r.air_quality.pm10,
+                pm25:r.air_quality.pm25,
+                so2:r.air_quality.so2
+            }
+        },
         //获取今天是第几周
         getWeek: () => {
             let thisDate = new Date(),
@@ -156,26 +198,26 @@ class Weather extends Component {
 
                     <div className={"temperature"}>
                         <Icon name={"i-wendu"}/>
-                        <span>{Math.floor(realtime.temperature)}°</span>
+                        <span>{Math.floor(this.state.realtime.temperature)}°</span>
                     </div>
                 </div>
 
                 <div className={"column min"}>
                     <div className={"skyCon"}>
-                        <span className={"text"}>{this.data.skyCon[realtime.skycon]}</span>
+                        <span className={"text"}>{this.data.skyCon[this.state.realtime.skycon]}</span>
                         <span className={"ya-greenBorder"}>
-                            <span>{realtime.air_quality.aqi.chn}</span>
-                            <span>{realtime.air_quality.description.chn}</span>
+                            <span>{this.state.realtime.aqi[0]}</span>
+                            <span>{this.state.realtime.aqi[1]}</span>
                         </span>
                     </div>
                     <span className={"col wind"}>
                         <Icon name={"i-icon-fengsu-"}/>
-                        <span className={"content"}> {this.data.windSpeed(realtime.wind.speed)}</span>
+                        <span className={"content"}> {this.data.windSpeed(this.state.realtime.windSpeed)}</span>
                     </span>
                     <span className={"uv"}>
                         <Icon name={"i-ziwaixian"}/>
                         <span
-                            className={"content"}>{this.data.ultraviolet[realtime.life_index.ultraviolet.index % 2]}</span>
+                            className={"content"}>{this.data.ultraviolet[this.state.realtime.uv[0] % 2]}</span>
                     </span>
                 </div>
                 <div className={"col column weatherIcon"}>
@@ -280,11 +322,12 @@ class Weather extends Component {
             let location = locationData.position.toString().split(',');
 
             //获取天气信息
-            let url = "/service/weather/getData?location=" + location.toString() + "&version=v2.5&type=weather";
+            let url = "/service/weather/getData?location=" + location.toString() + "&version=v2.5&type=weather&dailysteps=360";
             axios.get(url, {withCredentials: true})
                 .then((res) => {
                     result(res, (weatherData) => {
                         console.log(weatherData);
+                        this.data.setData(weatherData);
                         this.setState({location, weatherData, locationData});
                     });
                 })
