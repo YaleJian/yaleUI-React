@@ -88,12 +88,14 @@
   width: 45px;
 }
 .ya-weather .widget .main .future3Day {
-  display: flex;
+  white-space: pre;
   text-align: center;
   font-size: 13px;
+  overflow-x: auto;
 }
-.ya-weather .widget .main .future3Day .bottom .sky {
-  margin-left: 5px;
+.ya-weather .widget .main .future3Day .day {
+  margin: 0 5px;
+  display: inline-block;
 }
 .amap-logo,
 .amap-copyright {
