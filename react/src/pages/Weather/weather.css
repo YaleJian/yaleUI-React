@@ -18,10 +18,10 @@
   background: white;
 }
 .ya-weather .widget .main {
-  margin: 10px 10px 0;
+  margin: 10px 12px 0;
 }
 .ya-weather .widget .main .row {
-  margin: 5px 0;
+  margin: 0 0 8px 0;
   padding: 10px;
   background: white;
   border-radius: 10px;
@@ -40,6 +40,13 @@
   padding: 0 5px;
   line-height: 18px;
 }
+.ya-weather .widget .main .updateTime {
+  font-size: 12px;
+  display: inline-block;
+  color: #37393d;
+  padding: 0 10px;
+  margin: 0 0 5px 0;
+}
 .ya-weather .widget .main .location {
   display: flex;
   font-size: 13px;
@@ -54,51 +61,96 @@
 .ya-weather .widget .main .tips .forecastKeyPoint {
   font-size: 12px;
 }
+.ya-weather .widget .main .warning {
+  margin: 0 0 -4px 0;
+  font-size: 12px;
+  text-align: center;
+}
+.ya-weather .widget .main .warning .text {
+  display: inline-block;
+  padding: 0 10px;
+  margin-bottom: 5px;
+  background: green;
+  color: white;
+}
+.ya-weather .widget .main .warning .text.blue {
+  background: #5cccda;
+}
+.ya-weather .widget .main .warning .text.yellow {
+  color: yellow;
+}
+.ya-weather .widget .main .warning .text.orange {
+  color: #ffad49;
+}
+.ya-weather .widget .main .warning .text.red {
+  color: #fd8880;
+}
 .ya-weather .widget .main .realTime {
+  text-align: center;
+}
+.ya-weather .widget .main .realTime .top {
   display: flex;
   align-items: center;
+  text-align: left;
 }
-.ya-weather .widget .main .realTime .temperature {
+.ya-weather .widget .main .realTime .top .temperature {
   font-size: 43px;
   font-weight: 300;
   line-height: 50px;
 }
-.ya-weather .widget .main .realTime .temperature .icon {
+.ya-weather .widget .main .realTime .top .temperature .icon {
   width: 36px;
   height: 42px;
   margin-left: -10px;
 }
-.ya-weather .widget .main .realTime .skyCon .text {
+.ya-weather .widget .main .realTime .top .skyCon .text {
   font-size: 15px;
   font-weight: 400;
   color: black;
 }
-.ya-weather .widget .main .realTime .min {
+.ya-weather .widget .main .realTime .top .min {
   flex: 1.5;
   font-size: 12px;
   color: #6f6f6f;
   line-height: 20px;
   box-sizing: border-box;
 }
-.ya-weather .widget .main .realTime .weatherIcon {
+.ya-weather .widget .main .realTime .top .weatherIcon {
   text-align: center;
+  font-size: 12px;
 }
-.ya-weather .widget .main .realTime .weatherIcon .icon {
+.ya-weather .widget .main .realTime .top .weatherIcon .sun {
+  display: flex;
+}
+.ya-weather .widget .main .realTime .top .weatherIcon .sun .content {
+  line-height: 12px;
+  padding: 0;
+}
+.ya-weather .widget .main .realTime .top .weatherIcon .iconArea .icon {
   height: 45px;
   width: 45px;
 }
-.ya-weather .widget .main .future3Day {
-  white-space: pre;
+.ya-weather .widget .main .today {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  font-size: 15px;
+}
+.ya-weather .widget .main .recentDay {
+  white-space: nowrap;
   text-align: center;
   font-size: 13px;
   overflow-x: auto;
 }
-.ya-weather .widget .main .future3Day .day {
+.ya-weather .widget .main .recentDay .day {
   margin: 0 5px;
   display: inline-block;
 }
-.amap-logo,
-.amap-copyright {
-  display: none !important;
+.ya-weather .widget .main .bottom {
+  font-size: 12px;
+  margin: 0 5px;
+  padding: 0 5px;
+  border: 1px solid #cccccc;
+  border-radius: 10px;
 }
 /*# sourceMappingURL=weather.css.map */

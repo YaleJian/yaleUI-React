@@ -6,6 +6,7 @@ import axios from "../../modules/utils/Axios";
 import result from "../../modules/utils/result";
 import Icon from "../../modules/utils/Icon";
 import Message from "../../modules/message/Message";
+import dataUtils from "../../modules/utils/dataUtils";
 
 const AMap = window.AMap;
 
@@ -23,7 +24,6 @@ class Weather extends Component {
 
 
     render() {
-
         let widget = <div className={"ya-loading"}>
             <div className="loader3"><span/><span/></div>
         </div>;
@@ -33,6 +33,7 @@ class Weather extends Component {
                 <div className={"widget"}>
                     <div className={"main"}>
                         <div className={"row"}>代码在线维护中，页面可能会出现排版异常</div>
+                        {this.pages.updateTime()}
                         {this.pages.location()}
                         {this.pages.tips()}
                         {this.pages.realTime()}
@@ -57,29 +58,36 @@ class Weather extends Component {
         //处理数据
         setData: (locationData, weatherData) => {
             let r = weatherData.result.realtime;
+            let h = weatherData.result.hourly;
             let d = weatherData.result.daily;
+            let longitudeAndLatitude = locationData.position.toString().split(',');
+            longitudeAndLatitude[0] = dataUtils.formatDegree(longitudeAndLatitude[0]);
+            longitudeAndLatitude[1] = dataUtils.formatDegree(longitudeAndLatitude[1]);
+            let nowDate = new Date();
+            let time = nowDate.getFullYear()+"-"+nowDate.getMonth()+"-"+nowDate.getDate()+" "+nowDate.getHours()+":"+nowDate.getMinutes();
             let data = {
                 status: 1,
+                updateTime: time,
                 locationData,
                 weatherData,
-                longitudeAndLatitude: locationData.position.toString().split(','),
-                address: locationData.formattedAddress,
+                longitudeAndLatitude,
+                address: locationData.addressComponent.district + locationData.addressComponent.township,
                 keyPoint: weatherData.result.forecast_keypoint,//分钟级分析关键句
-                trend: d.description,//小时级分析
+                trend: h.description,//小时级分析
                 weather: [r.skycon, this.data.skyCon[r.skycon]],
-                apparentTemperature: r.apparent_temperature,//体感温度
-                temperature: r.temperature,//温度
-                windSpeed: [r.wind.speed, this.data.windSpeed(r.wind.speed)],//风速
-                windDirection: r.wind.direction,//风向
+                apparentTemperature: Math.round(r.apparent_temperature),//体感温度
+                temperature: Math.round(r.temperature),//温度
+                windSpeed: [Math.round(r.wind.speed), this.data.windSpeed(r.wind.speed)],//风速
+                windDirection: [r.wind.direction, this.data.direction(r.wind.direction)],//风向
                 uv: [r.life_index.ultraviolet.index, r.life_index.ultraviolet.desc],//紫外线
                 aqi: [r.air_quality.aqi.chn, r.air_quality.description.chn],//空气质量
-                visibility: r.visibility,//能见度
-                humidity: Math.floor(r.humidity * 100),//湿度
-                airPressure: r.pressure,//气压
+                visibility: Math.round(r.visibility),//能见度
+                humidity: Math.round(r.humidity * 100),//湿度
+                airPressure: Math.round(r.pressure / 1000),//气压
                 cloudCover: r.cloudrate,//云量
                 shortwaveRadiation: r.dswrf,//短波辐射
                 precipitationIntensity: r.precipitation.local.intensity,//降水强度
-                closestPrecipitationDistance: r.precipitation.nearest.distance,//最近降水距离
+                closestPrecipitationDistance: Math.round(r.precipitation.nearest.distance),//最近降水距离
                 closestPrecipitationIntensity: r.precipitation.nearest.intensity,//最近降水强度
                 co: r.air_quality.co,
                 no2: r.air_quality.no2,
@@ -88,28 +96,35 @@ class Weather extends Component {
                 pm25: r.air_quality.pm25,
                 so2: r.air_quality.so2,
                 sun: [d.astro[0].sunrise.time, d.astro[0].sunset.time],
-                warning: weatherData.result.alert.content,
+                warning: this.data.warning(weatherData.result.alert.content),
                 carWashing: d.life_index.carWashing[0].desc,
                 coldRisk: d.life_index.coldRisk[0].desc,
                 daily: [],
             };
 
-            //15天预报
+            //16天预报 + 昨天
             for (let i = 0; i < 16; i++) {
                 data.daily.push({
                     weather: [d.skycon[i].value, this.data.skyCon[d.skycon[i].value]],
-                    temperatureRange: [d.temperature[i].min, d.temperature[i].max],
-                    aqi: Math.floor(d.air_quality.aqi[i].avg.chn),
+                    temperatureRange: [Math.round(d.temperature[i].min), Math.round(d.temperature[i].max)],
+                    aqi: Math.round(d.air_quality.aqi[i].avg.chn),
                 });
             }
             this.setState(data);
         },
         //获取今天是第几周
-        getWeek: (index) => {
-            let weekName = ["日", "一", "二", "三", "四", "五", "六"];
+        getRecentDay: (index) => {
+            let dayText = ["昨天", "今天", "明天", "后天"];
             let nowDate = new Date();
-            let tDate = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate() + index);
-            return weekName[tDate.getDay()];
+            let weekName = ["日", "一", "二", "三", "四", "五", "六"];
+            let tDate = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate() + index + 1);
+            if (index <= 3) {
+                return dayText[index];
+            } else if (index > 3 && index < 8) {
+                return "周" + weekName[tDate.getDay()];
+            } else {
+                return tDate.getMonth() + "." + tDate.getDate();
+            }
         },
         //天气状况
         skyCon: {
@@ -149,7 +164,7 @@ class Weather extends Component {
             return desc;
         },
         direction: (direction) => {
-            let i = Math.floor(direction / 22.5);
+            let i = Math.round(direction / 22.5);
             let dName = ["北", "东北偏北", "东北", "东北偏东", "东", "东南偏东", "东南", "东南偏南", "南", "西南偏南", "西南", "西南偏西", "西", "西北偏西", "西北", "西北偏北"];
             return dName[i];
         },
@@ -159,12 +174,19 @@ class Weather extends Component {
             return "风大";
         },
         warning: (code) => {
+            if (code.length === 0) return "";
             let type = ["台风", "暴雨", "暴雪", "寒潮", "大风", "沙尘暴", "高温", "干旱", "雷电", "冰雹", "霜冻", "大雾", "霾", "道路结冰", "森林火灾", "雷雨大风"];
             let grade = ["蓝色", "黄色", "橙色", "红色"];
-            return [type[code.substring(0, 1)], grade[code.substring(2, 3)]];
+            let color = ["blue", "yellow", "orange", "red"];
+            return [type[code[0]], grade[code[1]], color[code[1]]];
         },
     };
     pages = {
+        updateTime: () =>{
+            return <div className={"row updateTime"}>
+                {this.state.updateTime}
+            </div>
+        },
         location: () => {
             return <div className={"row location"}>
                 <div className={"address"}>
@@ -174,75 +196,88 @@ class Weather extends Component {
                 <div className={"longLat"}>
                     <Icon name={"i-zhengsheyingxiangzhuanhuanweijingweidugeshi"}/>
                     <span
-                        className={"content"}>{this.state.longitudeAndLatitude[0]}° {this.state.longitudeAndLatitude[1]}°</span>
+                        className={"content"}>{this.state.longitudeAndLatitude[0]} {this.state.longitudeAndLatitude[1]}</span>
                 </div>
             </div>
         },
         tips: () => {
-            return <div className={"row tips"}>
-                <div className={"forecastKeyPoint"}>
-                    <Icon name={"i-tongzhi1"}/>
-                    <span className={"content"}> {this.state.keyPoint}</span>
+            return <>
+                <div className={"row tips"}>
+                    <div className={"forecastKeyPoint"}>
+                        <Icon name={"i-tongzhi1"}/>
+                        <span className={"content"}> {this.state.keyPoint}</span>
+                    </div>
                 </div>
-            </div>
+            </>;
         },
         realTime: () => {
-            return <div className={"row realTime"}>
-                <div className={"column"}>
+            return <>
+                <div className={"row warning"}>
+                    {this.state.warning ? <div className={"text" + this.state.warning[2]}>
+                        <Icon name={"i-jinggao"}/>
+                        {this.state.warning[0] + this.state.warning[1]}
+                    </div> : ""}
+                </div>
+                <div className={"row realTime"}>
+                    <div className={"top"}>
+                        <div className={"column"}>
+                            <div className={"temperature"}>
+                                <Icon name={"i-wendu"}/>
+                                <span>{Math.round(this.state.temperature)}°</span>
+                            </div>
+                        </div>
 
-                    <div className={"temperature"}>
-                        <Icon name={"i-wendu"}/>
-                        <span>{Math.floor(this.state.temperature)}°</span>
+                        <div className={"column min"}>
+                            <div className={"skyCon"}>
+                                <span className={"text"}>{this.state.weather[1]}</span>
+                                <div className={"ya-greenBorder"}>
+                                    <span>{this.state.aqi[0]}</span>
+                                    <span>{this.state.aqi[1]}</span>
+                                </div>
+                            </div>
+                            <div className={"col wind"}>
+                                <Icon name={"i-icon-fengsu-"}/>
+                                <span
+                                    className={"content"}> {this.state.windSpeed[0]}km/h {this.state.windSpeed[1]}</span>
+                            </div>
+                            <div className={"col uv"}>
+                                <Icon name={"i-ziwaixian"}/>
+                                <span className={"content"}>{this.state.uv[1]}</span>
+                            </div>
+                            <div className={"col carWash"}>
+                                <Icon name={"i-shuangse-xichefuwu"}/>
+                                <span className={"content"}>{this.state.carWashing}</span>
+                            </div>
+                            <div className={"col cold"}>
+                                <Icon name={"i-ganmao"}/>
+                                <span className={"content"}>{this.state.coldRisk}</span>
+                            </div>
+
+                        </div>
+                        <div className={"column weatherIcon"}>
+                            <div className={"sun"}>
+                                <div className={"col sunrise"}>
+                                    <Icon name={"i-richu4"}/>
+                                    <span className={"content"}>{this.state.sun[0]}</span>
+                                </div>
+                                <div className={"col sunset"}>
+                                    <Icon name={"i-rila4"}/>
+                                    <span className={"content"}>{this.state.sun[1]}</span>
+                                </div>
+                            </div>
+                            <div className={"iconArea"}><Icon name={"i-" + this.state.weather[0]}/></div>
+                        </div>
                     </div>
+                    <div className={"bottom"}>{this.state.trend}</div>
                 </div>
-
-                <div className={"column min"}>
-                    <div className={"skyCon"}>
-                        <span className={"text"}>{this.state.weather[1]}</span>
-                        <span className={"ya-greenBorder"}>
-                            <span>{this.state.aqi[0]}</span>
-                            <span>{this.state.aqi[1]}</span>
-                        </span>
-                    </div>
-                    <span className={"col wind"}>
-                        <Icon name={"i-icon-fengsu-"}/>
-                        <span className={"content"}> {this.state.windSpeed[0]}km/h {this.state.windSpeed[1]}</span>
-                    </span>
-                    <span className={"uv"}>
-                        <Icon name={"i-ziwaixian"}/>
-                        <span className={"content"}>{this.state.uv[1]}</span>
-                    </span>
-                    <span className={"carWash"}>
-                        <Icon name={"i-shuangse-xichefuwu"}/>
-                        <span className={"content"}>{this.state.carWashing}</span>
-                    </span>
-                    <span className={"cold"}>
-                        <Icon name={"i-ganmao"}/>
-                        <span className={"content"}>{this.state.coldRisk}</span>
-                    </span>
-                    <span className={"sunrise"}>
-                        <Icon name={"i-richu4"}/>
-                        <span className={"content"}>{this.state.sun[0]}</span>
-                    </span>
-                    <span className={"sunset"}>
-                        <Icon name={"i-rila4"}/>
-                        <span className={"content"}>{this.state.sun[1]}</span>
-                    </span>
-                </div>
-                <div className={"col column weatherIcon"}>
-
-                    <div><Icon name={"i-"+this.state.weather[0]}/></div>
-                </div>
-
-
-            </div>
+            </>
         },
         recentDays: () => {
-            let dayText = ["今天", "明天", "后天"];
+
             let day3Tag = this.state.daily.map((item, index) => {
                 return <div className={"day"} key={index}>
                     <div className={""}>
-                        {dayText[index] || "周"+this.data.getWeek(index)}
+                        {this.data.getRecentDay(index)}
                         <span className={"air ya-greenBorder"}>
                             <span>{item.aqi}</span>
                         </span>
@@ -251,65 +286,65 @@ class Weather extends Component {
                         <span>{item.temperatureRange[0] + "° ~ " + item.temperatureRange[1] + "°"}</span>
                     </div>
                     <div>
-                        <Icon name={"i-"+item.weather[0]}/>
+                        <Icon name={"i-" + item.weather[0]}/>
                         <span className={"sky"}>{item.weather[1]}</span>
                     </div>
                 </div>
             });
-            return <div className={"row future3Day"}>{day3Tag}</div>
+            return <div className={"row recentDay"}>{day3Tag}</div>
         },
         today: () => {
             return <div className={"row today"}>
-                <span className={"bodyFeelingTemp"}>
+                <div className={"bodyFeelingTemp"}>
                     <Icon name={"i---rentitu"}/>
                     <span
                         className={"content"}>{this.state.apparentTemperature}°</span>
-                </span>
-                <span className={"bodyFeelingTemp"}>
+                </div>
+                <div className={"bodyFeelingTemp"}>
                     <Icon name={"i-fengxiang"}/>
-                    <span className={"content"}>{this.state.windDirection}</span>
-                </span>
-                <span className={"humidity"}>
-                            <Icon name={"i-shidu"}/>
-                            <span className={"content"}>{this.state.humidity}%</span>
-                        </span>
-                <span className={"col pres"}>
-                            <Icon name={"i-daqiyali"}/>
-                            <span className={"content"}>{this.state.airPressure}kpa</span>
-                        </span>
-                <span className={"visibility"}>
-                            <Icon name={"i-nengjiandu"}/>
-                            <span className={"content"}>{this.state.visibility}km</span>
-                        </span>
+                    <span className={"content"}>{this.state.windDirection[1]}</span>
+                </div>
+                <div className={"humidity"}>
+                    <Icon name={"i-shidu"}/>
+                    <span className={"content"}>{this.state.humidity}%</span>
+                </div>
+                <div className={"col pres"}>
+                    <Icon name={"i-daqiyali"}/>
+                    <span className={"content"}>{this.state.airPressure}kpa</span>
+                </div>
+                <div className={"visibility"}>
+                    <Icon name={"i-nengjiandu"}/>
+                    <span className={"content"}>
+                        {this.state.visibility < 1 ? this.state.visibility * 1000 + "m" : this.state.visibility + "km"}
+                    </span>
+                </div>
             </div>
         },
         airDetail: () => {
             return <div className={"row airDetail"}>
                 <div>
-                    <div>
-                        <Icon name={"i-pmcopy"}/>
-                        <span className={"content"}>PM25浓度：{this.state.pm25}（μg/m³）</span>
-                    </div>
-                    <div>
-                        <Icon name={"i-PM"}/>
-                        <span className={"content"}>PM10浓度：{this.state.pm10}（μg/m³）</span>
-                    </div>
-                    <div>
-                        <Icon name={"i-chouyang"}/>
-                        <span className={"content"}>臭氧浓度：{this.state.o3}（μg/m³）</span>
-                    </div>
-                    <div>
-                        <Icon name={"i-eryanghuadan"}/>
-                        <span className={"content"}>二氧化氮浓度：{this.state.no2}（μg/m³）</span>
-                    </div>
-                    <div>
-                        <Icon name={"i-eryanghualiu2"}/>
-                        <span className={"content"}>二氧化硫浓度：{this.state.so2}（μg/m³）</span>
-                    </div>
-                    <div>
-                        <Icon name={"i-yiyanghuatan"}/>
-                        <span className={"content"}>一氧化碳浓度：{this.state.co}（μg/m³）</span>
-                    </div>
+                    <Icon name={"i-pmcopy"}/>
+                    <span className={"content"}>PM25：{this.state.pm25}μg/m³</span>
+                </div>
+                <div>
+                    <Icon name={"i-PM"}/>
+                    <span className={"content"}>PM10：{this.state.pm10}μg/m³</span>
+                </div>
+                <div>
+                    <Icon name={"i-chouyang"}/>
+                    <span className={"content"}>臭氧：{this.state.o3}μg/m³</span>
+                </div>
+                <div>
+                    <Icon name={"i-eryanghuadan"}/>
+                    <span className={"content"}>二氧化氮：{this.state.no2}μg/m³</span>
+                </div>
+                <div>
+                    <Icon name={"i-eryanghualiu2"}/>
+                    <span className={"content"}>二氧化硫：{this.state.so2}μg/m³</span>
+                </div>
+                <div>
+                    <Icon name={"i-yiyanghuatan"}/>
+                    <span className={"content"}>一氧化碳：{this.state.co}μg/m³</span>
                 </div>
             </div>
         }
