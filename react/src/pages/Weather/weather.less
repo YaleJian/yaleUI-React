@@ -42,9 +42,8 @@
         font-size: 16px;
 
         .icon {
-          width: 18px;
-          height: 18px;
-          vertical-align: -5px;
+          width: 22px;
+          height: 22px;
         }
 
         .column {
@@ -53,7 +52,9 @@
 
         .content {
           padding: 0 5px;
-          line-height: 18px;
+          line-height: 22px;
+          vertical-align: text-bottom;
+          display: inline-block;
         }
 
       }
@@ -121,56 +122,75 @@
 
       .realTime {
         text-align: center;
+        .sun{
+          text-align: revert;
+          font-size: 12px;
+          margin: -5px 0;
+          line-height: 12px;
+          border: 1px solid #a7ccf1;
+          border-radius: 5px;
+          display: inline-block;
+          background: aliceblue;
+          .col{
+            display: inline-block;
+            margin: 0 10px;
+          }
+        }
         .top {
           display: flex;
           align-items: center;
-          text-align: left;
+          text-align: center;
 
-          .temperature {
-            font-size: 43px;
-            font-weight: 300;
-            line-height: 50px;
+          .left{
 
-            .icon {
-              width: 36px;
-              height: 42px;
-              margin-left: -10px;
+            .temperature {
+              font-size: 43px;
+              font-weight: 300;
+              line-height: 50px;
+              display: inline-block;
+              .icon {
+                width: 36px;
+                height: 42px;
+                margin-left: -10px;
+              }
+            }
+            .bodyFeelingTemp{
+              display: inline-block;
             }
           }
-
-          .skyCon {
-            .text {
-              font-size: 15px;
-              font-weight: 400;
-              color: black;
-            }
-          }
-
-          .min {
-            flex: 1.5;
-            font-size: 12px;
-            color: #6f6f6f;
-            line-height: 20px;
-            box-sizing: border-box;
-          }
-
           .weatherIcon {
             text-align: center;
             font-size: 12px;
-            .sun{
-              display: flex;
-              .content{
-                line-height: 12px;
-                padding: 0;
-              }
-            }
+
             .iconArea {
               .icon {
                 height: 45px;
                 width: 45px;
               }
             }
+            .skyCon {
+              .text {
+                font-size: 15px;
+                font-weight: 400;
+                color: black;
+              }
+            }
           }
+        }
+        .min {
+          flex: 1.5;
+          font-size: 12px;
+          color: #6f6f6f;
+          line-height: 20px;
+          box-sizing: border-box;
+
+        }
+        .bottom{
+          font-size: 12px;
+          margin: 5px;
+          padding: 0 5px;
+          border: 1px solid #cccccc;
+          border-radius: 10px;
         }
       }
       .today{
@@ -178,6 +198,16 @@
         flex-wrap: wrap;
         justify-content: space-between;
         font-size: 15px;
+        .col{
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          padding: 0 3px;
+          margin: 2px;
+          display: inline-block;
+          .content{
+            line-height: 26px;
+          }
+        }
       }
       .recentDay {
         white-space: nowrap;
@@ -189,13 +219,6 @@
           margin: 0 5px;
           display: inline-block;
         }
-      }
-      .bottom{
-        font-size: 12px;
-        margin: 0 5px;
-        padding: 0 5px;
-        border: 1px solid #cccccc;
-        border-radius: 10px;
       }
     }
   }

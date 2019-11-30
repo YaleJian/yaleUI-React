@@ -32,7 +32,6 @@ class Weather extends Component {
             widget = <>
                 <div className={"widget"}>
                     <div className={"main"}>
-                        <div className={"row"}>代码在线维护中，页面可能会出现排版异常</div>
                         {this.pages.updateTime()}
                         {this.pages.location()}
                         {this.pages.tips()}
@@ -64,7 +63,7 @@ class Weather extends Component {
             longitudeAndLatitude[0] = dataUtils.formatDegree(longitudeAndLatitude[0]);
             longitudeAndLatitude[1] = dataUtils.formatDegree(longitudeAndLatitude[1]);
             let nowDate = new Date();
-            let time = nowDate.getFullYear()+"-"+nowDate.getMonth()+"-"+nowDate.getDate()+" "+nowDate.getHours()+":"+nowDate.getMinutes();
+            let time = nowDate.getFullYear() + "-" + nowDate.getMonth() + "-" + nowDate.getDate() + " " + nowDate.getHours() + ":" + nowDate.getMinutes();
             let data = {
                 status: 1,
                 updateTime: time,
@@ -182,7 +181,7 @@ class Weather extends Component {
         },
     };
     pages = {
-        updateTime: () =>{
+        updateTime: () => {
             return <div className={"row updateTime"}>
                 {this.state.updateTime}
             </div>
@@ -212,59 +211,35 @@ class Weather extends Component {
         },
         realTime: () => {
             return <>
-                <div className={"row warning"}>
-                    {this.state.warning ? <div className={"text" + this.state.warning[2]}>
+                {this.state.warning ? <div className={"row warning"}>
+                    <div className={"text" + this.state.warning[2]}>
                         <Icon name={"i-jinggao"}/>
                         {this.state.warning[0] + this.state.warning[1]}
-                    </div> : ""}
-                </div>
+                    </div>
+                </div> : ""}
                 <div className={"row realTime"}>
+                    <div className={"sun"}>
+                        <div className={"col sunrise"}>
+                            <Icon name={"i-richu4"}/>
+                            <span className={"content"}>{this.state.sun[0]}</span>
+                        </div>
+                        <div className={"col sunset"}>
+                            <Icon name={"i-rila4"}/>
+                            <span className={"content"}>{this.state.sun[1]}</span>
+                        </div>
+                    </div>
                     <div className={"top"}>
-                        <div className={"column"}>
+                        <div className={"column left"}>
                             <div className={"temperature"}>
                                 <Icon name={"i-wendu"}/>
                                 <span>{Math.round(this.state.temperature)}°</span>
                             </div>
-                        </div>
-
-                        <div className={"column min"}>
-                            <div className={"skyCon"}>
-                                <span className={"text"}>{this.state.weather[1]}</span>
-                                <div className={"ya-greenBorder"}>
-                                    <span>{this.state.aqi[0]}</span>
-                                    <span>{this.state.aqi[1]}</span>
-                                </div>
+                            <div className={"bodyFeelingTemp"}>
+                                <Icon name={"i---rentitu"}/>
+                                <span className={"content"}>{this.state.apparentTemperature}°</span>
                             </div>
-                            <div className={"col wind"}>
-                                <Icon name={"i-icon-fengsu-"}/>
-                                <span
-                                    className={"content"}> {this.state.windSpeed[0]}km/h {this.state.windSpeed[1]}</span>
-                            </div>
-                            <div className={"col uv"}>
-                                <Icon name={"i-ziwaixian"}/>
-                                <span className={"content"}>{this.state.uv[1]}</span>
-                            </div>
-                            <div className={"col carWash"}>
-                                <Icon name={"i-shuangse-xichefuwu"}/>
-                                <span className={"content"}>{this.state.carWashing}</span>
-                            </div>
-                            <div className={"col cold"}>
-                                <Icon name={"i-ganmao"}/>
-                                <span className={"content"}>{this.state.coldRisk}</span>
-                            </div>
-
                         </div>
                         <div className={"column weatherIcon"}>
-                            <div className={"sun"}>
-                                <div className={"col sunrise"}>
-                                    <Icon name={"i-richu4"}/>
-                                    <span className={"content"}>{this.state.sun[0]}</span>
-                                </div>
-                                <div className={"col sunset"}>
-                                    <Icon name={"i-rila4"}/>
-                                    <span className={"content"}>{this.state.sun[1]}</span>
-                                </div>
-                            </div>
                             <div className={"iconArea"}><Icon name={"i-" + this.state.weather[0]}/></div>
                         </div>
                     </div>
@@ -287,7 +262,7 @@ class Weather extends Component {
                     </div>
                     <div>
                         <Icon name={"i-" + item.weather[0]}/>
-                        <span className={"sky"}>{item.weather[1]}</span>
+                        <span className={"content sky"}>{item.weather[1]}</span>
                     </div>
                 </div>
             });
@@ -295,28 +270,43 @@ class Weather extends Component {
         },
         today: () => {
             return <div className={"row today"}>
-                <div className={"bodyFeelingTemp"}>
-                    <Icon name={"i---rentitu"}/>
-                    <span
-                        className={"content"}>{this.state.apparentTemperature}°</span>
+                <div className={"col aqi"}>
+                    <Icon name={"i-kongqizhiliang"}/>
+                    <span className={"content"}>{this.state.aqi[0]}，{this.state.aqi[1]}</span>
                 </div>
-                <div className={"bodyFeelingTemp"}>
+                <div className={"col wind"}>
+                    <Icon name={"i-icon-fengsu-"}/>
+                    <span className={"content"}> {this.state.windSpeed[0]}km/h {this.state.windSpeed[1]}</span>
+                </div>
+                <div className={"col uv"}>
+                    <Icon name={"i-ziwaixian"}/>
+                    <span className={"content"}>{this.state.uv[1]}</span>
+                </div>
+                <div className={"col visibility"}>
+                    <Icon name={"i-nengjiandu"}/>
+                    <span className={"content"}>
+                                    {this.state.visibility < 1 ? this.state.visibility * 1000 + "m" : this.state.visibility + "km"}
+                                </span>
+                </div>
+                <div className={"col carWash"}>
+                    <Icon name={"i-shuangse-xichefuwu"}/>
+                    <span className={"content"}>{this.state.carWashing}</span>
+                </div>
+                <div className={"col cold"}>
+                    <Icon name={"i-ganmao"}/>
+                    <span className={"content"}>{this.state.coldRisk}</span>
+                </div>
+                <div className={"col windDirection"}>
                     <Icon name={"i-fengxiang"}/>
                     <span className={"content"}>{this.state.windDirection[1]}</span>
                 </div>
-                <div className={"humidity"}>
+                <div className={"col humidity"}>
                     <Icon name={"i-shidu"}/>
                     <span className={"content"}>{this.state.humidity}%</span>
                 </div>
                 <div className={"col pres"}>
                     <Icon name={"i-daqiyali"}/>
                     <span className={"content"}>{this.state.airPressure}kpa</span>
-                </div>
-                <div className={"visibility"}>
-                    <Icon name={"i-nengjiandu"}/>
-                    <span className={"content"}>
-                        {this.state.visibility < 1 ? this.state.visibility * 1000 + "m" : this.state.visibility + "km"}
-                    </span>
                 </div>
             </div>
         },
