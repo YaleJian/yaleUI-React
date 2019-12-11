@@ -5,22 +5,22 @@
   bottom: 0;
   top: 0;
 }
-.ya-weather .widget {
+.ya-weather .widget-container {
   width: 100%;
   position: absolute;
   transform: translateY(400px);
 }
-.ya-weather .widget::-webkit-scrollbar {
+.ya-weather .widget-container::-webkit-scrollbar {
   width: 0;
   height: 0;
 }
-.ya-weather .widget .loader3 {
+.ya-weather .widget-container .loader3 {
   background: white;
 }
-.ya-weather .widget .main {
-  margin: 10px 12px 0;
+.ya-weather .widget-container .widget {
+  margin: 10px 8px 0;
 }
-.ya-weather .widget .main .row {
+.ya-weather .widget-container .widget .row {
   margin: 0 0 8px 0;
   padding: 10px;
   background: white;
@@ -28,150 +28,136 @@
   line-height: 24px;
   font-size: 16px;
 }
-.ya-weather .widget .main .row .icon {
+.ya-weather .widget-container .widget .row .icon {
   width: 22px;
   height: 22px;
 }
-.ya-weather .widget .main .row .column {
+.ya-weather .widget-container .widget .row .column {
   flex: 1;
 }
-.ya-weather .widget .main .row .content {
+.ya-weather .widget-container .widget .row .content {
   padding: 0 5px;
   line-height: 22px;
   vertical-align: text-bottom;
   display: inline-block;
 }
-.ya-weather .widget .main .updateTime {
+.ya-weather .widget-container .widget .updateTime {
   font-size: 12px;
   display: inline-block;
   color: #37393d;
   padding: 0 10px;
   margin: 0 0 5px 0;
 }
-.ya-weather .widget .main .location {
+.ya-weather .widget-container .widget .location {
   display: flex;
   font-size: 13px;
   color: #6f6f6f;
   line-height: 16px;
   white-space: nowrap;
 }
-.ya-weather .widget .main .location .address {
+.ya-weather .widget-container .widget .location .address {
   text-overflow: ellipsis;
   overflow: hidden;
 }
-.ya-weather .widget .main .tips .forecastKeyPoint {
+.ya-weather .widget-container .widget .tips .forecastKeyPoint {
   font-size: 12px;
 }
-.ya-weather .widget .main .warning {
+.ya-weather .widget-container .widget .warning {
   margin: 0 0 -4px 0;
   font-size: 12px;
   text-align: center;
 }
-.ya-weather .widget .main .warning .text {
+.ya-weather .widget-container .widget .warning .text {
   display: inline-block;
   padding: 0 10px;
   margin-bottom: 5px;
   background: green;
   color: white;
 }
-.ya-weather .widget .main .warning .text.blue {
+.ya-weather .widget-container .widget .warning .text.blue {
   background: #5cccda;
 }
-.ya-weather .widget .main .warning .text.yellow {
+.ya-weather .widget-container .widget .warning .text.yellow {
   color: yellow;
 }
-.ya-weather .widget .main .warning .text.orange {
+.ya-weather .widget-container .widget .warning .text.orange {
   color: #ffad49;
 }
-.ya-weather .widget .main .warning .text.red {
+.ya-weather .widget-container .widget .warning .text.red {
   color: #fd8880;
 }
-.ya-weather .widget .main .realTime {
+.ya-weather .widget-container .widget .realTime-min {
   text-align: center;
 }
-.ya-weather .widget .main .realTime .sun {
-  text-align: revert;
-  font-size: 12px;
-  margin: -5px 0;
-  line-height: 12px;
-  border: 1px solid #a7ccf1;
-  border-radius: 5px;
-  display: inline-block;
-  background: aliceblue;
-}
-.ya-weather .widget .main .realTime .sun .col {
-  display: inline-block;
-  margin: 0 10px;
-}
-.ya-weather .widget .main .realTime .top {
+.ya-weather .widget-container .widget .realTime-min .top {
   display: flex;
   align-items: center;
   text-align: center;
 }
-.ya-weather .widget .main .realTime .top .left .temperature {
+.ya-weather .widget-container .widget .realTime-min .top .left .temperature {
   font-size: 43px;
   font-weight: 300;
   line-height: 50px;
   display: inline-block;
 }
-.ya-weather .widget .main .realTime .top .left .temperature .icon {
+.ya-weather .widget-container .widget .realTime-min .top .left .temperature .icon {
   width: 36px;
   height: 42px;
   margin-left: -10px;
 }
-.ya-weather .widget .main .realTime .top .left .bodyFeelingTemp {
+.ya-weather .widget-container .widget .realTime-min .top .left .bodyFeelingTemp {
   display: inline-block;
 }
-.ya-weather .widget .main .realTime .top .weatherIcon {
+.ya-weather .widget-container .widget .realTime-min .top .weatherIcon {
   text-align: center;
   font-size: 12px;
 }
-.ya-weather .widget .main .realTime .top .weatherIcon .iconArea .icon {
+.ya-weather .widget-container .widget .realTime-min .top .weatherIcon .sun {
+  display: flex;
+  font-size: 10px;
+  line-height: 12px;
+}
+.ya-weather .widget-container .widget .realTime-min .top .weatherIcon .iconArea {
+  margin: 20px 0;
+}
+.ya-weather .widget-container .widget .realTime-min .top .weatherIcon .iconArea .icon {
   height: 45px;
   width: 45px;
 }
-.ya-weather .widget .main .realTime .top .weatherIcon .skyCon .text {
-  font-size: 15px;
-  font-weight: 400;
-  color: black;
-}
-.ya-weather .widget .main .realTime .min {
+.ya-weather .widget-container .widget .realTime-min .min {
   flex: 1.5;
   font-size: 12px;
   color: #6f6f6f;
   line-height: 20px;
   box-sizing: border-box;
 }
-.ya-weather .widget .main .realTime .bottom {
+.ya-weather .widget-container .widget .realTime-min .bottom {
   font-size: 12px;
   margin: 5px;
   padding: 0 5px;
   border: 1px solid #cccccc;
   border-radius: 10px;
 }
-.ya-weather .widget .main .today {
+.ya-weather .widget-container .widget .realTime-detail {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  font-size: 15px;
+  font-size: 12px;
 }
-.ya-weather .widget .main .today .col {
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  padding: 0 3px;
-  margin: 2px;
+.ya-weather .widget-container .widget .realTime-detail .col {
   display: inline-block;
 }
-.ya-weather .widget .main .today .col .content {
-  line-height: 26px;
+.ya-weather .widget-container .widget .realTime-detail .col .content {
+  line-height: 12px;
+  vertical-align: super;
 }
-.ya-weather .widget .main .recentDay {
+.ya-weather .widget-container .widget .recentDay {
   white-space: nowrap;
   text-align: center;
   font-size: 13px;
   overflow-x: auto;
 }
-.ya-weather .widget .main .recentDay .day {
+.ya-weather .widget-container .widget .recentDay .day {
   margin: 0 5px;
   display: inline-block;
 }
