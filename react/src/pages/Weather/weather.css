@@ -36,7 +36,7 @@
   flex: 1;
 }
 .ya-weather .widget-container .widget .row .content {
-  padding: 0 5px;
+  padding: 0 4px;
   line-height: 22px;
   vertical-align: text-bottom;
   display: inline-block;
@@ -94,62 +94,64 @@
   align-items: center;
   text-align: center;
 }
-.ya-weather .widget-container .widget .realTime-min .top .left .temperature {
+.ya-weather .widget-container .widget .realTime-min .top .temperature-container {
+  text-align: left;
+  padding-left: 10px;
+}
+.ya-weather .widget-container .widget .realTime-min .top .temperature-container .temperature {
   font-size: 43px;
   font-weight: 300;
   line-height: 50px;
   display: inline-block;
 }
-.ya-weather .widget-container .widget .realTime-min .top .left .temperature .icon {
+.ya-weather .widget-container .widget .realTime-min .top .temperature-container .temperature .icon {
   width: 36px;
   height: 42px;
   margin-left: -10px;
 }
-.ya-weather .widget-container .widget .realTime-min .top .left .bodyFeelingTemp {
+.ya-weather .widget-container .widget .realTime-min .top .temperature-container .bodyFeelingTemp {
   display: inline-block;
 }
 .ya-weather .widget-container .widget .realTime-min .top .weatherIcon {
-  text-align: center;
+  text-align: right;
+  padding-right: 15px;
   font-size: 12px;
 }
-.ya-weather .widget-container .widget .realTime-min .top .weatherIcon .sun {
-  display: flex;
-  font-size: 10px;
-  line-height: 12px;
-}
 .ya-weather .widget-container .widget .realTime-min .top .weatherIcon .iconArea {
-  margin: 20px 0;
+  margin: 10px 0;
 }
 .ya-weather .widget-container .widget .realTime-min .top .weatherIcon .iconArea .icon {
   height: 45px;
   width: 45px;
 }
-.ya-weather .widget-container .widget .realTime-min .min {
-  flex: 1.5;
-  font-size: 12px;
-  color: #6f6f6f;
-  line-height: 20px;
-  box-sizing: border-box;
-}
 .ya-weather .widget-container .widget .realTime-min .bottom {
   font-size: 12px;
   margin: 5px;
   padding: 0 5px;
-  border: 1px solid #cccccc;
-  border-radius: 10px;
+  border: 1px solid #e7e7e7;
+  color: #505050;
+  border-radius: 5px;
 }
-.ya-weather .widget-container .widget .realTime-detail {
+.ya-weather .widget-container .widget .realTime-detail .sun {
+  font-size: 12px;
+  color: #5e5e5e;
+  text-align: center;
+}
+.ya-weather .widget-container .widget .realTime-detail .detailed {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
   font-size: 12px;
+  line-height: 14px;
 }
-.ya-weather .widget-container .widget .realTime-detail .col {
-  display: inline-block;
+.ya-weather .widget-container .widget .realTime-detail .detailed .col {
+  flex: 1;
+  padding: 5px 0;
+  text-align: center;
 }
-.ya-weather .widget-container .widget .realTime-detail .col .content {
-  line-height: 12px;
-  vertical-align: super;
+.ya-weather .widget-container .widget .realTime-detail .detailed .col .content {
+  display: block;
+  line-height: 20px;
+  word-break: keep-all;
 }
 .ya-weather .widget-container .widget .recentDay {
   white-space: nowrap;
@@ -160,5 +162,18 @@
 .ya-weather .widget-container .widget .recentDay .day {
   margin: 0 5px;
   display: inline-block;
+}
+.ya-weather .widget-container .widget .recentDay .day .air.ya-greenBorder {
+  line-height: 16px;
+  margin: 2px 0;
+}
+.ya-weather .widget-container .widget .airDetail {
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 12px;
+  text-align: center;
+}
+.ya-weather .widget-container .widget .airDetail .col {
+  flex: 1;
 }
 /*# sourceMappingURL=weather.css.map */
