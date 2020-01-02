@@ -19,6 +19,14 @@ import Animation from "../../modules/animate/Animate";
  * API文档
  */
 class UI extends Component {
+    
+    constructor(props) {
+        super(props);
+        this.state = {
+            sideLeft : true,
+            sideRight : true,
+        }
+    }
     render() {
         let path = this.props.match.path;
 
@@ -37,15 +45,24 @@ class UI extends Component {
             <Route path={`${path}/pagination`} component={PaginationDemo}/>
             </>;
 
+        let mainClass = this.state.sideLeft ? "sideLeft" : "";
+        mainClass = this.state.sideRight ? mainClass +=" sideRight" : "";
         return (
             <>
                 <Header children={"Yale JS"}/>
-                <Menu indexId={1} path={this.props.location.pathname}/>
-                <Main>
+                <Menu indexId={1} path={this.props.location.pathname} setSideLeft = {this.setSideLeft.bind(this)}/>
+                <Main className={mainClass}>
                     {pages}
                 </Main>
             </>
         );
+    }
+
+    setSideLeft = (sideLeft) =>{
+        this.setState({sideLeft});
+    };
+    setSideRight = (sideRight) =>{
+        this.setState({sideRight});
     }
 }
 

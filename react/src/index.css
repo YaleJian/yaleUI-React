@@ -353,6 +353,12 @@ strong {
 .ya-main {
   padding: 20px 10px;
 }
+.ya-main.sideLeft {
+  padding-left: 160px;
+}
+.ya-main.sideRight {
+  padding-right: 160px;
+}
 .ya-footer {
   position: fixed;
   bottom: 0;

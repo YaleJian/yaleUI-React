@@ -10,7 +10,6 @@
   display: block;
 }
 .ya-tree.theme {
-  margin: 8px;
   padding: 6px 16px;
   border-radius: 8px;
 }
@@ -480,17 +479,16 @@
   }
 }
 /* demo页面 */
-.ya-treeDemo {
-  margin: 30px 360px 0 0;
-}
 .ya-treeDemo h1 {
   font-size: 18px;
 }
 .ya-treeDemo .ya-console-area {
-  width: 200px;
+  width: 130px;
   position: fixed;
-  right: 140px;
+  right: 10px;
   background: white;
+  z-index: 4;
+  border: 1px solid #ededed;
 }
 .ya-treeDemo .ya-console-area,
 .ya-treeDemo .ya-console-area .treeDemo {

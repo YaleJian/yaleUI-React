@@ -114,7 +114,7 @@ class TreeDemo extends Component {
         return (
             <div className="ya-treeDemo">
                 <div className="ya-console-area">
-                    <h1 className="ya-title">数据输出</h1>
+                    <h2 className="ya-title">数据输出</h2>
                     <button onClick={this.updateNode.bind(this)}>更新树</button>
                     <br/>
                     <div>入参：树： <JSONTree data={this.state.treeData} theme={theme} shouldExpandNode={() => {
