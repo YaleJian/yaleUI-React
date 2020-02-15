@@ -35,6 +35,7 @@ class Weather extends Component {
                         {this.pages.updateTime()}
                         {this.pages.location()}
                         {this.pages.tips()}
+                        {this.pages.warning()}
                         {this.pages.realTimeMin()}
                         {this.pages.realTimeDetail()}
                         {this.pages.recentDays()}
@@ -83,12 +84,16 @@ class Weather extends Component {
             </>;
         },
         warning: () => {
-            return this.state.warning ? <div className={"row warning"}>
-                <div className={"text" + this.state.warning[2]}>
+
+            if(this.state.warning[0].length === 0) return "";
+            let warnings = this.state.warning[0].map( (item, index)=>{
+                return <div className={"text " + item[2]} key={index}>
                     <Icon name={"i-jinggao"}/>
-                    {this.state.warning[0] + this.state.warning[1] + "预警"}
+                    {item[0] + item[1] + "预警"}
                 </div>
-            </div> : "";
+                }
+            );
+            return <div className={"row warning"}>{warnings}</div>;
         },
         realTimeMin: () => {
             return <>
@@ -334,11 +339,18 @@ class Weather extends Component {
         },
         warning: (content) => {
             if (content.length === 0) return "";
-            let code = content.code;
             let type = ["台风", "暴雨", "暴雪", "寒潮", "大风", "沙尘暴", "高温", "干旱", "雷电", "冰雹", "霜冻", "大雾", "霾", "道路结冰", "森林火灾", "雷雨大风"];
             let grade = ["蓝色", "黄色", "橙色", "红色"];
             let color = ["blue", "yellow", "orange", "red"];
-            return [type[code[0]], grade[code[1]], color[code[1]]];
+
+            let result = [];
+            for(let i in content) {
+                let code = content[i].code;
+                let typeNum = Number(code.substring(0,2)) - 1;
+                let gradeNum = code[3] - 1;
+                result.push([type[typeNum], grade[gradeNum], color[gradeNum]]);
+            }
+            return result;
         },
     };
     //获取当前定位
