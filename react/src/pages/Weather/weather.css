@@ -70,9 +70,9 @@
 .ya-weather .widget-container .widget .warning .text {
   display: inline-block;
   padding: 0 10px;
-  margin-bottom: 5px;
   background: green;
-  color: white;
+  color: #fff;
+  line-height: 16px;
 }
 .ya-weather .widget-container .widget .warning .text.blue {
   background: #5cccda;

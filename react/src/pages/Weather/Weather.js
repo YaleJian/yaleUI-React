@@ -38,6 +38,7 @@ class Weather extends Component {
                         {this.pages.warning()}
                         {this.pages.realTimeMin()}
                         {this.pages.realTimeDetail()}
+                        {this.pages.recentHours()}
                         {this.pages.recentDays()}
                         {this.pages.airDetail()}
                     </div>
@@ -57,7 +58,7 @@ class Weather extends Component {
     pages = {
         updateTime: () => {
             return <div className={"row updateTime"}>
-                {"更新时间："+this.state.updateTime}
+                {"更新时间：" + this.state.updateTime}
             </div>
         },
         location: () => {
@@ -85,12 +86,12 @@ class Weather extends Component {
         },
         warning: () => {
 
-            if(this.state.warning[0].length === 0) return "";
-            let warnings = this.state.warning[0].map( (item, index)=>{
-                return <div className={"text " + item[2]} key={index}>
-                    <Icon name={"i-jinggao"}/>
-                    {item[0] + item[1] + "预警"}
-                </div>
+            if (this.state.warning[0].length === 0) return "";
+            let warnings = this.state.warning[0].map((item, index) => {
+                    return <div className={"text " + item[2]} key={index}>
+                        <Icon name={"i-jinggao"}/>
+                        <span className={"content"}>{item[0] + item[1] + "预警"}</span>
+                    </div>
                 }
             );
             return <div className={"row warning"}>{warnings}</div>;
@@ -170,9 +171,26 @@ class Weather extends Component {
                 </div>
             </div>
         },
+        recentHours: () => {
+            let hour24Tag = this.state.hourly.map((item, index) => {
+                return <div className={"day"} key={index}>
+                    <div className={""}>{index + ":00"}</div>
+                    <div className={"air ya-greenBorder"}>
+                        <span>{item.aqi}</span>
+                    </div>
+                    <div className={"temp"}>
+                        <span>{item.temperature + "°"}</span>
+                    </div>
+                    <div>
+                        <Icon name={"i-" + item.weather[0]}/>
+                        <span className={"content sky"}>{item.weather[1]}</span>
+                    </div>
+                </div>
+            });
+            return <div className={"row recentDay"}>{hour24Tag}</div>
+        },
         recentDays: () => {
-
-            let day3Tag = this.state.daily.map((item, index) => {
+            let day16Tag = this.state.daily.map((item, index) => {
                 return <div className={"day"} key={index}>
                     <div className={""}> {this.data.getRecentDay(index)}</div>
                     <div className={"air ya-greenBorder"}>
@@ -187,7 +205,7 @@ class Weather extends Component {
                     </div>
                 </div>
             });
-            return <div className={"row recentDay"}>{day3Tag}</div>
+            return <div className={"row recentDay"}>{day16Tag}</div>
         },
         airDetail: () => {
             return <div className={"row airDetail"}>
@@ -228,7 +246,7 @@ class Weather extends Component {
             longitudeAndLatitude[0] = dataUtils.formatDegree(longitudeAndLatitude[0]);
             longitudeAndLatitude[1] = dataUtils.formatDegree(longitudeAndLatitude[1]);
             let nowDate = new Date();
-            let time = nowDate.getFullYear() + "-" + nowDate.getMonth() + "-" + nowDate.getDate() + " " + nowDate.getHours() + ":" + nowDate.getMinutes();
+            let time = nowDate.getFullYear() + "-" + (nowDate.getMonth() + 1) + "-" + nowDate.getDate() + " " + nowDate.getHours() + ":" + nowDate.getMinutes();
             let data = {
                 status: 1,
                 updateTime: time,
@@ -264,7 +282,17 @@ class Weather extends Component {
                 carWashing: d.life_index.carWashing[0].desc,
                 coldRisk: d.life_index.coldRisk[0].desc,
                 daily: [],
+                hourly:[],
             };
+
+            //24小时天气
+            for (let i = 0; i < 24; i++) {
+                data.hourly.push({
+                    weather: [h.skycon[i].value, this.data.skyCon[h.skycon[i].value]],
+                    temperature: Math.round(h.temperature[i].value),
+                    aqi: Math.round(h.air_quality.aqi[i].value.chn),
+                });
+            }
 
             //16天预报 + 昨天
             for (let i = 0; i < 16; i++) {
@@ -278,13 +306,13 @@ class Weather extends Component {
         },
         //获取今天是第几周
         getRecentDay: (index) => {
-            let dayText = ["昨天", "今天", "明天", "后天"];
+            let dayText = ["昨天", "今天"];
             let nowDate = new Date();
             let weekName = ["日", "一", "二", "三", "四", "五", "六"];
-            let tDate = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate() + index + 1);
-            if (index <= 3) {
+            let tDate = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate() + index - 1);
+            if (index <= 1) {
                 return dayText[index];
-            } else if (index > 3 && index < 8) {
+            } else if (index > 1 && index < 3) {
                 return "周" + weekName[tDate.getDay()];
             } else {
                 return tDate.getMonth() + "." + tDate.getDate();
@@ -344,9 +372,9 @@ class Weather extends Component {
             let color = ["blue", "yellow", "orange", "red"];
 
             let result = [];
-            for(let i in content) {
+            for (let i in content) {
                 let code = content[i].code;
-                let typeNum = Number(code.substring(0,2)) - 1;
+                let typeNum = Number(code.substring(0, 2)) - 1;
                 let gradeNum = code[3] - 1;
                 result.push([type[typeNum], grade[gradeNum], color[gradeNum]]);
             }
