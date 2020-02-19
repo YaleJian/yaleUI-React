@@ -19,7 +19,7 @@ axios.interceptors.request.use(config => {
         </div>);
     } else {
         // Something happened in setting up the request that triggered an Error
-        Message(error.message);
+        Message(error.message, false, true);
     }
     return Promise.reject(error)
 });
@@ -39,7 +39,7 @@ axios.interceptors.response.use(config => {
         </div>);
     } else {
         // Something happened in setting up the request that triggered an Error
-        Message(error.message);
+        Message(error.message,false, true);
     }
     return Promise.reject(error)
 });

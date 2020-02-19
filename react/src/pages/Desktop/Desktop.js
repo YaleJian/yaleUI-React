@@ -33,6 +33,7 @@ class Desktop extends React.Component {
             {name: "后台管理", link: "pic", icon: "i-huabanfuben1", bg: "blue"},
             {name: "留言反馈", link: "pic", icon: "i-fankui1", bg: "grey"},
             {name: "关于我们", link: "pic", icon: "i-guanyu-", bg: "grey"},
+            {name: "华富广告云", link: "hf", icon: "i-guanggaopai", bg: "white"},
         ];
         let apps = data.map((app) => {
             return <Link to={app.link} key={app.name}>
