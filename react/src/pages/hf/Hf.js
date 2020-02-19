@@ -5,7 +5,6 @@ import Main from "../common/Main";
 import {hfCosList} from "../../modules/utils/qCloudUtils";
 import Button from "../../modules/Button/Button";
 import axios from "../../modules/utils/Axios";
-import {Link} from "react-router-dom";
 
 /**
  * 华富物联网系统
@@ -125,7 +124,7 @@ class Hf extends React.Component {
 
             return <div className={"managementPlatform"}>
                 <div className={"header"}>
-                    <img className={"hf-logo"} src="https://hfcdn.yalejian.com/system/hf-Logo.png"/>
+                    <img className={"hf-logo"} src="https://hfcdn.yalejian.com/system/hf-Logo.png" alt={"Logo"}/>
                     <span className={"platformName"}>华富云屏管理后台</span>
                 </div>
                 <div className={"screenList"}>
@@ -299,7 +298,7 @@ class Hf extends React.Component {
 
     //检查系统配置
     checkConfig() {
-        axios.get("https://hf.yalejian.com/system/hfConfig.json?time=" + new Date())
+        axios.get("https://hf-1252187891.cos.ap-beijing.myqcloud.com/system/hfConfig.json?time=" + new Date())
             .then((res) => {
                 let config = res.data;
                 if (config && config.version !== this.state.systemVersion) {
