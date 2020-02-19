@@ -209,7 +209,8 @@ class Hf extends React.Component {
 
     //设置文件类型
     setFileType(url) {
-        if (url.endsWith(".jpg") || url.endsWith(".JPG") || url.endsWith(".png") || url.endsWith(".PNG")) {
+        if (url.endsWith(".jpg") || url.endsWith(".JPG") || url.endsWith(".png") || url.endsWith(".PNG") ||
+            url.endsWith(".jpeg") || url.endsWith(".JPEG") || url.endsWith(".gif") || url.endsWith(".GIF")) {
             return Hf.Pic;
         } else if (url.endsWith(".mp4") || url.endsWith(".MP4") || url.endsWith(".MOV") || url.endsWith(".mov")) {
             return Hf.Movie;
