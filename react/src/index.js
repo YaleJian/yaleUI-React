@@ -13,7 +13,8 @@ import AppDownload from "./pages/AppDownload/AppDownload";
 import Photo from "./pages/Photo/Photo";
 import EatToday from "./pages/EatToday/EatToday";
 import Weather from "./pages/Weather/Weather";
-import Hf from "./pages/hf/Hf";
+import Hf from "./pages/HuaFu/CloudPlayer/Hf";
+import HfManagementPlatform from "./pages/HuaFu/ManagementPlatform/HfManagementPlatform";
 
 let root = <>
     <Login/>
@@ -27,7 +28,8 @@ let root = <>
             <Route path={'/photo'} component={Photo}/>
             <Route path={'/weather'} component={Weather}/>
             <Route path={'/hf/:id/'} component={Hf}/>
-            <Route path={'/hf'} component={Hf}/>
+            <Route path={'/hfm/:menuId/'} component={HfManagementPlatform}/>
+            <Route path={'/hfm'} component={HfManagementPlatform}/>
         </Switch>
     </BrowserRouter>
 </>;

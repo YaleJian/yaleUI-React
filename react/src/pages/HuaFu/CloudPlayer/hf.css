@@ -1,11 +1,10 @@
-#root {
-  overflow: hidden;
-}
 .ya-login {
   display: none;
 }
 .ya-main {
   padding: 0;
+  height: 100%;
+  width: 100%;
 }
 .noHeader {
   display: none;
@@ -13,61 +12,6 @@
 .ya-Hf {
   width: 100%;
   height: 100%;
-}
-.ya-Hf .managementPlatform {
-  z-index: 100;
-}
-.ya-Hf .managementPlatform .header {
-  font-size: 30px;
-  line-height: 60px;
-  padding: 20px;
-  background: #09acfd;
-  color: white;
-  display: flex;
-  align-items: center;
-}
-.ya-Hf .managementPlatform .header .hf-logo {
-  border-radius: 5px;
-  width: 50px;
-  height: 50px;
-}
-.ya-Hf .managementPlatform .header .platformName {
-  margin: 0 10px;
-}
-.ya-Hf .managementPlatform .screenList {
-  display: flex;
-  justify-content: center;
-  flex-direction: row;
-  flex-wrap: wrap;
-  background: aliceblue;
-  padding: 30px;
-}
-.ya-Hf .managementPlatform .screenList .screen {
-  min-width: 240px;
-  height: 240px;
-  margin: 20px;
-  border-radius: 10px;
-  background: white;
-  box-shadow: 10px 10px 25px #cccccc;
-  text-align: center;
-}
-.ya-Hf .managementPlatform .screenList .screen .screenTitle {
-  line-height: 50px;
-  background: #009688;
-  color: white;
-  border-radius: 10px 10px 0 0;
-  text-align: center;
-  font-size: 24px;
-}
-.ya-Hf .managementPlatform .screenList .screen .content {
-  height: 160px;
-  line-height: 160px;
-}
-.ya-Hf .managementPlatform .screenList .screen .preview button {
-  width: 100%;
-  margin: 0;
-  border-radius: 0 0 10px 10px;
-  font-size: 18px;
 }
 .ya-Hf .bootScreen {
   position: absolute;
@@ -149,6 +93,12 @@
 .ya-Hf .hf-realTimeScreen .adVideo {
   width: 100%;
   height: 100%;
+  object-fit: fill;
+}
+.ya-Hf .hf-realTimeScreen .loadingSchedule {
+  position: absolute;
+  bottom: 0;
+  right: 0;
 }
 .ya-Hf .noAd {
   color: white;
