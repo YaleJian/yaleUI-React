@@ -377,7 +377,7 @@ class Hf extends React.Component {
                     this.refresh = setTimeout(() => {
                         window.location.reload();
                         clearTimeout(this.refresh);
-                    }, 3000)
+                    }, 10000)
                 }
             });
     }
