@@ -75,7 +75,11 @@ let getFileList = (folderName, func, delimiter, nextMarker, size, bucket, cosObj
     if (size) param.MaxKeys = size;
 
     cosObj.getBucket(param, function (err, data) {
-        if(data) func(data.Contents);
+        if(data) {
+            func(data.Contents);
+        }else {
+            func(false, err);
+        }
     });
 };
 export var cosDownload = (url) => {
