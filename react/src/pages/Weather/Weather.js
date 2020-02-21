@@ -86,7 +86,7 @@ class Weather extends Component {
         },
         warning: () => {
 
-            if (this.state.warning[0].length === 0) return "";
+            if (!this.state.warning || this.state.warning[0].length === 0) return "";
             let warnings = this.state.warning[0].map((item, index) => {
                     return <div className={"text " + item[2]} key={index}>
                         <Icon name={"i-jinggao"}/>
@@ -278,7 +278,7 @@ class Weather extends Component {
                 pm25: r.air_quality.pm25,
                 so2: r.air_quality.so2,
                 sun: [d.astro[0].sunrise.time, d.astro[0].sunset.time],
-                warning: weatherData.result.alert.content.length > 0 ? [this.data.warning(weatherData.result.alert.content), weatherData.result.alert.content] : "",
+                warning: weatherData.result.alert.content.length > 0 ? [this.data.warning(weatherData.result.alert.content), weatherData.result.alert.content] : false,
                 carWashing: d.life_index.carWashing[0].desc,
                 coldRisk: d.life_index.coldRisk[0].desc,
                 daily: [],
