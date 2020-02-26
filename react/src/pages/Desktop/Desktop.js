@@ -30,7 +30,7 @@ class Desktop extends React.Component {
             {name: "我的云盘", link: "pic", icon: "i-yunpan2", bg: "grey"},
             {name: "今天吃什么", link: "eatToday", icon: "i-zuofan", bg: ""},
             {name: "账号设置", link: "pic", icon: "i-anquan", bg: "orange"},
-            {name: "后台管理", link: "pic", icon: "i-huabanfuben1", bg: "blue"},
+            {name: "配置", link: "pic", icon: "i-huabanfuben1", bg: "blue"},
             {name: "反馈", link: "pic", icon: "i-fankui1", bg: "grey"},
             {name: "关于我", link: "pic", icon: "i-guanyu-", bg: "grey"},
             // {name: "华富云", link: "hfm", icon: "i-guanggaopai", bg: "white"},
