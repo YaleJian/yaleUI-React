@@ -14,6 +14,7 @@ import MessageDemo from "../../modules/message/MessageDemo";
 import DatepickerDemo from "../../modules/Datepicker/DatepickerDemo";
 import PaginationDemo from "../../modules/Pagination/PaginationDemo";
 import Animation from "../../modules/animate/Animate";
+import ChartDemo from "../../modules/Chart/ChartDemo";
 
 /**
  * API文档
@@ -23,7 +24,7 @@ class UI extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            sideLeft : true,
+            sideLeft : document.body.clientWidth > 900,
             sideRight : true,
         }
     }
@@ -43,6 +44,8 @@ class UI extends Component {
             <Route path={`${path}/message`} component={MessageDemo}/>
             <Route path={`${path}/date`} component={DatepickerDemo}/>
             <Route path={`${path}/pagination`} component={PaginationDemo}/>
+            <Route path={`${path}/map`} component={PaginationDemo}/>
+            <Route path={`${path}/chart`} component={ChartDemo}/>
             </>;
 
         let mainClass = this.state.sideLeft ? "sideLeft" : "";

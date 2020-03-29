@@ -713,7 +713,6 @@ class Tree extends BaseComponent {
     //节点点击
     nodeContentClick = (node) => {
 
-        console.log("nodeContentClick");
         //导航栏树锚点
         if (this.TREE_NAV) {
             node.obj.scrollIntoView({block: "center", inline: "nearest"});

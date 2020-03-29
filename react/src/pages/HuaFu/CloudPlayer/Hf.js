@@ -165,7 +165,7 @@ class Hf extends React.Component {
                         let screenId = folders[1];//屏幕
                         let adFileName = folders[2];//广告文件名称
                         if (screenId === this.state.screenId && fileType !== Hf.Nonsupport) {
-                            let url = "https://hfcdn.yalejian.com/" + key;//广告文件url
+                            let url = "https://hfmedia-1301416202.cos.ap-guangzhou.myqcloud.com/" + key;//广告文件url
                             let ad = {
                                 adFileName,
                                 screenId,

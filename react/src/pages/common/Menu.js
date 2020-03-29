@@ -15,6 +15,8 @@ const menuData = [
     {id: "date", name: "日期", link: "/ui/date", sort: 9},
     {id: "pagination", name: "分页", link: "/ui/pagination", sort: 10},
     {id: "animation", name: "动画", link: "/ui/animation", sort: 11},
+    {id: "map", name: "地图", link: "/ui/map", sort: 12},
+    {id: "chart", name: "图表", link: "/ui/chart", sort: 13},
 ];
 
 class Menu extends Component {
