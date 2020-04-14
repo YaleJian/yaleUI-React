@@ -372,6 +372,15 @@ strong {
   text-decoration: none;
   cursor: pointer;
 }
+.ya-footer .copyright:hover {
+  color: blue;
+}
+.ya-footer .publicSafety {
+  height: 14px;
+  width: 14px;
+  margin-right: 2px;
+  vertical-align: text-bottom;
+}
 .ya-loading {
   position: absolute;
   top: 0;
