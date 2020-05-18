@@ -25,8 +25,8 @@ module.exports = function override(config, env) {
         //上传到腾讯云cos对象存储
         config.plugins.push(
             new CosPlugin({  // 配置 Plugin
-                secretId: 'AKIDOcekgT9aszue7RTTjopjSLONBnEWraqw',
-                secretKey: '4xjKp8Fvb9XkqpdGMH1Zv66ucEksoeJn',
+                secretId: '',
+                secretKey: '',
                 bucket: 'homepage-1252187891',  // COS 存储对象名称，格式为对象名称加应用ID (APPID)，如： bucket-1250000000
                 region: 'ap-beijing',  // COS 存储地域
                 // exclude: /index.html$/,  // 可选，排除特定文件，正则表达式，如: /index.html$/
