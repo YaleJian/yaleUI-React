@@ -1,0 +1,97 @@
+.ya-Hf{
+  width: 100%;
+  height: 100%;
+  .bootScreen{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: white;
+    text-align: center;
+    z-index: 100;
+    .boot{
+      position: absolute;
+      top: calc(50% - 200px);
+      left: calc(50% - 215px);
+      font-size: 30px;
+
+      .title{
+        margin: 30px 4px;
+        text-shadow: 2px 1px 40px #fdfdfd;
+        background: #86d4cc;
+        border-radius: 15%;
+        padding: 15px;
+        .welcome{
+          width: 400px;
+        }
+        .systemVersion{
+          display: inline-block;
+          background: #22d2ad;
+          padding: 0 5px;
+          border-radius: 5px;
+          font-size: 24px;
+          letter-spacing: 3px;
+          color: white;
+        }
+      }
+      .bootBtn{
+        width: 250px;
+        height: 40px;
+        font-size: 20px;
+      }
+      .firstLoading{
+        padding: 20px 0;
+        font-size: 25px;
+      }
+      .updateSystem{
+        background: aliceblue;
+        padding: 5px;
+        border-radius: 5px;
+      }
+
+    }
+    .bg{
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+    }
+    .serialNumber{
+      margin: 10px;
+      font-size: 16px;
+      position: absolute;
+      left: 0;
+      right: 0;
+    }
+  }
+  .hf-realTimeScreen{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    .adImage{
+      width: 100%;
+      height: 100%;
+    }
+    .adVideo{
+      width: 100%;
+      height: 100%;
+      object-fit: fill
+    }
+    .loadingSchedule{
+      position: absolute;
+      bottom: 0;
+      right: 0;
+    }
+  }
+  .noAd{
+    color: white;
+    background: black;
+  }
+}

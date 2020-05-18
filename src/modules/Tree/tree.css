@@ -1,0 +1,509 @@
+/** 树组件样式 */
+.ya-tree {
+  color: #606266;
+  display: block;
+  box-shadow: 0 8px 12px #ebedf0;
+  background: white;
+}
+.ya-tree a {
+  color: #606266;
+  display: block;
+}
+.ya-tree.theme {
+  padding: 6px 16px;
+  border-radius: 8px;
+}
+.ya-tree.theme .ya-treeBody {
+  overflow-x: auto;
+  max-height: 600px;
+}
+.ya-tree .ya-treeTools {
+  height: 28px;
+}
+.ya-tree .ya-treeTools .ya-autoSearch {
+  /* 搜索 */
+  font-size: 14px;
+  display: inline-block;
+}
+.ya-tree .ya-treeTools .ya-autoSearch.searchFocus {
+  box-shadow: 0 2px 16px #eaeaea;
+  position: absolute;
+  margin-top: 0;
+  background: white;
+  min-width: 200px;
+  z-index: 1;
+  line-height: 20px;
+}
+.ya-tree .ya-treeTools .ya-autoSearch .searchInput {
+  width: 200px;
+  border: 1px solid #ccc;
+  padding: 6px 10px 6px 26px;
+  height: 14px;
+  border-radius: 5px;
+}
+.ya-tree .ya-treeTools .ya-autoSearch .searchInput:hover {
+  box-shadow: 0 2px 16px #eaeaea;
+  outline: none;
+  border: 1px solid #009688;
+}
+.ya-tree .ya-treeTools .ya-autoSearch .searchInput:focus {
+  outline: none;
+}
+.ya-tree .ya-treeTools .ya-autoSearch .resultList {
+  max-height: 800px;
+  overflow: auto;
+}
+.ya-tree .ya-treeTools .ya-autoSearch .searchItem {
+  padding: 5px 10px;
+}
+.ya-tree .ya-treeTools .ya-autoSearch .searchItem:hover {
+  background: #daf5f1;
+  color: #009688;
+  cursor: pointer;
+}
+.ya-tree .ya-treeTools .ya-autoSearch .searchIcon {
+  position: absolute;
+  height: 28px;
+}
+.ya-tree .ya-treeTools .ya-autoSearch .searchIcon svg {
+  height: 18px;
+  width: 18px;
+  color: #888;
+  padding: 5px;
+}
+.ya-tree .ya-treeTools .displayMode {
+  float: right;
+}
+.ya-tree .ya-treeTools .displayMode .icon {
+  width: 21px;
+  height: 21px;
+}
+.ya-tree .ya-treeBody {
+  border: 0;
+  padding: 0;
+  font-size: 15px;
+  /* 拖曳 */
+}
+.ya-tree .ya-treeBody .node {
+  transition: height 0.3s ease-in-out, padding-top 0.3s ease-in-out, padding-bottom 0.3s ease-in-out;
+}
+.ya-tree .ya-treeBody .node .node-content {
+  position: relative;
+  white-space: nowrap;
+  word-break: break-all;
+  transition: color 0.1s;
+  border: 1px solid #ffffff00;
+}
+.ya-tree .ya-treeBody .node .node-content:hover {
+  background: #f0fffd;
+}
+.ya-tree .ya-treeBody .node .node-content:hover .operationBtn {
+  opacity: 1;
+}
+.ya-tree .ya-treeBody .node .node-content:hover .ya-editNodeName + .operationBtn {
+  opacity: 0;
+}
+.ya-tree .ya-treeBody .node .node-content:active {
+  background: #daf5f1;
+  color: #009688;
+  border-radius: 5px;
+}
+.ya-tree .ya-treeBody .node .node-content.nodeFocus {
+  background: #daf5f1;
+  color: #009688;
+  border-radius: 2px;
+}
+.ya-tree .ya-treeBody .node .node-content.nodeFocus:hover {
+  background: #daf5f1;
+  color: #009688;
+  border-radius: 2px;
+}
+.ya-tree .ya-treeBody .node .node-content .openIcon,
+.ya-tree .ya-treeBody .node .node-content .selectIcon {
+  display: inline-block;
+  color: #6c757d;
+  margin-right: 10px;
+  vertical-align: text-top;
+}
+.ya-tree .ya-treeBody .node .node-content .openIcon {
+  /*展开*/
+  width: 16px;
+}
+.ya-tree .ya-treeBody .node .node-content .openIcon svg {
+  transition: transform 0.2s linear;
+}
+.ya-tree .ya-treeBody .node .node-content .openIcon:hover {
+  color: #009688;
+}
+.ya-tree .ya-treeBody .node .node-content .selectIcon {
+  /*复选框*/
+  width: 16px;
+  color: #76bdb6;
+  /*复选框-选中*/
+}
+.ya-tree .ya-treeBody .node .node-content .selectIcon.ya-zoom10-15 {
+  color: #009688;
+}
+.ya-tree .ya-treeBody .node .node-content .selectIcon:hover {
+  color: #009688;
+}
+.ya-tree .ya-treeBody .node .node-content .ya-nodeIcon {
+  width: 16px;
+  display: inline-block;
+  vertical-align: text-top;
+  margin-right: 10px;
+}
+.ya-tree .ya-treeBody .node .node-content .ya-nodeIcon .nodeIconImg {
+  width: 16px;
+  height: 16px;
+}
+.ya-tree .ya-treeBody .node .node-content .ya-editNodeName {
+  display: inline-block;
+  padding: 3px 0 2px 5px;
+}
+.ya-tree .ya-treeBody .node .node-content .ya-editNodeName span {
+  margin-left: 4px;
+}
+.ya-tree .ya-treeBody .node .node-content .ya-editNodeName .ya-nameInput {
+  width: calc(98% - 40px);
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  margin: -1px;
+  padding-left: 5px;
+  font-size: 15px;
+  font-family: inherit;
+  font-weight: 400;
+  color: #606266;
+}
+.ya-tree .ya-treeBody .node .node-content .nodeName {
+  padding: 4px 0;
+  display: inline-block;
+  transition: color 0.3s;
+}
+.ya-tree .ya-treeBody .node .node-content .nodeName:hover {
+  cursor: pointer;
+  opacity: 0.65;
+}
+.ya-tree .ya-treeBody .node .node-content .nodeName:active {
+  color: #039e90;
+}
+.ya-tree .ya-treeBody .node .node-content .nodeName.active {
+  color: #039285;
+}
+.ya-tree .ya-treeBody .node .node-content .operationBtn {
+  opacity: 0;
+  color: #858585;
+  margin-left: 8px;
+}
+.ya-tree .ya-treeBody .node .node-content .operationBtn .btn {
+  margin-left: 4px;
+  vertical-align: middle;
+}
+.ya-tree .ya-treeBody .node .node-content .operationBtn .btn svg:hover {
+  color: #009688;
+  cursor: pointer;
+}
+.ya-tree .ya-treeBody .node .node-content .operationBtn .btn svg:active {
+  color: #039e90;
+}
+.ya-tree .ya-treeBody .node .node-content .addNodeRadio {
+  /* 定制功能*/
+  position: absolute;
+  clip: rect(0, 0, 0, 0);
+}
+.ya-tree .ya-treeBody .node .node-content .addNodeRadio + .nodeName::before {
+  content: "\a0";
+  display: inline-block;
+  vertical-align: middle;
+  width: 14px;
+  height: 14px;
+  margin-right: 8px;
+  margin-left: -8px;
+  border-radius: 50%;
+  text-indent: 4px;
+  margin-bottom: 4px;
+  border: 1px solid #CCCCCC;
+}
+.ya-tree .ya-treeBody .node .node-content .addNodeRadio:checked + .nodeName::before {
+  background-color: #009688;
+  background-clip: content-box;
+  padding: 2px;
+  width: 10px;
+  height: 10px;
+}
+.ya-tree .ya-treeBody .noData {
+  text-align: center;
+  width: 100%;
+  padding: 20px 0;
+  line-height: 30px;
+}
+.ya-tree .ya-treeBody .noData svg {
+  width: 50px;
+  height: 50px;
+}
+.ya-tree .ya-treeBody.ya-menuTree {
+  /* 菜单树 */
+  border-right: 1px solid #e8e8e8;
+}
+.ya-tree .ya-treeBody.ya-menuTree .nodeFocus {
+  border-right: 3px solid #039e90;
+  margin-right: -2px;
+}
+.ya-tree .ya-treeBody.ya-menuTree .node-content {
+  padding: 5px 0;
+}
+.ya-tree .ya-treeBody.ya-nav {
+  /* 导航栏树 */
+  position: fixed;
+  top: 50px;
+  right: 10px;
+  width: 100px;
+  z-index: 3;
+  font-size: 12px;
+  padding: 20px 10px 10px 15px;
+  background: white;
+  border-left: 1px solid #ebedf0;
+}
+.ya-tree .ya-treeBody.ya-nav .nodeName {
+  width: 100px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  padding: 0;
+  vertical-align: middle;
+}
+.ya-tree .ya-treeBody.ya-nav .nodeName:hover {
+  opacity: 1;
+  color: #039e90;
+}
+.ya-tree .ya-treeBody .ya-dragTop {
+  border: 1px dashed #ccc !important;
+  border-top: 2px solid #009688 !important;
+  margin-top: -1px !important;
+}
+.ya-tree .ya-treeBody .ya-dragIn {
+  color: white !important;
+  background: #76bdb6;
+}
+.ya-tree .ya-treeBody .ya-dragBottom {
+  border: 1px dashed #ccc !important;
+  border-bottom: 2px solid #009688 !important;
+  margin-bottom: -1px !important;
+}
+.ya-tree.grid {
+  /* 平铺样式 */
+}
+.ya-tree.grid .ya-treeBody {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 10px 0;
+}
+.ya-tree.grid .node {
+  width: 120px;
+  margin: 5px;
+  text-align: center;
+}
+.ya-tree.grid .node .node-content {
+  padding: 10px;
+}
+.ya-tree.grid .node .node-content:hover .selectIcon {
+  display: block;
+  position: absolute;
+}
+.ya-tree.grid .node .node-content.selected {
+  border-radius: 5px;
+  box-shadow: 0 0 0 1px #009688;
+  background: #f0fffd;
+}
+.ya-tree.grid .node .node-content.selected .selectIcon {
+  display: block;
+  position: absolute;
+}
+.ya-tree.grid .node .node-content .selectIcon {
+  text-align: left;
+  display: none;
+}
+.ya-tree.grid .node .node-content .ya-nodeIcon {
+  display: block;
+  width: 100%;
+  padding: 10px 0;
+}
+.ya-tree.grid .node .node-content .ya-nodeIcon .icon {
+  width: 50px;
+  height: 50px;
+}
+.ya-tree.grid .node .node-content .nodeName {
+  display: block;
+  padding: 0;
+}
+.ya-tree.grid .node .node-content .nodeName span {
+  display: block;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  font-size: 12px;
+}
+/* 右键菜单*/
+.ya-right-click-menu {
+  position: absolute;
+  border: 1px solid #efefef;
+  border-radius: 5px;
+  background: white;
+  box-shadow: 0 8px 12px #ebedf0;
+}
+.ya-right-click-menu .fn {
+  font-size: 12px;
+  min-width: 80px;
+  padding: 10px 15px;
+}
+.ya-right-click-menu .fn:hover {
+  background: #efefef;
+  cursor: pointer;
+}
+/* 通用工具样式*/
+.ya-show {
+  display: block;
+}
+.ya-editOK {
+  color: #00af00;
+  vertical-align: middle;
+}
+.ya-editOK:hover {
+  color: #03d803 !important;
+  font-weight: 900;
+  cursor: pointer;
+}
+.ya-cancel {
+  color: #ff3536;
+  vertical-align: middle;
+}
+.ya-cancel:hover {
+  color: #ff0023 !important;
+  font-weight: 900;
+  cursor: pointer;
+}
+.ya-floatRight {
+  float: right;
+  line-height: 2;
+}
+.ya-padding-left10 {
+  padding-left: 10px !important;
+}
+/* animate.css */
+.animated {
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  animation-color-mode: both;
+}
+.animated.fastest {
+  -webkit-animation-duration: 300ms;
+  animation-duration: 300ms;
+}
+@keyframes hide {
+  from {
+    height: 100%;
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    display: none;
+    height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transform: translate3d(0, -10%, 0);
+  }
+}
+.ya-hide {
+  animation-name: hide;
+}
+@keyframes fadeInDownSmall {
+  from {
+    opacity: 0.5;
+    transform: translate3d(0, -10%, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+.fadeInDownSmall {
+  animation-name: fadeInDownSmall;
+}
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+.fadeInDown {
+  -webkit-animation-name: fadeInDown;
+  animation-name: fadeInDown;
+}
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+.fadeInLeft {
+  -webkit-animation-name: fadeInLeft;
+  animation-name: fadeInLeft;
+}
+.ya-rotate90 svg {
+  transform: rotate(90deg);
+}
+.ya-rotateX180 svg {
+  transform: rotateX(180deg);
+}
+.ya-zoom10-15 svg {
+  animation: ya-zoom10-15 0.1s linear 1;
+}
+@keyframes ya-zoom10-15 {
+  from {
+    width: 6px;
+  }
+  to {
+    width: 16px;
+  }
+}
+/* demo页面 */
+.ya-treeDemo h1 {
+  font-size: 18px;
+}
+.ya-treeDemo .ya-console-area {
+  width: 130px;
+  position: fixed;
+  right: 10px;
+  background: white;
+  z-index: 4;
+  border: 1px solid #ededed;
+}
+.ya-treeDemo .ya-console-area,
+.ya-treeDemo .ya-console-area .treeDemo {
+  padding: 8px;
+  border-radius: 8px;
+  box-shadow: 0 8px 12px #ebedf0;
+}
+.ya-treeDemo .ya-console-area .treeDemo .demo {
+  margin: 8px 30% 0 0;
+}
+.ya-treeDemo .ya-console-area ul {
+  max-width: 320px;
+  max-height: 320px;
+  vertical-align: text-top;
+  margin-top: 0 !important;
+  overflow: auto;
+}
+/*# sourceMappingURL=tree.css.map */
