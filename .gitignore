@@ -2,3 +2,5 @@
 .idea/*
 yaleui.iml
 node_modules
+build
+package-lock.json
