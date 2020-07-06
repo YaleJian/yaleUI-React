@@ -1,7 +1,6 @@
 import React from "react";
 import "./checkbox.css";
 import Icon from "../utils/Icon";
-import classNames from "classnames";
 
 /**
  * 复选框
@@ -30,7 +29,7 @@ class Checkbox extends React.Component {
         } else if (this.state.select === Checkbox.SEMI_SELECTED) {
             selectIconSvg = <Icon name="i-banxuan"/>;
         }
-        let selectIcon = classNames('ya-checkbox', zoom);
+        let selectIcon = 'ya-checkbox ' + zoom;
         return <span className={selectIcon} onClick={this.onClick.bind(this)}>{selectIconSvg}</span>;
     }
     onClick = (e)=>{

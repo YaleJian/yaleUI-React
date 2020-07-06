@@ -1,7 +1,6 @@
 import React from "react";
 import BaseComponent from "../BaseComponent";
 import {Link} from "react-router-dom";
-import classNames from 'classnames';
 import './tree.css';
 import Icon from "../utils/Icon";
 
@@ -618,7 +617,7 @@ class Tree extends BaseComponent {
                             if (parentNode && !parentNode.open && !parentNode.hasOpen) return null;
 
                             //子节点隐藏
-                            nodeGroupStyle = classNames("node-group animated fastest", node.open ? "fadeInDownSmall ya-show" : "ya-hide");
+                            nodeGroupStyle = "node-group animated fastest " + (node.open ? "fadeInDownSmall ya-show" : "ya-hide");
 
                             // 根据层级缩进
                             let indentPx = 25;
@@ -646,7 +645,7 @@ class Tree extends BaseComponent {
 
         nodeContent: (node, itemStyle) => {
             let nodeContent = <div
-                className={classNames("node-content", {"nodeFocus": this.state.indexId === node.id || this.state.dragNodeId === node.id}, {"selected": node.select === Tree.SELECTED})}
+                className={"node-content " + ( (this.state.indexId === node.id || this.state.dragNodeId === node.id) ? "nodeFocus ": ""  ) + (node.select === Tree.SELECTED ? "selected": "")}
                 style={itemStyle}
                 onClick={this.nodeContentClick.bind(this, node)}
                 draggable={this.props.draggable}
@@ -757,7 +756,7 @@ class Tree extends BaseComponent {
                 }
             }
 
-            let openIcon = classNames('openIcon', rotate, this.TREE_MENU ? "ya-floatRight" : "");
+            let openIcon = 'openIcon ' + rotate + " " + (this.TREE_MENU ? "ya-floatRight" : "");
             return <span className={openIcon}
                          onClick={this.open.openIconClick.bind(this, node.id)}>{openIconSvg}</span>;
         },
@@ -932,7 +931,7 @@ class Tree extends BaseComponent {
                 }
             }
 
-            let autoSearchStyle = classNames("ya-autoSearch", {"searchFocus": this.state.searchFocus});
+            let autoSearchStyle = "ya-autoSearch " + (this.state.searchFocus ? "searchFocus": "");
             return <div className="ya-treeTools">
                 <div className={autoSearchStyle} key="autoSearch" onBlur={this.search.searchBlur}>
                     <span className="searchIcon"><Icon name="i-magnifier"/></span>
@@ -994,7 +993,7 @@ class Tree extends BaseComponent {
             } else if (node.select === Tree.SEMI_SELECTED) {
                 selectIconSvg = <Icon name="i-banxuan"/>;
             }
-            let selectIcon = classNames('selectIcon', zoom);
+            let selectIcon = 'selectIcon ' + zoom;
             return <span className={selectIcon}
                          onClick={this.checkbox.checkboxClick.bind(this, node.id)}>{selectIconSvg}</span>;
         },
