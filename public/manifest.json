@@ -1,6 +1,6 @@
 {
-  "short_name": "Yale JS",
-  "name": "Yale JS",
+  "short_name": "YaleJian",
+  "name": "扬歌YaleJian",
   "icons": [
     {
       "src": "favicon.ico",
@@ -13,7 +13,7 @@
       "sizes": "192x192"
     }
   ],
-  "start_url": ".",
+  "start_url": "/",
   "display": "standalone",
   "theme_color": "#000000",
   "background_color": "#ffffff"
