@@ -1,27 +1,7 @@
 import React, {Component} from 'react';
 import Tree from './Tree';
 import {testTreeData, textNodeAddList, testSelectedIdsData, getNavData} from './TreeUtil';
-import JSONTree from 'react-json-tree';
 import Icon from "../utils/Icon";
-
-const theme = {
-    base00: '#272822',
-    base01: '#383830',
-    base02: '#49483e',
-    base03: '#75715e',
-    base04: '#a59f85',
-    base05: '#f8f8f2',
-    base06: '#f5f4f1',
-    base07: '#f9f8f5',
-    base08: '#f92672',
-    base09: '#fd971f',
-    base0A: '#f4bf75',
-    base0B: '#a6e22e',
-    base0C: '#a1efe4',
-    base0D: '#66d9ef',
-    base0E: '#ae81ff',
-    base0F: '#cc6633'
-};
 
 /**
  * 树组件演示
@@ -117,19 +97,14 @@ class TreeDemo extends Component {
                     <h2 className="ya-title">数据输出</h2>
                     <button onClick={this.updateNode.bind(this)}>更新树</button>
                     <br/>
-                    <div>入参：树： <JSONTree data={this.state.treeData} theme={theme} shouldExpandNode={() => {
-                        return false;
-                    }}/></div>
-                    <div>入参：默认选中： <JSONTree data={this.state.defaultSelectedIds} theme={theme} shouldExpandNode={() => {
-                        return false;
-                    }}/></div>
+                    <div>入参：默认选中： {JSON.stringify(this.state.defaultSelectedIds)}</div>
                     <div>入参：默认展开的层级： {this.state.defaultOpenLevel}</div>
-                    <div>选中的最大父节点: <JSONTree data={this.state.selectedIds}/></div>
-                    <div>打开的节点（第一次为默认打开的节点）: <JSONTree data={this.state.openIds}/></div>
-                    <div>点击节点名称输出当前节点: <JSONTree data={this.state.nodeContentClick}/></div>
-                    <div>追加的节点点击： <JSONTree data={this.state.addNodeClick}/></div>
-                    <div>索引节点点击： <JSONTree data={this.state.indexBarClick}/></div>
-                    <div>被修改的节点： <JSONTree data={this.state.updateNodes}/></div>
+                    <div>选中的最大父节点:  {JSON.stringify(this.state.selectedIds)}</div>
+                    <div>打开的节点（第一次为默认打开的节点）: {JSON.stringify(this.state.openIds)}</div>
+                    <div>点击节点名称输出当前节点: {JSON.stringify(this.state.nodeContentClick)}</div>
+                    <div>追加的节点点击： {JSON.stringify(this.state.addNodeClick)}</div>
+                    <div>索引节点点击： {JSON.stringify(this.state.indexBarClick)}</div>
+                    <div>被修改的节点： {JSON.stringify(this.state.updateNodes)}</div>
                 </div>
                 <div className="demo">
                     <h1 className="ya-title">各种类型的树</h1>

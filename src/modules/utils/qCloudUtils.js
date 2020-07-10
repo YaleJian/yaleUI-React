@@ -7,7 +7,7 @@ let HfRegion = 'ap-guangzhou';
 
 let getAuthorization = function (options, callback, bucket, server) {
     // 异步获取临时密钥
-    let url = 'http://111.231.237.18/service/qCloud/getSts?bucket=' + bucket + "&server=" + server;
+    let url = 'https://yalejian.com/service/qCloud/getSts?bucket=' + bucket + "&server=" + server;
     let xhr = new XMLHttpRequest();
     xhr.open('GET', url, true);
     xhr.onload = function (e) {

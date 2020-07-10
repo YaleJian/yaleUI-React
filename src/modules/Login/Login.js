@@ -4,13 +4,12 @@ import "./login.css";
 import "../animate/animate.css";
 import QRCode from 'qrcode.react';
 import axios from './../utils/Axios';
-import Qs from 'qs';
-import Icon from './../utils/Icon'
-import md5 from "md5";
+import Icon from './../utils/Icon';
 import User from "../User/User";
 import result from "../utils/result";
 import Cookie from "../utils/cookie";
 import Button from "../Button/Button";
+import dataUtils from "../utils/dataUtils";
 
 const defaultUser = {
     phoneNumber: "",
@@ -418,7 +417,7 @@ class Login extends BaseComponent {
             //输到最后一个PIN立即校验
             let localPin = localStorage.getItem("pin");
             let thisPin = "" + this.state.pin1 + this.state.pin2 + this.state.pin3 + pin4;
-            if (localPin === md5(thisPin)) {
+            if (localPin === dataUtils.MD5(thisPin)) {
                 //验证通过
                 this.setState({authState: Login.LOGIN_SUCCESS});
             }
@@ -449,7 +448,7 @@ class Login extends BaseComponent {
             if (this.state.authState === Login.AUTH_CORE_PASSWORD) {
                 data = {
                     phoneNumber,
-                    password: md5(md5(password)),
+                    password: dataUtils.MD5(dataUtils.MD5(password)),
                 };
             } else if (this.state.authState === Login.AUTH_VERIFICATION_CODE) {
                 data = {
@@ -471,7 +470,7 @@ class Login extends BaseComponent {
             alert("需要同意协议");
             return;
         }
-        axios.post('/service/user/register', Qs.stringify(this.auth.getData()), {withCredentials: true})
+        axios.post('/service/user/register', dataUtils.object2FormData(this.auth.getData()), {withCredentials: true})
             .then((res) => {
                 result(res, (user) => {
                     //如果开启了PIN
@@ -485,7 +484,7 @@ class Login extends BaseComponent {
     };
 
     login = (user) => {
-        axios.post('/service/user/login', Qs.stringify(user), {withCredentials: true})
+        axios.post('/service/user/login', dataUtils.object2FormData(user), {withCredentials: true})
             .then((res) => {
                 result(res, (user) => {
                     this.setUser(user)
@@ -518,7 +517,7 @@ class Login extends BaseComponent {
             //配置了自动登录，使用localStorage存储的登录记录
             localStorage.setItem("userToken", Cookie.getCookie("userToken"));
             //如果设置了pin密码，则在本地存储下来，用于客户端页面验证
-            if (user.pin) localStorage.setItem("pin", md5(user.pin));
+            if (user.pin) localStorage.setItem("pin", dataUtils.MD5(user.pin));
         } else {
             //自动登录关闭，清除
             localStorage.clear();
@@ -533,7 +532,7 @@ class Login extends BaseComponent {
             if (!isNaN(this.state.countdown60)) return;
 
             let user = {phoneNumber: this.state.phoneNumber};
-            axios.post('/service/sms/single', Qs.stringify(user), {withCredentials: true})
+            axios.post('/service/sms/single', dataUtils.object2FormData(user), {withCredentials: true})
                 .then((res) => {
                     result(res, () => {
                         this.setState({countdown60: 60});
