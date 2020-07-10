@@ -29,11 +29,12 @@ class Desktop extends React.Component {
             {name: "天气", link: "weather", icon: "i-duoyun1", bg: "white"},
             {name: "我的云盘", link: "pic", icon: "i-yunpan2", bg: "grey"},
             {name: "今天吃什么", link: "eatToday", icon: "i-zuofan", bg: ""},
+            {name: "聊天", link: "chat", icon: "i-liaotian", bg: "grey"},
             {name: "账号设置", link: "pic", icon: "i-anquan", bg: "orange"},
             {name: "配置", link: "pic", icon: "i-huabanfuben1", bg: "blue"},
             {name: "反馈", link: "pic", icon: "i-fankui1", bg: "grey"},
             {name: "关于我", link: "pic", icon: "i-guanyu-", bg: "grey"},
-            // {name: "华富云", link: "hfm", icon: "i-guanggaopai", bg: "white"},
+            // {name: "广告播放器", link: "hfm", icon: "i-guanggaopai", bg: "white"},
         ];
         let apps = data.map((app) => {
             return <Link to={app.link} key={app.name}>

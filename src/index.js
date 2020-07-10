@@ -14,6 +14,7 @@ import EatToday from "./pages/EatToday/EatToday";
 import Weather from "./pages/Weather/Weather";
 import Hf from "./pages/HuaFu/CloudPlayer/Hf";
 import HfManagementPlatform from "./pages/HuaFu/ManagementPlatform/HfManagementPlatform";
+import Chat from "./pages/Chat/Chat";
 
 let root = <>
     <Login/>
@@ -29,6 +30,7 @@ let root = <>
             <Route path={'/hf/:id/'} component={Hf}/>
             <Route path={'/hfm/:menuId/'} component={HfManagementPlatform}/>
             <Route path={'/hfm'} component={HfManagementPlatform}/>
+            <Route path={'/Chat'} component={Chat}/>
         </Switch>
     </BrowserRouter>
 </>;
