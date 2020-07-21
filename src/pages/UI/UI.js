@@ -1,20 +1,17 @@
 import React, {Component} from 'react';
-import Header from '../common/Header';
-import Menu from '../common/Menu';
-import Main from '../common/Main';
-import ButtonDemo from "../../modules/Button/ButtonDemo";
-import TreeDemo from "../../modules/Tree/TreeDemo";
+import ButtonDemo from "../../components/Button/ButtonDemo";
+import TreeDemo from "../../components/Tree/TreeDemo";
 import {Route} from "react-router";
 import DesignStandard from "./DesignStandard";
 import Typography from "./Typography";
-import RichTextEditorDemo from "../../modules/RichTextEditor/RichTextEditorDemo";
-import CloudDrive from "../../modules/CloudDrive/CloudDrive";
-import InputDemo from "../../modules/Input/InputDemo";
-import MessageDemo from "../../modules/message/MessageDemo";
-import DatepickerDemo from "../../modules/Datepicker/DatepickerDemo";
-import PaginationDemo from "../../modules/Pagination/PaginationDemo";
-import Animation from "../../modules/animate/Animate";
-import ChartDemo from "../../modules/Chart/ChartDemo";
+import RichTextEditorDemo from "../../components/RichTextEditor/RichTextEditorDemo";
+import CloudDrive from "../../components/CloudDrive/CloudDrive";
+import InputDemo from "../../components/Input/InputDemo";
+import MessageDemo from "../../components/message/MessageDemo";
+import DatepickerDemo from "../../components/Datepicker/DatepickerDemo";
+import PaginationDemo from "../../components/Pagination/PaginationDemo";
+import Animate from "../../components/animate/Animate";
+import ChartDemo from "../../components/Chart/ChartDemo";
 
 /**
  * API文档
@@ -31,11 +28,11 @@ class UI extends Component {
     render() {
         let path = this.props.match.path;
 
-        let pages = <>
+        let pages = <React.Fragment>
             <Route exact path={path} component={DesignStandard}/>
             <Route path={`${path}/designStandard`} component={DesignStandard}/>
             <Route path={`${path}/typography`} component={Typography}/>
-            <Route path={`${path}/animation`} component={Animation}/>
+            <Route path={`${path}/animation`} component={Animate}/>
             <Route path={`${path}/tree`} component={TreeDemo}/>
             <Route path={`${path}/richTextEditor`} component={RichTextEditorDemo}/>
             <Route path={`${path}/cloudDrive`} component={CloudDrive}/>
@@ -46,18 +43,12 @@ class UI extends Component {
             <Route path={`${path}/pagination`} component={PaginationDemo}/>
             <Route path={`${path}/map`} component={PaginationDemo}/>
             <Route path={`${path}/chart`} component={ChartDemo}/>
-            </>;
+            </React.Fragment>;
 
         let mainClass = this.state.sideLeft ? "sideLeft" : "";
         mainClass = this.state.sideRight ? mainClass +=" sideRight" : "";
         return (
-            <>
-                <Header children={"Yale JS"}/>
-                <Menu indexId={1} path={this.props.location.pathname} setSideLeft = {this.setSideLeft.bind(this)}/>
-                <Main className={mainClass}>
-                    {pages}
-                </Main>
-            </>
+            <React.Fragment>{pages}</React.Fragment>
         );
     }
 
