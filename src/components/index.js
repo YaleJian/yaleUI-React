@@ -16,7 +16,6 @@ import {Message} from './Message/Message';
 import {MessageDemo} from './Message/MessageDemo';
 import {Pagination} from './Pagination/Pagination';
 import {PaginationDemo} from './Pagination/PaginationDemo';
-import {Progress} from './Progress/Progress';
 import {Radio} from './Radio/Radio';
 import {RichTextEditor} from './RichTextEditor/RichTextEditor';
 import {RichTextEditorDemo} from './RichTextEditor/RichTextEditorDemo';
@@ -49,7 +48,6 @@ export {
     MessageDemo,
     Pagination,
     PaginationDemo,
-    Progress,
     Radio,
     RichTextEditor,
     RichTextEditorDemo,

@@ -42,5 +42,5 @@ class Progress extends Component {
 let progress = document.createElement('ya-progress');
 document.body.appendChild(progress);
 
-ReactDOM.render(<Progress/>, progress);
-export {Progress};
+let box = ReactDOM.render(<Progress/>, progress);
+export default box;
