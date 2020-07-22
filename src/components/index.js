@@ -1,4 +1,3 @@
-"use strict";
 import {Animate} from './Animate/Animate';
 import './Animate/animate.css';
 import {Button} from './Button/Button';
@@ -27,7 +26,6 @@ import {User} from './User/User';
 import {axios} from './utils/Axios';
 import {Cookie} from './utils/cookie';
 import {dataUtils} from './utils/dataUtils';
-import deepCopy from './utils/deepCopy';
 import {DomUtils} from './utils/domUtils';
 import {Icon} from './utils/Icon';
 import {cosList} from './utils/qCloudUtils';
@@ -55,12 +53,12 @@ export {
     Radio,
     RichTextEditor,
     RichTextEditorDemo,
+    Tree,
     TreeDemo,
     User,
     axios,
     Cookie,
     dataUtils,
-    deepCopy,
     DomUtils,
     Icon,
     cosList,

@@ -1,17 +1,19 @@
 import React, {Component} from 'react';
-import ButtonDemo from "../../components/Button/ButtonDemo";
-import TreeDemo from "../../components/Tree/TreeDemo";
+import {ButtonDemo} from "../../components";
+import {TreeDemo} from "../../components";
 import {Route} from "react-router";
 import DesignStandard from "./DesignStandard";
 import Typography from "./Typography";
-import RichTextEditorDemo from "../../components/RichTextEditor/RichTextEditorDemo";
-import CloudDrive from "../../components/CloudDrive/CloudDrive";
-import InputDemo from "../../components/Input/InputDemo";
-import MessageDemo from "../../components/message/MessageDemo";
-import DatepickerDemo from "../../components/Datepicker/DatepickerDemo";
-import PaginationDemo from "../../components/Pagination/PaginationDemo";
-import Animate from "../../components/animate/Animate";
-import ChartDemo from "../../components/Chart/ChartDemo";
+import {RichTextEditorDemo} from "../../components";
+import {CloudDrive} from "../../components";
+import {InputDemo} from "../../components";
+import {MessageDemo} from "../../components";
+import {DatepickerDemo} from "../../components";
+import {PaginationDemo} from "../../components";
+import {Animate} from "../../components";
+import {ChartDemo} from "../../components";
+import Menu from "../common/Menu";
+import Main from "../common/Main";
 
 /**
  * API文档
@@ -21,12 +23,10 @@ class UI extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            sideLeft : document.body.clientWidth > 900,
-            sideRight : true,
         }
     }
     render() {
-        let path = this.props.match.path;
+        let path = this.props.match.path || "";
 
         let pages = <React.Fragment>
             <Route exact path={path} component={DesignStandard}/>
@@ -48,7 +48,12 @@ class UI extends Component {
         let mainClass = this.state.sideLeft ? "sideLeft" : "";
         mainClass = this.state.sideRight ? mainClass +=" sideRight" : "";
         return (
-            <React.Fragment>{pages}</React.Fragment>
+            <React.Fragment>
+                <Menu indexId={1} path={this.props.location.pathname} setSideLeft = {this.setSideLeft.bind(this)}/>
+                <Main className={mainClass}>
+                    {pages}
+                </Main>
+            </React.Fragment>
         );
     }
 

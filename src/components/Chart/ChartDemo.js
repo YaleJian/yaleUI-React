@@ -1,5 +1,5 @@
 import React from 'react';
-import Chart from "./Chart";
+import {Chart} from "./Chart";
 
 /**
  * 图表
@@ -21,4 +21,4 @@ class ChartDemo extends React.Component{
         return <Chart/>;
     }
 }
-export default ChartDemo;
+export {ChartDemo};

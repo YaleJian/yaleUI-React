@@ -1,8 +1,8 @@
 import React from "react";
-import Input from "./Input";
-import Icon from "../utils/Icon";
-import TreeDemo from "../Tree/TreeDemo";
-import Tree from "../Tree/Tree";
+import {Input} from "./Input";
+import {Icon} from "..";
+import {TreeDemo} from "..";
+import {Tree} from "..";
 import {testTreeData} from "../Tree/TreeUtil";
 
 class InputDemo extends React.Component {

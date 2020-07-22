@@ -1,9 +1,8 @@
 //生成树的测试数据（level100,everyLevel100,总节点约1w个）
-import Icon from "../utils/Icon";
+import {Icon} from "..";
 import React from "react";
 
-let nodIcons = [<Icon name="i-file-word"/>, <Icon name="i-file-excel"/>, <Icon name="i-file-ppt"/>,
-    <Icon name="i-file-ppt"/>];
+let nodIcons = ["i-file-word", "i-file-excel", "i-file-ppt","i-file-ppt"];
 export var testTreeData = (level, everyLevel, type) => {
     let treeData = [];
 
@@ -28,6 +27,7 @@ export var testTreeData = (level, everyLevel, type) => {
 
                 let icon = nodIcons[Math.floor(Math.random() * nodIcons.length)];
                 if(type === "file")  icon = "";
+                icon = <Icon name={icon}/>;
                 let node = {
                     id: id,
                     parentId: parentId,
