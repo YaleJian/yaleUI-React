@@ -4,7 +4,7 @@ import './progress.css'
 
 let defaultState = {show: false};
 
-class Progress extends Component {
+class ProgressBox extends Component {
     constructor(props) {
         super(props);
         this.state = {...defaultState}
@@ -26,13 +26,12 @@ class Progress extends Component {
 
     render() {
         return (
-            <div className="progress" style={this.state.show ? {display: 'block'} : {display: 'none'}}>
-                <div className="bar" style={this.state.show ? {width: '99%'} : {width: '0'}}>
-                    <div className="peg"> </div>
+            <div className={"ya-progress"}>
+                <div className="progress" style={this.state.show ? {display: 'block'} : {display: 'none'}}>
+                    <div className="bar" style={this.state.show ? {width: '99%'} : {width: '0'}}>
+                        <div className="peg"> </div>
+                    </div>
                 </div>
-                {/*<div className="spinner">*/}
-                {/*    <div className="spinner-icon"> </div>*/}
-                {/*</div>*/}
             </div>
         )
     }
@@ -42,5 +41,5 @@ class Progress extends Component {
 let progress = document.createElement('ya-progress');
 document.body.appendChild(progress);
 
-let box = ReactDOM.render(<Progress/>, progress);
-export default box;
+let Progress = ReactDOM.render(<ProgressBox/>, progress);
+export default Progress;

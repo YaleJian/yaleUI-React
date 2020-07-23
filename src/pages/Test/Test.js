@@ -1,26 +1,23 @@
 import React, {Component} from 'react';
-import {axios} from "../../components";
+import Progress from "../../components/Progress/Progress";
 
 /**
  * 测试
  */
 class Test extends Component {
 
-    render() {
+    componentDidMount() {
         this.Test();
+    }
+
+    render() {
         return <React.Fragment>
 
         </React.Fragment>;
     }
 
     Test(){
-        axios.post('/service/user/register', {}, {withCredentials: true})
-            .then((res) => {
-
-            })
-            .catch(function (res) {
-                console.log(res);
-            });
+        Progress.start();
     }
 }
 
