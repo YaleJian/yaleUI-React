@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
-import Icon from "../../modules/utils/Icon";
-import Tree from "../../modules/Tree/Tree";
-import {getNavData} from "../../modules/Tree/TreeUtil";
-import Checkbox from "../../modules/Checkbox/Checkbox";
-import Radio from "../../modules/Radio/Radio";
+import {Icon} from "../../components";
+import {Tree} from "../../components";
+import {getNavData} from "../../components/Tree/TreeUtil";
+import {Checkbox} from "../../components";
+import {Radio} from "../../components";
 
 /**
  * 排版
@@ -18,7 +18,7 @@ class Typography extends Component {
     }
 
     render() {
-        return <>
+        return <React.Fragment>
             <Tree treeData={this.state.navData}
 
                   treeType={3}
@@ -153,7 +153,7 @@ class Typography extends Component {
                 </div>
             </div>
 
-        </>;
+        </React.Fragment>;
     }
 
     componentDidMount() {

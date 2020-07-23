@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import Tree from "../../modules/Tree/Tree";
-import Icon from "../../modules/utils/Icon";
-import Button from "../../modules/Button/Button";
+import {Tree} from "../../components";
+import {Icon} from "../../components";
+import {Button} from "../../components";
 
 const menuData = [
     {id: "designStandard", name: "设计规范", link: "/ui/designStandard", sort: 1},
@@ -36,7 +36,7 @@ class Menu extends Component {
 
         let toggleClass = this.state.isShow ?  " animated fastest fadeInDownSmall" : " hide" ;
         return (
-            <>
+            <React.Fragment>
                 <div className={this.state.isShow ? "ya-menu" : "ya-menu  hide"}>
                     <div className={"content" + toggleClass}>
                         <Tree treeData={menuData}
@@ -57,7 +57,7 @@ class Menu extends Component {
                             onClick={this.toggle.bind(this)}/>
                 </div>
 
-            </>
+            </React.Fragment>
         );
     }
 
