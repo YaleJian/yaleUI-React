@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import {Button} from "./Button";
-import {Icon} from "..";
+import {Button} from "../../../../components";
+import {Icon} from "../../../../components";
 
 /**
  * 首页
@@ -177,4 +177,4 @@ class ButtonDemo extends Component {
     }
 }
 
-export {ButtonDemo};
+export default ButtonDemo;

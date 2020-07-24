@@ -1,17 +1,16 @@
 import React, {Component} from 'react';
-import {ButtonDemo} from "../../components";
-import {TreeDemo} from "../../components";
+import ButtonDemo from "./Demo/Button/ButtonDemo";
+import TreeDemo from "./Demo/Tree/TreeDemo";
 import {Route} from "react-router";
+import {Animate,CloudDrive} from "../../components";
 import DesignStandard from "./DesignStandard";
 import Typography from "./Typography";
-import {RichTextEditorDemo} from "../../components";
-import {CloudDrive} from "../../components";
-import {InputDemo} from "../../components";
-import {MessageDemo} from "../../components";
-import {DatepickerDemo} from "../../components";
-import {PaginationDemo} from "../../components";
-import {Animate} from "../../components";
-import {ChartDemo} from "../../components";
+import RichTextEditorDemo from "./Demo/RichTextEditor/RichTextEditorDemo";
+import InputDemo from "./Demo/Input/InputDemo";
+import MessageDemo from "./Demo/Message/MessageDemo";
+import DatepickerDemo from "./Demo/Datepicker/DatepickerDemo";
+import PaginationDemo from "./Demo/Pagination/PaginationDemo";
+import ChartDemo from "./Demo/Chart/ChartDemo";
 import Menu from "../common/Menu";
 import Main from "../common/Main";
 

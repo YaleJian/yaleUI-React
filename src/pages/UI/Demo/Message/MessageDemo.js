@@ -1,9 +1,7 @@
 import React from "react";
 import "./message.css";
-import {Message} from "./Message";
-import {Icon} from "..";
-import {Button} from "..";
-import {ButtonDemo} from "../Button/ButtonDemo";
+import {Icon,Button,Message} from "../../../../components";
+import ButtonDemo from "../Button/ButtonDemo";
 
 /**
  * 按钮组
@@ -46,4 +44,4 @@ class MessageDemo extends React.Component {
 
 }
 
-export {MessageDemo};
+export default MessageDemo;

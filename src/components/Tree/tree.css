@@ -478,32 +478,4 @@
     width: 16px;
   }
 }
-/* demo页面 */
-.ya-treeDemo h1 {
-  font-size: 18px;
-}
-.ya-treeDemo .ya-console-area {
-  width: 130px;
-  position: fixed;
-  right: 10px;
-  background: white;
-  z-index: 4;
-  border: 1px solid #ededed;
-}
-.ya-treeDemo .ya-console-area,
-.ya-treeDemo .ya-console-area .treeDemo {
-  padding: 8px;
-  border-radius: 8px;
-  box-shadow: 0 8px 12px #ebedf0;
-}
-.ya-treeDemo .ya-console-area .treeDemo .demo {
-  margin: 8px 30% 0 0;
-}
-.ya-treeDemo .ya-console-area ul {
-  max-width: 320px;
-  max-height: 320px;
-  vertical-align: text-top;
-  margin-top: 0 !important;
-  overflow: auto;
-}
 /*# sourceMappingURL=tree.css.map */

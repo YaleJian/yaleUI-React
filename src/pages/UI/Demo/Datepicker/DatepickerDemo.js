@@ -1,6 +1,6 @@
 import React from "react";
-import {Datepicker} from "./Datepicker";
-import {Input} from "..";
+import {Datepicker} from "../../../../components";
+import {Input} from "../../../../components";
 class DatepickerDemo extends React.Component{
     static defaultProps = {
 
@@ -36,4 +36,4 @@ class DatepickerDemo extends React.Component{
     }
 }
 
-export {DatepickerDemo};
+export default DatepickerDemo;

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import {Tree} from './Tree';
-import {testTreeData, textNodeAddList, testSelectedIdsData, getNavData} from './TreeUtil';
-import {Icon} from "..";
+import {Tree} from '../../../../components';
+import {testTreeData, textNodeAddList, testSelectedIdsData, getNavData} from '../../../../components/Tree/TreeUtil';
+import {Icon} from "../../../../components";
 
 /**
  * 树组件演示
@@ -289,4 +289,4 @@ class TreeDemo extends Component {
     }
 }
 
-export {TreeDemo}
+export default TreeDemo

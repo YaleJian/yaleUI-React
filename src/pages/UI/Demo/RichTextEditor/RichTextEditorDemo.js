@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {RichTextEditor} from './RichTextEditor'
+import {RichTextEditor} from '../../../../components'
 
 const article = {
     title: "标题",
@@ -22,4 +22,4 @@ class RichTextEditorDemo extends Component {
     }
 }
 
-export {RichTextEditorDemo};
+export default RichTextEditorDemo;
