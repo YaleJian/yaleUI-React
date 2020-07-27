@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
-import {Icon} from "../../components";
-import {Tree} from "../../components";
-import {getNavData} from "../../components/Tree/TreeUtil";
-import {Checkbox} from "../../components";
-import {Radio} from "../../components";
+import {Icon} from "../index";
+import {Tree} from "../index";
+import {getNavData} from "../Tree/TreeUtil";
+import {Checkbox} from "../index";
+import {Radio} from "../index";
 
 /**
  * 排版

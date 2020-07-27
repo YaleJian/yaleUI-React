@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import ButtonDemo from "./Demo/Button/ButtonDemo";
 import TreeDemo from "./Demo/Tree/TreeDemo";
 import {Route} from "react-router";
-import {Animate,CloudDrive} from "../../components";
+import {Animate,CloudDrive} from "../index";
 import DesignStandard from "./DesignStandard";
 import Typography from "./Typography";
 import RichTextEditorDemo from "./Demo/RichTextEditor/RichTextEditorDemo";
@@ -11,8 +11,8 @@ import MessageDemo from "./Demo/Message/MessageDemo";
 import DatepickerDemo from "./Demo/Datepicker/DatepickerDemo";
 import PaginationDemo from "./Demo/Pagination/PaginationDemo";
 import ChartDemo from "./Demo/Chart/ChartDemo";
-import Menu from "../common/Menu";
-import Main from "../common/Main";
+import {Menu} from "..";
+import {Main} from "..";
 
 /**
  * API文档
@@ -22,6 +22,8 @@ class UI extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            sideLeft : document.body.clientWidth > 900,
+            sideRight : true,
         }
     }
     render() {
@@ -64,4 +66,4 @@ class UI extends Component {
     }
 }
 
-export default UI;
+export {UI};

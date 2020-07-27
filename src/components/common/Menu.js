@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import {Tree} from "../../components";
-import {Icon} from "../../components";
-import {Button} from "../../components";
+import {Tree} from "yale-ui";
+import {Icon} from "yale-ui";
+import {Button} from "yale-ui";
 
 const menuData = [
     {id: "designStandard", name: "设计规范", link: "/ui/designStandard", sort: 1},
@@ -68,4 +68,4 @@ class Menu extends Component {
     }
 }
 
-export default Menu;
+export {Menu};

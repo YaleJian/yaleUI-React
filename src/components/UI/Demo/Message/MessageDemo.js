@@ -1,6 +1,6 @@
 import React from "react";
 import "./message.css";
-import {Icon,Button,Message} from "../../../../components";
+import {Icon,Button,Message} from "../../../index";
 import ButtonDemo from "../Button/ButtonDemo";
 
 /**

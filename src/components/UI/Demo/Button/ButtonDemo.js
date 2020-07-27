@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import {Button} from "../../../../components";
-import {Icon} from "../../../../components";
+import {Button} from "../../../index";
+import {Icon} from "../../../index";
 
 /**
  * 首页

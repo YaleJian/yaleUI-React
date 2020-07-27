@@ -1,9 +1,9 @@
 import React from "react";
-import {Input} from "../../../../components";
-import {Icon} from "../../../../components";
-import {Tree} from "../../../../components";
+import {Input} from "../../../index";
+import {Icon} from "../../../index";
+import {Tree} from "../../../index";
 import TreeDemo from "../Tree/TreeDemo";
-import {testTreeData} from "../../../../components/Tree/TreeUtil";
+import {testTreeData} from "../../..";
 
 class InputDemo extends React.Component {
     static defaultProps = {};

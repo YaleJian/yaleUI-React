@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {RichTextEditor} from '../../../../components'
+import {RichTextEditor} from '../../../index'
 
 const article = {
     title: "标题",

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import {Tree} from '../../../../components';
-import {testTreeData, textNodeAddList, testSelectedIdsData, getNavData} from '../../../../components/Tree/TreeUtil';
-import {Icon} from "../../../../components";
+import {Tree} from '../../../index';
+import {testTreeData, textNodeAddList, testSelectedIdsData, getNavData} from '../../../Tree/TreeUtil';
+import {Icon} from "../../../index";
 
 /**
  * 树组件演示

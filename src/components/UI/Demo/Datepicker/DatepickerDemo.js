@@ -1,6 +1,6 @@
 import React from "react";
-import {Datepicker} from "../../../../components";
-import {Input} from "../../../../components";
+import {Datepicker} from "../../../index";
+import {Input} from "../../../index";
 class DatepickerDemo extends React.Component{
     static defaultProps = {
 

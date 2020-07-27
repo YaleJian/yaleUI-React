@@ -1,5 +1,5 @@
 import React from "react";
-import {Pagination} from "../../../../components";
+import {Pagination} from "../../../index";
 class PaginationDemo extends React.Component{
     static defaultProps = {
 

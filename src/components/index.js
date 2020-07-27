@@ -14,15 +14,25 @@ import {Radio} from './Radio/Radio';
 import {RichTextEditor} from './RichTextEditor/RichTextEditor';
 import {Tree} from './Tree/Tree';
 import {User} from './User/User';
-import {axios} from './utils/Axios';
 import {Cookie} from './utils/cookie';
 import {dataUtils} from './utils/dataUtils';
 import {DomUtils} from './utils/domUtils';
 import {Icon} from './utils/Icon';
-import {cosList} from './utils/qCloudUtils';
 import {result} from './utils/result';
 import {toLunar} from './utils/sloarToLunar';
+import {testTreeData} from './Tree/TreeUtil';
+import {getNavData} from './Tree/TreeUtil';
+import {UI} from './UI/UI';
+import {Header} from './common/Header';
+import {Menu} from './common/Menu';
+import {Main} from './common/Main';
+import {Footer} from './common/Footer';
 export {
+    UI,
+    Header,
+    Menu,
+    Main,
+    Footer,
     Animate,
     Button,
     Chart,
@@ -37,13 +47,13 @@ export {
     Radio,
     RichTextEditor,
     Tree,
+    testTreeData,
+    getNavData,
     User,
-    axios,
     Cookie,
     dataUtils,
     DomUtils,
     Icon,
-    cosList,
     result,
     toLunar,
 }
