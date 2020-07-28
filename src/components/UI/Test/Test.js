@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Progress from "../../components/Progress/Progress";
+import {Progress} from "../..";
 
 /**
  * 测试

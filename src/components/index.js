@@ -27,6 +27,7 @@ import {Header} from './common/Header';
 import {Menu} from './common/Menu';
 import {Main} from './common/Main';
 import {Footer} from './common/Footer';
+import {Progress} from './Progress/Progress';
 export {
     UI,
     Header,
@@ -56,4 +57,5 @@ export {
     Icon,
     result,
     toLunar,
+    Progress,
 }

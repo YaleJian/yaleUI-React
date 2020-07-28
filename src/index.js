@@ -4,8 +4,8 @@ import './index.css';
 import './components/Animate/animate.css'
 import {Route, Switch} from "react-router";
 import {BrowserRouter} from "react-router-dom";
-import Test from "./pages/Test/Test";
-import UI from "./components/UI/UI";
+import Test from "./components/UI/Test/Test";
+import {UI} from "./components";
 
 let root = <React.Fragment>
     <BrowserRouter>

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import {Tree} from "yale-ui";
-import {Icon} from "yale-ui";
-import {Button} from "yale-ui";
+import {Tree} from "..";
+import {Icon} from "..";
+import {Button} from "..";
 
 const menuData = [
     {id: "designStandard", name: "设计规范", link: "/ui/designStandard", sort: 1},

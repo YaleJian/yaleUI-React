@@ -1,6 +1,6 @@
 import React from "react";
 import axios from 'axios';
-import Progress from '../Progress/Progress';
+import {Progress} from '..';
 import {Message} from "..";
 // 设置超时时间
 axios.defaults.timeout = 10000;

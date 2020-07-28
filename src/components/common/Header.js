@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Icon} from "yale-ui";
+import {Icon} from "..";
 
 class Header extends Component {
 
