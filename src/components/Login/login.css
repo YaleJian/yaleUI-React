@@ -3,7 +3,7 @@
   right: 8px;
   top: 8px;
   box-shadow: 1px 2px 20px 1px #bbbbbb;
-  border-radius: 5px;
+  border-radius: 0 5px 5px 0;
   z-index: 1000;
   background: white;
   font-size: 12px;
@@ -17,27 +17,27 @@
   text-align: center;
   letter-spacing: 2px;
   padding: 8px 8px 8px 0;
-  float: right;
 }
-.ya-login .noLogin:active {
+.ya-login .noLogin.active {
   padding: 8px 8px 0 8px;
   float: none;
 }
-.ya-login .noLogin:active .loginEntrance {
+.ya-login .noLogin.active .loginEntrance {
   background: white;
   border: 1px solid white;
   color: #6f6f6f;
 }
-.ya-login .noLogin:active .registerEntrance {
+.ya-login .noLogin.active .registerEntrance {
   background: white;
   border: 1px solid white;
   color: #6f6f6f;
 }
 .ya-login .hideBtn {
-  margin: 0;
   padding: 0 2px;
-  border-radius: 5px;
+  border-radius: 5px 0 0 5px;
   height: 33px;
+  position: absolute;
+  margin: 0 0 0 -22px;
 }
 .ya-login .loginEntrance {
   border: 1px solid white;

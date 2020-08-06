@@ -1,0 +1,35 @@
+.ya-hang {
+  position: fixed;
+  top: 4px;
+  left: 50%;
+  z-index: 10000;
+  border-radius: 15px;
+  transition: all 0.3s;
+  cursor: pointer;
+
+  &:hover {
+    .ya-hang-mini {
+      transition: all 0.3s;
+      display: block;
+    }
+  }
+
+  .ya-hang-mini {
+    display: none;
+    height: 6px;
+    min-width: 100px;
+    background: black;
+    opacity: 0.1;
+    margin: -6px 12px 0 12px;
+    border-radius: 20px;
+    border: 10px solid white;
+
+    &:hover {
+      opacity: 0.2;
+      margin: 0 12px 0 12px;
+    }
+    &:active {
+      opacity: 0.35;
+    }
+  }
+}

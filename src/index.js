@@ -5,9 +5,12 @@ import './components/Animate/animate.css'
 import {Route, Switch} from "react-router";
 import {BrowserRouter} from "react-router-dom";
 import Test from "./components/UI/Test/Test";
-import {UI} from "./components";
+import {Login, UI} from "./components";
+import {Brand} from "./components/common/Brand/Brand";
 
 let root = <React.Fragment>
+    <Brand/>
+    <Login/>
     <BrowserRouter>
         <Switch>
             <Route exact path={'/'} component={UI}/>

@@ -28,6 +28,8 @@ import {Menu} from './common/Menu';
 import {Main} from './common/Main';
 import {Footer} from './common/Footer';
 import {Progress} from './Progress/Progress';
+import {Hang} from "./Hang/Hang";
+import {Brand} from "./common/Brand/Brand";
 export {
     UI,
     Header,
@@ -58,4 +60,6 @@ export {
     result,
     toLunar,
     Progress,
+    Hang,
+    Brand,
 }

@@ -11,8 +11,7 @@ import MessageDemo from "./Demo/Message/MessageDemo";
 import DatepickerDemo from "./Demo/Datepicker/DatepickerDemo";
 import PaginationDemo from "./Demo/Pagination/PaginationDemo";
 import ChartDemo from "./Demo/Chart/ChartDemo";
-import {Menu} from "..";
-import {Main} from "..";
+import {Header,Menu,Main} from "..";
 
 /**
  * API文档
