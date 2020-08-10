@@ -21,7 +21,7 @@ class Hang extends React.Component {
         return (
             <div className={"ya-hang "}>
                 <div className={contentClass}>
-                    <div className={this.state.mini ? "animated fastest ya-hide " :""}>
+                    <div className={""} hidden={this.state.mini}>
                         {this.props.children}
                     </div>
                     <div className={"ya-hang-mini"} onClick={this.setMini.bind(this)}
