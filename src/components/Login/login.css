@@ -105,6 +105,7 @@
   width: 142px;
   color: #6f6f6f;
   font-size: 16px;
+  -webkit-appearance: none;
   ime-mode: disabled;
 }
 .ya-login .corePassword input:focus,
@@ -161,27 +162,30 @@
 .ya-login .phoneNum {
   display: block;
 }
-.ya-login .verificationCodeEnter {
+.ya-login .verificationCode .verificationItem {
+  display: flex;
+}
+.ya-login .verificationCode .verificationItem .verificationCodeEnter {
   display: inline-block !important;
   width: 85px !important;
   margin-right: 5px !important;
 }
-.ya-login .getVerificationCode,
-.ya-login .actionBtn {
+.ya-login .verificationCode .verificationItem .getVerificationCode,
+.ya-login .verificationCode .verificationItem .actionBtn {
   display: inline-block !important;
   width: 52px !important;
-  margin: 0 !important;
+  margin: 10px 0 0 0 !important;
   border-radius: 10px;
   border: 1px solid #d6d6d6;
-  padding: 5px 0;
+  padding: 6px 0;
   color: #6f6f6f;
   background: white;
   vertical-align: bottom;
   outline: 0;
-  line-height: 15px;
+  line-height: 16px;
 }
-.ya-login .getVerificationCode:hover,
-.ya-login .actionBtn:hover {
+.ya-login .verificationCode .verificationItem .getVerificationCode:hover,
+.ya-login .verificationCode .verificationItem .actionBtn:hover {
   background: #87d5ce;
   cursor: pointer;
   color: white;
@@ -192,16 +196,20 @@
 }
 .ya-login .creditLogin {
   color: #6f6f6f;
-  margin: 10px 50px 0;
-  text-align: center;
+  margin: 4px auto;
   display: flex;
-  width: 80px;
+  width: 120px;
   height: 18px;
-  padding: 3px;
+  padding: 4px;
 }
 .ya-login .creditLogin span {
   flex: 1;
   text-align: center;
+  margin: 0 5px;
+}
+.ya-login .creditLogin span svg {
+  width: 20px;
+  height: 20px;
 }
 .ya-login .qrCode {
   text-align: center;
@@ -267,6 +275,8 @@
   margin: 10px;
   width: 174px;
   line-height: 20px;
+  font-size: 12px;
+  text-align: left;
 }
 .ya-login .agreement .title {
   font-size: 18px;

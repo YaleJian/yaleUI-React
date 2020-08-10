@@ -91,15 +91,13 @@
         width: 142px;
         color: #6f6f6f;
         font-size: 16px;
+        -webkit-appearance: none;
         ime-mode: disabled;
         &:focus{
             outline: 0;
             border: 1px solid #87d5ce;
             border-radius: 10px;
         }
-    }
-    .verificationCode {
-
     }
     .pinTitle {
         text-align: center;
@@ -148,29 +146,36 @@
     .phoneNum {
         display: block;
     }
-    .verificationCodeEnter {
-        display: inline-block !important;
-        width: 85px !important;
-        margin-right: 5px !important;
-    }
-    .getVerificationCode, .actionBtn {
-        display: inline-block !important;
-        width: 52px !important;
-        margin: 0 !important;
-        border-radius: 10px;
-        border: 1px solid #d6d6d6;
-        padding: 5px 0;
-        color: #6f6f6f;
-        background: white;
-        vertical-align: bottom;
-        outline: 0;
-        line-height: 15px;
-        &:hover {
-            background: #87d5ce;
-            cursor: pointer;
-            color: white;
+    .verificationCode{
+        .verificationItem{
+            display: flex;
+            .verificationCodeEnter {
+                display: inline-block !important;
+                width: 85px !important;
+                margin-right: 5px !important;
+            }
+            .getVerificationCode, .actionBtn {
+                display: inline-block !important;
+                width: 52px !important;
+                margin: 10px 0 0 0 !important;
+                border-radius: 10px;
+                border: 1px solid #d6d6d6;
+                padding: 6px 0;
+                color: #6f6f6f;
+                background: white;
+                vertical-align: bottom;
+                outline: 0;
+                line-height: 16px;
+                &:hover {
+                    background: #87d5ce;
+                    cursor: pointer;
+                    color: white;
+                }
+            }
         }
+
     }
+
     .actionBtn {
         margin: 10px 10px 0 !important;
         min-width: 110px;
@@ -178,18 +183,23 @@
 
     .creditLogin {
         color: #6f6f6f;
-        margin: 10px 50px 0;
-        text-align: center;
+        margin: 4px auto;
         display: flex;
-        width: 80px;
+        width: 120px;
         height: 18px;
-        padding: 3px;
+        padding: 4px;
         span {
             flex: 1;
             text-align: center;
+            margin: 0 5px;
+            svg{
+                width: 20px;
+                height: 20px;
+            }
         }
     }
     .verificationCodeLogin {
+
     }
     .qrCode {
         text-align: center;
@@ -256,6 +266,8 @@
         margin: 10px;
         width: 174px;
         line-height: 20px;
+        font-size: 12px;
+        text-align: left;
         .title {
             font-size: 18px;
             font-weight: 800;

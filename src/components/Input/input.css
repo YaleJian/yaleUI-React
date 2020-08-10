@@ -1,3 +1,15 @@
+input[type="text"],
+input[type="button"],
+input[type="submit"],
+input[type="reset"],
+select,
+textarea,
+button {
+  -webkit-appearance: none;
+}
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 100px white inset;
+}
 .ya-input {
   border-radius: 10px;
   border: 1px solid #d6d6d6;

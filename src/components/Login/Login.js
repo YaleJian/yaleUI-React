@@ -205,12 +205,16 @@ class Login extends React.Component {
             return <React.Fragment>
                 {this.pages.noLogin()}
                 <div className="verificationCode">
-                    <input placeholder="手机号" type="tel" value={this.state.phoneNumber}
-                           onChange={this.pages.phoneNumberEnter.bind(this)}/>
-                    <input className="verificationCodeEnter" placeholder="短信验证码" type="tel"
-                           onChange={this.pages.verificationCodeEnter.bind(this)}/>
-                    <button className="getVerificationCode"
-                            onClick={this.vCode.getVerificationCode.bind(this)}>{this.state.countdown60}</button>
+                    <div className={"verificationItem"}>
+                        <input placeholder="手机号" type="tel" value={this.state.phoneNumber}
+                               onChange={this.pages.phoneNumberEnter.bind(this)}/>
+                    </div>
+                    <div className={"verificationItem"}>
+                        <input className="verificationCodeEnter" placeholder="短信验证码" type="tel"
+                               onChange={this.pages.verificationCodeEnter.bind(this)}/>
+                        <div className="getVerificationCode"
+                             onClick={this.vCode.getVerificationCode.bind(this)}>{this.state.countdown60}</div>
+                    </div>
                 </div>
                 {this.pages.operate()}
                 {this.pages.back()}
