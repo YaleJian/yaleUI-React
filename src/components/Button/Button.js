@@ -27,14 +27,13 @@ class Button extends React.Component {
         if (this.props.className.indexOf("adaptive") > -1) {
             return <div className={className} onClick={this.onClick.bind(this)}>{this.props.content}</div>;
         } else if (this.props.className.indexOf("press") > -1) {
-            return <React.Fragment>
+            return <>
                 <div className={className} onClick={this.onClick.bind(this)}>
                     <span>{this.props.content}</span>
                 </div>
-            </React.Fragment>;
+            </>;
         }
-        return <button type="button" className={className}
-                       onClick={this.onClick.bind(this)}>{this.props.content}</button>
+        return <div className={className} onClick={this.onClick.bind(this)}>{this.props.content}</div>
     }
 
     onClick = (e) => {

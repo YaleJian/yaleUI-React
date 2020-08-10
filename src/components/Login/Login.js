@@ -25,17 +25,16 @@ const defaultUser = {
  */
 class Login extends React.Component {
     static NO_LOGIN = 0;
-    static LOGIN_SUCCESS = 1;
-    static AUTH_CORE_PASSWORD = 2;
-    static AUTH_VERIFICATION_CODE = 3;
-    static AUTH_PIN = 4;
-    static AUTH_ACTION = 5;
-    static AUTH_QRCode = 6;
-    static AGREEMENT = 7;
+    static LOGIN_SUCCESS = 1;//登录成功
+    static AUTH_CORE_PASSWORD = 2;//密码验证
+    static AUTH_VERIFICATION_CODE = 3;//验证码验证
+    static AUTH_PIN = 4;//PIN验证
+    static AUTH_ACTION = 5;//动作验证
+    static AUTH_QRCode = 6;//二维码登录
+    static AGREEMENT = 7;//协议
 
-    static TYPE_LOGIN = 1;
-    static TYPE_REGISTER = 2;
-
+    static TYPE_LOGIN = 1;//登录
+    static TYPE_REGISTER = 2;//注册
 
     static defaultProps = {};
 
