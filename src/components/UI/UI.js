@@ -49,6 +49,7 @@ class UI extends Component {
         mainClass = this.state.sideRight ? mainClass +=" sideRight" : "";
         return (
             <React.Fragment>
+                <Header/>
                 <Menu indexId={1} path={this.props.location.pathname} setSideLeft = {this.setSideLeft.bind(this)}/>
                 <Main className={mainClass}>
                     {pages}

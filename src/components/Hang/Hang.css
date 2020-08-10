@@ -1,31 +1,35 @@
 .ya-hang {
+  text-align: center;
   position: fixed;
+  width: 100%;
   top: 4px;
-  left: 50%;
-  z-index: 10000;
+}
+.ya-hang .ya-hang-content {
+  display: inline-block;
   border-radius: 15px;
   transition: all 0.3s;
   cursor: pointer;
 }
-.ya-hang:hover .ya-hang-mini {
+.ya-hang .ya-hang-content:hover .ya-hang-mini {
   transition: all 0.3s;
-  display: block;
+  display: inline-block;
 }
-.ya-hang .ya-hang-mini {
+.ya-hang .ya-hang-content .ya-hang-mini {
   display: none;
   height: 6px;
-  min-width: 100px;
+  min-width: 90px;
+  width: calc(100% - 20px);
   background: black;
   opacity: 0.1;
-  margin: -6px 12px 0 12px;
+  margin: -6px 0 0 0;
   border-radius: 20px;
   border: 10px solid white;
 }
-.ya-hang .ya-hang-mini:hover {
+.ya-hang .ya-hang-content .ya-hang-mini:hover {
   opacity: 0.2;
-  margin: 0 12px 0 12px;
+  margin: 0 ;
 }
-.ya-hang .ya-hang-mini:active {
+.ya-hang .ya-hang-content .ya-hang-mini:active {
   opacity: 0.35;
 }
 /*# sourceMappingURL=Hang.css.map */

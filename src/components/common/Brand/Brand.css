@@ -1,17 +1,3 @@
-.ya-hang:hover .ya-brand {
-  padding: 15px;
-}
-.ya-hang:hover .ya-brand .brand-icon {
-  width: 36px;
-  height: 36px;
-}
-.ya-hang:hover .ya-brand .brand-icon:hover {
-  width: 46px;
-  height: 46px;
-}
-.ya-hang:hover .ya-brand .name {
-  font-size: 24px;
-}
 .ya-brand {
   padding: 10px;
   font-size: 20px;
@@ -22,9 +8,13 @@
   background: linear-gradient(to right, #03A9F4, #8ece44);
 }
 .ya-brand .brand-icon {
-  width: 26px;
-  height: 26px;
+  width: 36px;
+  height: 36px;
   transition: all 0.3s;
+}
+.ya-brand .brand-icon:hover {
+  width: 46px;
+  height: 46px;
 }
 .ya-brand .name {
   line-height: 24px;

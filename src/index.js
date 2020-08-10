@@ -5,8 +5,7 @@ import './components/Animate/animate.css'
 import {Route, Switch} from "react-router";
 import {BrowserRouter} from "react-router-dom";
 import Test from "./components/UI/Test/Test";
-import {Login, UI} from "./components";
-import {Brand} from "./components/common/Brand/Brand";
+import {Login, UI, Brand} from "./components";
 
 let root = <React.Fragment>
     <Brand/>

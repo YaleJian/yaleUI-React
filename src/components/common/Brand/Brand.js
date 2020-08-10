@@ -1,7 +1,7 @@
 import React from 'react';
 import {Icon} from "../../index";
 import "./Brand.css"
-import {Hang} from "../../Hang/Hang";
+import {Hang} from "../..";
 
 /**
  * 品牌
