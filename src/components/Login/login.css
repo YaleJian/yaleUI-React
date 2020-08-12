@@ -11,9 +11,6 @@
   transition: all 0.3s;
   text-align: center;
 }
-.ya-login:hover {
-  /*top: 9px;*/
-}
 .ya-login .noLogin {
   display: inline-block;
   text-align: center;
@@ -36,14 +33,14 @@
 }
 .ya-login .hideBtn {
   display: inline-block;
-  padding: 10px 5px;
+  padding: 10px 6px 9px 6px;
   margin: 0;
   border-radius: 6px;
 }
 .ya-login .loginEntrance {
   border: 1px solid white;
-  margin: 0 3px 0 0;
-  padding: 3px 8px;
+  margin: 0 4px 0 0;
+  padding: 4px 8px;
   color: white;
   border-radius: 2px;
   height: 10px;
@@ -62,8 +59,8 @@
 }
 .ya-login .registerEntrance {
   border: 1px solid white;
-  margin: 0 3px 0 0;
-  padding: 3px 8px;
+  margin: 0 4px 0 0;
+  padding: 4px 8px;
   color: white;
   border-radius: 2px;
   height: 10px;
@@ -94,6 +91,9 @@
 .ya-login .corePassword {
   display: block;
 }
+.ya-login .corePassword .pswInput {
+  padding: 0;
+}
 .ya-login .corePassword input,
 .ya-login .verificationCode input,
 .ya-login .pin input {
@@ -101,7 +101,7 @@
   margin: 10px 10px 0;
   border-radius: 10px;
   border: 1px solid #d6d6d6;
-  padding: 5px 15px;
+  padding: 6px 16px;
   width: 142px;
   color: #6f6f6f;
   font-size: 16px;
@@ -142,6 +142,7 @@
   border-radius: 10px;
   margin: 0 5px;
   padding: 4px 0;
+  font-size: 16px;
 }
 .ya-login .loginBtn:hover,
 .ya-login .registerBtn:hover {
@@ -173,16 +174,15 @@
 .ya-login .verificationCode .verificationItem .getVerificationCode,
 .ya-login .verificationCode .verificationItem .actionBtn {
   display: inline-block !important;
-  width: 52px !important;
+  width: 50px !important;
   margin: 10px 0 0 0 !important;
   border-radius: 10px;
   border: 1px solid #d6d6d6;
-  padding: 6px 0;
-  color: #6f6f6f;
+  color: #747474;
   background: white;
   vertical-align: bottom;
   outline: 0;
-  line-height: 16px;
+  line-height: 32px;
 }
 .ya-login .verificationCode .verificationItem .getVerificationCode:hover,
 .ya-login .verificationCode .verificationItem .actionBtn:hover {
@@ -262,7 +262,7 @@
   font-size: 9px;
   text-align: center;
 }
-.ya-login .autoLogin :hover {
+.ya-login .autoLogin:hover {
   color: #009688;
 }
 .ya-login .autoLoginInput {
@@ -307,10 +307,10 @@
   max-height: 100%;
 }
 .ya-login .showPsw {
-  position: relative;
-  float: right;
-  margin-top: -23px;
-  margin-right: 20px;
+  position: absolute;
+  right: 12px;
+  margin-top: -32px;
+  padding: 7px;
 }
 .ya-login .showPsw svg {
   fill: #c1c1c1;

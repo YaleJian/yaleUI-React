@@ -3,12 +3,7 @@ import "./login.css";
 import "../Animate/animate.css";
 import QRCode from 'qrcode.react';
 import {axios} from './../utils/Axios';
-import {Icon} from '..';
-import {User} from "..";
-import {result} from "..";
-import {Cookie} from "..";
-import {Button} from "..";
-import {dataUtils} from "..";
+import {Icon,User,result,Cookie,Button,dataUtils} from '..';
 
 const defaultUser = {
     phoneNumber: "",
@@ -24,17 +19,17 @@ const defaultUser = {
  * 登陆注册
  */
 class Login extends React.Component {
-    static NO_LOGIN = 0;
+    static NO_LOGIN = 0;//未登录界面
     static LOGIN_SUCCESS = 1;//登录成功
-    static AUTH_CORE_PASSWORD = 2;//密码验证
-    static AUTH_VERIFICATION_CODE = 3;//验证码验证
+    static AUTH_PASSWORD = 2;//密码验证
+    static AUTH_CODE = 3;//验证码验证
     static AUTH_PIN = 4;//PIN验证
     static AUTH_ACTION = 5;//动作验证
     static AUTH_QRCode = 6;//二维码登录
     static AGREEMENT = 7;//协议
 
-    static TYPE_LOGIN = 1;//登录
-    static TYPE_REGISTER = 2;//注册
+    static LOGIN = 1;//登录
+    static REGISTER = 2;//注册
 
     static defaultProps = {};
 
@@ -74,10 +69,10 @@ class Login extends React.Component {
             case Login.LOGIN_SUCCESS :
                 authPage = this.pages.loginSuccess();
                 break;
-            case Login.AUTH_CORE_PASSWORD  :
+            case Login.AUTH_PASSWORD  :
                 authPage = this.pages.corePassword();
                 break;
-            case Login.AUTH_VERIFICATION_CODE :
+            case Login.AUTH_CODE :
                 authPage = this.pages.verificationCode();
                 break;
             case Login.AUTH_PIN :
@@ -95,19 +90,19 @@ class Login extends React.Component {
             default:
                 break;
         }
-        return <React.Fragment>
+        return <>
             {this.state.authState === Login.AUTH_PIN ? <div className="pin-mask">Lock</div> : ""}
             <div className="ya-login animated fastest fadeInDownSmall">
                 {authPage}
             </div>
-        </React.Fragment>
+        </>
     }
 
     componentWillUnmount() {
         // 卸载异步操作设置状态
-        this.setState = (state, callback) => {
+        /*this.setState = (state, callback) => {
             return "";
-        }
+        }*/
     }
 
     getAuthState = (autoLogin) => {
@@ -115,8 +110,10 @@ class Login extends React.Component {
         //登陆认证
         let cookieToken = Cookie.getCookie("userToken");
         if (cookieToken) {
+            //1.先取cooke用户信息
             this.getUser();
         } else if (autoLogin) {
+            //2.取本地存储用户信息
             let localToken = localStorage.getItem("userToken");
             if (localToken) {
                 if (pin) {
@@ -133,61 +130,59 @@ class Login extends React.Component {
         }
     };
 
+    //页面
     pages = {
-
+        //未登录页面，其他页面共用此页面作为标题
         noLogin: () => {
             let noLoginClass = "noLogin ";
             noLoginClass = this.state.authState === Login.NO_LOGIN ? noLoginClass : noLoginClass + "active";
-            let loginPage = <React.Fragment>
-                {this.state.authState === Login.NO_LOGIN || this.state.type === Login.TYPE_LOGIN ?
-                    <span className="loginEntrance" onClick={() => this.setState({
-                        type: Login.TYPE_LOGIN,
-                        authState: Login.AUTH_CORE_PASSWORD
-                    })}>登陆</span> : ""}
-                {this.state.authState === Login.NO_LOGIN || this.state.type === Login.TYPE_REGISTER ?
-                    <span className="registerEntrance" onClick={() => this.setState({
-                        type: Login.TYPE_REGISTER,
-                        authState: Login.AUTH_CORE_PASSWORD
-                    })}>注册</span> : ""}
-                {this.state.authState !== Login.NO_LOGIN ?
-                    <span className="close" onClick={() => this.setState({authState: Login.NO_LOGIN})}><Icon
-                        name="i-BAI-guanbi"/></span> : ""}
-            </React.Fragment>;
+            let loginPage = <>
+                <span className="loginEntrance" onClick={this.pageAction.login.bind(this)}
+                      hidden={this.state.authState !== Login.NO_LOGIN && this.state.type !== Login.LOGIN}>登陆</span>
+                <span className="registerEntrance" onClick={this.pageAction.register.bind()}
+                      hidden={this.state.authState !== Login.NO_LOGIN && this.state.type !== Login.REGISTER}>注册</span>
+                <span className="close" onClick={this.pageAction.close.bind()}
+                      hidden={this.state.authState === Login.NO_LOGIN}>
+                        <Icon name="i-BAI-guanbi"/>
+                    </span>
+            </>;
             let hideBtn = <Button className={"hideBtn white"}
-                                  content={<Icon name={this.state.mini ? "i-BAI-zuojiantou" : "i-BAI-youjiantou"}/>}
-                                  onClick={() => this.setState({mini : !this.state.mini})}/>;
-            return <React.Fragment>
+                                  content={<Icon name={this.state.mini ? "i-BAI-wode" : "i-BAI-youjiantou"}/>}
+                                  onClick={() => this.setState({mini: !this.state.mini})}/>;
+            return <>
                 {this.state.authState === Login.NO_LOGIN ? hideBtn : ""}
                 {this.state.mini ? "" : <div className={noLoginClass}> {loginPage}</div>}
-            </React.Fragment>
+            </>
         },
+        //登录成功
         loginSuccess: () => {
             return <User data={this.state.user} logout={this.logout.bind(this)}/>
         },
+        //密码登录
         corePassword: () => {
-            return <React.Fragment>
+            return <>
                 {this.pages.noLogin()}
                 <form
-                    onSubmit={this.state.type === Login.TYPE_LOGIN ? this.auth.corePassword.bind(this) : this.register.bind(this)}>
+                    onSubmit={this.state.type === Login.LOGIN ? this.auth.corePassword.bind(this) : this.register.bind(this)}>
                     <div className="corePassword">
                         <input placeholder="手机号" type="tel" value={this.state.phoneNumber}
                                pattern="[0-9]*"
-                               onInvalid={this.pages.inputInvalid.bind(this, "输入正确的手机号")}
+                               onInvalid={this.pageAction.inputInvalid.bind(this, "输入正确的手机号")}
                                required
-                               onChange={this.pages.phoneNumberEnter.bind(this)}/>
+                               onChange={this.pageAction.phoneNumberEnter.bind(this)}/>
                         <div>
-                            <input placeholder="密码" type={this.state.passwordShow ? "text" : "password"}
+                            <input className={"pswInput"} placeholder="密码" type={this.state.passwordShow ? "text" : "password"}
                                    value={this.state.password}
-                                   onChange={this.pages.passwordEnter.bind(this)}/>
+                                   onChange={this.pageAction.passwordEnter.bind(this)}/>
                             <span className="showPsw"
                                   onClick={() => this.setState({passwordShow: !this.state.passwordShow})}><Icon
                                 name={this.state.passwordShow ? "i-showPsw" : "i-hidePsw"}/></span>
                         </div>
-                        {this.state.type === Login.TYPE_REGISTER ?
+                        {this.state.type === Login.REGISTER ?
                             <div>
                                 <input placeholder="确认密码" type={this.state.confirmPasswordShow ? "text" : "password"}
                                        defaultValue={this.state.confirmPassword}
-                                       onChange={this.pages.confirmPassword.bind(this)}/>
+                                       onChange={this.pageAction.confirmPassword.bind(this)}/>
                                 <span className="showPsw"
                                       onClick={() => this.setState({confirmPasswordShow: !this.state.confirmPasswordShow})}>
                                     <Icon name={this.state.confirmPasswordShow ? "i-showPsw" : "i-hidePsw"}/>
@@ -199,45 +194,52 @@ class Login extends React.Component {
                     {this.pages.creditLogin()}
                     {this.pages.autoLogin()}
                 </form>
-            </React.Fragment>
+            </>
         },
+        //验证码登录
         verificationCode: () => {
-            return <React.Fragment>
+            return <>
                 {this.pages.noLogin()}
                 <div className="verificationCode">
                     <div className={"verificationItem"}>
                         <input placeholder="手机号" type="tel" value={this.state.phoneNumber}
-                               onChange={this.pages.phoneNumberEnter.bind(this)}/>
+                               onChange={this.pageAction.phoneNumberEnter.bind(this)}/>
                     </div>
                     <div className={"verificationItem"}>
                         <input className="verificationCodeEnter" placeholder="短信验证码" type="tel"
-                               onChange={this.pages.verificationCodeEnter.bind(this)}/>
+                               onChange={this.pageAction.verificationCodeEnter.bind(this)}/>
                         <div className="getVerificationCode"
                              onClick={this.vCode.getVerificationCode.bind(this)}>{this.state.countdown60}</div>
                     </div>
                 </div>
                 {this.pages.operate()}
-                {this.pages.back()}
+                {this.pageAction.back()}
                 {this.pages.autoLogin()}
-            </React.Fragment>
+            </>
         },
+        //PIN登录
         pin: () => {
-            return <React.Fragment>
+            return <>
                 <div className="pinTitle">请输入PIN密码解锁</div>
-                <div className="pin " onKeyUp={this.pages.pinKeyUp.bind()}>
+                <div className="pin " onKeyUp={this.pageAction.pinKeyUp.bind()}>
                     <input autoFocus={true} type="text" className="pinText" maxLength="1" name="1"
-                           onInput={this.pages.pinInput.bind(this)} defaultValue={this.state.pin1} autoComplete="off"/>
+                           onInput={this.pageAction.pinInput.bind(this)} defaultValue={this.state.pin1}
+                           autoComplete="off"/>
                     <input type="text" className="pinText" maxLength="1" name="2"
-                           onInput={this.pages.pinInput.bind(this)} defaultValue={this.state.pin2} autoComplete="off"/>
+                           onInput={this.pageAction.pinInput.bind(this)} defaultValue={this.state.pin2}
+                           autoComplete="off"/>
                     <input type="text" className="pinText" maxLength="1" name="3"
-                           onInput={this.pages.pinInput.bind(this)} defaultValue={this.state.pin3} autoComplete="off"/>
+                           onInput={this.pageAction.pinInput.bind(this)} defaultValue={this.state.pin3}
+                           autoComplete="off"/>
                     <input type="text" className="pinText" maxLength="1" name="4"
-                           onInput={this.pages.pinInput.bind(this)} defaultValue={this.state.pin4} autoComplete="off"/>
+                           onInput={this.pageAction.pinInput.bind(this)} defaultValue={this.state.pin4}
+                           autoComplete="off"/>
                 </div>
-                {this.pages.back()}
-                {this.pages.clear()}
-            </React.Fragment>
+                {this.pageAction.back()}
+                {this.pageAction.clear()}
+            </>
         },
+        //动作检测
         action: () => {
             const script = document.createElement('script');
             script.type = 'text/javascript';
@@ -255,18 +257,19 @@ class Login extends React.Component {
                 }
             };
 
-            return <React.Fragment>
+            return <>
                 {this.pages.noLogin()}
                 <div className="action ">
                     <button className="actionBtn" id="TencentCaptcha" data-appid="2030796655" data-cbfn="callback">点击登录
                     </button>
                 </div>
-                {this.pages.back()}
-                {this.pages.clear()}
-            </React.Fragment>
+                {this.pageAction.back()}
+                {this.pageAction.clear()}
+            </>
         },
+        //二维码登录
         qrCode: () => {
-            return <React.Fragment>
+            return <>
                 {this.pages.noLogin()}
                 <div className="qrCode">
                     <div className="qrCodeContent">
@@ -280,9 +283,10 @@ class Login extends React.Component {
                     <div className="tips">扫一扫登录</div>
                 </div>
                 {this.pages.autoLogin()}
-                {this.pages.back()}
-            </React.Fragment>
+                {this.pageAction.back()}
+            </>
         },
+        //协议条款
         agreement: () => {
             return <div className="agreement">
                 <div className="title">注册条款和隐私政策</div>
@@ -302,31 +306,34 @@ class Login extends React.Component {
                     <strong>附录</strong>：<br/>
                     1. 本网站正在建设中，以上隐私政策安全保障需要在网站建设完毕实现<br/>
                 </div>
-                {this.pages.back()}
+                {this.pageAction.back()}
             </div>;
         },
+        //操作按钮
         operate: () => {
             return <React.Fragment>
                 <div className="operate">
-                    {this.state.type === Login.TYPE_LOGIN ?
+                    {this.state.type === Login.LOGIN ?
                         <button type="submit" className="loginBtn">登录</button> : ""}
-                    {this.state.type === Login.TYPE_REGISTER ?
+                    {this.state.type === Login.REGISTER ?
                         <button type="submit" className="registerBtn">注册</button> : ""}
                 </div>
-                {this.state.type === Login.TYPE_REGISTER ? this.pages.agreementConfirm() : ""}
+                {this.state.type === Login.REGISTER ? this.pages.agreementConfirm() : ""}
             </React.Fragment>;
 
         },
+        //阅读同意
         agreementConfirm: () => {
             return <div className="agreementConfirm">
                 <input type="checkbox" id="agreementInput" className="agreementInput"
-                       defaultChecked={this.state.agree} onChange={this.pages.agreeInput.bind(this)}/>
+                       defaultChecked={this.state.agree} onChange={this.pageAction.agreeInput.bind(this)}/>
                 <label htmlFor="agreementInput" className="agreementText">我已阅读并同意
                     <span className="agreementLink"
                           onClick={() => this.setState({authState: Login.AGREEMENT})}>此条款</span>
                 </label>
             </div>
         },
+        //自动登录
         autoLogin: () => {
             return <div className="autoLogin">
                 <input type="checkbox" id="autoLoginInput" className="autoLoginInput"
@@ -335,11 +342,12 @@ class Login extends React.Component {
                 <label htmlFor="autoLoginInput" className="autoLoginText">以后自动登录</label>
             </div>
         },
+        //其他方式登录
         creditLogin: () => {
             return <React.Fragment>
                 <div className="creditLogin">
                     <span className="verificationCodeLogin"
-                          onClick={() => this.setState({authState: Login.AUTH_VERIFICATION_CODE})}><Icon
+                          onClick={() => this.setState({authState: Login.AUTH_CODE})}><Icon
                         name="i-message"/></span>
                     <span className="qrCodeLogin" onClick={() => this.setState({authState: Login.AUTH_QRCode})}><Icon
                         name="i-qrCode"/></span>
@@ -348,10 +356,13 @@ class Login extends React.Component {
                 </div>
             </React.Fragment>
         },
+    };
 
+    //页面切换
+    pageAction = {
         back: () => {
             return <div className="loginBack"
-                        onClick={() => this.setState({authState: Login.AUTH_CORE_PASSWORD})}>返回</div>
+                        onClick={() => this.setState({authState: Login.AUTH_PASSWORD})}>返回</div>
         },
         phoneNumberEnter: (e) => {
             this.setState({phoneNumber: e.target.value.replace(/[^\d]/g, '')});
@@ -366,7 +377,6 @@ class Login extends React.Component {
             this.setState({verificationCode: e.target.value.replace(/[^\d]/g, '')});
         },
         agreeInput: () => {
-
             this.setState({agree: !this.state.agree});
         },
         pinKeyUp: (e) => {
@@ -403,8 +413,18 @@ class Login extends React.Component {
         inputInvalid: (text, e) => {
             e.currentTarget.setCustomValidity(text);
         },
-    };
+        login: () => {
+            this.setState({type: Login.LOGIN, authState: Login.AUTH_PASSWORD})
+        },
+        register: () => {
+            this.setState({type: Login.REGISTER, authState: Login.AUTH_PASSWORD})
+        },
+        close: () => {
+            this.setState({authState: Login.NO_LOGIN})
+        }
+    }
 
+    //认证
     auth = {
         //账号密码登录
         corePassword: (e) => {
@@ -447,12 +467,12 @@ class Login extends React.Component {
             let phoneNumber = this.state.phoneNumber;
             let password = this.state.password;
             let verificationCode = this.state.verificationCode;
-            if (this.state.authState === Login.AUTH_CORE_PASSWORD) {
+            if (this.state.authState === Login.AUTH_PASSWORD) {
                 data = {
                     phoneNumber,
                     password: dataUtils.MD5(dataUtils.MD5(password)),
                 };
-            } else if (this.state.authState === Login.AUTH_VERIFICATION_CODE) {
+            } else if (this.state.authState === Login.AUTH_CODE) {
                 data = {
                     phoneNumber,
                     verificationCode,
@@ -462,6 +482,8 @@ class Login extends React.Component {
         }
 
     };
+
+    //注册请求
     register = (e) => {
         e.preventDefault();
         if (this.state.password !== this.state.confirmPassword) {
@@ -485,6 +507,7 @@ class Login extends React.Component {
             });
     };
 
+    //登录请求
     login = (user) => {
         axios.post('/service/user/login', dataUtils.object2FormData(user), {withCredentials: true})
             .then((res) => {
@@ -498,11 +521,15 @@ class Login extends React.Component {
                 }
             })
     };
+
+    //登出
     logout = () => {
         Cookie.delCookie("userToken");
         localStorage.removeItem("userToken");
         this.setState({authState: Login.NO_LOGIN});
     };
+
+    //获取用户信息
     getUser = () => {
         axios.post('/service/user/getUser', "", {withCredentials: true})
             .then((res) => {
@@ -514,6 +541,8 @@ class Login extends React.Component {
                 console.log(e);
             });
     };
+
+    //设置用户信息
     setUser = (user) => {
         if (localStorage.getItem("autoLogin")) {
             //配置了自动登录，使用localStorage存储的登录记录
@@ -527,8 +556,8 @@ class Login extends React.Component {
         if (user) this.setState({authState: Login.LOGIN_SUCCESS, user});
     };
 
+    //验证码请求
     vCode = {
-
         getVerificationCode: () => {
 
             if (!isNaN(this.state.countdown60)) return;
