@@ -25,10 +25,10 @@ let Message = (content, config, autoRemove) => {
         <div className={"ya-message-container" + animated_down}>
             {isConfirm ? <div className="ya-message-title">{config.title || "Message"}</div> : null}
             <div className="ya-message-content">{content}</div>
-            <Button className="closeBtn white" content={<Icon name="i-close"/>}/>
+            <Button className="closeBtn white"><Icon name="i-close"/></Button>
             {isConfirm ? <div className="ya-groupBtn">
-                <Button className="red ya-yesBtn" content={config.yes || "Yes"}/>
-                <Button className="grey ya-noBtn" content={config.no || "No"}/>
+                <Button className="red ya-yesBtn">{config.yes || "Yes"}</Button>
+                <Button className="grey ya-noBtn">{config.no || "No"}</Button>
             </div> : null}
         </div>
     </React.Fragment>;

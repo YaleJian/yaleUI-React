@@ -103,17 +103,19 @@ class Datepicker extends React.Component {
             <div className={'ya-datepicker ' + contentClass}>
                 <div className={"ya-datepicker-header"}>
                         <span className={"prev"} onClick={this.switch.bind(this, false)}>
-                            <Button className="white" content={<Icon name={"i-BAI-zuojiantou"}/>}/>
+                            <Button className="white"><Icon name={"i-BAI-zuojiantou"}/></Button>
                         </span>
                     <span className={"selectArea"}>
-                            <Button className={"white"} content={<Icon name="i-BAI-wuzi"/>}
-                                    onClick={this.data.backToday.bind(this)}/>
-                            <Button className={"white"} content={this.state.selectYear + this.props.text.year}
-                                    onClick={() => this.data.setState({showType: Datepicker.SELECT_YEAR})}/>
-                            <Button className={"white"} content={this.state.selectMonth + 1 + this.props.text.month}
-                                    onClick={() => this.data.setState({showType: Datepicker.YEAR})}/>
-                            <Button className={"white"} content={this.state.selectDay + this.props.text.day}
-                                    onClick={() => this.data.setState({showType: Datepicker.MONTH})}/>
+                        <Button className={"white"} onClick={this.data.backToday.bind(this)}><Icon name="i-BAI-wuzi"/></Button>
+                        <Button className={"white"} onClick={() => this.data.setState({showType: Datepicker.SELECT_YEAR})}>
+                            {this.state.selectYear + this.props.text.year}
+                        </Button>
+                        <Button className={"white"} onClick={() => this.data.setState({showType: Datepicker.YEAR})}>
+                            {this.state.selectMonth + 1 + this.props.text.month}
+                        </Button>
+                        <Button className={"white"} onClick={() => this.data.setState({showType: Datepicker.MONTH})}>
+                            {this.state.selectDay + this.props.text.day}
+                        </Button>
                             <Input className="selectHours" type="select" dropDownBoxData={Datepicker.ARRAY24}
                                    onChange={this.data.setHours.bind(this)}
                                    value={this.state.selectHours < 10 ? "0" + this.state.selectHours : this.state.selectHours} selectIcon={false}/>
@@ -123,8 +125,8 @@ class Datepicker extends React.Component {
                                    value={this.state.selectMinutes < 10 ? "0" + this.state.selectMinutes : this.state.selectMinutes} selectIcon={false}/>
                         </span>
                     <span className={"next"} onClick={this.switch.bind(this, true)}>
-                            <Button className="white" content={<Icon name={"i-BAI-youjiantou"}/>}/>
-                        </span>
+                        <Button className="white"><Icon name={"i-BAI-youjiantou"}/></Button>
+                    </span>
                 </div>
                 <div className={"ya-datepicker-content"}>{content}</div>
             </div>
@@ -214,7 +216,7 @@ class Datepicker extends React.Component {
             for (let i = year - 12; i < year + 13; i++) {
                 years.push(<div className={"ya-datepicker-year" + (this.state.selectYear === i ? " selected" : "")}
                                 onClick={() => this.data.setState({selectYear: i, showType: Datepicker.MONTH})}
-                                key={"selectYear" + i}><Button className="white" content={i}/></div>)
+                                key={"selectYear" + i}><Button className="white">{i}</Button></div>)
             }
             return years
         },
@@ -225,7 +227,7 @@ class Datepicker extends React.Component {
                 yearTag.push(<div className={"ya-datepicker-month"} key={month}>
                     <div className={"ya-datepicker-month-title"}
                          onClick={() => this.data.setState({selectMonth: month, showType: Datepicker.MONTH})}>
-                        <Button className={"white"} content={(month + 1) + this.props.text.month}/>
+                        <Button className={"white"}>{(month + 1) + this.props.text.month}</Button>
                     </div>
                     {this.view.renderMonth(month, year)}
                 </div>);
@@ -364,7 +366,7 @@ class Datepicker extends React.Component {
             let isShow = this.state.showType === Datepicker.WEEKS;
             let showType = isShow ? Datepicker.MONTH : Datepicker.WEEKS;
             return <div className={"ya-showWeekView"} key={"ya-showWeekView"} onClick={() => this.data.setState({showType})}>
-                <Button className="white adaptive" content={<Icon name={"i-Group-" + (isShow ? "1" : "")}/>}/>
+                <Button className="white adaptive"><Icon name={"i-Group-" + (isShow ? "1" : "")}/></Button>
             </div>;
         }
     };

@@ -934,7 +934,7 @@ class Tree extends React.Component {
             return <div className="ya-treeTools">
                 <div className={autoSearchStyle} key="autoSearch" onBlur={this.search.searchBlur}>
                     <span className="searchIcon"><Icon name="i-magnifier"/></span>
-                    <input className="searchInput" type="text" id="searchInput" value={this.state.keyword}
+                    <input className="searchInput" type="text" value={this.state.keyword}
                            onChange={this.search.searchInput.bind(this)} autoComplete="off"
                            onFocus={this.search.searchInput.bind(this)}/>
                     <div className="resultList">{items}</div>

@@ -1,5 +1,6 @@
 import React from "react";
 import "./button.css";
+import {Icon} from "..";
 
 /**
  * 按钮组
@@ -7,10 +8,11 @@ import "./button.css";
 class Button extends React.Component {
 
     static defaultProps = {
-        content: "Button",
         className: "",
         radius: true,
+        adaptive: false,
         size: "",
+        icon: "",//iconfont图标
         onClick: function () {
         }
     };
@@ -23,17 +25,16 @@ class Button extends React.Component {
     }
 
     render() {
-        let className = "ya-btn "+ this.props.className;
-        if (this.props.className.indexOf("adaptive") > -1) {
-            return <div className={className} onClick={this.onClick.bind(this)}>{this.props.content}</div>;
-        } else if (this.props.className.indexOf("press") > -1) {
-            return <>
-                <div className={className} onClick={this.onClick.bind(this)}>
-                    <span>{this.props.content}</span>
-                </div>
-            </>;
+        let className = "ya-btn " + this.props.className;
+        let content = <>
+            {this.props.icon ? <Icon name={this.props.icon}/> : ""}
+            {this.props.children || (this.props.icon || "Button")}
+        </>;
+        if (this.props.adaptive) {
+            return <div className={className} onClick={this.onClick.bind(this)}>{content}</div>;
+        } else {
+            return <button type="button" className={className} onClick={this.onClick.bind(this)}>{content}</button>;
         }
-        return <div className={className} onClick={this.onClick.bind(this)}>{this.props.content}</div>
     }
 
     onClick = (e) => {

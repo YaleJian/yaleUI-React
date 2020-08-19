@@ -31,8 +31,7 @@ class Pagination extends React.Component {
         let dropData = totalPage ? Array(totalPage).fill(null).map((_, h) => h + 1) : [];
         return <div className={"ya-pagination"}>
             <span onClick={this.prev.bind(this)}>
-                <Button className={"item white" + (page === 1 ? " disabled" : "")}
-                        content={<Icon name={"i-BAI-zuojiantou"}/>}/>
+                <Button className={"item white" + (page === 1 ? " disabled" : "")}><Icon name={"i-BAI-zuojiantou"}/></Button>
             </span>
             <span className="item pageItem">
                 <Input className="page" type={"select"} dropDownBoxData={dropData}
@@ -42,8 +41,8 @@ class Pagination extends React.Component {
             <span className="item">/</span>
             <span className="item">{totalPage}</span>
             <span onClick={this.next.bind(this)}>
-                <Button className={"item white" + (page === totalPage ? " disabled" : "")}
-                        content={<Icon name={"i-BAI-youjiantou"}/>}/></span>
+                <Button className={"item white" + (page === totalPage ? " disabled" : "")}><Icon name={"i-BAI-youjiantou"}/></Button>
+            </span>
         </div>
     }
 

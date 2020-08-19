@@ -26,7 +26,7 @@ export var testTreeData = (level, everyLevel, type) => {
                 if (id[0] === '-') id = id.substr(1);
 
                 let icon = nodIcons[Math.floor(Math.random() * nodIcons.length)];
-                if(type === "file")  icon = "";
+                // if(type === "file")  icon = "";
                 icon = <Icon name={icon}/>;
                 let node = {
                     id: id,

@@ -6,17 +6,17 @@ import {Button} from "..";
 const menuData = [
     {id: "designStandard", name: "设计规范", link: "/ui/designStandard", sort: 1},
     {id: "typography", name: "排版", link: "/ui/typography", sort: 2},
-    {id: "tree", name: "树组件", link: "/ui/tree", sort: 3},
-    {id: "richTextEditor", name: "富文本编辑器", link: "/ui/richTextEditor", sort: 4},
-    {id: "cloudDrive", name: "云盘", link: "/ui/cloudDrive", sort: 5},
-    {id: "button", name: "按钮", link: "/ui/button", sort: 6},
-    {id: "input", name: "输入框和选择框", link: "/ui/input", sort: 7},
+    {id: "button", name: "按钮", link: "/ui/button", sort: 3},
+    {id: "input", name: "输入框和选择框", link: "/ui/input", sort: 6},
+    {id: "tree", name: "树组件", link: "/ui/tree", sort: 7},
     {id: "message", name: "提示", link: "/ui/message", sort: 8},
     {id: "date", name: "日期", link: "/ui/date", sort: 9},
     {id: "pagination", name: "分页", link: "/ui/pagination", sort: 10},
     {id: "animation", name: "动画", link: "/ui/animation", sort: 11},
     {id: "map", name: "地图", link: "/ui/map", sort: 12},
     {id: "chart", name: "图表", link: "/ui/chart", sort: 13},
+    {id: "richTextEditor", name: "富文本编辑器", link: "/ui/richTextEditor", sort: 14},
+    {id: "cloudDrive", name: "云盘", link: "/ui/cloudDrive", sort: 15},
 ];
 
 class Menu extends Component {
@@ -53,8 +53,9 @@ class Menu extends Component {
                               }}
                         />
                     </div>
-                    <Button className={"white toggle"} content={<Icon name={this.state.isShow ? "i-BAI-zuojiantou" : "i-BAI-youjiantou"}/>}
-                            onClick={this.toggle.bind(this)}/>
+                    <Button className={"white toggle"} onClick={this.toggle.bind(this)}>
+                        <Icon name={this.state.isShow ? "i-BAI-zuojiantou" : "i-BAI-youjiantou"}/>
+                    </Button>
                 </div>
 
             </React.Fragment>

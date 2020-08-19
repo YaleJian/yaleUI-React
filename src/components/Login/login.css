@@ -91,9 +91,6 @@
 .ya-login .corePassword {
   display: block;
 }
-.ya-login .corePassword .pswInput {
-  padding: 0;
-}
 .ya-login .corePassword input,
 .ya-login .verificationCode input,
 .ya-login .pin input {

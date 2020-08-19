@@ -146,9 +146,7 @@ class Login extends React.Component {
                         <Icon name="i-BAI-guanbi"/>
                     </span>
             </>;
-            let hideBtn = <Button className={"hideBtn white"}
-                                  content={<Icon name={this.state.mini ? "i-BAI-wode" : "i-BAI-youjiantou"}/>}
-                                  onClick={() => this.setState({mini: !this.state.mini})}/>;
+            let hideBtn = <Button className={"hideBtn white"} onClick={() => this.setState({mini: !this.state.mini})}><Icon name={this.state.mini ? "i-BAI-wode" : "i-BAI-youjiantou"}/></Button>;
             return <>
                 {this.state.authState === Login.NO_LOGIN ? hideBtn : ""}
                 {this.state.mini ? "" : <div className={noLoginClass}> {loginPage}</div>}

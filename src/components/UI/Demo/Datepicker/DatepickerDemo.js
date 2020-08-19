@@ -20,14 +20,15 @@ class DatepickerDemo extends React.Component{
 
     render() {
         return <div className={"datepickerDemo"}>
+            <Input type="popUp" value={this.state.date.year+"年"+this.state.date.month+"月"+this.state.date.day+"日 "+this.state.date.hours+":"+this.state.date.minutes}
+                   placeholder={"请选择"}>
+                <Datepicker getSelectData={this.getSelectData.bind(this)} showLunar={false}/>
+            </Input>
             <Input type="popUp"
-                   content={<Datepicker getSelectData={this.getSelectData.bind(this)} showLunar={false}/>}
                    value={this.state.date.year+"年"+this.state.date.month+"月"+this.state.date.day+"日 "+this.state.date.hours+":"+this.state.date.minutes}
-                   placeholder={"请选择"}/>
-            <Input type="popUp"
-                   content={<Datepicker getSelectData={this.getSelectData.bind(this)} showLunar={true}/>}
-                   value={this.state.date.year+"年"+this.state.date.month+"月"+this.state.date.day+"日 "+this.state.date.hours+":"+this.state.date.minutes}
-                   placeholder={"请选择"}/>
+                   placeholder={"请选择"}>
+                <Datepicker getSelectData={this.getSelectData.bind(this)} showLunar={true}/>
+            </Input>
         </div>
     }
 

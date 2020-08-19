@@ -46,9 +46,6 @@ class Input extends React.Component {
             case "number":
                 className += " number";
                 return this.numberInput(className);
-            case "integer":
-                className += " integer";
-                return this.numberInput(className);
             case "select":
                 return this.popUp(className);
             case "popUp":
@@ -99,8 +96,8 @@ class Input extends React.Component {
 
     //数字输入框
     numberInput = (className) => {
-        let minus = <Button className="white" content={<Icon name="i-minus"/>} onClick={this.numberMinus.bind(this)}/>;
-        let plus = <Button className="white" content={<Icon name="i-plus"/>} onClick={this.numberPlus.bind(this)}/>;
+        let minus = <Button className="white" onClick={this.numberMinus.bind(this)}><Icon name="i-minus"/></Button>;
+        let plus = <Button className="white" onClick={this.numberPlus.bind(this)}><Icon name="i-plus"/></Button>;
         return this.inputWithIcon(className, [minus, plus]);
     };
     //数字增加
@@ -117,7 +114,7 @@ class Input extends React.Component {
     };
 
     onChange = (e) => {
-        this.props.onChange(e.target.value, e);
+        this.props.onChange();
     };
 
     iconClick = (e) => {
@@ -161,7 +158,7 @@ class Input extends React.Component {
             maskContent = <div className="ya-mask-content" onClick={this.cancel.bind(this, maskTag)}/>;
         }
 
-        let content = this.props.content;
+        let content = this.props.children;
 
         //判断是否是选择框
         if (this.props.type === "select") content = this.select(maskTag);
