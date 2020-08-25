@@ -1,268 +1,41 @@
 .ya-btn {
-  @default: #87d4cc;
-  @defaultHover: #009688;
-  @defaultActive: #008777;
-
-  @text: #6f6f6f;
-
-  @grey: #f5f4f4;
-  @greyHover: #e2e2e2;
-  @greyActive: #dadada;
-
-  @white: white;
-
-  @blue: #5cccda;
-  @blueHover: #009fb7;
-  @blueActive: #006887;
-
-  @red: #fd8880;
-  @redHover: #de4f4f;
-  @redActive: #872d2d;
-
-  @orange: #ffad49;
-  @orangeHover: #de8500;
-  @orangeActive: #875600;
-
-  @green: #44e293;
-  @greenHover: #00b35a;
-  @greenActive: #008738;
-
-  background: @default;
-  color: white;
   margin: 0 6px;
   padding: 4px 6px;
-  border: 1px solid rgba(255, 255, 255, 0);
   text-align: center;
   transition: all 0.5s;
-  font-size: 14px;
-
-  &.radius {
-    border-radius: 10px;
-  }
-
-  //大小
-
-  &.small {
-    padding: 1px;
-    font-size: 14px;
-  }
-
-  &.big {
-    padding: 6px 6px;
-    font-size: 16px;
-  }
-
-  &.biggest {
-    padding: 8px 8px;
-    font-size: 17px;
-  }
-
-  //预置颜色
-  &.white {
-    background: @white;
-    color: @text;
-  }
-
-  &.grey {
-    background: @grey;
-    color: @text;
-  }
-
-  &.blue {
-    background: @blue;
-  }
-
-  &.red {
-    background: @red;
-  }
-
-  &.orange {
-    background: @orange;
-  }
-
-  &.green {
-    background: @green;
-  }
-
-  //
-
-  &:hover {
-    background: @defaultHover;
-    cursor: pointer;
-    border: 1px solid @defaultHover;
-    color: white;
-
-    &.white {
-      color: @text;
-      background: @greyHover;
-      border: 1px solid @greyHover;
-    }
-
-    &.grey:extend(.ya-btn:hover.white) {
-    }
-
-    &.blue {
-      background: @blueHover;
-      border: 1px solid @blueHover;
-    }
-
-    &.red {
-      background: @redHover;
-      border: 1px solid @redHover;
-    }
-
-    &.orange {
-      background: @orangeHover;
-      border: 1px solid @orangeHover;
-    }
-
-    &.green {
-      background: @greenHover;
-      border: 1px solid @greenHover;
-    }
-  }
-
-  &:active {
-    background: @defaultActive;
-    cursor: pointer;
-    border: 1px solid @defaultActive;
-    border-radius: 6px;
-    color: white;
-
-    &.white {
-      color: @text;
-      background: @greyActive;
-      border: 1px solid @greyActive;
-    }
-
-    &.grey:extend(.ya-btn:active.white) {
-    }
-
-    &.blue {
-      background: @blueActive;
-      border: 1px solid @blueActive;
-    }
-
-    &.red {
-      background: @redActive;
-      border: 1px solid @redActive;
-    }
-
-    &.orange {
-      background: @orangeActive;
-      border: 1px solid @orangeActive;
-    }
-
-    &.green {
-      background: @greenActive;
-      border: 1px solid @greenActive;
-    }
-  }
-
-  &.outline {
-    background: white;
-    border: 1px solid @defaultHover;
-    color: @default;
-
-    &:hover:extend(.ya-btn:hover) {
-    }
-
-    &:hover:active(.ya-btn:hover) {
-    }
-
-    &.white {
-      color: @text;
-      border: 1px solid darken(@grey, 10%);
-
-      &:hover:extend(.ya-btn:hover.white) {
-        border: 1px solid darken(@greyHover, 10%);
-      }
-
-      &:active:extend(.ya-btn:active.white) {
-        border: 1px solid darken(@greyHover, 10%);
-      }
-    }
-
-    &.grey {
-      color: @text;
-      border: 1px solid @text;
-
-      &:hover:extend(.ya-btn:hover.grey) {
-        color: white;
-      }
-
-      &:active:extend(.ya-btn:active.grey) {
-        color: white;
-      }
-    }
-
-    &.blue {
-      color: @blue;
-      border: 1px solid @blue;
-
-      &:hover:extend(.ya-btn:hover.blue) {
-        color: white;
-      }
-
-      &:active:extend(.ya-btn:active.blue) {
-        color: white;
-      }
-    }
-
-    &.red {
-      color: @red;
-      border: 1px solid @red;
-
-      &:hover:extend(.ya-btn:hover.red) {
-        color: white;
-      }
-
-      &:active:extend(.ya-btn:active.red) {
-        color: white;
-      }
-    }
-
-    &.orange {
-      color: @orange;
-      border: 1px solid @orange;
-
-      &:hover:extend(.ya-btn:hover.orange) {
-        color: white;
-      }
-
-      &:active:extend(.ya-btn:active.orange) {
-        color: white;
-      }
-    }
-
-    &.green {
-      color: @green;
-      border: 1px solid @green;
-
-      &:hover:extend(.ya-btn:hover.green) {
-        color: white;
-      }
-
-      &:active:extend(.ya-btn:active.green) {
-        color: white;
-      }
-    }
-  }
+  font-size: 16px;
 
   &.disabled {
     opacity: 0.5;
     cursor: not-allowed;
 
     &:hover {
-      border-radius: 10px;
       opacity: 0.2;
+    }
+  }
+
+  //大小
+  &.small {
+    padding: 1px;
+    font-size: 12px;
+  }
+
+  &.big {
+    padding: 6px 6px;
+    font-size: 18px;
+  }
+
+  &.ya-btn-line {
+    &:hover {
+      color: white;
     }
   }
 }
 
 .ya-groupBtn {
   margin: 0 6px;
-  .ya-btn.radius:first-child {
+
+  .ya-btn.ya-radius10:first-child {
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
   }
@@ -272,15 +45,8 @@
     margin: 0 -1px;
   }
 
-  .ya-btn.radius:last-child {
+  .ya-btn.ya-radius10:last-child {
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
-  }
-}
-
-.ya-p {
-  .content {
-    padding: 10px 0;
-    border-radius: 6px;
   }
 }

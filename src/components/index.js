@@ -17,7 +17,7 @@ import {User} from './User/User';
 import {Cookie} from './utils/cookie';
 import {dataUtils} from './utils/dataUtils';
 import {DomUtils} from './utils/domUtils';
-import {Icon} from './utils/Icon';
+import {Icon} from './Icon/Icon';
 import {result} from './utils/result';
 import {toLunar} from './utils/sloarToLunar';
 import {testTreeData} from './Tree/TreeUtil';

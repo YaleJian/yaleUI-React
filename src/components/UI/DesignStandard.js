@@ -19,11 +19,11 @@ class DesignStandard extends Component {
                 </div>
             </div>
             <h2>偶数数值</h2>
-            <div>尽量使用偶数数值，因为某些布局计算的时候，奇数/2会造成多出一个像素。</div>
+            <div className="ya-p">尽量使用偶数数值，因为某些布局计算的时候，奇数/2会造成多出一个像素。</div>
             <h2>移动优先</h2>
-            <div>竖版小尺寸移动网页和横版大尺寸网页占有率平分秋色，优先考虑移动优先能够加速适配开发。</div>
+            <div className="ya-p">竖版小尺寸移动网页和横版大尺寸网页占有率平分秋色，优先考虑移动优先能够加速适配开发。</div>
             <h2>少即是多</h2>
-            <div>尽量简洁的代码和设计，才是更成熟的。</div>
+            <div className="ya-p">尽量简洁的代码和设计，才是更成熟的。</div>
         </React.Fragment>;
     }
 }

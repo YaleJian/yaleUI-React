@@ -5,7 +5,7 @@
   -webkit-transition: color 0.1s;
   transition: color 0.1s;
   border: 1px solid #ffffff00;
-  margin-left: 10px;
+  margin: 0 10px 0 10px;
 }
 .ya-radio .ya-radio-input {
   position: absolute;
@@ -15,20 +15,20 @@
   content: "\A0";
   display: inline-block;
   vertical-align: middle;
-  width: 14px;
-  height: 14px;
-  margin-right: 8px;
-  margin-left: -8px;
+  width: 16px;
+  height: 16px;
+  margin-right: 6px;
+  margin-left: -11px;
   border-radius: 50%;
   text-indent: 4px;
   margin-bottom: 4px;
   border: 1px solid #CCCCCC;
 }
 .ya-radio .ya-radio-input:checked + .ya-radio-text::before {
-  background: #009688;
+  background: currentColor;
   background-clip: content-box;
   padding: 2px;
-  width: 10px;
-  height: 10px;
+  width: 12px;
+  height: 12px;
 }
 /*# sourceMappingURL=Radio.css.map */

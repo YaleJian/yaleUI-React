@@ -3,8 +3,7 @@ import "./Radio.css";
 
 class Radio extends React.Component {
     static defaultProps = {
-        textClass: "",
-        text: "",
+        className: "",
         onClick : ()=>{},
     };
 
@@ -16,13 +15,13 @@ class Radio extends React.Component {
     }
 
     render() {
-        let textClass = "ya-radio-text" + this.props.textClass;
+        let className = "ya-radio-text " + this.props.className;
         return <span className="ya-radio" onClick={this.onClick.bind(this)}>
             <input type="radio" className="ya-radio-input" checked={this.state.checked} onChange={ignore => {
                 return true
             }}/>
-            <span className={textClass}>
-                {this.props.text}
+            <span className={className}>
+                {this.props.children}
             </span>
         </span>
     }

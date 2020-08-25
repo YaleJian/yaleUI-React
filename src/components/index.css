@@ -46,14 +46,6 @@ input[type=text] {
   top: 0;
   z-index: 100;
 }
-/** iconfont */
-.icon {
-  width: 16px;
-  height: 16px;
-  vertical-align: -0.15em;
-  fill: currentColor;
-  overflow: hidden;
-}
 /* 单选框 */
 .ya-radio {
   position: absolute;
@@ -150,41 +142,239 @@ h6 {
   color: rgba(0, 0, 0, 0.6);
   font-size: 12px;
 }
-.white {
+.ya-white {
   color: white;
 }
-.red {
-  color: #fd8880;
+.ya-black {
+  color: black;
 }
-.blue {
-  color: #5cccda;
+.ya-grey {
+  color: #696969;
 }
-.green {
+.ya-red {
+  color: #ff8080;
+}
+.ya-green {
   color: #44e293;
 }
-.grey {
-  color: rgba(0, 0, 0, 0.5);
+.ya-blue {
+  color: #5cccda;
 }
-.orange {
+.ya-orange {
   color: #ffad49;
 }
-.bg-white {
+.ya-yellow {
+  color: #FFEB3B;
+}
+.ya-purple {
+  color: #d569e8;
+}
+.ya-lightGrey {
+  color: #f5f4f4;
+}
+.ya-lightRed {
+  color: #f1c3c3;
+}
+.ya-lightGreen {
+  color: #daf5f1;
+}
+.ya-lightBlue {
+  color: #cbeef3;
+}
+.ya-lightOrange {
+  color: #f5dfcb;
+}
+.ya-lightYellow {
+  color: #f3f0d0;
+}
+.ya-lightPurple {
+  color: #edccf1;
+}
+.ya-bg-white {
   background: white;
 }
-.bg-red {
-  background: #fd8880;
+.ya-bg-white:hover {
+  background: #f1f1f1;
 }
-.bg-blue {
-  background: #5cccda;
+.ya-bg-white:active {
+  background: #dadada;
 }
-.bg-green {
+.ya-bg-black {
+  background: black;
+}
+.ya-bg-black:hover {
+  background: #464646;
+}
+.ya-bg-black:active {
+  background: #6f6f6f;
+}
+.ya-bg-grey {
+  background: #696969;
+}
+.ya-bg-grey:hover {
+  background: #4a4949;
+}
+.ya-bg-grey:active {
+  background: #2b2b2b;
+}
+.ya-bg-red {
+  background: #ff8080;
+}
+.ya-bg-red:hover {
+  background: #de4f4f;
+}
+.ya-bg-red:active {
+  background: #872d2d;
+}
+.ya-bg-orange {
+  background: #ffad49;
+}
+.ya-bg-orange:hover {
+  background: #de8500;
+}
+.ya-bg-orange:active {
+  background: #875600;
+}
+.ya-bg-yellow {
+  background: #FFEB3B;
+}
+.ya-bg-yellow:hover {
+  background: #e6d118;
+}
+.ya-bg-yellow:active {
+  background: #cebb14;
+}
+.ya-bg-green {
   background: #44e293;
 }
-.bg-grey {
+.ya-bg-green:hover {
+  background: #00b35a;
+}
+.ya-bg-green:active {
+  background: #008738;
+}
+.ya-bg-blue {
+  background: #5cccda;
+}
+.ya-bg-blue:hover {
+  background: #009fb7;
+}
+.ya-bg-blue:active {
+  background: #006887;
+}
+.ya-bg-purple {
+  background: #d569e8;
+}
+.ya-bg-purple:hover {
+  background: #bb5acc;
+}
+.ya-bg-purple:active {
+  background: #9a3eab;
+}
+.ya-bg-lightGrey {
   background: #f5f4f4;
 }
-.bg-orange {
-  background: #ffad49;
+.ya-bg-lightGrey:hover {
+  background: #f1f1f1;
+}
+.ya-bg-lightGrey:active {
+  background: #dadada;
+}
+.ya-bg-lightRed {
+  background: #f1c3c3;
+}
+.ya-bg-lightRed:hover {
+  background: #ffcfcf;
+}
+.ya-bg-lightRed:active {
+  background: #e7bcbc;
+}
+.ya-bg-lightOrange {
+  background: #f5dfcb;
+}
+.ya-bg-lightOrange:hover {
+  background: #ffead4;
+}
+.ya-bg-lightOrange:active {
+  background: #e7d4c1;
+}
+.ya-bg-lightYellow {
+  background: #f3f0d0;
+}
+.ya-bg-lightYellow:hover {
+  background: #f3f0d0;
+}
+.ya-bg-lightYellow:active {
+  background: #f3f0d0;
+}
+.ya-bg-lightGreen {
+  background: #daf5f1;
+}
+.ya-bg-lightGreen:hover {
+  background: #e3fffb;
+}
+.ya-bg-lightGreen:active {
+  background: #d4f3ed;
+}
+.ya-bg-lightBlue {
+  background: #cbeef3;
+}
+.ya-bg-lightBlue:hover {
+  background: #d5faff;
+}
+.ya-bg-lightBlue:active {
+  background: #c3e2e7;
+}
+.ya-bg-lightPurple {
+  background: #edccf1;
+}
+.ya-bg-lightPurple:hover {
+  background: #fbd6ff;
+}
+.ya-bg-lightPurple:active {
+  background: #e4c3e7;
+}
+.ya-bg-white-only {
+  background: white;
+}
+.ya-border0 {
+  border: 0;
+}
+.ya-border-transparent {
+  border: 1px solid rgba(255, 255, 255, 0);
+}
+.ya-border {
+  border: 1px solid currentColor!important;
+}
+.ya-border-white {
+  border: 1px solid white;
+}
+.ya-border-lightGrey {
+  border: 1px solid #f5f4f4;
+}
+.ya-border-grey {
+  border: 1px solid #696969;
+}
+.ya-border-black {
+  border: 1px solid black;
+}
+.ya-border-red {
+  border: 1px solid #ff8080;
+}
+.ya-border-green {
+  border: 1px solid #44e293;
+}
+.ya-border-blue {
+  border: 1px solid #5cccda;
+}
+.ya-border-yellow {
+  border: 1px solid #FFEB3B;
+}
+.ya-border-orange {
+  border: 1px solid #ffad49;
+}
+.ya-border-purple {
+  border: 1px solid #d569e8;
 }
 mark {
   padding: 0;
@@ -193,8 +383,8 @@ mark {
 }
 code {
   margin: 0 0.2em;
-  padding: 2px 5px 2px;
-  font-size: 85%;
+  padding: 2px 6px 2px;
+  font-size: 16px;
   background: rgba(0, 0, 0, 0.06);
   border: 1px solid rgba(0, 0, 0, 0.06);
   border-radius: 3px;
@@ -213,10 +403,6 @@ del {
 strong {
   color: rgba(0, 0, 0, 0.7);
 }
-.textDemo * {
-  width: fit-content;
-  margin: 5px 0;
-}
 /* 行列 */
 .ya-rows {
   display: flex;
@@ -227,31 +413,31 @@ strong {
 .ya-flex {
   display: flex;
 }
-.ya-flex.align-center {
+.ya-flex.ya-align-center {
   align-items: center;
 }
-.ya-flex.align-bottom {
+.ya-flex.ya-align-bottom {
   align-items: flex-end;
 }
-.ya-flex .flex-auto {
+.ya-flex .ya-flex-auto {
   flex: auto;
 }
-.ya-flex .flex-1 {
+.ya-flex .ya-flex-1 {
   flex: 1;
 }
-.ya-flex .flex-2 {
+.ya-flex .ya-flex-2 {
   flex: 2;
 }
-.ya-flex .flex-3 {
+.ya-flex .ya-flex-3 {
   flex: 3;
 }
-.ya-flex .flex-4 {
+.ya-flex .ya-flex-4 {
   flex: 4;
 }
-.ya-flex .flex-5 {
+.ya-flex .ya-flex-5 {
   flex: 5;
 }
-.ya-flex .flex-6 {
+.ya-flex .ya-flex-6 {
   flex: 6;
 }
 /* 索引（面包屑导航） */
@@ -395,6 +581,9 @@ strong {
   top: calc(50% - 50px);
   left: calc(50% - 50px);
 }
+.ya-width-fit {
+  width: fit-content;
+}
 .with10 {
   width: 10px;
 }
@@ -444,23 +633,50 @@ strong {
 .padding0 {
   padding: 0;
 }
-.padding0-10 {
-  padding: 0 10px;
+.padding6 {
+  padding: 6px;
+}
+.padding0-6 {
+  padding: 0 6px;
+}
+.padding6-0 {
+  padding: 6px 0;
 }
 .padding10 {
   padding: 10px;
 }
-.margin0-10 {
+.padding0-10 {
   padding: 0 10px;
 }
-.margin10 {
-  padding: 10px;
+.padding10-0 {
+  padding: 10px 0;
 }
-.ya-radius5 {
-  border-radius: 5px;
+.margin6 {
+  margin: 6px;
+}
+.margin0-6 {
+  margin: 0 6px;
+}
+.margin6-0 {
+  margin: 6px 0;
+}
+.margin10 {
+  margin: 10px;
+}
+.margin0-10 {
+  margin: 0 10px;
+}
+.ya-radius4 {
+  border-radius: 4px;
 }
 .ya-radius10 {
   border-radius: 10px;
+}
+.ya-radius16 {
+  border-radius: 16px;
+}
+.ya-radius50 {
+  border-radius: 50%;
 }
 .center {
   text-align: center;

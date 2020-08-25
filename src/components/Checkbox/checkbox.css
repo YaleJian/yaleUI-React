@@ -1,8 +1,10 @@
 .ya-checkbox {
   width: 16px;
-  color: #76bdb6;
+}
+.ya-checkbox .ya-checkbox-text {
+  margin: 0 0 0 6px;
 }
 .checkboxDemo .ya-checkbox {
-  margin: 0 5px;
+  margin: 0 10px 0 0;
 }
 /*# sourceMappingURL=checkbox.css.map */

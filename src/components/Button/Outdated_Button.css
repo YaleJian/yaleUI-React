@@ -1,4 +1,4 @@
-.ya-btn {
+.ya-btn-outdated {
   background: #87d4cc;
   color: white;
   margin: 0 6px;
@@ -8,181 +8,142 @@
   transition: all 0.5s;
   font-size: 14px;
 }
-.ya-btn.radius {
+.ya-btn-outdated.radius {
   border-radius: 10px;
 }
-.ya-btn.small {
+.ya-btn-outdated.small {
   padding: 1px;
   font-size: 14px;
 }
-.ya-btn.big {
+.ya-btn-outdated.big {
   padding: 6px 6px;
   font-size: 16px;
 }
-.ya-btn.biggest {
+.ya-btn-outdated.biggest {
   padding: 8px 8px;
   font-size: 17px;
 }
-.ya-btn.white {
-  background: white;
-  color: #6f6f6f;
-}
-.ya-btn.grey {
+.ya-btn-outdated.grey {
   background: #f5f4f4;
   color: #6f6f6f;
 }
-.ya-btn.blue {
+.ya-btn-outdated.blue {
   background: #5cccda;
 }
-.ya-btn.red {
+.ya-btn-outdated.red {
   background: #fd8880;
 }
-.ya-btn.orange {
+.ya-btn-outdated.orange {
   background: #ffad49;
 }
-.ya-btn.green {
+.ya-btn-outdated.green {
   background: #44e293;
 }
-.ya-btn:hover,
-.ya-btn.outline:hover {
+.ya-btn-outdated:hover {
   background: #009688;
   cursor: pointer;
   border: 1px solid #009688;
   color: white;
 }
-.ya-btn:hover.white,
-.ya-btn:hover.grey,
-.ya-btn.outline.white:hover,
-.ya-btn.outline.grey:hover {
-  color: #6f6f6f;
-  background: #e2e2e2;
-  border: 1px solid #e2e2e2;
-}
-.ya-btn:hover.blue,
-.ya-btn.outline.blue:hover {
+.ya-btn-outdated:hover.blue {
   background: #009fb7;
   border: 1px solid #009fb7;
 }
-.ya-btn:hover.red,
-.ya-btn.outline.red:hover {
+.ya-btn-outdated:hover.red {
   background: #de4f4f;
   border: 1px solid #de4f4f;
 }
-.ya-btn:hover.orange,
-.ya-btn.outline.orange:hover {
+.ya-btn-outdated:hover.orange {
   background: #de8500;
   border: 1px solid #de8500;
 }
-.ya-btn:hover.green,
-.ya-btn.outline.green:hover {
+.ya-btn-outdated:hover.green {
   background: #00b35a;
   border: 1px solid #00b35a;
 }
-.ya-btn:active {
+.ya-btn-outdated:active {
   background: #008777;
   cursor: pointer;
   border: 1px solid #008777;
   border-radius: 6px;
   color: white;
 }
-.ya-btn:active.white,
-.ya-btn:active.grey,
-.ya-btn.outline.white:active,
-.ya-btn.outline.grey:active {
-  color: #6f6f6f;
-  background: #dadada;
-  border: 1px solid #dadada;
-}
-.ya-btn:active.blue,
-.ya-btn.outline.blue:active {
+.ya-btn-outdated:active.blue {
   background: #006887;
   border: 1px solid #006887;
 }
-.ya-btn:active.red,
-.ya-btn.outline.red:active {
+.ya-btn-outdated:active.red {
   background: #872d2d;
   border: 1px solid #872d2d;
 }
-.ya-btn:active.orange,
-.ya-btn.outline.orange:active {
+.ya-btn-outdated:active.orange {
   background: #875600;
   border: 1px solid #875600;
 }
-.ya-btn:active.green,
-.ya-btn.outline.green:active {
+.ya-btn-outdated:active.green {
   background: #008738;
   border: 1px solid #008738;
 }
-.ya-btn.outline {
+.ya-btn-outdated.outline {
   background: white;
   border: 1px solid #009688;
   color: #87d4cc;
 }
-.ya-btn.outline.white {
-  color: #6f6f6f;
-  border: 1px solid #ddd9d9;
-}
-.ya-btn.outline.white:hover {
-  border: 1px solid #c9c9c9;
-}
-.ya-btn.outline.white:active {
-  border: 1px solid #c9c9c9;
-}
-.ya-btn.outline.grey {
+.ya-btn-outdated.outline.grey {
   color: #6f6f6f;
   border: 1px solid #6f6f6f;
 }
-.ya-btn.outline.grey:hover {
+.ya-btn-outdated.outline.grey:hover {
   color: white;
 }
-.ya-btn.outline.grey:active {
+.ya-btn-outdated.outline.grey:active {
   color: white;
 }
-.ya-btn.outline.blue {
+.ya-btn-outdated.outline.blue {
   color: #5cccda;
   border: 1px solid #5cccda;
 }
-.ya-btn.outline.blue:hover {
+.ya-btn-outdated.outline.blue:hover {
   color: white;
 }
-.ya-btn.outline.blue:active {
+.ya-btn-outdated.outline.blue:active {
   color: white;
 }
-.ya-btn.outline.red {
+.ya-btn-outdated.outline.red {
   color: #fd8880;
   border: 1px solid #fd8880;
 }
-.ya-btn.outline.red:hover {
+.ya-btn-outdated.outline.red:hover {
   color: white;
 }
-.ya-btn.outline.red:active {
+.ya-btn-outdated.outline.red:active {
   color: white;
 }
-.ya-btn.outline.orange {
+.ya-btn-outdated.outline.orange {
   color: #ffad49;
   border: 1px solid #ffad49;
 }
-.ya-btn.outline.orange:hover {
+.ya-btn-outdated.outline.orange:hover {
   color: white;
 }
-.ya-btn.outline.orange:active {
+.ya-btn-outdated.outline.orange:active {
   color: white;
 }
-.ya-btn.outline.green {
+.ya-btn-outdated.outline.green {
   color: #44e293;
   border: 1px solid #44e293;
 }
-.ya-btn.outline.green:hover {
+.ya-btn-outdated.outline.green:hover {
   color: white;
 }
-.ya-btn.outline.green:active {
+.ya-btn-outdated.outline.green:active {
   color: white;
 }
-.ya-btn.disabled {
+.ya-btn-outdated.disabled {
   opacity: 0.5;
   cursor: not-allowed;
 }
-.ya-btn.disabled:hover {
+.ya-btn-outdated.disabled:hover {
   border-radius: 10px;
   opacity: 0.2;
 }
@@ -205,4 +166,4 @@
   padding: 10px 0;
   border-radius: 6px;
 }
-/*# sourceMappingURL=button.css.map */
+/*# sourceMappingURL=Outdated_Button.css.map */
