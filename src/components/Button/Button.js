@@ -31,7 +31,7 @@ const Button = (props) => {
     if (props.radius) className += " ya-radius10";
 
     //禁用
-    if (props.disabled) className += " disabled";
+    if (props.disabled) className += " ya-disabled";
 
     //额外样式
     if (props.className) className += " " + props.className;
@@ -39,8 +39,8 @@ const Button = (props) => {
 
     //图标按钮
     let content = <>
-        {props.icon ? <Icon name={this.props.icon}/> : ""}
-        {props.children || (props.icon || "Button")}
+        {props.icon ? <Icon name={props.icon}/> : ""}
+        {props.children || (props.icon ? "" : "Button")}
     </>;
     if (props.adaptive) {
         return <div className={className} onClick={props.onClick}>{content}</div>;

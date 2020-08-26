@@ -80,25 +80,26 @@ class ButtonDemo extends Component {
                 <div className="ya-p">
                     <div>
                         <span className="ya-groupBtn">
-                            <Button radius color={"blue"}>left</Button>
-                            <Button radius color={"blue"}>middle</Button>
-                            <Button radius color={"blue"}>right</Button>
+                            <Button radius color={"orange"}>上一页</Button>
+                            <Button radius color={"orange"}>下一页</Button>
                         </span>
                         <span className="ya-groupBtn">
-                            <Button color={"blue"}>left</Button>
-                            <Button color={"blue"}>middle</Button>
-                            <Button color={"blue"}>right</Button>
+                            <Button color={"yellow"}>上一页</Button>
+                            <Button color={"yellow"}>下一页</Button>
+                        </span>
+                        <span className="ya-groupBtn">
+                            <Button radius color={"blue"}>向后</Button>
+                            <Button radius color={"blue"}>刷新</Button>
+                            <Button radius color={"blue"}>向前</Button>
                         </span>
                     </div>
                 </div>
 
-                <h2>图标</h2>
+                <h2>图标按钮</h2>
                 <div className="ya-p">
                     <div>
-                        <Button color={"white"}><Icon name="i-shijian1"/></Button>
-                        <Button color={"white"}><Icon name="i-qrCode"/></Button>
-                        <Button radius color={"grey"}><Icon name="i--expressionless"/></Button>
-                        <Button adaptive radius color={"orange"}><Icon name="i-shezhi1"/></Button>
+                        <Button color={"white"} icon="i-dingwei"/>
+                        <Button radius color={"red"} icon="i-shuaxin"/>
                     </div>
                 </div>
             </React.Fragment>
