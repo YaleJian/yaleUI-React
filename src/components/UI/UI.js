@@ -22,7 +22,7 @@ class UI extends Component {
         super(props);
         this.state = {
             sideLeft : document.body.clientWidth > 900,
-            sideRight : true,
+            sideRight : document.body.clientWidth > 900,
         }
     }
     render() {
@@ -46,7 +46,7 @@ class UI extends Component {
             </React.Fragment>;
 
         let mainClass = this.state.sideLeft ? "sideLeft" : "";
-        // mainClass = this.state.sideRight ? mainClass +=" sideRight" : "";
+        mainClass = this.state.sideRight ? mainClass +=" sideRight" : "";
         return (
             <React.Fragment>
                 <Header/>

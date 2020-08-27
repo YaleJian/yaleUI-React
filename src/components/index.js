@@ -1,3 +1,7 @@
+import './common/css/tagFormat.css';
+import './common/css/index.css';
+import './common/css/fastUse.css';
+import './common/css/color.css';
 import './Animate/animate.css';
 import {Animate} from './Animate/Animate';
 import {Button} from './Button/Button';

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Icon} from "../index";
+import {Button, Icon} from "../index";
 import {Tree} from "../index";
 import {getNavData} from "..";
 import {Checkbox} from "../index";
@@ -20,11 +20,9 @@ class Typography extends Component {
     render() {
         return <React.Fragment>
             <Tree treeData={this.state.navData}
-
                   treeType={3}
                   openBtn={false}
                   openLevel={"all"}
-
                   ref={tree => {
                       this.tree = tree
                   }}
@@ -32,46 +30,175 @@ class Typography extends Component {
             <h1 className="ya-title">排版</h1>
 
             <h2 className="ya-title">颜色</h2>
-            <div className="ya-p ya-flex">
-                <div className="ya-black margin0-6">黑色</div>
-                <div className="ya-white ya-bg-black ya-width-fit margin0-6">白色</div>
-                <div className="ya-grey margin0-6">深灰色</div>
-                <div className="ya-red margin0-6">红色</div>
-                <div className="ya-green margin0-6">绿色</div>
-                <div className="ya-blue margin0-6">蓝色</div>
-                <div className="ya-orange margin0-6">橙色</div>
-                <div className="ya-yellow margin0-6">黄色</div>
-                <div className="ya-purple margin0-6">紫色</div>
-                <div className="ya-lightGrey margin0-6">浅灰色</div>
+            <div className="ya-p">
+                <h3 className="ya-title">较深的颜色</h3>
+                <div className={"ya-flex"}>
+                    <div className="ya-black margin0-6">黑色</div>
+                    <div className="ya-grey margin0-6">深灰色</div>
+                    <div className="ya-red margin0-6">红色</div>
+                    <div className="ya-green margin0-6">绿色</div>
+                    <div className="ya-blue margin0-6">蓝色</div>
+                    <div className="ya-orange margin0-6">橙色</div>
+                    <div className="ya-purple margin0-6">紫色</div>
+                    <div className="ya-yellow margin0-6">黄色</div>
+                </div>
+                <h3 className="ya-title">浅色</h3>
+                <div className={"ya-flex"}>
+                    <div className="ya-white margin0-6">白色</div>
+                    <div className="ya-light-grey margin0-6">浅灰色</div>
+                    <div className="ya-light-red margin0-6">红色</div>
+                    <div className="ya-light-green margin0-6">绿色</div>
+                    <div className="ya-light-blue margin0-6">蓝色</div>
+                    <div className="ya-light-orange margin0-6">橙色</div>
+                    <div className="ya-light-purple margin0-6">紫色</div>
+                    <div className="ya-light-yellow margin0-6">黄色</div>
+                </div>
             </div>
             <h2 className="ya-title">背景</h2>
             <div className="ya-p textDemo">
-                <div className="ya-bg-black ya-white padding6-0 center">黑色背景</div>
-                <div className="ya-bg-white padding6-0 center">白色背景</div>
-                <div className="ya-bg-grey ya-white padding6-0 center">深灰色背景</div>
-                <div className="ya-bg-red ya-white padding6-0 center">红色背景</div>
-                <div className="ya-bg-green ya-white padding6-0 center">绿色背景</div>
-                <div className="ya-bg-blue ya-white padding6-0 center">蓝色背景</div>
-                <div className="ya-bg-orange ya-white padding6-0 center">橙色背景</div>
-                <div className="ya-bg-yellow ya-white padding6-0 center">黄色背景</div>
-                <div className="ya-bg-purple ya-white padding6-0 center">紫色背景</div>
-                <div className="ya-bg-lightGrey padding6-0 center">浅灰色背景</div>
-                <div className="ya-bg-lightRed padding6-0 center">浅红色背景</div>
-                <div className="ya-bg-lightBlue padding6-0 center">浅蓝色背景</div>
-                <div className="ya-bg-lightOrange padding6-0 center">浅橙色背景</div>
-                <div className="ya-bg-lightGreen padding6-0 center">浅绿色背景</div>
+                <h3 className="ya-title">黑白背景</h3>
+                <div className={"ya-flex"}>
+                    <div className="ya-bg-black ya-white width300 height50 center"/>
+                    <div className="ya-bg-grey ya-white width300 height50 center"/>
+                    <div className="ya-bg-light-grey width300 height50 center"/>
+                    <div className="ya-bg-white width300 height50 center"/>
+                </div>
+
+                <h3 className="ya-title">深色的背景</h3>
+                <div className={"ya-flex"}>
+                    <div className="ya-bg-red ya-white width300 height50 center"/>
+                    <div className="ya-bg-green ya-white width300 height50 center"/>
+                    <div className="ya-bg-blue ya-white width300 height50 center"/>
+                    <div className="ya-bg-orange ya-white width300 height50 center"/>
+                    <div className="ya-bg-purple ya-white width300 height50 center"/>
+                    <div className="ya-bg-yellow ya-white width300 height50 center"/>
+                </div>
+
+                <h3 className="ya-title">浅色的背景</h3>
+                <div className={"ya-flex"}>
+                    <div className="ya-bg-light-red width300 height50 center"/>
+                    <div className="ya-bg-light-green width300 height50 center"/>
+                    <div className="ya-bg-light-blue width300 height50 center"/>
+                    <div className="ya-bg-light-orange width300 height50 center"/>
+                    <div className="ya-bg-light-purple ya-white width300 height50 center"/>
+                    <div className="ya-bg-light-yellow ya-white width300 height50 center"/>
+                </div>
+
+                <h3 className="ya-title">高斯模糊的背景</h3>
+                <div className={"ya-flex"}>
+                    <div className={"width300"} style={{"background": "linear-gradient(to right, #03A9F4, #8ece44)"}}>
+                        <div className="ya-bg-blur ya-white width300 height50 center">背景高斯模糊效果</div>
+                    </div>
+                    <div className={"width300"}
+                         style={{"background": "url(https://img-prod-cms-rt-microsoft-com.akamaized.net/cms/api/am/imageFileData/RE1Mu3b?ver=5c31) center no-repeat"}}>
+                        <div className="ya-bg-blur ya-white width300 height50 center">背景高斯模糊效果</div>
+                    </div>
+                </div>
             </div>
             <h2 className="ya-title">边框</h2>
             <div className="ya-p textDemo">
-                <div className="ya-border-black margin6-0 padding6">黑色边框</div>
-                <div className="ya-border-grey margin6-0 padding6">浅灰色边框</div>
-                <div className="ya-border-orange margin6-0 padding6">橙色边框</div>
-                <div className="ya-border-purple margin6-0 padding6">紫色边框</div>
-                <div className="ya-border ya-blue margin6-0 padding6">和文字颜色一致的边框</div>
-                <div className="ya-border ya-blue ya-radius4 ya-width-fit margin6-0 padding6">圆角4px</div>
-                <div className="ya-border ya-green ya-radius10 ya-width-fit margin6-0 padding6">圆角10px</div>
-                <div className="ya-border ya-green ya-radius16 ya-width-fit margin6-0 padding6">圆角16px</div>
-                <div className="ya-border ya-red ya-radius50 ya-width-fit with20 height20 margin6-0 padding6 center">圆</div>
+                <h3 className="ya-title">内置边框颜色</h3>
+                <div className={"ya-flex"}>
+                    <div className="ya-border-black padding16 margin6"/>
+                    <div className="ya-border-grey padding16 margin6"/>
+                    <div className="ya-border-red padding16 margin6"/>
+                    <div className="ya-border-blue padding16 margin6"/>
+                    <div className="ya-border-orange padding16 margin6"/>
+                    <div className="ya-border-purple padding16 margin6"/>
+                    <div className="ya-border-yellow padding16 margin6"/>
+                </div>
+            </div>
+            <h2 className="ya-title">圆角</h2>
+            <div className="ya-p ya-flex">
+                <div className="ya-border radius4 padding6 margin10">圆角4px</div>
+                <div className="ya-border radius10 padding6 margin10">圆角10px</div>
+                <div className="ya-border radius16 padding6 margin10">圆角16px</div>
+                <div className="ya-border radius50 height36 width36 center margin10">圆</div>
+            </div>
+            <h2 className="ya-title">组合</h2>
+            <div className="ya-p textDemo">
+                <h3 className="ya-title">白色文字+背景颜色</h3>
+                <div className={"ya-flex"}>
+                    <div className="ya-bg-black ya-white width300 height50 center">黑色</div>
+                    <div className="ya-bg-grey ya-white width300 height50 center">灰色</div>
+                    <div className="ya-bg-red ya-white width300 height50 center">红色</div>
+                    <div className="ya-bg-green ya-white width300 height50 center">绿色</div>
+                    <div className="ya-bg-blue ya-white width300 height50 center">蓝色</div>
+                    <div className="ya-bg-orange ya-white width300 height50 center">橙色</div>
+                    <div className="ya-bg-purple ya-white width300 height50 center">紫色</div>
+                    <div className="ya-bg-yellow ya-white width300 height50 center">黄色</div>
+                </div>
+                <div className={"ya-flex"}>
+                    <div className="ya-bg-white ya-white width300 height50 center">白色</div>
+                    <div className="ya-bg-light-grey ya-white width300 height50 center">浅灰色</div>
+                    <div className="ya-bg-light-red ya-white width300 height50 center">红色</div>
+                    <div className="ya-bg-light-green ya-white width300 height50 center">绿色</div>
+                    <div className="ya-bg-light-blue ya-white width300 height50 center">蓝色</div>
+                    <div className="ya-bg-light-orange ya-white width300 height50 center">橙色</div>
+                    <div className="ya-bg-light-purple ya-white width300 height50 center">紫色</div>
+                    <div className="ya-bg-light-yellow ya-white width300 height50 center">黄色</div>
+                </div>
+                <h3 className="ya-title">黑色文字+背景颜色</h3>
+                <div className={"ya-flex"}>
+                    <div className="ya-bg-black ya-black width300 height50 center">黑色</div>
+                    <div className="ya-bg-grey ya-black width300 height50 center">灰色</div>
+                    <div className="ya-bg-red ya-black width300 height50 center">红色</div>
+                    <div className="ya-bg-green ya-black width300 height50 center">绿色</div>
+                    <div className="ya-bg-blue ya-black width300 height50 center">蓝色</div>
+                    <div className="ya-bg-orange ya-black width300 height50 center">橙色</div>
+                    <div className="ya-bg-purple ya-black width300 height50 center">紫色</div>
+                    <div className="ya-bg-yellow ya-black width300 height50 center">黄色</div>
+                </div>
+                <div className={"ya-flex"}>
+                    <div className="ya-bg-white ya-black width300 height50 center">白色</div>
+                    <div className="ya-bg-light-grey ya-black width300 height50 center">浅灰色</div>
+                    <div className="ya-bg-light-red ya-black width300 height50 center">红色</div>
+                    <div className="ya-bg-light-green ya-black width300 height50 center">绿色</div>
+                    <div className="ya-bg-light-blue ya-black width300 height50 center">蓝色</div>
+                    <div className="ya-bg-light-orange ya-black width300 height50 center">橙色</div>
+                    <div className="ya-bg-light-yellow ya-black width300 height50 center">黄色</div>
+                    <div className="ya-bg-light-purple ya-black width300 height50 center">紫色</div>
+                </div>
+                <h3 className="ya-title">彩色文字+浅色背景颜色</h3>
+                <div className={"ya-flex"}>
+                    <div className="ya-bg-light-grey ya-grey width300 height50 center">灰色</div>
+                    <div className="ya-bg-light-red ya-red width300 height50 center">红色</div>
+                    <div className="ya-bg-light-green ya-green width300 height50 center">绿色</div>
+                    <div className="ya-bg-light-blue ya-blue width300 height50 center">蓝色</div>
+                    <div className="ya-bg-light-orange ya-orange width300 height50 center">橙色</div>
+                    <div className="ya-bg-light-purple ya-purple width300 height50 center">紫色</div>
+                    <div className="ya-bg-light-yellow ya-yellow width300 height50 center">黄色</div>
+                </div>
+
+                <h3 className="ya-title">文字+边框（边框使用currentColor属性）</h3>
+                <div className={"ya-flex"}>
+                    <div className="ya-border ya-black padding6 margin4">文字</div>
+                    <div className="ya-border ya-grey padding6 margin4">文字</div>
+                    <div className="ya-border ya-red padding6 margin4">文字</div>
+                    <div className="ya-border ya-blue padding6 margin4">文字</div>
+                    <div className="ya-border ya-orange padding6 margin4">文字</div>
+                    <div className="ya-border ya-purple padding6 margin4">文字</div>
+                    <div className="ya-border ya-yellow padding6 margin4">文字</div>
+                </div>
+                <h2 className="ya-title">文字+圆角边框</h2>
+                <div className="ya-flex">
+                    <div className="ya-border ya-blue radius4 padding6 margin4">圆角4px</div>
+                    <div className="ya-border ya-green radius10 padding6 margin4">圆角10px</div>
+                    <div className="ya-border ya-orange radius16 padding6 margin4">圆角16px</div>
+                    <div className="ya-border ya-red radius50 height36 width36 center margin4">圆</div>
+                </div>
+                <h2 className="ya-title">文字+浅色背景+边框</h2>
+                <div className="ya-flex">
+                    <div className="ya-border ya-black ya-bg-light-black padding6 margin4">文字</div>
+                    <div className="ya-border ya-black ya-bg-light-grey padding6 margin4">文字</div>
+                    <div className="ya-border ya-grey ya-bg-light-grey padding6 margin4">文字</div>
+                    <div className="ya-border ya-red ya-bg-light-red padding6 margin4">文字</div>
+                    <div className="ya-border ya-green ya-bg-light-green padding6 margin4">文字</div>
+                    <div className="ya-border ya-blue ya-bg-light-blue padding6 margin4">文字</div>
+                    <div className="ya-border ya-orange ya-bg-light-orange padding6 margin4">文字</div>
+                    <div className="ya-border ya-purple ya-bg-light-purple padding6 margin4">文字</div>
+                    <div className="ya-border ya-yellow ya-bg-light-yellow padding6 margin4">文字</div>
+                </div>
             </div>
             <h2 className="ya-title">标题</h2>
             <div className="ya-p">

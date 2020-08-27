@@ -1,0 +1,436 @@
+//预置颜色
+//深色
+@black: black;
+@blackHover: #464646;
+@blackActive: #6f6f6f;
+
+@grey: #696969;
+@greyHover: #4a4949;
+@greyActive: #2b2b2b;
+
+@red: #ff8080; //HSL 0 100% 75%
+@redHover: #de4f4f;
+@redActive: #872d2d;
+
+@green: #44e293; //HSL 150 70% 55%
+@greenHover: #00b35a;
+@greenActive: #008738;
+
+@blue: #5cccda; //HSL 180 60% 60%
+@blueHover: #009fb7;
+@blueActive: #006887;
+
+@orange: #ffad49;
+@orangeHover: #de8500;
+@orangeActive: #875600;
+
+@purple: #d569e8;
+@purpleHover: #bb5acc;
+@purpleActive: #9a3eab;
+
+@yellow: #FFEB3B;
+@yellowHover: #e6d118;
+@yellowActive: #cebb14;
+
+//浅色
+@light-grey: #f5f4f4;
+@light-greyHover: #f1f1f1;
+
+@light-red: #ffcfcf;
+@light-redHover: #ffd9d9;
+
+@light-green: #c7f3ec;
+@light-greenHover: #d4f8ec;
+
+@light-blue: #c6ecf3;
+@light-blueHover: #d5f2fa;
+
+@light-orange: #f5dfcb;
+@light-orangeHover: #ffead4;
+
+@light-purple: #edccf1;
+@light-purpleHover: #fbd6ff;
+
+@light-yellow: #f6f2cc;
+@light-yellowHover: #fcf8d2;
+
+
+//颜色
+.ya-white {
+  color: white;
+}
+
+.ya-black {
+  color: @black;
+}
+
+.ya-grey {
+  color: @grey;
+}
+
+.ya-red {
+  color: @red;
+}
+
+.ya-green {
+  color: @green;
+}
+
+.ya-blue {
+  color: @blue;
+}
+
+.ya-orange {
+  color: @orange;
+}
+
+.ya-yellow {
+  color: @yellow;
+}
+
+.ya-purple {
+  color: @purple;
+}
+
+.ya-light-grey {
+  color: @light-grey;
+}
+
+.ya-light-red {
+  color: @light-red;
+}
+
+.ya-light-green {
+  color: @light-green;
+}
+
+.ya-light-blue {
+  color: @light-blue;
+}
+
+.ya-light-orange {
+  color: @light-orange;
+}
+
+.ya-light-yellow {
+  color: @light-yellow;
+}
+
+.ya-light-purple {
+  color: @light-purple;
+}
+
+//背景色
+.ya-bg-white {
+  background: white;
+
+  &:hover {
+    background: @light-greyHover;
+  }
+
+  &:active {
+    background: @light-greyHover;
+  }
+}
+
+.ya-bg-black {
+  background: @black;
+
+  &:hover {
+    background: @blackHover;
+  }
+
+  &:active {
+    background: @blackActive;
+  }
+}
+
+.ya-bg-grey {
+  background: @grey;
+
+  &:hover {
+    background: @greyHover;
+  }
+
+  &:active {
+    background: @greyActive;
+  }
+
+}
+
+.ya-bg-red {
+  background: @red;
+
+  &:hover {
+    background: @redHover;
+  }
+
+  &:active {
+    background: @redActive;
+  }
+}
+
+.ya-bg-orange {
+  background: @orange;
+
+  &:hover {
+    background: @orangeHover;
+  }
+
+  &:active {
+    background: @orangeActive;
+  }
+}
+
+.ya-bg-yellow {
+  background: @yellow;
+
+  &:hover {
+    background: @yellowHover;
+  }
+
+  &:active {
+    background: @yellowActive;
+  }
+}
+
+.ya-bg-green {
+  background: @green;
+
+  &:hover {
+    background: @greenHover;
+  }
+
+  &:active {
+    background: @greenActive;
+  }
+}
+
+.ya-bg-blue {
+  background: @blue;
+
+  &:hover {
+    background: @blueHover;
+  }
+
+  &:active {
+    background: @blueActive;
+  }
+}
+
+.ya-bg-purple {
+  background: @purple;
+
+  &:hover {
+    background: @purpleHover;
+  }
+
+  &:active {
+    background: @purpleActive;
+  }
+
+}
+
+.ya-bg-light-grey {
+  background: @light-grey;
+
+  &.white {
+    background: white;
+  }
+
+  &:hover {
+    background: @light-greyHover;
+  }
+
+  &:active {
+    background: @light-grey;
+  }
+}
+
+.ya-bg-light-red {
+  background: @light-red;
+
+  &.white {
+    background: white;
+  }
+
+  &:hover {
+    background: @light-redHover;
+  }
+
+  &:active {
+    background: @light-red;
+  }
+}
+
+.ya-bg-light-orange {
+  background: @light-orange;
+
+  &.white {
+    background: white;
+  }
+
+  &:hover {
+    background: @light-orangeHover;
+  }
+
+  &:active {
+    background: @light-orange;
+  }
+}
+
+.ya-bg-light-yellow {
+  background: @light-yellow;
+
+
+  &.white {
+    background: white;
+  }
+
+  &:hover {
+    background: @light-yellowHover;
+  }
+
+  &:active {
+    background: @light-yellow;
+  }
+}
+
+.ya-bg-light-green {
+  background: @light-green;
+
+  &.white {
+    background: white;
+  }
+
+  &:hover {
+    background: @light-greenHover;
+  }
+
+  &:active {
+    background: @light-green;
+  }
+}
+
+.ya-bg-light-blue {
+  background: @light-blue;
+
+  &.white {
+    background: white;
+  }
+
+  &:hover {
+    background: @light-blueHover;
+  }
+
+  &:active {
+    background: @light-blue;
+  }
+}
+
+.ya-bg-light-purple {
+  background: @light-purple;
+
+  &.white {
+    background: white;
+  }
+
+  &:hover {
+    background: @light-purpleHover;
+  }
+
+  &:active {
+    background: @light-purple;
+  }
+}
+
+.ya-bg-blur {
+  backdrop-filter: blur(20px);
+}
+.ya-bg-saturate {
+  backdrop-filter: saturate(180%);
+}
+.ya-bg-blur-saturate {
+  backdrop-filter: saturate(180%) blur(20px);
+}
+.ya-an-blur {
+  display: inline-block;
+  transition: 0.5s;
+  animation: blur20 0.7s linear infinite;
+}
+
+@keyframes blur20 {
+  0% {
+    backdrop-filter: saturate(100%) blur(0px);
+  }
+  25% {
+    backdrop-filter: saturate(120%) blur(5px);
+  }
+  50% {
+    backdrop-filter: saturate(140%) blur(10px);
+  }
+  75% {
+    backdrop-filter: saturate(160%) blur(15px);
+  }
+  100% {
+    backdrop-filter: saturate(180%) blur(20px);
+  }
+}
+
+.ya-bg-white-only {
+  background: white;
+}
+
+//边框
+.ya-border0 {
+  border: 0;
+}
+
+.ya-border-transparent {
+  border: 1px solid rgba(255, 255, 255, 0);
+}
+
+.ya-border {
+  //文字和边框同色
+  border: 1px solid currentColor !important;
+}
+
+.ya-border-white {
+  border: 1px solid white;
+}
+
+.ya-border-light-grey {
+  border: 1px solid @light-grey;
+}
+
+.ya-border-grey {
+  border: 1px solid @grey;
+}
+
+.ya-border-black {
+  border: 1px solid black;
+}
+
+.ya-border-red {
+  border: 1px solid @red;
+}
+
+.ya-border-green {
+  border: 1px solid @green;
+}
+
+.ya-border-blue {
+  border: 1px solid @blue;
+}
+
+.ya-border-yellow {
+  border: 1px solid @yellow;
+}
+
+.ya-border-orange {
+  border: 1px solid @orange;
+}
+
+.ya-border-purple {
+  border: 1px solid @purple;
+}

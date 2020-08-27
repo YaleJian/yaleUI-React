@@ -11,61 +11,92 @@ class ButtonDemo extends Component {
             <React.Fragment>
                 <h2>大小</h2>
                 <div className="ya-p">
-                    <div className="content">
-                        <Button className={"small"}/>
+                    <div>
+                        <Button small/>
                         <Button/>
-                        <Button className={"big"}/>
+                        <Button big/>
                     </div>
                 </div>
 
                 <h2>内置颜色样式</h2>
                 <div className="ya-p">
-                    <div className="content">
+                    <div>
+                        <Button textColor={"black"}/>
+                        <Button textColor={"grey"}/>
+                        <Button textColor={"red"}/>
+                        <Button textColor={"orange"}/>
+                        <Button textColor={"green"}/>
+                        <Button textColor={"blue"}/>
+                        <Button textColor={"purple"}/>
+                        <Button textColor={"yellow"}/>
+                    </div>
+                    <div>
                         <Button color={"black"}/>
                         <Button color={"grey"}/>
                         <Button color={"red"}/>
                         <Button color={"orange"}/>
-                        <Button color={"yellow"}/>
                         <Button color={"green"}/>
                         <Button color={"blue"}/>
                         <Button color={"purple"}/>
+                        <Button color={"yellow"}/>
                     </div>
-                    <div className="content">
+                    <div>
                         <Button line={"black"}/>
                         <Button line={"grey"}/>
                         <Button line={"red"}/>
                         <Button line={"orange"}/>
-                        <Button line={"yellow"}/>
                         <Button line={"green"}/>
                         <Button line={"blue"}/>
                         <Button line={"purple"}/>
+                        <Button line={"yellow"}/>
                     </div>
+                    <div>
+                        <Button color={"grey"}/>
+                        <Button light={"grey"}/>
+                        <Button light={"red"}/>
+                        <Button light={"orange"}/>
+                        <Button light={"green"}/>
+                        <Button light={"blue"}/>
+                        <Button light={"purple"}/>
+                        <Button light={"yellow"}/>
+                    </div>
+                    <div>
+                        <Button tcl={"black"}/>
+                        <Button tcl={"grey"}/>
+                        <Button tcl={"red"}/>
+                        <Button tcl={"orange"}/>
+                        <Button tcl={"green"}/>
+                        <Button tcl={"blue"}/>
+                        <Button tcl={"purple"}/>
+                        <Button tcl={"yellow"}/>
+                    </div>
+
                 </div>
 
                 <h2>边框圆角</h2>
                 <div className="ya-p">
-                    <div className="content">
+                    <div>
                         <Button radius line={"black"}/>
                         <Button radius color={"grey"}/>
                         <Button radius line={"red"}/>
                         <Button radius color={"green"}/>
                         <Button radius color={"blue"}/>
                         <Button radius color={"orange"}/>
-                        <Button radius line={"yellow"}/>
                         <Button radius line={"purple"}/>
+                        <Button radius line={"yellow"}/>
                     </div>
                 </div>
 
                 <h2>禁用</h2>
                 <div className="ya-p">
-                    <div className="content">
+                    <div>
                         <Button color={"blue"} disabled/>
                     </div>
                 </div>
 
                 <h2>自适应按钮</h2>
                 <div className="ya-p">
-                    <div className="content">
+                    <div>
                         <Button color={"blue"} adaptive/>
                         <Button color={"green"} adaptive/>
                         <Button color={"orange"} adaptive/>
