@@ -1,0 +1,287 @@
+.ya-white {
+  color: white;
+}
+.ya-black {
+  color: black;
+}
+.ya-grey {
+  color: #696969;
+}
+.ya-red {
+  color: #ff8080;
+}
+.ya-green {
+  color: #44e293;
+}
+.ya-blue {
+  color: #5cccda;
+}
+.ya-orange {
+  color: #ffad49;
+}
+.ya-yellow {
+  color: #FFEB3B;
+}
+.ya-purple {
+  color: #d569e8;
+}
+.ya-light-grey {
+  color: #f5f4f4;
+}
+.ya-light-red {
+  color: #ffcfcf;
+}
+.ya-light-green {
+  color: #c7f3ec;
+}
+.ya-light-blue {
+  color: #c6ecf3;
+}
+.ya-light-orange {
+  color: #f5dfcb;
+}
+.ya-light-yellow {
+  color: #f6f2cc;
+}
+.ya-light-purple {
+  color: #edccf1;
+}
+.ya-bg-white {
+  background: white;
+}
+.ya-bg-white:hover {
+  background: #f1f1f1;
+}
+.ya-bg-white:active {
+  background: #f1f1f1;
+}
+.ya-bg-black {
+  background: black;
+}
+.ya-bg-black:hover {
+  background: #464646;
+}
+.ya-bg-black:active {
+  background: #6f6f6f;
+}
+.ya-bg-grey {
+  background: #696969;
+}
+.ya-bg-grey:hover {
+  background: #4a4949;
+}
+.ya-bg-grey:active {
+  background: #2b2b2b;
+}
+.ya-bg-red {
+  background: #ff8080;
+}
+.ya-bg-red:hover {
+  background: #de4f4f;
+}
+.ya-bg-red:active {
+  background: #872d2d;
+}
+.ya-bg-orange {
+  background: #ffad49;
+}
+.ya-bg-orange:hover {
+  background: #de8500;
+}
+.ya-bg-orange:active {
+  background: #875600;
+}
+.ya-bg-yellow {
+  background: #FFEB3B;
+}
+.ya-bg-yellow:hover {
+  background: #e6d118;
+}
+.ya-bg-yellow:active {
+  background: #cebb14;
+}
+.ya-bg-green {
+  background: #44e293;
+}
+.ya-bg-green:hover {
+  background: #00b35a;
+}
+.ya-bg-green:active {
+  background: #008738;
+}
+.ya-bg-blue {
+  background: #5cccda;
+}
+.ya-bg-blue:hover {
+  background: #009fb7;
+}
+.ya-bg-blue:active {
+  background: #006887;
+}
+.ya-bg-purple {
+  background: #d569e8;
+}
+.ya-bg-purple:hover {
+  background: #bb5acc;
+}
+.ya-bg-purple:active {
+  background: #9a3eab;
+}
+.ya-bg-light-grey {
+  background: #f5f4f4;
+}
+.ya-bg-light-grey.white {
+  background: white;
+}
+.ya-bg-light-grey:hover {
+  background: #f1f1f1;
+}
+.ya-bg-light-grey:active {
+  background: #f5f4f4;
+}
+.ya-bg-light-red {
+  background: #ffcfcf;
+}
+.ya-bg-light-red.white {
+  background: white;
+}
+.ya-bg-light-red:hover {
+  background: #ffd9d9;
+}
+.ya-bg-light-red:active {
+  background: #ffcfcf;
+}
+.ya-bg-light-orange {
+  background: #f5dfcb;
+}
+.ya-bg-light-orange.white {
+  background: white;
+}
+.ya-bg-light-orange:hover {
+  background: #ffead4;
+}
+.ya-bg-light-orange:active {
+  background: #f5dfcb;
+}
+.ya-bg-light-yellow {
+  background: #f6f2cc;
+}
+.ya-bg-light-yellow.white {
+  background: white;
+}
+.ya-bg-light-yellow:hover {
+  background: #fcf8d2;
+}
+.ya-bg-light-yellow:active {
+  background: #f6f2cc;
+}
+.ya-bg-light-green {
+  background: #c7f3ec;
+}
+.ya-bg-light-green.white {
+  background: white;
+}
+.ya-bg-light-green:hover {
+  background: #d4f8ec;
+}
+.ya-bg-light-green:active {
+  background: #c7f3ec;
+}
+.ya-bg-light-blue {
+  background: #c6ecf3;
+}
+.ya-bg-light-blue.white {
+  background: white;
+}
+.ya-bg-light-blue:hover {
+  background: #d5f2fa;
+}
+.ya-bg-light-blue:active {
+  background: #c6ecf3;
+}
+.ya-bg-light-purple {
+  background: #edccf1;
+}
+.ya-bg-light-purple.white {
+  background: white;
+}
+.ya-bg-light-purple:hover {
+  background: #fbd6ff;
+}
+.ya-bg-light-purple:active {
+  background: #edccf1;
+}
+.ya-bg-blur {
+  backdrop-filter: blur(20px);
+}
+.ya-bg-saturate {
+  backdrop-filter: saturate(180%);
+}
+.ya-bg-blur-saturate {
+  backdrop-filter: saturate(180%) blur(20px);
+}
+.ya-an-blur {
+  display: inline-block;
+  transition: 0.5s;
+  animation: blur20 0.7s linear infinite;
+}
+@keyframes blur20 {
+  0% {
+    backdrop-filter: saturate(100%) blur(0px);
+  }
+  25% {
+    backdrop-filter: saturate(120%) blur(5px);
+  }
+  50% {
+    backdrop-filter: saturate(140%) blur(10px);
+  }
+  75% {
+    backdrop-filter: saturate(160%) blur(15px);
+  }
+  100% {
+    backdrop-filter: saturate(180%) blur(20px);
+  }
+}
+.ya-bg-white-only {
+  background: white;
+}
+.ya-border0 {
+  border: 0;
+}
+.ya-border-transparent {
+  border: 1px solid rgba(255, 255, 255, 0);
+}
+.ya-border {
+  border: 1px solid currentColor !important;
+}
+.ya-border-white {
+  border: 1px solid white;
+}
+.ya-border-light-grey {
+  border: 1px solid #f5f4f4;
+}
+.ya-border-grey {
+  border: 1px solid #696969;
+}
+.ya-border-black {
+  border: 1px solid black;
+}
+.ya-border-red {
+  border: 1px solid #ff8080;
+}
+.ya-border-green {
+  border: 1px solid #44e293;
+}
+.ya-border-blue {
+  border: 1px solid #5cccda;
+}
+.ya-border-yellow {
+  border: 1px solid #FFEB3B;
+}
+.ya-border-orange {
+  border: 1px solid #ffad49;
+}
+.ya-border-purple {
+  border: 1px solid #d569e8;
+}
+/*# sourceMappingURL=color.css.map */
