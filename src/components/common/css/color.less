@@ -32,6 +32,10 @@
 @yellowHover: #e6d118;
 @yellowActive: #cebb14;
 
+//细线
+@thin-grey: #bfbfbf;
+@thin-greyHover: #bfbfbf;
+
 //浅色
 @light-grey: #f5f4f4;
 @light-greyHover: #f1f1f1;
@@ -344,6 +348,89 @@
   }
 }
 
+.ya-bg-white-only {
+  background: white;
+}
+
+//边框
+.ya-border0 {
+  border: 0;
+}
+
+.ya-border-transparent {
+  border: 1px solid rgba(255, 255, 255, 0);
+}
+
+.ya-border {
+  //文字和边框同色
+  border: 1px solid currentColor !important;
+}
+
+.ya-border-white {
+  border: 1px solid white;
+}
+
+.ya-border-light-grey {
+  border: 1px solid @light-grey;
+  &:hover {
+    background: @light-purpleHover;
+  }
+}
+
+
+.ya-border-black {
+  border: 1px solid black;
+}
+
+.ya-border-grey {
+  border: 1px solid @grey;
+  &:hover {
+    border: 1px solid @greyHover;
+  }
+}
+
+.ya-border-red {
+  border: 1px solid @red;
+  &:hover {
+    border: 1px solid @red;
+  }
+}
+
+.ya-border-green {
+  border: 1px solid @green;
+  &:hover {
+    border: 1px solid @green;
+  }
+}
+
+.ya-border-blue {
+  border: 1px solid @blue;
+  &:hover {
+    border: 1px solid @blue;
+  }
+}
+
+.ya-border-yellow {
+  border: 1px solid @yellow;
+  &:hover {
+    border: 1px solid @yellow;
+  }
+}
+
+.ya-border-orange {
+  border: 1px solid @orange;
+  &:hover {
+    border: 1px solid @orange;
+  }
+}
+
+.ya-border-purple {
+  border: 1px solid @purple;
+  &:hover {
+    border: 1px solid @purple;
+  }
+}
+
 .ya-bg-blur {
   backdrop-filter: blur(20px);
 }
@@ -375,62 +462,4 @@
   100% {
     backdrop-filter: saturate(180%) blur(20px);
   }
-}
-
-.ya-bg-white-only {
-  background: white;
-}
-
-//边框
-.ya-border0 {
-  border: 0;
-}
-
-.ya-border-transparent {
-  border: 1px solid rgba(255, 255, 255, 0);
-}
-
-.ya-border {
-  //文字和边框同色
-  border: 1px solid currentColor !important;
-}
-
-.ya-border-white {
-  border: 1px solid white;
-}
-
-.ya-border-light-grey {
-  border: 1px solid @light-grey;
-}
-
-.ya-border-grey {
-  border: 1px solid @grey;
-}
-
-.ya-border-black {
-  border: 1px solid black;
-}
-
-.ya-border-red {
-  border: 1px solid @red;
-}
-
-.ya-border-green {
-  border: 1px solid @green;
-}
-
-.ya-border-blue {
-  border: 1px solid @blue;
-}
-
-.ya-border-yellow {
-  border: 1px solid @yellow;
-}
-
-.ya-border-orange {
-  border: 1px solid @orange;
-}
-
-.ya-border-purple {
-  border: 1px solid @purple;
 }

@@ -1,140 +1,94 @@
-import React from "react";
+import React, {useState} from "react";
 import "./input.css";
-import {Icon} from "..";
+import {dataUtils, Icon} from "..";
 import ReactDOM from "react-dom";
 import {Button} from "..";
 import {DomUtils} from "..";
 
-class Input extends React.Component {
-    static defaultProps = {
-        type: "text",
-        value: "",
-        placeholder: "",
-        className: "",
-        icon: [],
-        autoComplete: "off",
-        autoContent : false,
-        dropDownBoxData: [],
-        selectIcon : true,
-        onChange: () => {
-        },
-        onSearch: () =>{
-        },
-    };
+const Input = (props) => {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            passwordHide: this.props.type === "password",
-            showContent: false,
-            selectData: "",
-        };
-        this.autoContent = this.props.autoContent || typeof this.props.autoContent === "number";
-    }
-
-    render() {
-        let type = this.props.type;
-        let className = this.props.className;
-        switch (type) {
-            case "password":
-                let passwordIcon = ["", <Icon name={this.state.passwordHide ? "i-showPsw" : "i-hidePsw"}/>];
-                return this.inputWithIcon(className + " right", passwordIcon);
-            case "search":
-                let searchIcon = className.includes("right") ? ["", <Icon name="i-magnifier"/>] : [<Icon
-                    name="i-magnifier"/>];
-                return this.inputWithIcon(className, searchIcon);
-            case "number":
-                className += " number";
-                return this.numberInput(className);
-            case "select":
-                return this.popUp(className);
-            case "popUp":
-                return this.popUp(className);
-            case "withIcon":
-                return this.inputWithIcon(className, this.props.icon);
-            case "textarea":
-                return <textarea className={className} defaultValue={this.props.value}/>;
-            default:
-                return this.input(className);
-        }
-    }
+    const [showPsw, setShowPsw] = useState(false);
+    const [showContent, setShowContent] = useState(false);
+    const [selectData, setSelectData] = useState("");
+    const [value, setValue] = useState(props.value || "");
+    let autoContent = props.autoContent || typeof props.autoContent === "number";
 
     //普通输入框
-    input = (className) => {
-        let type = this.props.type;
-        className = "ya-input " + this.props.type + " " + className;
-        //计算长度
-        let inputWidth = DomUtils.getTextLength(this.props.value) * this.props.autoContent;
+    let input = (className) => {
+        className = `ya-input ${className}`;
+
+        //根据内容长短自动宽度的输入框
+        let inputWidth = DomUtils.getTextLength(props.value) * props.autoContent;//计算文字长度
+        let autoLength = autoContent ? {width: inputWidth ? inputWidth : 14} : null;
+
         //判断input值类型
-        let value = this.props.value;
-        value = type === "number" || type === "integer"  ? Number(value) : value.toString();
-        return <input className={className} style={this.autoContent ? {width : inputWidth ? inputWidth : 14} : null}
-                      type={this.state.passwordHide ? "password" : this.props.type}
+        return <input className={className} style={autoLength}
+                      type={props.type === "password" ? (showPsw ? "text" : "password") : props.type}
                       value={value}
-                      placeholder={this.props.placeholder}
-                      autoComplete={this.props.autoComplete}
-                      onChange={this.onChange.bind(this)}
-                      onClick={this.onClick.bind(this)}
-                      onKeyDown={this.onKeyDown.bind(this)}
-                      ref={inputRef => this.inputRef = inputRef}
+                      placeholder={props.placeholder}
+                      autoComplete={props.autoComplete || "off"}
+                      onChange={onChange.bind(this)}
+                      onClick={onClick.bind(this)}
+                      onKeyDown={onKeyDown.bind(this)}
         />;
     };
 
     //带图标的输入框
-    inputWithIcon = (className, icon) => {
-        if (icon && icon[0]) className += " left";
-        if (icon && icon[1]) className += " right";
-        let inputIcon = (icon) => {
-            return <span className="inputIcon" onClick={this.iconClick.bind(this)}>{icon}</span>
-        };
-        return <span className="inputGroup" onClick={this.onClick.bind(this)}>
-            {icon[0] ? inputIcon(icon[0]) : null}
-            {this.input(className)}
-            {icon[1] ? inputIcon(icon[1]) : null}
-        </span>;
+    let inputGroup = (className, left, right) => {
+        if (typeof left === "string") left = <Icon name={left}/>
+        if (typeof right === "string") right = <Icon name={right}/>
+        return <div className={"inputGroup" + (right ? " suffix" : "")} onClick={onClick.bind(this)}>
+            {left ? <span className={"left"}>{left}</span> : ""}
+            {input(className)}
+            {right ? <span className={"right"}>{right}</span> : ""}
+        </div>;
     };
 
     //数字输入框
-    numberInput = (className) => {
-        let minus = <Button className="white" onClick={this.numberMinus.bind(this)}><Icon name="i-minus"/></Button>;
-        let plus = <Button className="white" onClick={this.numberPlus.bind(this)}><Icon name="i-plus"/></Button>;
-        return this.inputWithIcon(className, [minus, plus]);
-    };
-    //数字增加
-    numberMinus = (e) => {
-        let number = Number(this.inputRef.value);
-        this.inputRef.value = number + 1;
-        this.props.onChange(e);
+    let numberInput = (className) => {
+        let minus = <Button bgColor="light-grey" className="margin0" icon="i-minus" onClick={numberMinus.bind(this)}/>;
+        let plus = <Button bgColor="light-grey" className="margin0" icon="i-plus" onClick={numberPlus.bind(this)}/>;
+        return inputGroup(className, minus, plus);
     };
     //数字减少
-    numberPlus = (e) => {
-        let number = Number(this.inputRef.value);
-        this.inputRef.value = number - 1;
-        this.props.onChange(e);
+    let numberMinus = (e) => {
+        let incrementNum = dataUtils.getNumDecimalPlaces(props.increment);//小数个数
+        let inputValue = Number(value);//输入的数字
+        let inputIncrementNum = dataUtils.getNumDecimalPlaces(props.inputValue || 0);//输入的数字小数个数
+        let num = incrementNum > inputIncrementNum ? incrementNum : inputIncrementNum;//使用小数位数最大的作为放大倍数
+        let zoomIncrement = Math.pow(10, num);//放大倍数
+        setValue((inputValue * zoomIncrement - props.increment * zoomIncrement)/zoomIncrement);
+        props.onChange(e);
+    };
+    //数字增加
+    let numberPlus = (e) => {
+        let incrementNum = dataUtils.getNumDecimalPlaces(props.increment);//小数个数
+        let inputValue = Number(value);//输入的数字
+        let inputIncrementNum = dataUtils.getNumDecimalPlaces(props.inputValue || 0);//输入的数字小数个数
+        let num = incrementNum > inputIncrementNum ? incrementNum : inputIncrementNum;//使用小数位数最大的作为放大倍数
+        let zoomIncrement = Math.pow(10, num);//放大倍数
+        setValue((inputValue * zoomIncrement + props.increment * zoomIncrement)/zoomIncrement);
+        props.onChange(e);
     };
 
-    onChange = (e) => {
-        this.props.onChange();
+    let onChange = (e) => {
+        setValue(e.target.value);
+        props.onChange(e);
     };
 
-    iconClick = (e) => {
-        if (this.props.type === "password") this.setState({passwordHide: !this.state.passwordHide})
-        if (this.props.type === "search") {
-            this.props.onSearch(e);
+    let iconClick = (e) => {
+        if (props.iconClick) props.iconClick(e);
+    };
+    let onClick = (e) => {
+        if (props.type === "popUp" || props.type === "select") setShowContent(!showContent);
+    };
+    let onKeyDown = (e) => {
+        if (e.keyCode === 13 && props.type === "search") {
+            props.onSearch(e);
         }
     };
-    onClick = (e) => {
-        if (this.props.type === "popUp" || this.props.type === "select") {
-            this.setState({showContent: !this.state.showContent});
-        }
-    };
-    onKeyDown = (e) =>{
-        if (e.keyCode === 13 && this.props.type === "search") {
-            this.props.onSearch(e);
-        }
-    };
-    cancel = (maskTag, e) => {
-        this.setState({showContent: false});
+    let cancel = (maskTag, e) => {
+        setShowContent(false);
         maskTag.remove();
         e.preventDefault();
         e.stopPropagation();
@@ -142,9 +96,9 @@ class Input extends React.Component {
 
 
     //自定义弹出输入框
-    popUp = (className) => {
+    let popUp = (className) => {
         let maskContent, maskTag;
-        if (this.state.showContent) {
+        if (showContent) {
             //渲染模态层
             maskTag = document.getElementsByClassName("ya-mask");
             if (maskTag.length === 0) {
@@ -155,37 +109,37 @@ class Input extends React.Component {
             } else {
                 maskTag = maskTag[0];
             }
-            maskContent = <div className="ya-mask-content" onClick={this.cancel.bind(this, maskTag)}/>;
+            maskContent = <div className="ya-mask-content" onClick={cancel.bind(this, maskTag)}/>;
         }
 
-        let content = this.props.children;
+        let content = props.children;
 
         //判断是否是选择框
-        if (this.props.type === "select") content = this.select(maskTag);
+        if (props.type === "select") content = select(maskTag);
 
         let popUpContentClass = "ya-popUp-content animated fastest fadeInDownSmall";
 
         //右侧下拉标志
-        let icon = this.state.showContent ? <Icon name="i-BAI-shangjiantou"/> :
+        let icon = showContent ? <Icon name="i-BAI-shangjiantou"/> :
             <Icon name="i-BAI-xiajiantou"/>;
 
         return <span className="ya-popUp">
-            { !this.props.selectIcon ? this.input(className) : this.inputWithIcon(className, ["",icon])}
-            {this.state.showContent ? <div className={popUpContentClass}>
+            {!props.selectIcon ? input(className) : inputGroup(className, ["", icon])}
+            {showContent ? <div className={popUpContentClass}>
                 {content}
             </div> : null}
-            {this.state.showContent ? ReactDOM.createPortal(maskContent, maskTag) : null}
+            {showContent ? ReactDOM.createPortal(maskContent, maskTag) : null}
         </span>
     };
 
     //下拉选择框
-    select = (maskTag) => {
-        let isArray = Array.isArray(this.props.dropDownBoxData);
+    let select = (maskTag) => {
+        let isArray = Array.isArray(props.dropDownBoxData);
         if (isArray) {
-            let selectContent = this.props.dropDownBoxData.map((item, key) => {
+            let selectContent = props.dropDownBoxData.map((item, key) => {
                 let isObject = typeof item === "object";
                 return <div className="ya-select-content-item" key={key}
-                            onClick={this.selectItemClick.bind(this, isObject ? item.id : item, maskTag)}>{isObject ? item.text : item}</div>
+                            onClick={selectItemClick.bind(this, isObject ? item.id : item, maskTag)}>{isObject ? item.text : item}</div>
             });
             return <div className="ya-select-content">
                 {selectContent}
@@ -195,11 +149,35 @@ class Input extends React.Component {
         }
     };
 
-    selectItemClick = (item, maskTag, e) => {
-        this.props.onChange(item,e);
-        this.cancel(maskTag, e);
+    let selectItemClick = (item, maskTag, e) => {
+        props.onChange(item, e);
+        cancel(maskTag, e);
     }
 
+    let type = props.type || "text";
+    let className = props.className || "";
+
+    switch (type) {
+        case "password":
+            let passwordIcon = <Icon name={showPsw ? "i-showPsw" : "i-hidePsw"} onClick={() => setShowPsw(!showPsw)}/>;
+            return inputGroup(className, false, passwordIcon);
+        case "search":
+            let iconName = "i-magnifier";
+            return inputGroup(className, props.left ? iconName : false, props.right ? iconName : false);
+        case "number":
+            className += "number";
+            return numberInput(className);
+        case "select":
+            return popUp(className);
+        case "popUp":
+            return popUp(className);
+        case "group":
+            return inputGroup(className, props.left, props.right);
+        case "textarea":
+            return <textarea className={className} defaultValue={props.value}/>;
+        default:
+            return input(className);
+    }
 
 }
 

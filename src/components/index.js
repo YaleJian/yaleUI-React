@@ -1,7 +1,5 @@
 import './common/css/tagFormat.css';
-import './common/css/index.css';
-import './common/css/fastUse.css';
-import './common/css/color.css';
+
 import './Animate/animate.css';
 import {Animate} from './Animate/Animate';
 import {Button} from './Button/Button';
@@ -34,6 +32,9 @@ import {Footer} from './common/Footer';
 import {Progress} from './Progress/Progress';
 import {Hang} from "./Hang/Hang";
 import {Brand} from "./common/Brand/Brand";
+import './common/css/index.css';
+import './common/css/fastUse.css';
+import './common/css/color.css';
 export {
     UI,
     Header,

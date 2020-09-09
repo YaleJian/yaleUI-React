@@ -31,6 +31,12 @@
 .width-fit {
   width: fit-content;
 }
+.min-width0 {
+  min-width: 0;
+}
+.min-width1 {
+  min-width: 1px;
+}
 .height10 {
   height: 10px;
   line-height: 10px;
@@ -108,6 +114,9 @@
 }
 .padding20 {
   padding: 20px;
+}
+.margin0 {
+  margin: 0;
 }
 .margin2 {
   margin: 2px;

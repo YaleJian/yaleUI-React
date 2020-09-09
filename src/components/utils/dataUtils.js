@@ -2,6 +2,14 @@ let dataUtils = {
     isNaN: (value) => {
         return typeof value === 'number' && !isNaN(value);
     },
+    getNumDecimalPlaces : (v)=>{
+        let sp = (v+"").split(".");
+        if(sp.length > 1){
+            return sp[1].length
+        }else {
+            return 0;
+        }
+    },
     //对象转表单对象
     object2FormData: (data) => {
         let res = ''

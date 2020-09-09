@@ -1,15 +1,31 @@
 import React, {Component} from 'react';
-import {Button} from "../../../index";
+import {Button, getNavData, Tree} from "../../../index";
 import {Icon} from "../../../index";
 
 /**
  * 首页
  */
 class ButtonDemo extends Component {
+    state={
+        loading: true,
+        navData: []
+    }
+    componentDidMount() {
+        if (this.state.loading) this.setState({navData: getNavData(), loading: false});
+    }
     render() {
         return (
             <React.Fragment>
-                <h2>大小</h2>
+                <Tree treeData={this.state.navData}
+                      treeType={3}
+                      openBtn={false}
+                      openLevel={"all"}
+                      ref={tree => {
+                          this.tree = tree
+                      }}
+                />
+                <h1>按钮</h1>
+                <h2 className="ya-title">大小</h2>
                 <div className="ya-p">
                     <div>
                         <Button small/>
@@ -18,7 +34,7 @@ class ButtonDemo extends Component {
                     </div>
                 </div>
 
-                <h2>内置颜色样式</h2>
+                <h2 className="ya-title">内置颜色样式</h2>
                 <div className="ya-p">
                     <div>
                         <Button textColor={"black"}/>
@@ -73,7 +89,7 @@ class ButtonDemo extends Component {
 
                 </div>
 
-                <h2>边框圆角</h2>
+                <h2 className="ya-title">边框圆角</h2>
                 <div className="ya-p">
                     <div>
                         <Button radius line={"black"}/>
@@ -87,14 +103,14 @@ class ButtonDemo extends Component {
                     </div>
                 </div>
 
-                <h2>禁用</h2>
+                <h2 className="ya-title">禁用</h2>
                 <div className="ya-p">
                     <div>
                         <Button color={"blue"} disabled/>
                     </div>
                 </div>
 
-                <h2>自适应按钮</h2>
+                <h2 className="ya-title">自适应按钮</h2>
                 <div className="ya-p">
                     <div>
                         <Button color={"blue"} adaptive/>
@@ -107,7 +123,7 @@ class ButtonDemo extends Component {
                     </div>
                 </div>
 
-                <h2>组合按钮</h2>
+                <h2 className="ya-title">组合按钮</h2>
                 <div className="ya-p">
                     <div>
                         <span className="ya-groupBtn">
@@ -126,7 +142,7 @@ class ButtonDemo extends Component {
                     </div>
                 </div>
 
-                <h2>图标按钮</h2>
+                <h2 className="ya-title">图标按钮</h2>
                 <div className="ya-p">
                     <div>
                         <Button color={"white"} icon="i-dingwei"/>

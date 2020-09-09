@@ -211,6 +211,72 @@
 .ya-bg-light-purple:active {
   background: #edccf1;
 }
+.ya-bg-white-only {
+  background: white;
+}
+.ya-border0 {
+  border: 0;
+}
+.ya-border-transparent {
+  border: 1px solid rgba(255, 255, 255, 0);
+}
+.ya-border {
+  border: 1px solid currentColor !important;
+}
+.ya-border-white {
+  border: 1px solid white;
+}
+.ya-border-light-grey {
+  border: 1px solid #f5f4f4;
+}
+.ya-border-light-grey:hover {
+  background: #fbd6ff;
+}
+.ya-border-black {
+  border: 1px solid black;
+}
+.ya-border-grey {
+  border: 1px solid #696969;
+}
+.ya-border-grey:hover {
+  border: 1px solid #4a4949;
+}
+.ya-border-red {
+  border: 1px solid #ff8080;
+}
+.ya-border-red:hover {
+  border: 1px solid #ff8080;
+}
+.ya-border-green {
+  border: 1px solid #44e293;
+}
+.ya-border-green:hover {
+  border: 1px solid #44e293;
+}
+.ya-border-blue {
+  border: 1px solid #5cccda;
+}
+.ya-border-blue:hover {
+  border: 1px solid #5cccda;
+}
+.ya-border-yellow {
+  border: 1px solid #FFEB3B;
+}
+.ya-border-yellow:hover {
+  border: 1px solid #FFEB3B;
+}
+.ya-border-orange {
+  border: 1px solid #ffad49;
+}
+.ya-border-orange:hover {
+  border: 1px solid #ffad49;
+}
+.ya-border-purple {
+  border: 1px solid #d569e8;
+}
+.ya-border-purple:hover {
+  border: 1px solid #d569e8;
+}
 .ya-bg-blur {
   backdrop-filter: blur(20px);
 }
@@ -241,47 +307,5 @@
   100% {
     backdrop-filter: saturate(180%) blur(20px);
   }
-}
-.ya-bg-white-only {
-  background: white;
-}
-.ya-border0 {
-  border: 0;
-}
-.ya-border-transparent {
-  border: 1px solid rgba(255, 255, 255, 0);
-}
-.ya-border {
-  border: 1px solid currentColor !important;
-}
-.ya-border-white {
-  border: 1px solid white;
-}
-.ya-border-light-grey {
-  border: 1px solid #f5f4f4;
-}
-.ya-border-grey {
-  border: 1px solid #696969;
-}
-.ya-border-black {
-  border: 1px solid black;
-}
-.ya-border-red {
-  border: 1px solid #ff8080;
-}
-.ya-border-green {
-  border: 1px solid #44e293;
-}
-.ya-border-blue {
-  border: 1px solid #5cccda;
-}
-.ya-border-yellow {
-  border: 1px solid #FFEB3B;
-}
-.ya-border-orange {
-  border: 1px solid #ffad49;
-}
-.ya-border-purple {
-  border: 1px solid #d569e8;
 }
 /*# sourceMappingURL=color.css.map */
