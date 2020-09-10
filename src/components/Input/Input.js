@@ -52,22 +52,14 @@ const Input = (props) => {
     };
     //数字减少
     let numberMinus = (e) => {
-        let incrementNum = dataUtils.getNumDecimalPlaces(props.increment);//小数个数
-        let inputValue = Number(value);//输入的数字
-        let inputIncrementNum = dataUtils.getNumDecimalPlaces(props.inputValue || 0);//输入的数字小数个数
-        let num = incrementNum > inputIncrementNum ? incrementNum : inputIncrementNum;//使用小数位数最大的作为放大倍数
-        let zoomIncrement = Math.pow(10, num);//放大倍数
-        setValue((inputValue * zoomIncrement - props.increment * zoomIncrement)/zoomIncrement);
+        let data = dataUtils.decimalCalc(value || 0, props.increment || 1);
+        setValue((data.arg1 - data.arg2) / data.gain);
         props.onChange(e);
     };
     //数字增加
     let numberPlus = (e) => {
-        let incrementNum = dataUtils.getNumDecimalPlaces(props.increment);//小数个数
-        let inputValue = Number(value);//输入的数字
-        let inputIncrementNum = dataUtils.getNumDecimalPlaces(props.inputValue || 0);//输入的数字小数个数
-        let num = incrementNum > inputIncrementNum ? incrementNum : inputIncrementNum;//使用小数位数最大的作为放大倍数
-        let zoomIncrement = Math.pow(10, num);//放大倍数
-        setValue((inputValue * zoomIncrement + props.increment * zoomIncrement)/zoomIncrement);
+        let data = dataUtils.decimalCalc(value || 0, props.increment || 1);
+        setValue((data.arg1 + data.arg2) / data.gain);
         props.onChange(e);
     };
 

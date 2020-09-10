@@ -21,6 +21,7 @@ class InputDemo extends React.Component {
             baseInput: "",
             borderInput: "",
             blockInput: "",
+            numberInput: "1",
             pswInput: "123456",
             iconInput: "",
             loading: true,
