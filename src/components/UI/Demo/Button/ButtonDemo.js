@@ -37,18 +37,12 @@ class ButtonDemo extends Component {
                 <h2 className="ya-title">内置颜色样式</h2>
                 <div className="ya-p">
                     <div>
-                        <Button textColor={"black"}/>
-                        <Button textColor={"grey"}/>
-                        <Button textColor={"red"}/>
-                        <Button textColor={"orange"}/>
-                        <Button textColor={"green"}/>
-                        <Button textColor={"blue"}/>
-                        <Button textColor={"purple"}/>
-                        <Button textColor={"yellow"}/>
+                        <Button color={"light-white"}/>
+                        <Button color={"light-grey"}/>
+                        <Button color={"grey"}/>
+                        <Button color={"black"}/>
                     </div>
                     <div>
-                        <Button color={"black"}/>
-                        <Button color={"grey"}/>
                         <Button color={"red"}/>
                         <Button color={"orange"}/>
                         <Button color={"green"}/>
@@ -57,34 +51,12 @@ class ButtonDemo extends Component {
                         <Button color={"yellow"}/>
                     </div>
                     <div>
-                        <Button line={"black"}/>
-                        <Button line={"grey"}/>
-                        <Button line={"red"}/>
-                        <Button line={"orange"}/>
-                        <Button line={"green"}/>
-                        <Button line={"blue"}/>
-                        <Button line={"purple"}/>
-                        <Button line={"yellow"}/>
-                    </div>
-                    <div>
-                        <Button color={"grey"}/>
-                        <Button light={"grey"}/>
-                        <Button light={"red"}/>
-                        <Button light={"orange"}/>
-                        <Button light={"green"}/>
-                        <Button light={"blue"}/>
-                        <Button light={"purple"}/>
-                        <Button light={"yellow"}/>
-                    </div>
-                    <div>
-                        <Button tcl={"black"}/>
-                        <Button tcl={"grey"}/>
-                        <Button tcl={"red"}/>
-                        <Button tcl={"orange"}/>
-                        <Button tcl={"green"}/>
-                        <Button tcl={"blue"}/>
-                        <Button tcl={"purple"}/>
-                        <Button tcl={"yellow"}/>
+                        <Button className={"ya-red "} noStyle/>
+                        <Button className={"ya-border-orange"} noStyle/>
+                        <Button className={"ya-green"} noStyle/>
+                        <Button className={"ya-blue"} noStyle/>
+                        <Button className={"ya-purple"} noStyle/>
+                        <Button className={"ya-yellow"} noStyle/>
                     </div>
 
                 </div>
@@ -92,14 +64,14 @@ class ButtonDemo extends Component {
                 <h2 className="ya-title">边框圆角</h2>
                 <div className="ya-p">
                     <div>
-                        <Button radius line={"black"}/>
+                        <Button radius color={"black"}/>
                         <Button radius color={"grey"}/>
-                        <Button radius line={"red"}/>
+                        <Button radius color={"red"}/>
                         <Button radius color={"green"}/>
                         <Button radius color={"blue"}/>
                         <Button radius color={"orange"}/>
-                        <Button radius line={"purple"}/>
-                        <Button radius line={"yellow"}/>
+                        <Button radius color={"purple"}/>
+                        <Button radius color={"yellow"}/>
                     </div>
                 </div>
 
@@ -116,9 +88,9 @@ class ButtonDemo extends Component {
                         <Button color={"blue"} adaptive/>
                         <Button color={"green"} adaptive/>
                         <Button color={"orange"} adaptive/>
-                        <Button line={"purple"} adaptive/>
-                        <Button line={"red"} adaptive/>
+                        <Button color={"red"} adaptive/>
                         <Button radius color={"grey"} adaptive/>
+                        <Button color={"light-purple"} adaptive/>
                         <Button radius adaptive/>
                     </div>
                 </div>

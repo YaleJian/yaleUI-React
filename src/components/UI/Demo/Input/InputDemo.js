@@ -46,7 +46,7 @@ class InputDemo extends React.Component {
                 <Input className="margin4" placeholder={"默认180px"} onChange={this.onChange.bind(this, "baseInput")}
                        value={this.state.baseInput}/>
                 <br/>
-                <Input className="margin4" placeholder={"请输入内容"} onChange={this.onChange.bind(this, "baseInput")}
+                <Input className="margin4 radius6" placeholder={"支持自定义样式"} onChange={this.onChange.bind(this, "baseInput")}
                        value={this.state.baseInput}/>
             </div>
 

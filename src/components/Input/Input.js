@@ -46,8 +46,8 @@ const Input = (props) => {
 
     //数字输入框
     let numberInput = (className) => {
-        let minus = <Button bgColor="light-grey" className="margin0" icon="i-minus" onClick={numberMinus.bind(this)}/>;
-        let plus = <Button bgColor="light-grey" className="margin0" icon="i-plus" onClick={numberPlus.bind(this)}/>;
+        let minus = <Button color="light-grey" className="margin0" icon="i-minus" onClick={numberMinus.bind(this)}/>;
+        let plus = <Button color="light-grey" className="margin0" icon="i-plus" onClick={numberPlus.bind(this)}/>;
         return inputGroup(className, minus, plus);
     };
     //数字减少
