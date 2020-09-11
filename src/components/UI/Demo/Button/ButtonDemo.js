@@ -39,10 +39,16 @@ class ButtonDemo extends Component {
                     <div>
                         <Button color={"light-white"}/>
                         <Button color={"light-grey"}/>
-                        <Button color={"grey"}/>
-                        <Button color={"black"}/>
+                        <Button color={"light-red"}/>
+                        <Button color={"light-orange"}/>
+                        <Button color={"light-green"}/>
+                        <Button color={"light-blue"}/>
+                        <Button color={"light-purple"}/>
+                        <Button color={"light-yellow"}/>
                     </div>
                     <div>
+                        <Button color={"grey"}/>
+                        <Button color={"black"}/>
                         <Button color={"red"}/>
                         <Button color={"orange"}/>
                         <Button color={"green"}/>
@@ -51,12 +57,24 @@ class ButtonDemo extends Component {
                         <Button color={"yellow"}/>
                     </div>
                     <div>
-                        <Button className={"ya-red "} noStyle/>
-                        <Button className={"ya-border-orange"} noStyle/>
-                        <Button className={"ya-green"} noStyle/>
-                        <Button className={"ya-blue"} noStyle/>
-                        <Button className={"ya-purple"} noStyle/>
-                        <Button className={"ya-yellow"} noStyle/>
+                        <Button line={"grey"}/>
+                        <Button line={"black"}/>
+                        <Button line={"red"}/>
+                        <Button line={"orange"}/>
+                        <Button line={"green"}/>
+                        <Button line={"blue"}/>
+                        <Button line={"purple"}/>
+                        <Button line={"yellow"}/>
+                    </div>
+                    <div>
+                        <Button line={"light-grey"}/>
+                        <Button line={"light-black"}/>
+                        <Button line={"light-red"}/>
+                        <Button line={"light-orange"}/>
+                        <Button line={"light-green"}/>
+                        <Button line={"light-blue"}/>
+                        <Button line={"light-purple"}/>
+                        <Button line={"light-yellow"}/>
                     </div>
 
                 </div>
@@ -66,20 +84,19 @@ class ButtonDemo extends Component {
                     <div>
                         <Button radius color={"black"}/>
                         <Button radius color={"grey"}/>
-                        <Button radius color={"red"}/>
-                        <Button radius color={"green"}/>
-                        <Button radius color={"blue"}/>
-                        <Button radius color={"orange"}/>
+                        <Button radius line={"red"}/>
+                        <Button radius line={"light-green"}/>
+                        <Button radius line={"blue"}/>
+                        <Button radius color={"light-orange"}/>
                         <Button radius color={"purple"}/>
-                        <Button radius color={"yellow"}/>
+                        <Button radius line={"light-yellow"}/>
                     </div>
                 </div>
 
                 <h2 className="ya-title">禁用</h2>
                 <div className="ya-p">
-                    <div>
-                        <Button color={"blue"} disabled/>
-                    </div>
+                    <Button color={"blue"} disabled/>
+                    <Button disabled/>
                 </div>
 
                 <h2 className="ya-title">自适应按钮</h2>
@@ -120,6 +137,11 @@ class ButtonDemo extends Component {
                         <Button color={"white"} icon="i-dingwei"/>
                         <Button radius color={"red"} icon="i-shuaxin"/>
                     </div>
+                </div>
+
+                <h2 className="ya-title">清除默认样式</h2>
+                <div className="ya-p">
+                    <Button noStyle/>
                 </div>
             </React.Fragment>
         );
