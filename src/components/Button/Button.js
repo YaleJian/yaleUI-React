@@ -6,11 +6,11 @@ const Button = (props) => {
     let className = "ya-btn ";
 
     if (props.color) {
-        className += `ya-btn-` + props.color
+        className += props.color
     } else if (props.line) {
-        className += `ya-btn-line-` + props.line
+        className += `line-` + props.line
     } else {
-        if (!props.noStyle) className += "ya-btn-default";
+        if (!props.noStyle) className += "default";
     }
 
     //大小

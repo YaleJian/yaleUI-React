@@ -104,10 +104,11 @@ class ButtonDemo extends Component {
                     <div>
                         <Button color={"blue"} adaptive/>
                         <Button color={"green"} adaptive/>
-                        <Button color={"orange"} adaptive/>
-                        <Button color={"red"} adaptive/>
+                        <Button radius color={"red"} adaptive/>
                         <Button radius color={"grey"} adaptive/>
+                        <Button color={"light-orange"} adaptive/>
                         <Button color={"light-purple"} adaptive/>
+                        <Button radius color={"light-green"} adaptive/>
                         <Button radius adaptive/>
                     </div>
                 </div>
@@ -134,7 +135,7 @@ class ButtonDemo extends Component {
                 <h2 className="ya-title">图标按钮</h2>
                 <div className="ya-p">
                     <div>
-                        <Button color={"white"} icon="i-dingwei"/>
+                        <Button color={"light-white"} icon="i-dingwei"/>
                         <Button radius color={"red"} icon="i-shuaxin"/>
                     </div>
                 </div>
