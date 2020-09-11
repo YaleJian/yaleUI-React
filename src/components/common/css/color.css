@@ -281,6 +281,7 @@
   background: #f1f1f1;
 }
 .ya-btn-light-white:active {
+  color: white;
   background: #e0e0e0;
 }
 .ya-btn-light-grey {
@@ -290,6 +291,7 @@
   background: #e0e0e0;
 }
 .ya-btn-light-grey:active {
+  color: white;
   background: #cdcdcd;
 }
 .ya-btn-light-red {
@@ -309,6 +311,7 @@
   background: #f5dfcb;
 }
 .ya-btn-light-orange:active {
+  color: white;
   background: #ffad49;
 }
 .ya-btn-light-yellow {
@@ -318,6 +321,7 @@
   background: #f6f2cc;
 }
 .ya-btn-light-yellow:active {
+  color: white;
   background: #FFEB3B;
 }
 .ya-btn-light-green {
@@ -327,6 +331,7 @@
   background: #c7f3ec;
 }
 .ya-btn-light-green:active {
+  color: white;
   background: #44e293;
 }
 .ya-btn-light-blue {
@@ -336,6 +341,7 @@
   background: #c6ecf3;
 }
 .ya-btn-light-blue:active {
+  color: white;
   background: #5cccda;
 }
 .ya-btn-light-purple {
@@ -345,6 +351,7 @@
   background: #edccf1;
 }
 .ya-btn-light-purple:active {
+  color: white;
   background: #d569e8;
 }
 .ya-btn-line-black {
