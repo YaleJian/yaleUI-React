@@ -9,79 +9,101 @@ import {dataUtils} from "..";
 /**
  * 提示框
  */
-let Message = (content, config, autoRemove) => {
+function baseMsg(config, func1, func2, isConFirm) {
 
-    //数据格式校验处理
-    if(content){
-        if(typeof content === "object") content = JSON.stringify(content);
-    }else {
-        return;
+    //快速提示写法
+    config = config || {};
+
+    //确认提示框
+    let confirmBtn, title;
+    if (isConFirm) {
+        let text1 = "Yes", text2 = "No";
+        if (config.btn && config.btn.length > 2) {
+            text1 = config.btn[0]
+            text2 = config.btn[1]
+        }
+        confirmBtn = <div className="ya-groupBtn">
+            <Button className="red ya-yesBtn">{text1}</Button>
+            <Button className="grey ya-noBtn">{text2}</Button>
+        </div>;
+        title = <div className="ya-message-title">{config.title || "Message"}</div>;
     }
 
-    let isConfirm = config || false;
-    config = config || {yes: "Yes", no: "No"};
     let animated_down = " animated fastest fadeInDown";
-    let messageContainer = <React.Fragment>
+    let messageContain = <React.Fragment>
         <div className={"ya-message-container" + animated_down}>
-            {isConfirm ? <div className="ya-message-title">{config.title || "Message"}</div> : null}
-            <div className="ya-message-content">{content}</div>
-            <Button className="closeBtn white"><Icon name="i-close"/></Button>
-            {isConfirm ? <div className="ya-groupBtn">
-                <Button className="red ya-yesBtn">{config.yes || "Yes"}</Button>
-                <Button className="grey ya-noBtn">{config.no || "No"}</Button>
-            </div> : null}
-        </div>
-    </React.Fragment>;
-    let message = <React.Fragment>
-        <div className="ya-message">
-            {messageContainer}
+            {title}
+            <div className="ya-message-content">{config.content}</div>
+            <Button className="closeBtn"><Icon name="i-close"/></Button>
+            {confirmBtn}
         </div>
     </React.Fragment>;
 
-    let messageTag = document.getElementsByClassName("ya-messages");
-    let renderTag = document.createElement("div");
-    let thisNotice;
-    //判断页面是否是第一次提示，是先放置一个提示区
+    //弹框容器
+    let messageTag = document.getElementsByClassName("ya-msgList");
+
+    let msg;
+    //判断页面是否是第一次提示，是多一层提示区
     if (messageTag.length === 0) {
-        renderTag.className = "ya-messages";
-        document.body.appendChild(renderTag);
-        ReactDOM.render(message, renderTag);
-        thisNotice = renderTag.getElementsByClassName("ya-message")[0];
+
+        let msgListTag = document.createElement("div");
+        msgListTag.className = "ya-msgList";
+        ReactDOM.render(<div className="ya-message">{messageContain}</div>, msgListTag);
+
+        document.body.appendChild(msgListTag);
+        msg = msgListTag.getElementsByClassName("ya-message")[0];
     } else {
-        renderTag.className = "ya-message";
-        messageTag[0].appendChild(renderTag);
-        ReactDOM.render(messageContainer, renderTag);
-        thisNotice = renderTag;
+        let msgTag = document.createElement("div");
+        msgTag.className = "ya-message";
+        ReactDOM.render(messageContain, msgTag);
+
+        messageTag[0].appendChild(msgTag);
+        msg = msgTag;
     }
 
     //给当前消息的按钮绑定移除事件
-    let closeBtn = thisNotice.getElementsByClassName("closeBtn")[0];
+    let closeBtn = msg.getElementsByClassName("closeBtn")[0];
     closeBtn.onclick = () => {
-        DomUtils.remove(thisNotice);
+        DomUtils.remove(msg);
     };
-    //给确认按钮绑定事件
-    if (isConfirm) {
-        let noBtn = thisNotice.getElementsByClassName("ya-noBtn")[0];
-        noBtn.onclick = () => {
-            DomUtils.remove(thisNotice);
-        };
-        //点击Yes回调事件
-        if (typeof config.func === "function") {
-            let yesBtn = thisNotice.getElementsByClassName("ya-yesBtn")[0];
+
+    //提示默认自动移除,非确认框或设置没有设置为关
+    if (config.autoRemove !== false && !isConFirm) {
+        setTimeout(() => {
+            DomUtils.remove(msg);
+        }, dataUtils.isNaN(config.autoRemove) ? config.autoRemove : 2000);
+    }
+
+    if (isConFirm) {
+        //确定回调事件
+        if (typeof func1 === "function") {
+            let yesBtn = msg.getElementsByClassName("ya-yesBtn")[0];
             yesBtn.onclick = () => {
-                thisNotice.remove();
-                config.func();
+                msg.remove();
+                func1();
             }
+        }
+        //关闭事件
+        if (typeof func1 === "function") {
+            let noBtn = msg.getElementsByClassName("ya-noBtn")[0];
+            noBtn.onclick = () => {
+                msg.remove();
+                func2();
+            };
         }
     }
 
-    //提示默认自动移除
-    if (autoRemove) {
-        setTimeout(() => {
-            DomUtils.remove(thisNotice);
-        }, dataUtils.isNaN(autoRemove) ? autoRemove : 2000);
-    }
+}
 
-};
+let Message = (content, autoRemove) => {
+    baseMsg({
+        content,
+        autoRemove,
+        btn: false
+    })
+}
+let Confirm = (config, func1, func2) => {
+    baseMsg(config, func1, func2, true);
+}
 
-export {Message};
+export {Message, Confirm};

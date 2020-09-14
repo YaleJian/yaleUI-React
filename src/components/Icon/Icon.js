@@ -6,7 +6,7 @@ import "./icon.css"
 const Icon = (props) => {
     let className = `icon ${props.className || ""}`;
     return <svg className={className} aria-hidden="true" onClick={props.onClick}>
-        <use xlinkHref={"#" + props.name}/>
+        <use xlinkHref={"#" + (props.name || "i-yalejian")}/>
     </svg>
 }
 export {Icon};

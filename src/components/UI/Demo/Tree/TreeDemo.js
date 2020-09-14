@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Tree} from '../../../index';
+import {Button, Tree} from '../../../index';
 import {testTreeData, textNodeAddList, testSelectedIdsData, getNavData} from '../../../Tree/TreeUtil';
 import {Icon} from "../../../index";
 
@@ -95,7 +95,7 @@ class TreeDemo extends Component {
             <div className="ya-treeDemo">
                 <div className="ya-console-area">
                     <h2 className="ya-title">数据输出</h2>
-                    <button onClick={this.updateNode.bind(this)}>更新树</button>
+                    <Button color={"blue"} onClick={this.updateNode.bind(this)}>更新树</Button>
                     <br/>
                     <div>入参：默认选中： {JSON.stringify(this.state.defaultSelectedIds)}</div>
                     <div>入参：默认展开的层级： {this.state.defaultOpenLevel}</div>

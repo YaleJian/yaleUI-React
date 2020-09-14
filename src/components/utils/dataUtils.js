@@ -1,4 +1,5 @@
 let dataUtils = {
+    //是否是数字
     isNaN: (value) => {
         return typeof value === 'number' && !isNaN(value);
     },

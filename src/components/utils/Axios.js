@@ -16,7 +16,7 @@ axios.interceptors.request.use(config => {
         Message(<div>
             <div>Error: {error.response.status}</div>
             <div>Url: {error.response.config.url}</div>
-        </div>);
+        </div>, false);
     } else {
         // Something happened in setting up the request that triggered an Error
         Message(error.message, false, true);
@@ -36,7 +36,7 @@ axios.interceptors.response.use(config => {
         Message(<div>
             <div>Error: {error.response.status}</div>
             <div>Url: {error.response.config.url}</div>
-        </div>);
+        </div>, false);
     } else {
         // Something happened in setting up the request that triggered an Error
         Message(error.message, false, true);
