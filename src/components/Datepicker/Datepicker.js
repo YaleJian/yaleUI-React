@@ -11,8 +11,9 @@ const Datepicker = (props) => {
 
     let monthIsFill = props.monthIsFill || true;//每月的首位是否填充上月的
     let showLunar = props.showLunar || false;//是否显示农历
+    let showWeekNum = props.showWeekNum || false;//是否显示周数
     let addWeekOfMonthView = props.addWeekOfMonthView || [0, 0];//每月前后多显示几周
-    let text = {
+    let text = props.text || {
         year: "年",
         month: "月",
         day: "日",
@@ -20,6 +21,7 @@ const Datepicker = (props) => {
         m: "分",
         s: "秒",
         w: "周",
+        monthView: "月",
         weeksName: ["日", "一", "二", "三", "四", "五", "六"],
     }
 
@@ -62,19 +64,19 @@ const Datepicker = (props) => {
         },
         setState: (day, month, year, h, m, s) => {
             let newDate = new Date(year || selectDate.getFullYear(), month || selectDate.getMonth(), day || selectDate.getDate());
-            if(h) {
+            if (h) {
                 newDate.setHours(Number(h));
-            }else {
+            } else {
                 newDate.setHours(selectDate.getHours());
             }
-            if(m){
+            if (m) {
                 newDate.setMinutes(Number(m));
-            }else {
+            } else {
                 newDate.setMinutes(selectDate.getMinutes());
             }
-            if(s){
+            if (s) {
                 newDate.setSeconds(Number(s));
-            }else {
+            } else {
                 newDate.setSeconds(selectDate.getHours());
             }
             set_selectDate(newDate);
@@ -108,7 +110,7 @@ const Datepicker = (props) => {
                              data.setState(false, month);
                              set_showType(MONTH)
                          }}>
-                        <Button>{(month + 1) + text.month}</Button>
+                        <Button>{(month + 1) + text.monthView}</Button>
                     </div>
                     {view.renderMonth(month, year)}
                 </div>);
@@ -123,7 +125,7 @@ const Datepicker = (props) => {
             let monthData = data.getMonthList(month, year);
             let weeksPerMonth = 5 + beforeWeekNum + afterWeekNum;
 
-            //周名称头部
+            //周数名称
             if (showType === MONTH || showType === WEEKS) daysTag.push(view.getWeeksHead());
 
             //循环每周
@@ -221,11 +223,10 @@ const Datepicker = (props) => {
             }
 
             return <React.Fragment key={index}>
-                {weekNumTag}
+                {showWeekNum ? weekNumTag : ""}
                 <div className={dayClass} onClick={dayClick.bind(this, item)}>
                     <div className={"dayText"}>{dayText}</div>
-                    {showLunar && showType === MONTH ?
-                        <div className={"lunarDay"}>{lunarDay}</div> : ""}
+                    {showLunar && showType === MONTH ? <div className={"lunarDay"}>{lunarDay}</div> : ""}
                 </div>
             </React.Fragment>;
         },
@@ -239,8 +240,9 @@ const Datepicker = (props) => {
                 }
             }
             return <div className={"ya-datepicker-weekNames"} key={"weekNames"}>
-                <div className={"weekTitle"}>{text.w}</div>
-                {weeksNameTag}</div>;
+                {showWeekNum ? <div className={"weekTitle"}>{text.w}</div> : ""}
+                {weeksNameTag}
+            </div>;
         },
         //周视图切换按钮
         showWeekBtn: () => {
@@ -342,7 +344,7 @@ const Datepicker = (props) => {
             contentClass += " time";
             break;
     }
-    let selectHours = selectDate.getHours() < 10 ? ("0" + selectDate.getHours() ): selectDate.getHours();
+    let selectHours = selectDate.getHours() < 10 ? ("0" + selectDate.getHours()) : selectDate.getHours();
     let selectMinutes = selectDate.getMinutes() < 10 ? ("0" + selectDate.getMinutes()) : selectDate.getMinutes();
     return (
         <div className={'ya-datepicker ' + contentClass}>
