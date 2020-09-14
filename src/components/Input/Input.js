@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import "./input.css";
 import {dataUtils, Icon} from "..";
 import ReactDOM from "react-dom";
@@ -12,6 +12,10 @@ const Input = (props) => {
     const [selectData, setSelectData] = useState("");
     const [value, setValue] = useState(props.value || "");
     let autoContent = props.autoContent || typeof props.autoContent === "number";
+
+    useEffect(() => {
+        setValue(props.value)
+    })
 
     //普通输入框
     let input = (className) => {

@@ -1,39 +1,49 @@
-import React from "react";
+import React, {useState} from "react";
 import {Datepicker} from "../../../index";
 import {Input} from "../../../index";
-class DatepickerDemo extends React.Component{
-    static defaultProps = {
 
-    };
-    constructor(props){
-        super(props);
-        this.state = {
-            date : {
-                year :"",
-                month :"",
-                day :"",
-                hours :"",
-                minutes :"",
-            }
-        }
-    }
+const DatepickerDemo = ()=> {
+    
+    const [year, set_year] = useState("")
+    const [month, set_month] = useState("")
+    const [day, set_day] = useState("")
+    const [hours, set_hours] = useState("")
+    const [minutes, set_minutes] = useState("")
 
-    render() {
-        return <div className={"datepickerDemo"}>
-            <Input type="popUp" value={this.state.date.year+"年"+this.state.date.month+"月"+this.state.date.day+"日 "+this.state.date.hours+":"+this.state.date.minutes}
-                   placeholder={"请选择"}>
-                <Datepicker getSelectData={this.getSelectData.bind(this)} showLunar={false}/>
-            </Input>
+    return <div className={"datepickerDemo"}>
+        <h1>日期</h1>
+        <h2>默认日期</h2>
+        <div className="ya-p">
             <Input type="popUp"
-                   value={this.state.date.year+"年"+this.state.date.month+"月"+this.state.date.day+"日 "+this.state.date.hours+":"+this.state.date.minutes}
+                   value={year + "年" + month + "月" + day + "日 " + hours + ":" + minutes}
                    placeholder={"请选择"}>
-                <Datepicker getSelectData={this.getSelectData.bind(this)} showLunar={true}/>
+                <Datepicker getSelectData={getSelectData.bind(this)}/>
             </Input>
         </div>
-    }
+        <h2>带周数的日期</h2>
+        <div className="ya-p">
+            <Input type="popUp"
+                   value={year + "年" + month + "月" + day + "日 " + hours + ":" + minutes}
+                   placeholder={"请选择"}>
+                <Datepicker getSelectData={getSelectData.bind(this)} showLunar/>
+            </Input>
+        </div>
+        <h2>带阴历的日期</h2>
+        <div className="ya-p">
+            <Input type="popUp"
+                   value={year + "年" + month + "月" + day + "日 " + hours + ":" + minutes}
+                   placeholder={"请选择"}>
+                <Datepicker getSelectData={getSelectData.bind(this)} showLunar/>
+            </Input>
+        </div>
+    </div>
 
-    getSelectData(date){
-        this.setState({date});
+    function getSelectData(date) {
+        set_year(date.getFullYear());
+        set_month(date.getMonth() + 1);
+        set_day(date.getDate());
+        set_hours(date.getHours());
+        set_minutes(date.getMinutes());
     }
 }
 

@@ -1,6 +1,5 @@
-import React from "react";
+import React, {useState} from "react";
 import "./datepicker.css";
-import {Icon} from "..";
 import {Button} from "..";
 import {Input} from "..";
 import {toLunar} from "..";
@@ -8,132 +7,35 @@ import {toLunar} from "..";
 /**
  * 日期
  */
-class Datepicker extends React.Component {
-    static defaultProps = {
-        className : "",
-        monthIsFill: true,//每月的首位是否填充上月的
-        showLunar: false,//是否显示农历
-        addWeekOfMonthView: [0, 0],//每月前后多显示几周
-        date: new Date(),
-        text: {
-            year: "年",
-            month: "月",
-            day: "日",
-            hour: "时",
-            m: "分",
-            s: "秒",
-            w: "周",
-            weeksName: ["日", "一", "二", "三", "四", "五", "六"],
-        },
-        getSelectData : ()=>{},//获取选中的日期
+const Datepicker = (props) => {
 
-
-    };
-
-    static SELECT_YEAR = 0;
-    static YEAR = 1;
-    static MONTH = 2;
-    static WEEKS = 3;
-    static DAY = 4;
-    static TIME = 5;
-    static ARRAY60 = Array(59).fill(null).map((_, h) => h < 9 ? "0" + (h + 1) : h + 1);
-    static ARRAY24 = Array(24).fill(null).map((_, h) => h < 9 ? "0" + (h + 1) : h + 1);
-
-    constructor(props) {
-        super(props);
-        let date = this.props.date;
-        this.state = {
-            showType: Datepicker.MONTH,
-            selectMilliseconds: date.getMilliseconds(),
-            selectSeconds: date.getSeconds(),
-            selectMinutes: date.getMinutes(),
-            selectHours: date.getHours(),
-            selectDay: date.getDate(),
-            selectMonth: date.getMonth(),
-            selectYear: date.getFullYear(),
-        }
+    let monthIsFill = props.monthIsFill || true;//每月的首位是否填充上月的
+    let showLunar = props.showLunar || false;//是否显示农历
+    let addWeekOfMonthView = props.addWeekOfMonthView || [0, 0];//每月前后多显示几周
+    let text = {
+        year: "年",
+        month: "月",
+        day: "日",
+        hour: "时",
+        m: "分",
+        s: "秒",
+        w: "周",
+        weeksName: ["日", "一", "二", "三", "四", "五", "六"],
     }
 
-    static getDerivedStateFromProps(nextProps, prevState) {
-        const {day} = nextProps;
-        // 当传入的type发生变化的时候，更新state
-        if (day !== nextProps.day) {
-            return {
-                day,
-            };
-        }
-        // 否则，对于state不进行任何操作
-        return null;
-    }
+    const SELECT_YEAR = 0;
+    const YEAR = 1;
+    const MONTH = 2;
+    const WEEKS = 3;
+    const DAY = 4;
+    const TIME = 5;
+    const ARRAY60 = Array(59).fill(null).map((_, h) => h < 9 ? "0" + (h + 1) : h + 1);
+    const ARRAY24 = Array(24).fill(null).map((_, h) => h < 9 ? "0" + (h + 1) : h + 1);
 
-    render() {
-        let content = {};
-        let contentClass = this.props.className;
-        switch (this.state.showType) {
-            case Datepicker.SELECT_YEAR:
-                content = this.view.selectYearsPage(this.state.selectYear);
-                contentClass += " selectYear";
-                break;
-            case Datepicker.YEAR:
-                content = this.view.renderYear(this.state.selectYear);
-                contentClass += " year";
-                break;
-            case Datepicker.MONTH :
-                content = this.view.renderMonth(this.state.selectMonth, this.state.selectYear);
-                contentClass += " month";
-                break;
-            case Datepicker.WEEKS:
-                content = this.view.renderMonth(this.state.selectMonth, this.state.selectYear);
-                contentClass += " weeks";
-                break;
-            case Datepicker.DAY:
-                content = "";
-                contentClass += " day";
-                break;
-            case Datepicker.TIME:
-                content = "";
-                contentClass += " time";
-                break;
-            default:
-                content = "";
-                contentClass += " time";
-                break;
-        }
-        return (
-            <div className={'ya-datepicker ' + contentClass}>
-                <div className={"ya-datepicker-header"}>
-                        <span className={"prev"} onClick={this.switch.bind(this, false)}>
-                            <Button className="white"><Icon name={"i-BAI-zuojiantou"}/></Button>
-                        </span>
-                    <span className={"selectArea"}>
-                        <Button className={"white"} onClick={this.data.backToday.bind(this)}><Icon name="i-BAI-wuzi"/></Button>
-                        <Button className={"white"} onClick={() => this.data.setState({showType: Datepicker.SELECT_YEAR})}>
-                            {this.state.selectYear + this.props.text.year}
-                        </Button>
-                        <Button className={"white"} onClick={() => this.data.setState({showType: Datepicker.YEAR})}>
-                            {this.state.selectMonth + 1 + this.props.text.month}
-                        </Button>
-                        <Button className={"white"} onClick={() => this.data.setState({showType: Datepicker.MONTH})}>
-                            {this.state.selectDay + this.props.text.day}
-                        </Button>
-                            <Input className="selectHours" type="select" dropDownBoxData={Datepicker.ARRAY24}
-                                   onChange={this.data.setHours.bind(this)}
-                                   value={this.state.selectHours < 10 ? "0" + this.state.selectHours : this.state.selectHours} selectIcon={false}/>
-                                   :
-                            <Input className="selectMinutes" type="select" dropDownBoxData={Datepicker.ARRAY60}
-                                   onChange={this.data.setMinutes.bind(this)}
-                                   value={this.state.selectMinutes < 10 ? "0" + this.state.selectMinutes : this.state.selectMinutes} selectIcon={false}/>
-                        </span>
-                    <span className={"next"} onClick={this.switch.bind(this, true)}>
-                        <Button className="white"><Icon name={"i-BAI-youjiantou"}/></Button>
-                    </span>
-                </div>
-                <div className={"ya-datepicker-content"}>{content}</div>
-            </div>
-        );
-    }
+    const [showType, set_showType] = useState(props.showType || MONTH);
+    const [selectDate, set_selectDate] = useState(props.date || new Date());
 
-    data = {
+    let data = {
         //获取今天是第几周
         getWeekOfYear: (year, month, day) => {
             let thisDate = new Date(year, month, day),
@@ -148,102 +50,81 @@ class Datepicker extends React.Component {
             let lastDay = new Date(year, month + 1, 0);
             let monthData = [];
             //当前月份每天的date对象集合,根据第一天星期几放第几位
-            let moreWeekViewNum = this.state.showType === Datepicker.MONTH ? this.props.addWeekOfMonthView[0] * 7 : 0;
+            let moreWeekViewNum = showType === MONTH ? addWeekOfMonthView[0] * 7 : 0;
             for (let day = 1; day <= lastDay.getDate(); day++) {
                 let index = fistDay.getDay() + day - 1 + moreWeekViewNum;
                 monthData[index] = {};
                 monthData[index].date = new Date(year, month, day);
-                monthData[index].week = this.data.getWeekOfYear(year, month, day);
-                monthData[index].lunar = toLunar(year, month+1, day);
+                monthData[index].week = data.getWeekOfYear(year, month, day);
+                monthData[index].lunar = toLunar(year, month + 1, day);
             }
             return monthData;
         },
-        setHours: (selectHours) => {
-            this.data.setState({selectHours})
-        },
-        setMinutes: (selectMinutes) => {
-            this.data.setState({selectMinutes})
-        },
-        backToday: () => {
-            let nowDate = new Date();
-            this.data.setState({
-                selectMilliseconds: nowDate.getMilliseconds(),
-                selectSeconds: nowDate.getSeconds(),
-                selectMinutes: nowDate.getMinutes(),
-                selectHours: nowDate.getHours(),
-                selectDay: nowDate.getDate(),
-                selectMonth: nowDate.getMonth(),
-                selectYear: nowDate.getFullYear(),
-            })
-        },
-        setState : (state) => {
-
-
-            let date = {...this.state};
-            if(state["selectYear"]) date["selectYear"] = state["selectYear"];
-            if(state["selectMonth"]) date["selectMonth"] = state["selectMonth"];
-            if(state["selectDay"]) date["selectDay"] = state["selectDay"];
-            if(state["selectHours"]) {
-                date["selectHours"] = state["selectHours"];
-                state["selectHours"] = Number(state["selectHours"]);
+        setState: (day, month, year, h, m, s) => {
+            let newDate = new Date(year || selectDate.getFullYear(), month || selectDate.getMonth(), day || selectDate.getDate());
+            if(h) {
+                newDate.setHours(Number(h));
+            }else {
+                newDate.setHours(selectDate.getHours());
             }
-            if(state["selectMinutes"]){
-                date["selectMinutes"] = state["selectMinutes"];
-                state["selectMinutes"] = Number(state["selectMinutes"]);
+            if(m){
+                newDate.setMinutes(Number(m));
+            }else {
+                newDate.setMinutes(selectDate.getMinutes());
             }
-            if(state["selectSeconds"]) date["selectSeconds"] = state["selectSeconds"];
-            if(state["selectMilliseconds"]) date["selectMilliseconds"] = state["selectMilliseconds"];
-            this.props.getSelectData({
-                milliseconds: date.selectMilliseconds,
-                seconds: date.selectSeconds,
-                minutes: date.selectMinutes,
-                hours: date.selectHours,
-                day: date.selectDay,
-                month: date.selectMonth + 1,
-                year: date.selectYear,
-            });
-
-            this.setState(state);
+            if(s){
+                newDate.setSeconds(Number(s));
+            }else {
+                newDate.setSeconds(selectDate.getHours());
+            }
+            set_selectDate(newDate);
+            props.getSelectData(newDate);
         }
     };
 
 
     //视图
-    view = {
+    let view = {
         //选择年的视图
-        selectYearsPage: (year) => {
-            let years = [];
+        yearsPage: () => {
+            let years = [], year = selectDate.getFullYear();
             for (let i = year - 12; i < year + 13; i++) {
-                years.push(<div className={"ya-datepicker-year" + (this.state.selectYear === i ? " selected" : "")}
-                                onClick={() => this.data.setState({selectYear: i, showType: Datepicker.MONTH})}
-                                key={"selectYear" + i}><Button className="white">{i}</Button></div>)
+                years.push(<div className={"ya-datepicker-year" + (year === i ? " selected" : "")}
+                                onClick={() => {
+                                    data.setState(false, false, i);
+                                    set_showType(MONTH)
+                                }}
+                                key={"year" + i}><Button className="white">{i}</Button></div>)
             }
-            return years
+            return years;
         },
         //年视图
-        renderYear: (year) => {
-            let yearTag = [];
+        renderYear: () => {
+            let yearTag = [], year = selectDate.getFullYear();
             for (let month = 0; month < 12; month++) {
                 yearTag.push(<div className={"ya-datepicker-month"} key={month}>
                     <div className={"ya-datepicker-month-title"}
-                         onClick={() => this.data.setState({selectMonth: month, showType: Datepicker.MONTH})}>
-                        <Button className={"white"}>{(month + 1) + this.props.text.month}</Button>
+                         onClick={() => {
+                             data.setState(false, month);
+                             set_showType(MONTH)
+                         }}>
+                        <Button>{(month + 1) + text.month}</Button>
                     </div>
-                    {this.view.renderMonth(month, year)}
+                    {view.renderMonth(month, year)}
                 </div>);
             }
             return yearTag;
         },
-        //月视图
+        //月、周视图
         renderMonth: (month, year) => {
             let daysTag = [];
-            let beforeWeekNum = this.state.showType === Datepicker.MONTH ? this.props.addWeekOfMonthView[0] : 0;
-            let afterWeekNum = this.state.showType === Datepicker.MONTH ? this.props.addWeekOfMonthView[1] : 0;
-            let monthData = this.data.getMonthList(month, year);
+            let beforeWeekNum = showType === MONTH ? addWeekOfMonthView[0] : 0;
+            let afterWeekNum = showType === MONTH ? addWeekOfMonthView[1] : 0;
+            let monthData = data.getMonthList(month, year);
             let weeksPerMonth = 5 + beforeWeekNum + afterWeekNum;
 
             //周名称头部
-            if (this.state.showType === Datepicker.MONTH || this.state.showType === Datepicker.WEEKS) daysTag.push(this.view.getWeeksHead());
+            if (showType === MONTH || showType === WEEKS) daysTag.push(view.getWeeksHead());
 
             //循环每周
             for (let week = 0; week < weeksPerMonth; week++) {
@@ -252,11 +133,11 @@ class Datepicker extends React.Component {
                 for (let day = 0; day < 7; day++) {
                     let index = week * 7 + day;
                     let item = monthData[index];
-                    daysTags.push(this.view.renderDay(month, year, item, week, day, index));
+                    daysTags.push(view.renderDay(month, year, item, week, day, index));
 
                     //判断当前选中的天是否是当前循环中的周
-                    if (this.state.showType === Datepicker.WEEKS) {
-                        if (item && item.date && item.date.getDate() === this.state.selectDay) {
+                    if (showType === WEEKS) {
+                        if (item && item.date && item.date.getDate() === selectDate.getDate()) {
                             hideWeek = "";
                         }
                     } else {
@@ -270,25 +151,25 @@ class Datepicker extends React.Component {
             }
 
             //周视图按钮
-            if (this.state.showType === Datepicker.WEEKS || this.state.showType === Datepicker.MONTH) daysTag.push(this.view.showWeekBtn(false));
+            if (showType === WEEKS || showType === MONTH) daysTag.push(view.showWeekBtn(false));
             return daysTag;
         },
-        //日视图
+        //每天
         renderDay: (month, year, item, week, whatDay, index) => {
-            let beforeWeekNum = this.state.showType === Datepicker.MONTH ? this.props.addWeekOfMonthView[0] : 0;
+            let beforeWeekNum = showType === MONTH ? addWeekOfMonthView[0] : 0;
             let fistDay = new Date(year, month, 1);
             let lastDay = new Date(year, month + 1, 0);
             let dayClass = "ya-datepicker-day";
             if (item === undefined || item === null) {
                 //补全当月前后缺失的部分
                 item = {};
-                if (this.props.monthIsFill && this.state.showType !== Datepicker.YEAR) {
+                if (monthIsFill && showType !== YEAR) {
                     //补全天
                     if (week < beforeWeekNum + 2) {
                         //前
                         let fillDay = -fistDay.getDay() + whatDay + 1 - (beforeWeekNum - week) * 7;
                         item.date = new Date(year, month, fillDay);
-                        item.week = this.data.getWeekOfYear(year, month, fillDay);
+                        item.week = data.getWeekOfYear(year, month, fillDay);
                         item.lunar = toLunar(year, month + 1, fillDay);
                     } else if (week > beforeWeekNum + 2) {
                         //后
@@ -296,9 +177,9 @@ class Datepicker extends React.Component {
                         let fillDay = lastWeekLeftDay + (week - 4 - beforeWeekNum) * 7;
 
                         //fillDay小于等于零时，只会在闰年2月刚好排满四周的情况，此时多补一周
-                        if(fillDay <=0) fillDay += 7;
+                        if (fillDay <= 0) fillDay += 7;
                         item.date = new Date(year, month + 1, fillDay);
-                        item.week = this.data.getWeekOfYear(year, month + 1, fillDay);
+                        item.week = data.getWeekOfYear(year, month + 1, fillDay);
                         item.lunar = toLunar(year, month + 1 + 1, fillDay);
                     }
                     dayClass += " otherMonth";
@@ -313,7 +194,7 @@ class Datepicker extends React.Component {
                 dayClass += (isSun ? " sunday" : "");
 
                 //选中
-                if (this.state.selectDay === date.getDate() && this.state.selectMonth === date.getMonth() && this.state.selectYear === date.getFullYear()) {
+                if (selectDate.getDate() === date.getDate() && selectDate.getMonth() === date.getMonth() && selectDate.getFullYear() === date.getFullYear()) {
                     dayClass += " selected";
                 }
 
@@ -326,7 +207,7 @@ class Datepicker extends React.Component {
             }
             //周数
             let weekNumTag = "";
-            if (whatDay === 0 && (this.state.showType === Datepicker.MONTH || this.state.showType === Datepicker.WEEKS)) {
+            if (whatDay === 0 && (showType === MONTH || showType === WEEKS)) {
                 weekNumTag = <span className={"weekNum"} key={"weekNum" + index}>{item.week}</span>
             }
 
@@ -336,21 +217,21 @@ class Datepicker extends React.Component {
                 let lunar = item.lunar;
                 dayText = item.date.getDate();
                 lunarDay = lunar.lunarDay;
-                if(lunar.lunarDay === "初一") lunarDay = lunar.lunarMonth + "月";
+                if (lunar.lunarDay === "初一") lunarDay = lunar.lunarMonth + "月";
             }
 
             return <React.Fragment key={index}>
                 {weekNumTag}
-                <div className={dayClass} onClick={this.dayClick.bind(this, item)}>
+                <div className={dayClass} onClick={dayClick.bind(this, item)}>
                     <div className={"dayText"}>{dayText}</div>
-                    {this.props.showLunar && this.state.showType === Datepicker.MONTH ?
+                    {showLunar && showType === MONTH ?
                         <div className={"lunarDay"}>{lunarDay}</div> : ""}
                 </div>
             </React.Fragment>;
         },
         //获取周名称头部
         getWeeksHead: () => {
-            let weeksName = this.props.text.weeksName;
+            let weeksName = text.weeksName;
             let weeksNameTag = [];
             for (let i in weeksName) {
                 if (weeksName.hasOwnProperty(i)) {
@@ -358,79 +239,147 @@ class Datepicker extends React.Component {
                 }
             }
             return <div className={"ya-datepicker-weekNames"} key={"weekNames"}>
-                <div className={"weekTitle"}>{this.props.text.w}</div>
+                <div className={"weekTitle"}>{text.w}</div>
                 {weeksNameTag}</div>;
         },
         //周视图切换按钮
         showWeekBtn: () => {
-            let isShow = this.state.showType === Datepicker.WEEKS;
-            let showType = isShow ? Datepicker.MONTH : Datepicker.WEEKS;
-            return <div className={"ya-showWeekView"} key={"ya-showWeekView"} onClick={() => this.data.setState({showType})}>
-                <Button className="white adaptive"><Icon name={"i-Group-" + (isShow ? "1" : "")}/></Button>
+            return <div className={"ya-showWeekView"} key={"ya-showWeekView"}
+                        onClick={() => set_showType(showType === WEEKS ? MONTH : WEEKS)}>
+                <Button icon={"i-Group-" + (showType === WEEKS ? "1" : "")} adaptive/>
             </div>;
         }
     };
 
     //上下翻页,true下一页，false上一页
-    switch(type) {
-        let selectDay = this.state.selectDay;
-        let selectMonth = this.state.selectMonth;
-        let selectYear = this.state.selectYear;
-        let lastDay = new Date(selectYear, selectMonth + 1, 0);
-        let prevLastDay = new Date(selectYear, selectMonth, 0);
-        if (this.state.showType === Datepicker.WEEKS) {
+    let changePage = (type) => {
+        let day = selectDate.getDate();
+        let month = selectDate.getMonth();
+        let year = selectDate.getFullYear();
+        let lastDay = new Date(year, month + 1, 0);
+        let prevLastDay = new Date(year, month, 0);
+        if (showType === WEEKS) {
             if (type) {
-                if (selectDay > lastDay.getDate() - 7) {
-                    selectMonth += 1;
-                    selectDay = 7 - lastDay.getDay();
+                if (day > lastDay.getDate() - 7) {
+                    month += 1;
+                    day = 7 - lastDay.getDay();
                 } else {
-                    selectDay += 7;
+                    day += 7;
                 }
             } else {
-                if (selectDay < 7) {
-                    selectMonth -= 1;
-                    selectDay = selectDay - 7 + prevLastDay.getDate();
+                if (day < 7) {
+                    month -= 1;
+                    day = day - 7 + prevLastDay.getDate();
                 } else {
-                    selectDay -= 7;
+                    day -= 7;
                 }
             }
-        } else if (this.state.showType === Datepicker.MONTH) {
+        } else if (showType === MONTH) {
             if (type) {
-                selectMonth += 1;
-                if (selectMonth > 11) {
-                    selectYear += 1;
-                    selectMonth = selectMonth - 12;
+                month += 1;
+                if (month > 11) {
+                    year += 1;
+                    month = month - 12;
                 }
             } else {
-                selectMonth -= 1;
+                month -= 1;
                 //1月是0
-                if (selectMonth < 0) {
-                    selectYear -= 1;
-                    selectMonth = 12 + selectMonth;
+                if (month < 0) {
+                    year -= 1;
+                    month = 12 + month;
                 }
             }
-        } else if (this.state.showType === Datepicker.YEAR) {
+        } else if (showType === YEAR) {
             if (type) {
-                selectYear += 1;
+                year += 1;
             } else {
-                selectYear -= 1;
+                year -= 1;
             }
-        } else if (this.state.showType === Datepicker.SELECT_YEAR) {
+        } else if (showType === SELECT_YEAR) {
             if (type) {
-                selectYear += 25;
+                year += 25;
             } else {
-                selectYear -= 25;
+                year -= 25;
             }
         }
-        this.data.setState({selectDay, selectMonth, selectYear});
+        data.setState(day, month, year);
     }
 
     //天数字点击
-    dayClick = (item) => {
-        if (item && item.date) {
-            this.data.setState({selectMonth: item.date.getMonth(), selectDay: item.date.getDate()});
-        }
+    let dayClick = (item) => {
+        if (item && item.date) data.setState(item.date.getDate(), item.date.getMonth());
     };
+
+    let content;
+    let contentClass = props.className || "";
+    switch (showType) {
+        case SELECT_YEAR:
+            content = view.yearsPage();
+            contentClass += " selectYear";
+            break;
+        case YEAR:
+            content = view.renderYear();
+            contentClass += " year";
+            break;
+        case MONTH :
+            content = view.renderMonth(selectDate.getMonth(), selectDate.getFullYear());
+            contentClass += " month";
+            break;
+        case WEEKS:
+            content = view.renderMonth(selectDate.getMonth(), selectDate.getFullYear());
+            contentClass += " weeks";
+            break;
+        case DAY:
+            content = "";
+            contentClass += " day";
+            break;
+        case TIME:
+            content = "";
+            contentClass += " time";
+            break;
+        default:
+            content = "";
+            contentClass += " time";
+            break;
+    }
+    let selectHours = selectDate.getHours() < 10 ? ("0" + selectDate.getHours() ): selectDate.getHours();
+    let selectMinutes = selectDate.getMinutes() < 10 ? ("0" + selectDate.getMinutes()) : selectDate.getMinutes();
+    return (
+        <div className={'ya-datepicker ' + contentClass}>
+            <div className={"ya-datepicker-header"}>
+                        <span className={"prev"} onClick={changePage.bind(this, false)}>
+                            <Button icon={"i-BAI-zuojiantou"}/>
+                        </span>
+                <span className={"selectArea"}>
+                        <Button icon={"i-BAI-wuzi"} onClick={() => {
+                            set_selectDate(new Date())
+                        }}/>
+                        <Button onClick={() => set_showType(SELECT_YEAR)}>
+                            {selectDate.getFullYear() + text.year}
+                        </Button>
+                        <Button onClick={() => set_showType(YEAR)}>
+                            {selectDate.getMonth() + 1 + text.month}
+                        </Button>
+                        <Button onClick={() => set_showType(MONTH)}>
+                            {selectDate.getDate() + text.day}
+                        </Button>
+                            <Input type="select" className="selectHours" dropDownBoxData={ARRAY24}
+                                   onChange={hours => data.setState(false, false, false, hours)}
+                                   value={selectHours}
+                                   selectIcon={false}/>
+                                   :
+                            <Input type="select" className="selectMinutes" dropDownBoxData={ARRAY60}
+                                   onChange={m => data.setState(false, false, false, false, m)}
+                                   value={selectMinutes}
+                                   selectIcon={false}/>
+                        </span>
+                <span className={"next"} onClick={changePage.bind(this, true)}>
+                        <Button icon={"i-BAI-youjiantou"}/>
+                    </span>
+            </div>
+            <div className={"ya-datepicker-content"}>{content}</div>
+        </div>
+    );
 
 }
 
