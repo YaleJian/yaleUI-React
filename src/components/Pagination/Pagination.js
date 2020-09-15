@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {Input} from "..";
 import {Icon} from "..";
 import {Button} from "..";
@@ -7,11 +7,16 @@ import "./pagination.css";
 /**
  * 分页
  */
-const Pagination = () => {
-    const [page, set_page] = useState(0);
-    const [eachPage, set_eachPage] = useState(0);
-    const [total, set_total] = useState(0);
+const Pagination = (props) => {
+    const [page, set_page] = useState(props.page || 1);
+    const [eachPage, set_eachPage] = useState(props.eachPage || 10);
+    const [total, set_total] = useState(props.total || 1);
 
+    useEffect(()=>{
+        set_page(page);
+        set_eachPage(eachPage);
+        set_total(total);
+    })
 
     let getSelectData = (page) => {
         props.getPage(page);
@@ -26,7 +31,7 @@ const Pagination = () => {
 
     let totalPage = Math.ceil(total / eachPage);
     let dropData = totalPage ? Array(totalPage).fill(null).map((_, h) => h + 1) : [];
-    return <div className={"ya-pagination"}>
+    return <div className={"ya-pagination "+ props.className}>
             <span onClick={prev.bind(this)}>
                 <Button className={"item"} radius disabled={page === 1} icon={"i-BAI-zuojiantou"}/>
             </span>
