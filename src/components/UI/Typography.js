@@ -20,12 +20,12 @@ const Typography = ()=> {
         }
     })
     return <div>
-        <Tree treeData={this.state.navData}
+        <Tree treeData={navData}
               treeType={3}
               openBtn={false}
               openLevel={"all"}
               ref={tree => {
-                  this.tree = tree
+                  window.tree = tree
               }}
         />
         <h1 className="ya-title">排版</h1>
