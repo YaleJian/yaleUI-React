@@ -34,6 +34,7 @@ const Input = (props) => {
                       onChange={onChange.bind(this)}
                       onClick={onClick.bind(this)}
                       onKeyDown={onKeyDown.bind(this)}
+                      hide={props.hide}
         />;
     };
 

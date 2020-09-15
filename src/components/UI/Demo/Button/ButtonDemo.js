@@ -18,7 +18,7 @@ const ButtonDemo = () => {
     })
 
     return (
-        <React.Fragment>
+        <div className={"ya-buttonDemo"}>
             <Tree treeData={navData}
                   treeType={3}
                   openBtn={false}
@@ -146,7 +146,7 @@ const ButtonDemo = () => {
             <div className="ya-p">
                 <Button noStyle/>
             </div>
-        </React.Fragment>
+        </div>
     );
 }
 

@@ -12,6 +12,8 @@ const Datepicker = (props) => {
     let monthIsFill = props.monthIsFill || true;//每月的首位是否填充上月的
     let showLunar = props.showLunar || false;//是否显示农历
     let showWeekNum = props.showWeekNum || false;//是否显示周数
+    let showWeekBtn = props.showWeekBtn || false;//是否显示周数
+    let showTime = props.showTime || false;//是否显示时间
     let addWeekOfMonthView = props.addWeekOfMonthView || [0, 0];//每月前后多显示几周
     let text = props.text || {
         year: "年",
@@ -25,12 +27,11 @@ const Datepicker = (props) => {
         weeksName: ["日", "一", "二", "三", "四", "五", "六"],
     }
 
-    const SELECT_YEAR = 0;
-    const YEAR = 1;
-    const MONTH = 2;
-    const WEEKS = 3;
-    const DAY = 4;
-    const TIME = 5;
+    const MONTH = 0;
+    const WEEKS = 1;
+    const YEAR = 2;
+    const SELECT_YEAR = 3;
+    const TIME = 4;
     const ARRAY60 = Array(59).fill(null).map((_, h) => h < 9 ? "0" + (h + 1) : h + 1);
     const ARRAY24 = Array(24).fill(null).map((_, h) => h < 9 ? "0" + (h + 1) : h + 1);
 
@@ -45,16 +46,15 @@ const Datepicker = (props) => {
                 d = Math.round((thisDate.valueOf() - january.valueOf()) / 86400000);
             return Math.ceil((d + ((january.getDay() + 1) - 1)) / 7);
         },
-        //计算当前月份date对象的集合
-        getMonthList: (month, year) => {
+        //计算当前月份date对象的集合，按照月份视图的星期几入位数组
+        getMonthDates: (month, year, leaveSpaceOfWeek) => {
             //当前月份的第一天和最后一天
             let fistDay = new Date(year, month, 1);
             let lastDay = new Date(year, month + 1, 0);
             let monthData = [];
             //当前月份每天的date对象集合,根据第一天星期几放第几位
-            let moreWeekViewNum = showType === MONTH ? addWeekOfMonthView[0] * 7 : 0;
             for (let day = 1; day <= lastDay.getDate(); day++) {
-                let index = fistDay.getDay() + day - 1 + moreWeekViewNum;
+                let index = fistDay.getDay() + day - 1 + (leaveSpaceOfWeek || 0) * 7;//加leaveSpaceOfWeek是为了向前预留几周的空位
                 monthData[index] = {};
                 monthData[index].date = new Date(year, month, day);
                 monthData[index].week = data.getWeekOfYear(year, month, day);
@@ -62,6 +62,30 @@ const Datepicker = (props) => {
             }
             return monthData;
         },
+        //补全月份Date对象集合中，非当前月的天数据
+        fillData: (dayDate, whatDay, weekIndex, month, year) => {
+            let beforeWeekNum = showType === MONTH ? addWeekOfMonthView[0] : 0;
+            let fistDay = new Date(year, month, 1);
+            let lastDay = new Date(year, month + 1, 0);
+            if (weekIndex < beforeWeekNum + 2) {
+                //前
+                let fillDay = -fistDay.getDay() + whatDay + 1 - (beforeWeekNum - weekIndex) * 7;
+                dayDate.date = new Date(year, month, fillDay);
+                dayDate.week = data.getWeekOfYear(year, month, fillDay);
+                dayDate.lunar = toLunar(year, month + 1, fillDay);
+            } else if (weekIndex > beforeWeekNum + 2) {
+                //后
+                let lastWeekLeftDay = whatDay - lastDay.getDay();
+                let fillDay = lastWeekLeftDay + (weekIndex - 4 - beforeWeekNum) * 7;
+
+                //fillDay小于等于零时，只会在闰年2月刚好排满四周的情况，此时多补一周
+                if (fillDay <= 0) fillDay += 7;
+                dayDate.date = new Date(year, month + 1, fillDay);
+                dayDate.week = data.getWeekOfYear(year, month + 1, fillDay);
+                dayDate.lunar = toLunar(year, month + 1 + 1, fillDay);
+            }
+        },
+        //更新选中的Date
         setState: (day, month, year, h, m, s) => {
             let newDate = new Date(year || selectDate.getFullYear(), month || selectDate.getMonth(), day || selectDate.getDate());
             if (h) {
@@ -83,7 +107,6 @@ const Datepicker = (props) => {
             props.getSelectData(newDate);
         }
     };
-
 
     //视图
     let view = {
@@ -117,79 +140,63 @@ const Datepicker = (props) => {
             }
             return yearTag;
         },
-        //月、周视图
+        //月
         renderMonth: (month, year) => {
-            let daysTag = [];
+            let monthTag = [];
             let beforeWeekNum = showType === MONTH ? addWeekOfMonthView[0] : 0;
             let afterWeekNum = showType === MONTH ? addWeekOfMonthView[1] : 0;
-            let monthData = data.getMonthList(month, year);
-            let weeksPerMonth = 5 + beforeWeekNum + afterWeekNum;
+            let monthDates = data.getMonthDates(month, year, beforeWeekNum);//获取这个月的所有Date对象(数组前后会存在空值，按星期几入位置)
 
-            //周数名称
-            if (showType === MONTH || showType === WEEKS) daysTag.push(view.getWeeksHead());
+            //周数名称(月视图、周视图使用)
+            if (showType === MONTH || showType === WEEKS) monthTag.push(view.getWeeksHead());
 
-            //循环每周
-            for (let week = 0; week < weeksPerMonth; week++) {
-                let daysTags = [], hideWeek = " hide";
-                //循环一周的每天
-                for (let day = 0; day < 7; day++) {
-                    let index = week * 7 + day;
-                    let item = monthData[index];
-                    daysTags.push(view.renderDay(month, year, item, week, day, index));
-
-                    //判断当前选中的天是否是当前循环中的周
-                    if (showType === WEEKS) {
-                        if (item && item.date && item.date.getDate() === selectDate.getDate()) {
-                            hideWeek = "";
-                        }
-                    } else {
-                        hideWeek = "";
-                    }
-                }
-
-                daysTag.push(<div className={"ya-datepicker-weeks" + hideWeek} key={"ya-datepicker-weeks" + week}>
-                    {daysTags}
-                </div>);
+            //循环当前月视图要展示的所有周（包含上个月、下个月的周部分)，默认每个月展示5周
+            let weeksLength = 5 + beforeWeekNum + afterWeekNum;
+            for (let i = 0; i < weeksLength; i++) {
+                monthTag.push(view.renderWeek(monthDates, i, month, year));
             }
 
             //周视图按钮
-            if (showType === WEEKS || showType === MONTH) daysTag.push(view.showWeekBtn(false));
-            return daysTag;
+            if (showWeekBtn && (showType === WEEKS || showType === MONTH)) monthTag.push(view.showWeekBtn(false));
+            return monthTag;
         },
-        //每天
-        renderDay: (month, year, item, week, whatDay, index) => {
-            let beforeWeekNum = showType === MONTH ? addWeekOfMonthView[0] : 0;
-            let fistDay = new Date(year, month, 1);
-            let lastDay = new Date(year, month + 1, 0);
-            let dayClass = "ya-datepicker-day";
-            if (item === undefined || item === null) {
-                //补全当月前后缺失的部分
-                item = {};
-                if (monthIsFill && showType !== YEAR) {
-                    //补全天
-                    if (week < beforeWeekNum + 2) {
-                        //前
-                        let fillDay = -fistDay.getDay() + whatDay + 1 - (beforeWeekNum - week) * 7;
-                        item.date = new Date(year, month, fillDay);
-                        item.week = data.getWeekOfYear(year, month, fillDay);
-                        item.lunar = toLunar(year, month + 1, fillDay);
-                    } else if (week > beforeWeekNum + 2) {
-                        //后
-                        let lastWeekLeftDay = whatDay - lastDay.getDay();
-                        let fillDay = lastWeekLeftDay + (week - 4 - beforeWeekNum) * 7;
+        //周
+        renderWeek: (monthDates, weekIndex, month, year) => {
+            let weekTag = [], hideWeek = " hide";
+            //循环一周的每天
+            for (let day = 0; day < 7; day++) {
+                let dayIndex = weekIndex * 7 + day;
+                let dayDate = monthDates[dayIndex];
+                weekTag.push(view.renderDay(dayDate, weekIndex, dayIndex, month, year, day));
 
-                        //fillDay小于等于零时，只会在闰年2月刚好排满四周的情况，此时多补一周
-                        if (fillDay <= 0) fillDay += 7;
-                        item.date = new Date(year, month + 1, fillDay);
-                        item.week = data.getWeekOfYear(year, month + 1, fillDay);
-                        item.lunar = toLunar(year, month + 1 + 1, fillDay);
+                //判断当前选中的天是否是当前循环中的周
+                if (showType === WEEKS) {
+                    if (dayDate && dayDate.date && dayDate.date.getDate() === selectDate.getDate()) {
+                        hideWeek = "";
                     }
+                } else {
+                    hideWeek = "";
+                }
+            }
+            return <div className={"ya-datepicker-weeks" + hideWeek} key={"ya-datepicker-weeks" + weekIndex}>
+                {weekTag}
+            </div>;
+        },
+        //日
+        renderDay: (dayDate, weekIndex, dayIndex, month, year, whatDay) => {
+            let dayClass = "ya-datepicker-day";
+            if (dayDate === undefined || dayDate === null) {
+                //补全当月前后缺失的部分
+                dayDate = {};
+                if (monthIsFill && (showType === MONTH || showType === WEEKS)) {
+                    //补全天数据
+                    data.fillData(dayDate, whatDay, weekIndex, month, year)
                     dayClass += " otherMonth";
                 } else {
                     dayClass += " noDay";
                 }
             } else {
-                let date = item.date;
+                let date = dayDate.date;
                 let isSat = date.getDay() === 6;
                 let isSun = date.getDay() === 0;
                 dayClass += (isSat ? " saturday" : "");
@@ -207,26 +214,32 @@ const Datepicker = (props) => {
                 }
 
             }
+
             //周数
             let weekNumTag = "";
-            if (whatDay === 0 && (showType === MONTH || showType === WEEKS)) {
-                weekNumTag = <span className={"weekNum"} key={"weekNum" + index}>{item.week}</span>
+            if (whatDay === 0 && (showType === MONTH || showType === WEEKS) && showWeekNum) {
+                weekNumTag = <span className={"weekNum"} key={"weekNum" + dayIndex}>{dayDate.week}</span>
             }
 
-            //农历
-            let dayText = "", lunarDay = "";
-            if (JSON.stringify(item) !== "{}" && item && item.date) {
-                let lunar = item.lunar;
-                dayText = item.date.getDate();
-                lunarDay = lunar.lunarDay;
-                if (lunar.lunarDay === "初一") lunarDay = lunar.lunarMonth + "月";
+            //公历、农历文字
+            let dayText = "", lunarTag = "";
+            if (JSON.stringify(dayDate) !== "{}" && dayDate && dayDate.date) {
+                //仅当月
+                dayText = dayDate.date.getDate();
+
+                //仅打开农历开关、月、周视图时
+                if (showLunar && (showType === MONTH || showType === WEEKS)) {
+                    let lunarText = dayDate.lunar.lunarDay;
+                    if (lunarText === "初一") lunarText = dayDate.lunar.lunarMonth + "月";
+                    lunarTag = <div className={"lunarDay"}>{lunarText}</div>;
+                }
             }
 
-            return <React.Fragment key={index}>
-                {showWeekNum ? weekNumTag : ""}
-                <div className={dayClass} onClick={dayClick.bind(this, item)}>
+            return <React.Fragment key={dayIndex}>
+                {weekNumTag}
+                <div className={dayClass} onClick={dayClick.bind(this, dayDate)}>
                     <div className={"dayText"}>{dayText}</div>
-                    {showLunar && showType === MONTH ? <div className={"lunarDay"}>{lunarDay}</div> : ""}
+                    {lunarTag}
                 </div>
             </React.Fragment>;
         },
@@ -246,10 +259,23 @@ const Datepicker = (props) => {
         },
         //周视图切换按钮
         showWeekBtn: () => {
-            return <div className={"ya-showWeekView"} key={"ya-showWeekView"}
-                        onClick={() => set_showType(showType === WEEKS ? MONTH : WEEKS)}>
-                <Button icon={"i-Group-" + (showType === WEEKS ? "1" : "")} adaptive/>
-            </div>;
+            return <Button icon={"i-Group-" + (showType === WEEKS ? "1" : "")} className={"ya-showWeekView"} adaptive key={"ya-showWeekView"}
+                           onClick={() => set_showType(showType === WEEKS ? MONTH : WEEKS)}/>;
+        },
+        //时间选择框
+        time: () => {
+            if (!showTime && showType !== TIME) return;
+            return <React.Fragment>
+                <Input type="select" className="selectHours" dropDownBoxData={ARRAY24}
+                       onChange={hours => data.setState(false, false, false, hours)}
+                       value={selectHours}
+                       selectIcon={false}/>
+                :
+                <Input type="select" className="selectMinutes" dropDownBoxData={ARRAY60}
+                       onChange={m => data.setState(false, false, false, false, m)}
+                       value={selectMinutes}
+                       selectIcon={false}/>
+            </React.Fragment>;
         }
     };
 
@@ -309,7 +335,7 @@ const Datepicker = (props) => {
 
     //天数字点击
     let dayClick = (item) => {
-        if (item && item.date) data.setState(item.date.getDate(), item.date.getMonth());
+        if (item && item.date) data.setState(item.date.getDate(), item.date.getMonth(), item.date.getFullYear());
     };
 
     let content;
@@ -331,58 +357,44 @@ const Datepicker = (props) => {
             content = view.renderMonth(selectDate.getMonth(), selectDate.getFullYear());
             contentClass += " weeks";
             break;
-        case DAY:
-            content = "";
-            contentClass += " day";
-            break;
-        case TIME:
-            content = "";
-            contentClass += " time";
-            break;
-        default:
-            content = "";
-            contentClass += " time";
-            break;
     }
+
     let selectHours = selectDate.getHours() < 10 ? ("0" + selectDate.getHours()) : selectDate.getHours();
     let selectMinutes = selectDate.getMinutes() < 10 ? ("0" + selectDate.getMinutes()) : selectDate.getMinutes();
-    return (
-        <div className={'ya-datepicker ' + contentClass}>
+
+    let returnTags = <div/>;
+    if (showType === TIME) {
+        //时间选择器
+        returnTags = <div className={'ya-timePicker ' + contentClass}>{view.time()}</div>;
+    } else {
+        //日期选择器
+        returnTags = <div className={'ya-datepicker ' + contentClass}>
             <div className={"ya-datepicker-header"}>
-                        <span className={"prev"} onClick={changePage.bind(this, false)}>
-                            <Button icon={"i-BAI-zuojiantou"}/>
-                        </span>
+                <Button icon={"i-BAI-zuojiantou"} className={"prev"} onClick={changePage.bind(this, false)}/>
                 <span className={"selectArea"}>
-                        <Button icon={"i-BAI-wuzi"} onClick={() => {
-                            set_selectDate(new Date())
-                        }}/>
-                        <Button onClick={() => set_showType(SELECT_YEAR)}>
-                            {selectDate.getFullYear() + text.year}
-                        </Button>
-                        <Button onClick={() => set_showType(YEAR)}>
-                            {selectDate.getMonth() + 1 + text.month}
-                        </Button>
-                        <Button onClick={() => set_showType(MONTH)}>
-                            {selectDate.getDate() + text.day}
-                        </Button>
-                            <Input type="select" className="selectHours" dropDownBoxData={ARRAY24}
-                                   onChange={hours => data.setState(false, false, false, hours)}
-                                   value={selectHours}
-                                   selectIcon={false}/>
-                                   :
-                            <Input type="select" className="selectMinutes" dropDownBoxData={ARRAY60}
-                                   onChange={m => data.setState(false, false, false, false, m)}
-                                   value={selectMinutes}
-                                   selectIcon={false}/>
-                        </span>
-                <span className={"next"} onClick={changePage.bind(this, true)}>
-                        <Button icon={"i-BAI-youjiantou"}/>
-                    </span>
+                    <Button icon={"i-BAI-wuzi"} onClick={() => {
+                        set_selectDate(new Date())
+                    }}/>
+                    <Button onClick={() => set_showType(SELECT_YEAR)}>
+                        {selectDate.getFullYear() + text.year}
+                    </Button>
+                    <Button onClick={() => set_showType(YEAR)}>
+                        {selectDate.getMonth() + 1 + text.month}
+                    </Button>
+                    <Button onClick={() => set_showType(MONTH)}>
+                        {selectDate.getDate() + text.day}
+                    </Button>
+                    {view.time()}
+                </span>
+                <Button icon={"i-BAI-youjiantou"} className={"next"} onClick={changePage.bind(this, true)}/>
             </div>
             <div className={"ya-datepicker-content"}>{content}</div>
         </div>
-    );
+    }
+    return returnTags;
 
 }
-
-export {Datepicker};
+const TimePicker = (props)=>{
+    return <Datepicker showType={4} getSelectData={props.getSelectData} className={props.className}/>
+}
+export {Datepicker,TimePicker};
