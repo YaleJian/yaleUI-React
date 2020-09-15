@@ -90,12 +90,12 @@ class Login extends React.Component {
             default:
                 break;
         }
-        return <>
+        return <React.Fragment>
             {this.state.authState === Login.AUTH_PIN ? <div className="pin-mask">Lock</div> : ""}
             <div className="ya-login animated fastest fadeInDownSmall">
                 {authPage}
             </div>
-        </>
+        </React.Fragment>
     }
 
     componentWillUnmount() {
@@ -136,7 +136,7 @@ class Login extends React.Component {
         noLogin: () => {
             let noLoginClass = "noLogin ";
             noLoginClass = this.state.authState === Login.NO_LOGIN ? noLoginClass : noLoginClass + "active";
-            let loginPage = <>
+            let loginPage = <React.Fragment>
                 <span className="loginEntrance" onClick={this.pageAction.login.bind(this)}
                       hidden={this.state.authState !== Login.NO_LOGIN && this.state.type !== Login.LOGIN}>登陆</span>
                 <span className="registerEntrance" onClick={this.pageAction.register.bind()}
@@ -145,12 +145,12 @@ class Login extends React.Component {
                       hidden={this.state.authState === Login.NO_LOGIN}>
                         <Icon name="i-BAI-guanbi"/>
                     </span>
-            </>;
+            </React.Fragment>;
             let hideBtn = <Button className={"hideBtn"} onClick={() => this.setState({mini: !this.state.mini})}><Icon name={this.state.mini ? "i-BAI-wode" : "i-BAI-youjiantou"}/></Button>;
-            return <>
+            return <React.Fragment>
                 {this.state.authState === Login.NO_LOGIN ? hideBtn : ""}
                 {this.state.mini ? "" : <div className={noLoginClass}> {loginPage}</div>}
-            </>
+            </React.Fragment>
         },
         //登录成功
         loginSuccess: () => {
@@ -158,7 +158,7 @@ class Login extends React.Component {
         },
         //密码登录
         corePassword: () => {
-            return <>
+            return <React.Fragment>
                 {this.pages.noLogin()}
                 <form
                     onSubmit={this.state.type === Login.LOGIN ? this.auth.corePassword.bind(this) : this.register.bind(this)}>
@@ -192,11 +192,11 @@ class Login extends React.Component {
                     {this.pages.creditLogin()}
                     {this.pages.autoLogin()}
                 </form>
-            </>
+            </React.Fragment>
         },
         //验证码登录
         verificationCode: () => {
-            return <>
+            return <React.Fragment>
                 {this.pages.noLogin()}
                 <div className="verificationCode">
                     <div className={"verificationItem"}>
@@ -213,11 +213,11 @@ class Login extends React.Component {
                 {this.pages.operate()}
                 {this.pageAction.back()}
                 {this.pages.autoLogin()}
-            </>
+            </React.Fragment>
         },
         //PIN登录
         pin: () => {
-            return <>
+            return <React.Fragment>
                 <div className="pinTitle">请输入PIN密码解锁</div>
                 <div className="pin " onKeyUp={this.pageAction.pinKeyUp.bind()}>
                     <input autoFocus={true} type="text" className="pinText" maxLength="1" name="1"
@@ -235,7 +235,7 @@ class Login extends React.Component {
                 </div>
                 {this.pageAction.back()}
                 {this.pageAction.clear()}
-            </>
+            </React.Fragment>
         },
         //动作检测
         action: () => {
@@ -255,7 +255,7 @@ class Login extends React.Component {
                 }
             };
 
-            return <>
+            return <React.Fragment>
                 {this.pages.noLogin()}
                 <div className="action ">
                     <button className="actionBtn" id="TencentCaptcha" data-appid="2030796655" data-cbfn="callback">点击登录
@@ -263,11 +263,11 @@ class Login extends React.Component {
                 </div>
                 {this.pageAction.back()}
                 {this.pageAction.clear()}
-            </>
+            </React.Fragment>
         },
         //二维码登录
         qrCode: () => {
-            return <>
+            return <React.Fragment>
                 {this.pages.noLogin()}
                 <div className="qrCode">
                     <div className="qrCodeContent">
@@ -282,7 +282,7 @@ class Login extends React.Component {
                 </div>
                 {this.pages.autoLogin()}
                 {this.pageAction.back()}
-            </>
+            </React.Fragment>
         },
         //协议条款
         agreement: () => {

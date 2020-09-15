@@ -15,7 +15,7 @@ import { Button } from 'yale-ui';
  
 const App = () => (
   <>
-    <Button content={"按钮"}></Button>
+    <Button>按钮</Button>
   </>
 );
 ```
