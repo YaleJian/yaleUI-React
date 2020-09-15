@@ -1,26 +1,15 @@
-import React from "react";
+import React, {useState} from "react";
 import {Pagination} from "../../../index";
-class PaginationDemo extends React.Component{
-    static defaultProps = {
 
-    };
+const PaginationDemo = () => {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            page : 1
-        }
-    }
+    const [page, set_page] = useState(0)
 
-    render() {
-        return <div>
-            <Pagination getPage={this.getPage.bind(this)} total={10} page={1}/>
+    return <div>
+        <h1>分页</h1>
+        <div className={"ya-p"}>
+            <Pagination getPage={set_page.bind(this)} total={1000} page={2}/>
         </div>
-    }
-
-    getPage = (page)=>{
-        this.setState({page});
-    }
-
+    </div>
 }
 export default PaginationDemo

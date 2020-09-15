@@ -12,11 +12,11 @@ const menuData = [
     {id: "tree", name: "树组件", link: "/ui/tree", sort: 8},
     {id: "date", name: "日期", link: "/ui/date", sort: 9},
     {id: "pagination", name: "分页", link: "/ui/pagination", sort: 10},
-    {id: "animation", name: "动画", link: "/ui/animation", sort: 11},
-    {id: "map", name: "地图", link: "/ui/map", sort: 12},
-    {id: "chart", name: "图表", link: "/ui/chart", sort: 13},
-    {id: "richTextEditor", name: "富文本编辑器", link: "/ui/richTextEditor", sort: 14},
-    {id: "cloudDrive", name: "云盘", link: "/ui/cloudDrive", sort: 15},
+    {id: "richTextEditor", name: "富文本编辑器", link: "/ui/richTextEditor", sort: 11},
+    {id: "cloudDrive", name: "云盘", link: "/ui/cloudDrive", sort: 12},
+    {id: "animation", name: "动画", link: "/ui/animation", sort: 13},
+    {id: "map", name: "地图", link: "/ui/map", sort: 14},
+    {id: "chart", name: "图表", link: "/ui/chart", sort: 15},
 ];
 
 class Menu extends Component {

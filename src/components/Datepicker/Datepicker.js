@@ -9,7 +9,7 @@ import {toLunar} from "..";
  */
 const Datepicker = (props) => {
 
-    let monthIsFill = props.monthIsFill || true;//每月的首位是否填充上月的
+    let monthIsFill = props.monthIsFill === undefined ? true : props.monthIsFill;//每月的首位是否填充上月的
     let showLunar = props.showLunar || false;//是否显示农历
     let showWeekNum = props.showWeekNum || false;//是否显示周数
     let showWeekBtn = props.showWeekBtn || false;//是否显示周数
@@ -259,7 +259,8 @@ const Datepicker = (props) => {
         },
         //周视图切换按钮
         showWeekBtn: () => {
-            return <Button icon={"i-Group-" + (showType === WEEKS ? "1" : "")} className={"ya-showWeekView"} adaptive key={"ya-showWeekView"}
+            return <Button icon={"i-Group-" + (showType === WEEKS ? "1" : "")} className={"ya-showWeekView"} adaptive
+                           key={"ya-showWeekView"}
                            onClick={() => set_showType(showType === WEEKS ? MONTH : WEEKS)}/>;
         },
         //时间选择框
@@ -394,7 +395,7 @@ const Datepicker = (props) => {
     return returnTags;
 
 }
-const TimePicker = (props)=>{
+const TimePicker = (props) => {
     return <Datepicker showType={4} getSelectData={props.getSelectData} className={props.className}/>
 }
-export {Datepicker,TimePicker};
+export {Datepicker, TimePicker};
