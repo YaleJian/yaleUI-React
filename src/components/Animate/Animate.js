@@ -6,7 +6,7 @@ import React, {Component, Fragment} from 'react';
 class Animate extends Component {
 
     render() {
-        return <Fragment>
+        return <>
             <h1 className="ya-title">加载动画</h1>
             <div className="ya-p">
                 <div className={"ya-animation-1"}>
@@ -53,7 +53,7 @@ class Animate extends Component {
                 <div className="loader9"/>
             </div>
 
-        </Fragment>;
+        </>;
     }
 }
 

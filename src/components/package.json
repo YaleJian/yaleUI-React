@@ -1,6 +1,6 @@
 {
   "name": "yale-ui",
-  "version": "0.1.42",
+  "version": "0.2.2",
   "description": "YaleUI 组件库",
   "main": "index.js",
   "dependencies": {

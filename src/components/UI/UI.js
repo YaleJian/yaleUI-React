@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import ButtonDemo from "./Demo/Button/ButtonDemo";
 import TreeDemo from "./Demo/Tree/TreeDemo";
 import {Route} from "react-router";
-import {Animate,CloudDrive} from "../index";
+import {Animate, Brand, CloudDrive} from "../index";
 import DesignStandard from "./DesignStandard";
 import Typography from "./Typography";
 import RichTextEditorDemo from "./Demo/RichTextEditor/RichTextEditorDemo";
@@ -49,6 +49,7 @@ class UI extends Component {
         mainClass = this.state.sideRight ? mainClass +=" sideRight" : "";
         return (
             <React.Fragment>
+                <Brand/>
                 <Header/>
                 <Menu indexId={1} path={this.props.location.pathname} setSideLeft = {this.setSideLeft.bind(this)}/>
                 <Main className={mainClass}>
