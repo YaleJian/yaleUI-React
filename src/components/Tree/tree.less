@@ -497,7 +497,6 @@
     display: none;
     height: 0;
     opacity: 0;
-    overflow: hidden;
     transform: translate3d(0, -10%, 0);
   }
 }
@@ -578,42 +577,5 @@
   }
   to {
     width: 16px;
-  }
-}
-
-/* demo页面 */
-.ya-treeDemo {
-
-  h1 {
-    font-size: 18px;
-  }
-
-  .ya-console-area {
-    width: 130px;
-    position: fixed;
-    right: 10px;
-    background: white;
-    z-index: 4;
-    border: 1px solid #ededed;
-
-    &, .treeDemo {
-      padding: 8px;
-      border-radius: 8px;
-      box-shadow: @baseBoxShadow;
-    }
-
-    .treeDemo {
-      .demo {
-        margin: 8px 30% 0 0;
-      }
-    }
-
-    ul {
-      max-width: 320px;
-      max-height: 320px;
-      vertical-align: text-top;
-      margin-top: 0 !important;
-      overflow: auto;
-    }
   }
 }

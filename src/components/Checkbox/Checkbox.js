@@ -8,7 +8,8 @@ import {Icon} from "..";
 class Checkbox extends React.Component {
     static defaultProps = {
         bindData: "",
-        onClick : ()=>{}
+        onClick: () => {
+        }
     };
     static UNSELECTED = 1;//非选中状态
     static SELECTED = 2;//选中状态
@@ -16,7 +17,7 @@ class Checkbox extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            select : this.props.select || Checkbox.UNSELECTED,
+            select: this.props.select || Checkbox.UNSELECTED,
         }
     }
 
@@ -29,16 +30,21 @@ class Checkbox extends React.Component {
         } else if (this.state.select === Checkbox.SEMI_SELECTED) {
             selectIconSvg = <Icon name="i-banxuan"/>;
         }
-        let selectIcon = 'ya-checkbox ' + zoom;
-        return <span className={selectIcon} onClick={this.onClick.bind(this)}>{selectIconSvg}</span>;
+        let selectIcon = 'ya-checkbox ' + zoom + " " + this.props.className;
+        return <span className={selectIcon} onClick={this.onClick.bind(this)}>
+            {selectIconSvg}
+            <span className={"ya-checkbox-text"}>{this.props.children}</span>
+        </span>;
     }
-    onClick = (e)=>{
-        if (this.state.select === Checkbox.SELECTED){
-            this.setState({select : Checkbox.UNSELECTED});
-        }else {
-            this.setState({select : Checkbox.SELECTED});
+
+    onClick = (e) => {
+        if (this.state.select === Checkbox.SELECTED) {
+            this.setState({select: Checkbox.UNSELECTED});
+        } else {
+            this.setState({select: Checkbox.SELECTED});
         }
-        this.props.onClick(this.state.select,this.props.bindData,e);
+        this.props.onClick(this.state.select, this.props.bindData, e);
     }
 }
+
 export {Checkbox};

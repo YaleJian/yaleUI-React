@@ -1,0 +1,742 @@
+//预置颜色
+//深色
+@black: black;
+@blackHover: #696969;
+@blackActive: #4a4949;
+
+@grey: #969696;
+@greyHover: #5b5b5b;
+@greyActive: #2b2b2b;
+
+@red: #ff8080; //HSL 0 100% 75%
+@redHover: #de4f4f;
+@redActive: #872d2d;
+
+@green: #44e293; //HSL 150 70% 55%
+@greenHover: #00b35a;
+@greenActive: #008738;
+
+@blue: #5cccda; //HSL 180 60% 60%
+@blueHover: #009fb7;
+@blueActive: #006887;
+
+@orange: #ffad49;
+@orangeHover: #de8500;
+@orangeActive: #875600;
+
+@purple: #d569e8;
+@purpleHover: #bb5acc;
+@purpleActive: #9a3eab;
+
+@yellow: #FFEB3B;
+@yellowHover: #e6d118;
+@yellowActive: #cebb14;
+
+//细线
+@thin-grey: #bfbfbf;
+@thin-greyHover: #d0d0d0;
+
+//浅色
+@light-grey: #f1f1f1;
+@light-greyHover: #e0e0e0;
+@light-greyActive: #cdcdcd;
+
+@light-red: #ffcfcf;
+@light-redHover: #ffd9d9;
+
+@light-green: #c7f3ec;
+@light-greenHover: #d4f8ec;
+
+@light-blue: #c6ecf3;
+@light-blueHover: #d5f2fa;
+
+@light-orange: #f5dfcb;
+@light-orangeHover: #ffead4;
+
+@light-purple: #edccf1;
+@light-purpleHover: #fbd6ff;
+
+@light-yellow: #f6f2cc;
+@light-yellowHover: #fcf8d2;
+
+
+//颜色
+.ya-white {
+  color: white;
+}
+
+.ya-black {
+  color: @black;
+}
+
+.ya-grey {
+  color: @grey;
+}
+
+.ya-red {
+  color: @red;
+}
+
+.ya-green {
+  color: @green;
+}
+
+.ya-blue {
+  color: @blue;
+}
+
+.ya-orange {
+  color: @orange;
+}
+
+.ya-yellow {
+  color: @yellow;
+}
+
+.ya-purple {
+  color: @purple;
+}
+
+.ya-light-grey {
+  color: @light-grey;
+}
+
+.ya-light-red {
+  color: @light-red;
+}
+
+.ya-light-green {
+  color: @light-green;
+}
+
+.ya-light-blue {
+  color: @light-blue;
+}
+
+.ya-light-orange {
+  color: @light-orange;
+}
+
+.ya-light-yellow {
+  color: @light-yellow;
+}
+
+.ya-light-purple {
+  color: @light-purple;
+}
+
+//背景色
+.ya-bg-currentColor {
+  background: currentColor;
+}
+
+.ya-bg-white {
+  background: white;
+}
+
+.ya-bg-black {
+  background: @black;
+}
+
+.ya-bg-grey {
+  background: @grey;
+}
+
+.ya-bg-red {
+  background: @red;
+}
+
+.ya-bg-orange {
+  background: @orange;
+}
+
+.ya-bg-yellow {
+  background: @yellow;
+}
+
+.ya-bg-green {
+  background: @green;
+}
+
+.ya-bg-blue {
+  background: @blue;
+}
+
+.ya-bg-purple {
+  background: @purple;
+}
+
+.ya-bg-light-grey {
+  background: @light-grey;
+}
+
+.ya-bg-light-red {
+  background: @light-red;
+}
+
+.ya-bg-light-orange {
+  background: @light-orange;
+}
+
+.ya-bg-light-yellow {
+  background: @light-yellow;
+}
+
+.ya-bg-light-green {
+  background: @light-green;
+}
+
+.ya-bg-light-blue {
+  background: @light-blue;
+}
+
+.ya-bg-light-purple {
+  background: @light-purple;
+}
+
+//边框
+.ya-border-0 {
+  border: 0;
+}
+
+//透明边框
+.ya-border-transparent {
+  border: 1px solid rgba(255, 255, 255, 0);
+}
+
+.ya-border {
+  //文字和边框同色
+  border: 1px solid currentColor !important;
+}
+
+.ya-border-white {
+  border: 1px solid white;
+}
+
+.ya-border-black {
+  border: 1px solid black;
+}
+
+.ya-border-grey {
+  border: 1px solid @grey;
+}
+
+.ya-border-red {
+  border: 1px solid @red;
+}
+
+.ya-border-green {
+  border: 1px solid @green;
+}
+
+.ya-border-blue {
+  border: 1px solid @blue;
+}
+
+.ya-border-yellow {
+  border: 1px solid @yellow;
+}
+
+.ya-border-orange {
+  border: 1px solid @orange;
+}
+
+.ya-border-purple {
+  border: 1px solid @purple;
+}
+
+.ya-border-light-grey {
+  border: 1px solid @light-grey;
+}
+
+.ya-border-light-red {
+  border: 1px solid @light-red;
+}
+
+.ya-border-light-green {
+  border: 1px solid @light-green;
+}
+
+.ya-border-light-blue {
+  border: 1px solid @light-blue;
+}
+
+.ya-border-light-yellow {
+  border: 1px solid @light-yellow;
+}
+
+.ya-border-light-orange {
+  border: 1px solid @light-orange;
+}
+
+.ya-border-light-purple {
+  border: 1px solid @light-purple;
+}
+
+//高斯模糊背景
+.ya-bg-blur {
+  backdrop-filter: blur(20px);
+}
+
+.ya-bg-saturate {
+  backdrop-filter: saturate(180%);
+}
+
+.ya-bg-blur-saturate {
+  backdrop-filter: saturate(180%) blur(20px);
+}
+
+.ya-an-blur {
+  display: inline-block;
+  transition: 0.5s;
+  animation: blur20 0.7s linear infinite;
+}
+
+@keyframes blur20 {
+  0% {
+    backdrop-filter: saturate(100%) blur(0px);
+  }
+  25% {
+    backdrop-filter: saturate(120%) blur(5px);
+  }
+  50% {
+    backdrop-filter: saturate(140%) blur(10px);
+  }
+  75% {
+    backdrop-filter: saturate(160%) blur(15px);
+  }
+  100% {
+    backdrop-filter: saturate(180%) blur(20px);
+  }
+}
+
+//内置按钮颜色样式
+.ya-btn {
+  &.default {
+    color: black;
+
+    &:hover {
+      background: @light-grey;
+    }
+
+    &:active {
+      background: @light-greyHover;
+    }
+  }
+
+  &.black {
+    background: @black;
+    color: white;
+
+    &:hover {
+      background: @greyHover;
+    }
+
+    &:active {
+      background: @greyActive;
+    }
+  }
+
+  &.grey {
+    background: @grey;
+    color: white;
+
+    &:hover {
+      background: @greyHover;
+    }
+
+    &:active {
+      background: @greyActive;
+    }
+  }
+
+  &.red {
+    background: @red;
+    color: white;
+
+    &:hover {
+      background: @redHover;
+    }
+
+    &:active {
+      background: @redActive;
+    }
+  }
+
+  &.orange {
+    background: @orange;
+    color: white;
+
+    &:hover {
+      background: @orangeHover;
+    }
+
+    &:active {
+      background: @orangeActive;
+    }
+  }
+
+  &.green {
+    background: @green;
+    color: white;
+
+    &:hover {
+      background: @greenHover;
+    }
+
+    &:active {
+      background: @greenActive;
+    }
+  }
+
+  &.blue {
+    background: @blue;
+    color: white;
+
+    &:hover {
+      background: @blueHover;
+    }
+
+    &:active {
+      background: @blueActive;
+    }
+  }
+
+  &.purple {
+    background: @purple;
+    color: white;
+
+    &:hover {
+      background: @purpleHover;
+    }
+
+    &:active {
+      background: @purpleActive;
+    }
+  }
+
+  &.yellow {
+    background: @yellow;
+    color: black;
+
+    &:hover {
+      background: @yellowHover;
+    }
+
+    &:active {
+      background: @yellowActive;
+    }
+  }
+
+  &.light-white {
+    color: black;
+
+    &:hover {
+      background: @light-grey;
+    }
+
+    &:active {
+      color: white;
+      background: @light-greyHover;
+    }
+  }
+
+  &.light-grey {
+    background: @light-grey;
+
+    &:hover {
+      background: @light-greyHover;
+    }
+
+    &:active {
+      color: white;
+      background: @light-greyActive;
+    }
+  }
+
+  &.light-red {
+    color: @red;
+
+    &:hover {
+      background: @light-red;
+    }
+
+    &:active {
+      color: white;
+      background: @red;
+    }
+  }
+
+  &.light-orange {
+    color: @orange;
+
+    &:hover {
+      background: @light-orange;
+    }
+
+    &:active {
+      color: white;
+      background: @orange;
+    }
+  }
+
+  &.light-yellow {
+    color: @yellow;
+
+    &:hover {
+      background: @light-yellow;
+    }
+
+    &:active {
+      color: white;
+      background: @yellow;
+    }
+  }
+
+  &.light-green {
+    color: @green;
+
+    &:hover {
+      background: @light-green;
+    }
+
+    &:active {
+      color: white;
+      background: @green;
+    }
+  }
+
+  &.light-blue {
+    color: @blue;
+
+    &:hover {
+      background: @light-blue;
+    }
+
+    &:active {
+      color: white;
+      background: @blue;
+    }
+  }
+
+  &.light-purple {
+    color: @purple;
+
+    &:hover {
+      background: @light-purple;
+    }
+
+    &:active {
+      color: white;
+      background: @purple;
+    }
+  }
+
+  &.line-black {
+    color: black;
+    border: 1px solid black;
+
+    &:hover {
+      background: @light-greyHover;
+    }
+
+    &:active {
+      background: @light-greyActive;
+    }
+  }
+
+  &.line-grey {
+    color: @grey;
+    border: 1px solid @grey;
+
+    &:hover {
+      background: @light-grey;
+    }
+
+    &:active {
+      background: @light-greyHover;
+    }
+  }
+
+  &.line-red {
+    color: @red;
+    border: 1px solid @red;
+
+    &:hover {
+      background: @light-redHover;
+    }
+
+    &:active {
+      background: @light-red;
+    }
+  }
+
+  &.line-orange {
+    color: @orange;
+    border: 1px solid @orange;
+
+    &:hover {
+      background: @light-orangeHover;
+    }
+
+    &:active {
+      background: @light-orange;
+    }
+  }
+
+  &.line-green {
+    color: @green;
+    border: 1px solid @green;
+
+    &:hover {
+      background: @light-greenHover;
+    }
+
+    &:active {
+      background: @light-green;
+    }
+  }
+
+  &.line-blue {
+    color: @blue;
+    border: 1px solid @blue;
+
+    &:hover {
+      background: @light-blueHover;
+    }
+
+    &:active {
+      background: @light-blue;
+    }
+  }
+
+  &.line-purple {
+    color: @purple;
+    border: 1px solid @purple;
+
+    &:hover {
+      background: @light-purpleHover;
+    }
+
+    &:active {
+      background: @light-purple;
+    }
+  }
+
+  &.line-yellow {
+    color: black;
+    border: 1px solid @yellow;
+
+    &:hover {
+      background: @light-yellowHover;
+    }
+
+    &:active {
+      background: @light-yellow;
+    }
+  }
+
+  &.line-light-black {
+    color: black;
+    border: 1px solid rgba(255, 255, 255, 0);
+
+    &:hover {
+      border: 1px solid black;
+    }
+
+    &:active {
+      background: @light-grey;
+    }
+  }
+
+  &.line-light-grey {
+    color: @grey;
+    border: 1px solid rgba(255, 255, 255, 0);
+
+    &:hover {
+      border: 1px solid @grey;
+    }
+
+    &:active {
+      background: @light-grey;
+    }
+  }
+
+  &.line-light-red {
+    color: @red;
+    border: 1px solid rgba(255, 255, 255, 0);
+
+    &:hover {
+      border: 1px solid @red;
+    }
+
+    &:active {
+      background: @light-red;
+    }
+  }
+
+  &.line-light-orange {
+    color: @orange;
+    border: 1px solid rgba(255, 255, 255, 0);
+
+    &:hover {
+      border: 1px solid @orange;
+    }
+
+    &:active {
+      background: @light-orange;
+    }
+  }
+
+  &.line-light-green {
+    color: @green;
+    border: 1px solid rgba(255, 255, 255, 0);
+
+    &:hover {
+      border: 1px solid @green;
+    }
+
+    &:active {
+      background: @light-green;
+    }
+  }
+
+  &.line-light-blue {
+    color: @blue;
+    border: 1px solid rgba(255, 255, 255, 0);
+
+    &:hover {
+      border: 1px solid @blue;
+    }
+
+    &:active {
+      background: @light-blue;
+    }
+  }
+
+  &.line-light-purple {
+    color: @purple;
+    border: 1px solid rgba(255, 255, 255, 0);
+
+    &:hover {
+      border: 1px solid @purple;
+    }
+
+    &:active {
+      background: @light-purple;
+    }
+  }
+
+  &.line-light-yellow {
+    color: black;
+    border: 1px solid rgba(255, 255, 255, 0);
+
+    &:hover {
+      border: 1px solid @yellow;
+    }
+
+    &:active {
+      background: @light-yellow;
+    }
+  }
+}

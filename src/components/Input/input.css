@@ -1,12 +1,25 @@
+input[type="text"],
+input[type="button"],
+input[type="submit"],
+input[type="reset"],
+select,
+textarea,
+button {
+  -webkit-appearance: none;
+}
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 100px white inset;
+}
 .ya-input {
-  border-radius: 10px;
-  border: 1px solid #d6d6d6;
-  padding: 4px 10px;
-  color: #6f6f6f;
-  font-size: 14px;
-  line-height: 16px;
+  border: 1px solid #bfbfbf;
+  margin: 0;
+  border-radius: 0;
+  padding: 6px 10px;
+  color: black;
+  font-size: 16px;
+  line-height: 20px;
   vertical-align: middle;
-  width: 150px;
+  width: 158px;
   -moz-appearance: textfield;
   -webkit-appearance: none;
 }
@@ -16,60 +29,46 @@
 }
 .ya-input:focus {
   outline: 0;
-  border: 1px solid #87d5ce;
-  border-radius: 10px;
 }
 .ya-input:focus.select .ya-select-content {
   display: block;
 }
+.ya-input.number {
+  width: 50px;
+  text-align: center;
+}
 .inputGroup {
   display: inline-block;
-  height: 26px;
+  position: relative;
+  text-align: center;
+  padding: 6px 10px;
 }
-.inputGroup .inputIcon {
+.inputGroup .left {
   position: absolute;
-  height: 26px;
-  width: 26px;
-  text-align: center;
+  height: 34px;
+  width: 34px;
+  line-height: 34px;
 }
-.inputGroup .inputIcon button {
-  height: 24px;
-  width: 24px;
-  margin-left: 1px;
-  padding: 0;
+.inputGroup .left + .ya-input {
+  padding-left: 34px;
 }
-.inputGroup .inputIcon:first-child button {
-  border-right: 1px solid #d6d6d6;
-  border-radius: 9px 0 0 9px;
+.inputGroup .right {
+  position: absolute;
+  height: 34px;
+  width: 34px;
+  line-height: 34px;
+  margin-left: -34px;
 }
-.inputGroup .inputIcon:last-child button {
-  border-left: 1px solid #d6d6d6;
-  border-radius: 0 9px 9px 0;
+.inputGroup.suffix .ya-input {
+  padding-right: 34px;
 }
-.inputGroup .inputIcon svg {
-  height: 16px;
-  width: 16px;
-  color: #888;
-  vertical-align: middle;
-}
-.inputGroup .left.ya-input {
-  padding-left: 26px;
-}
-.inputGroup .right.ya-input {
-  padding-right: 26px;
-}
-.inputGroup .right + .inputIcon {
-  margin-left: -26px;
-}
-.inputGroup .number,
-.inputGroup .integer {
-  text-align: center;
-}
-.inputGroup .number.left.right,
-.inputGroup .integer.left.right {
-  padding-left: 30px;
-  padding-right: 30px;
-  width: 30px;
+.inputGroup .ya-btn {
+  position: absolute;
+  margin: 0;
+  top: 1px;
+  right: 1px;
+  height: 32px;
+  width: 32px;
 }
 .ya-popUp {
   display: inline-block;

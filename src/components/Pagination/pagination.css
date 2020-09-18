@@ -1,5 +1,5 @@
 .ya-pagination {
-  display: flex;
+  display: inline-flex;
   padding: 5px 0;
   width: 160px;
   align-items: center;
@@ -9,9 +9,10 @@
   flex: 1;
   display: inline-block;
   font-size: 14px;
+  margin: 0 2px;
 }
 .ya-pagination .item svg {
-  fill: black;
+  color: black;
 }
 .ya-pagination .pageItem .ya-popUp-content {
   height: 150px;

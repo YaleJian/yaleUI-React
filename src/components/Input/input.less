@@ -1,13 +1,22 @@
+input[type="text"], input[type="button"], input[type="submit"], input[type="reset"], select, textarea,button {
+  -webkit-appearance: none;
+}
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 100px white inset;
+}
+@grey: #696969;
+@thin-grey: #bfbfbf;
+@thin-greyHover: #bfbfbf;
 .ya-input {
-  border-radius: 10px;
-  border: 1px solid #d6d6d6;
-  padding: 4px 10px;
-  color: #6f6f6f;
-  font-size: 14px;
-  line-height: 16px;
+  border: 1px solid #bfbfbf;
+  margin: 0;//格式化，苹果设备会默认加1px
+  border-radius: 0;//格式化，苹果设备会默认加圆角
+  padding: 6px 10px;
+  color: black;
+  font-size: 16px;
+  line-height: 20px;
   vertical-align: middle;
-  width: 150px;
-  //ime-mode: disabled;
+  width: 158px;
   -moz-appearance: textfield;
   -webkit-appearance: none;
 
@@ -17,86 +26,51 @@
 
   &:focus {
     outline: 0;
-    border: 1px solid #87d5ce;
-    border-radius: 10px;
 
     &.select {
       .ya-select-content {
         display: block;
-
       }
     }
+  }
+
+  &.number{
+    width: 50px;
+    text-align: center;
   }
 }
 
 .inputGroup {
   display: inline-block;
-  height: 26px;
-
-  .inputIcon {
+  position: relative;
+  text-align: center;
+  padding: 6px 10px;
+  .left{
     position: absolute;
-    height: 26px;
-    width: 26px;
-    text-align: center;
-
-    button {
-      height: 24px;
-      width: 24px;
-      //border: 1px solid rgba(255, 0, 0, 0.22);
-      margin-left: 1px;
-      padding: 0;
-
-      &:hover {
-        //border: 1px solid rgba(255, 0, 0, 0.22);
-      }
-    }
-
-    &:first-child {
-      button {
-        border-right: 1px solid #d6d6d6;
-        border-radius: 9px 0 0 9px;
-      }
-    }
-
-    &:last-child {
-      button {
-        border-left: 1px solid #d6d6d6;
-        border-radius: 0 9px 9px 0;
-      }
-    }
-
-    svg {
-      height: 16px;
-      width: 16px;
-      color: #888;
-      vertical-align: middle;
+    height: 34px;
+    width: 34px;
+    line-height: 34px;
+    +.ya-input{
+      padding-left: 34px;
     }
   }
-
-  .left {
-    &.ya-input {
-      padding-left: 26px;
-    }
+  .right{
+    position: absolute;
+    height: 34px;
+    width: 34px;
+    line-height: 34px;
+    margin-left: -34px;
   }
-
-  .right {
-    &.ya-input {
-      padding-right: 26px;
-    }
-
-    & + .inputIcon {
-      margin-left: -26px;
-    }
+  &.suffix .ya-input{
+    padding-right: 34px;
   }
-
-  .number, .integer {
-    text-align: center;
-
-    &.left.right {
-      padding-left: 30px;
-      padding-right: 30px;
-      width: 30px;
-    }
+  .ya-btn{
+    position: absolute;
+    margin: 0;
+    top: 1px;
+    right: 1px;
+    height: 32px;
+    width: 32px;
   }
 }
 

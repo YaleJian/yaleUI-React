@@ -1,47 +1,40 @@
-import React from "react";
-import "./button.css";
+import React, {Fragment} from "react";
+import "./button.css"
+import {Icon} from "..";
 
-/**
- * 按钮组
- */
-class Button extends React.Component {
+const Button = (props) => {
+    let className = "ya-btn ";
 
-    static defaultProps = {
-        content: "Button",
-        className: "",
-        radius: true,
-        size: "",
-        onClick: function () {
-        }
-    };
-
-    constructor(props) {
-        super(props);
-        this.state = {
-            status: !this.props.className.includes("disabled"),
-        }
+    if (props.color) {
+        className += props.color
+    } else if (props.line) {
+        className += `line-` + props.line
+    } else {
+        if (!props.noStyle) className += "default";
     }
 
-    render() {
-        let className = "ya-btn "+ this.props.className;
-        if (this.props.className.indexOf("adaptive") > -1) {
-            return <div className={className} onClick={this.onClick.bind(this)}>{this.props.content}</div>;
-        } else if (this.props.className.indexOf("press") > -1) {
-            return <React.Fragment>
-                <div className={className} onClick={this.onClick.bind(this)}>
-                    <span>{this.props.content}</span>
-                </div>
-            </React.Fragment>;
-        }
-        return <button type="button" className={className}
-                       onClick={this.onClick.bind(this)}>{this.props.content}</button>
-    }
+    //大小
+    if (props.small) className += " small";
+    if (props.big) className += " big";
 
-    onClick = (e) => {
-        if (this.state.status) {
-            this.props.onClick(e);
-        }
+    //边框圆角
+    if (props.radius) className += " radius10";
+
+    //禁用
+    if (props.disabled) className += " disabled";
+
+    //额外样式
+    if (props.className) className += ` ${props.className}`;
+
+    //带图标的按钮
+    let content = <Fragment>
+        {props.icon ? <Icon name={props.icon}/> : ""}
+        {props.children || (props.icon ? "" : "Button")}
+    </Fragment>;
+    if (props.adaptive) {
+        return <div className={className} onClick={props.onClick}>{content}</div>;
+    } else {
+        return <button type="button" className={className} onClick={props.onClick}>{content}</button>;
     }
 }
-
 export {Button};

@@ -42,4 +42,4 @@ let progress = document.createElement('ya-progress');
 document.body.appendChild(progress);
 
 let Progress = ReactDOM.render(<ProgressBox/>, progress);
-export default Progress;
+export {Progress};

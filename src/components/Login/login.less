@@ -1,0 +1,353 @@
+.ya-login {
+  position: fixed;
+  right: 8px;
+  top: 8px;
+  box-shadow: 1px 2px 20px 1px #bbbbbb;
+  border-radius: 6px;
+  z-index: 1000;
+  background: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-align: center;
+
+  .noLogin {
+    display: inline-block;
+    text-align: center;
+    letter-spacing: 2px;
+    padding: 8px 8px 8px 0;
+
+    &.active {
+      padding: 8px 8px 0 8px;
+      float: none;
+
+      .loginEntrance {
+        background: white;
+        border: 1px solid white;
+        color: #6f6f6f;
+      }
+
+      .registerEntrance {
+        background: white;
+        border: 1px solid white;
+        color: #6f6f6f;
+      }
+
+    }
+  }
+
+  .hideBtn {
+    display: inline-block;
+    padding: 10px 6px 9px 6px;
+    margin: 0;
+    border-radius: 6px;
+  }
+
+  .loginEntrance {
+    border: 1px solid white;
+    margin: 0 4px 0 0;
+    padding: 4px 8px;
+    color: white;
+    border-radius: 2px;
+    height: 10px;
+    transition: all 0.5s;
+    background: #5cccda;
+
+    &:hover {
+      background: #00bcd4;
+      border: 1px solid #00bcd4;
+      border-radius: 5px;
+    }
+
+    &:active {
+      background: #00bcd4;
+      border: 1px solid #00bcd4;
+      border-radius: 5px;
+    }
+  }
+
+  .registerEntrance {
+    .ya-login .loginEntrance();
+    background: #fd8880;
+
+    &:hover {
+      background: #ff5722;
+      border: 1px solid #ff5722;
+      border-radius: 5px;
+    }
+
+    &:active {
+      background: #ff5722;
+      border: 1px solid #ff5722;
+      border-radius: 5px;
+    }
+  }
+
+  .corePassword {
+    display: block;
+    .pswInput{
+    }
+  }
+
+  .corePassword input, .verificationCode input, .pin input {
+    display: block;
+    margin: 10px 10px 0;
+    border-radius: 10px;
+    border: 1px solid #d6d6d6;
+    padding: 6px 16px;
+    width: 142px;
+    color: #6f6f6f;
+    font-size: 16px;
+    -webkit-appearance: none;
+    ime-mode: disabled;
+
+    &:focus {
+      outline: 0;
+      border: 1px solid #87d5ce;
+      border-radius: 10px;
+    }
+  }
+
+  .pinTitle {
+    text-align: center;
+    letter-spacing: 2px;
+    color: #6f6f6f;
+  }
+
+  .pin {
+    input {
+      width: 20px;
+      margin: 10px 2px 0;
+      padding: 5px;
+      display: inline-block;
+      text-align: center;
+      font-size: 22px;
+    }
+  }
+
+  .operate {
+    text-align: center;
+    display: flex;
+    padding: 10px 5px 0;
+  }
+
+  .loginBtn, .registerBtn {
+    background: #87d5ce;
+    color: white;
+    flex: 1;
+    border: 0;
+    border-radius: 10px;
+    margin: 0 5px;
+    padding: 4px 0;
+    font-size: 16px;
+
+    &:hover {
+      background: #009688;
+      cursor: pointer;
+    }
+  }
+
+  .nickname {
+    line-height: 1;
+    vertical-align: text-top;
+  }
+
+  .headPortrait {
+    margin: 0 2px;
+
+    .icon {
+      height: 20px;
+      width: 20px;
+    }
+  }
+
+  .phoneNum {
+    display: block;
+  }
+
+  .verificationCode {
+    .verificationItem {
+      display: flex;
+
+      .verificationCodeEnter {
+        display: inline-block !important;
+        width: 85px !important;
+        margin-right: 5px !important;
+      }
+
+      .getVerificationCode, .actionBtn {
+        display: inline-block !important;
+        width: 50px !important;
+        margin: 10px 0 0 0 !important;
+        border-radius: 10px;
+        border: 1px solid #d6d6d6;
+        color: #747474;
+        background: white;
+        vertical-align: bottom;
+        outline: 0;
+        line-height: 32px;
+
+        &:hover {
+          background: #87d5ce;
+          cursor: pointer;
+          color: white;
+        }
+      }
+    }
+
+  }
+
+  .actionBtn {
+    margin: 10px 10px 0 !important;
+    min-width: 110px;
+  }
+
+  .creditLogin {
+    color: #6f6f6f;
+    margin: 4px auto;
+    display: flex;
+    width: 120px;
+    height: 18px;
+    padding: 4px;
+
+    span {
+      flex: 1;
+      text-align: center;
+      margin: 0 5px;
+
+      svg {
+        width: 20px;
+        height: 20px;
+      }
+    }
+  }
+
+  .qrCode {
+    text-align: center;
+  }
+
+  .qrCode .tips, .loginBack {
+    text-align: center;
+    color: #6f6f6f;
+  }
+
+  .loginBack {
+    border: 1px solid #d6d6d6;
+    border-radius: 10px;
+    margin: 10px;
+    padding: 3px 0;
+  }
+
+  .qrCodeContent {
+    padding: 10px;
+  }
+
+  .title {
+    text-align: center;
+  }
+
+  .close {
+    position: absolute;
+    right: 6px;
+    top: 6px;
+    width: 20px;
+    height: 20px;
+    color: #6f6f6f;
+  }
+
+  .clearLoginHistory {
+    text-align: center;
+    color: #6f6f6f;
+  }
+
+  .pin-mask {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: #f1f1f1;
+    z-index: 999;
+    text-align: center;
+    padding-top: 20%;
+    font-size: 150px;
+    color: white;
+  }
+
+  .autoLogin {
+    margin: 10px 10px 5px;
+    color: #6f6f6f;
+    font-size: 9px;
+    text-align: center;
+
+    &:hover {
+      color: #009688;
+    }
+  }
+
+  .autoLoginInput {
+    vertical-align: middle;
+  }
+
+  .autoLoginText {
+    vertical-align: middle;
+  }
+
+  .agreement {
+    margin: 10px;
+    width: 174px;
+    line-height: 20px;
+    font-size: 12px;
+    text-align: left;
+
+    .title {
+      font-size: 18px;
+      font-weight: 800;
+      padding: 10px 0;
+      text-align: left;
+    }
+  }
+
+  .agreementConfirm {
+    margin: 5px 10px 0;
+    color: #6f6f6f;
+    font-size: 9px;
+    text-align: center;
+  }
+
+  .agreementLink {
+    color: #009688;
+    cursor: pointer;
+
+    :hover {
+      color: #11ccbb;
+    }
+  }
+
+  .agreementInput {
+    vertical-align: middle;
+  }
+
+  .agreementText {
+    vertical-align: middle;
+  }
+
+  .max {
+    max-height: 100%;
+  }
+
+  .showPsw {
+    position: absolute;
+    right: 12px;
+    margin-top: -32px;
+    padding: 7px;
+
+    svg {
+      fill: #c1c1c1;
+
+      :hover {
+        fill: #6f6f6f;
+      }
+    }
+  }
+}

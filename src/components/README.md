@@ -2,7 +2,7 @@
 ## 简介
 一个基于React框架的UI框架，提供高效的页面解决方案
 ## 详细使用说明
-访问[yalejian.com/ui]()
+访问[https://yalejian.com/ui]()
 ## 简单实用说明
 ### 安装
 ```
@@ -15,7 +15,7 @@ import { Button } from 'yale-ui';
  
 const App = () => (
   <>
-    <Button type="primary">PRESS ME</Button>
+    <Button>按钮</Button>
   </>
 );
 ```

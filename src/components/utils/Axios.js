@@ -1,6 +1,6 @@
 import React from "react";
 import axios from 'axios';
-import Progress from '../Progress/Progress';
+import {Progress} from '..';
 import {Message} from "..";
 // 设置超时时间
 axios.defaults.timeout = 10000;
@@ -16,7 +16,7 @@ axios.interceptors.request.use(config => {
         Message(<div>
             <div>Error: {error.response.status}</div>
             <div>Url: {error.response.config.url}</div>
-        </div>);
+        </div>, false);
     } else {
         // Something happened in setting up the request that triggered an Error
         Message(error.message, false, true);
@@ -36,10 +36,10 @@ axios.interceptors.response.use(config => {
         Message(<div>
             <div>Error: {error.response.status}</div>
             <div>Url: {error.response.config.url}</div>
-        </div>);
+        </div>, false);
     } else {
         // Something happened in setting up the request that triggered an Error
-        Message(error.message,false, true);
+        Message(error.message, false, true);
     }
     return Promise.reject(error)
 });

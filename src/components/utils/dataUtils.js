@@ -1,7 +1,32 @@
 let dataUtils = {
+    //是否是数字
     isNaN: (value) => {
         return typeof value === 'number' && !isNaN(value);
     },
+    //获取小数位数
+    getNumDecimalPlaces : (v)=>{
+        let sp = (v+"").split(".");
+        if(sp.length > 1){
+            return sp[1].length
+        }else {
+            return 0;
+        }
+    },
+    //小数转整数计算，解决小数运算精度丢失问题
+    decimalCalc: (arg1, arg2)=>{
+        let arg1GainNum = dataUtils.getNumDecimalPlaces(arg1);//参数1的小数位数
+        let arg2GainNum = dataUtils.getNumDecimalPlaces(arg2);//参数2的小数位数
+        let gain = Math.pow(10, Math.max(arg1GainNum, arg2GainNum));//最大放大倍数
+        let gainDiff = Math.pow(10, Math.abs(arg1GainNum - arg2GainNum));//放大倍数差异为0时，差异系数为1
+        let f1 = Number((arg1+"").replace(".", "")) * (arg1 > arg2 ? gainDiff : 1)
+        let f2= Number((arg2+"").replace(".", "")) * (arg1 < arg2 ? gainDiff : 1)
+        return {
+            arg1 : f1,
+            arg2 : f2,
+            gain,
+        }
+    },
+
     //对象转表单对象
     object2FormData: (data) => {
         let res = ''

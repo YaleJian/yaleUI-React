@@ -1,0 +1,45 @@
+.ya-hang {
+  text-align: center;
+  position: fixed;
+  width: 100%;
+  height: 0;
+  top: 4px;
+  z-index: 1000;
+
+  .ya-hang-content {
+    display: inline-block;
+    border-radius: 15px;
+    transition: all 0.3s;
+    cursor: pointer;
+
+    &:hover {
+      .ya-hang-mini {
+        transition: all 0.3s;
+        display: inline-block;
+      }
+    }
+
+    .ya-hang-mini {
+      display: none;
+      height: 6px;
+      min-width: 90px;
+      width: calc( 100% - 20px);
+      background: black;
+      opacity: 0.1;
+      margin: -6px 0 0 0;
+      border-radius: 20px;
+      border: 10px solid white;
+
+      &:hover {
+        opacity: 0.2;
+        margin: 0 ;
+      }
+
+      &:active {
+        opacity: 0.35;
+      }
+    }
+  }
+
+
+}

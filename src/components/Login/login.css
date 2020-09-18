@@ -1,341 +1,318 @@
 .ya-login {
-    position: fixed;
-    right: 8px;
-    top: 8px;
-
-    box-shadow: 1px 2px 20px 1px #bbbbbb;
-    border-radius: 5px;
-    z-index: 1000;
-    background: white;
-    font-size: 12px;
-    cursor: pointer;
-    transition: all 0.3s;
-    -moz-transition: all 0.3s; /* Firefox 4 */
-    -webkit-transition: all 0.3s; /* Safari and Chrome */
-    -o-transition: all 0.3s; /* Opera */
+  position: fixed;
+  right: 8px;
+  top: 8px;
+  box-shadow: 1px 2px 20px 1px #bbbbbb;
+  border-radius: 6px;
+  z-index: 1000;
+  background: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-align: center;
 }
-
-.ya-login:hover {
-    /*top: 9px;*/
-}
-
 .ya-login .noLogin {
-    text-align: center;
-    letter-spacing: 2px;
-    padding: 8px 8px 8px 0;
-    float: right;
+  display: inline-block;
+  text-align: center;
+  letter-spacing: 2px;
+  padding: 8px 8px 8px 0;
 }
 .ya-login .noLogin.active {
-    padding: 8px 8px 0 8px;
-    float: none;
+  padding: 8px 8px 0 8px;
+  float: none;
 }
-
-.loginEntrance, .registerEntrance {
-    border: 1px solid white;
-    margin: 0 3px 0 0;
-    padding: 3px 8px;
-    color: white;
-    border-radius: 2px;
-    height: 10px;
-    transition: all 0.5s;
+.ya-login .noLogin.active .loginEntrance {
+  background: white;
+  border: 1px solid white;
+  color: #6f6f6f;
 }
-.ya-login .hideBtn{
-    margin: 0;
-    padding: 0 2px;
-    border-radius: 5px;
-    height: 33px;
+.ya-login .noLogin.active .registerEntrance {
+  background: white;
+  border: 1px solid white;
+  color: #6f6f6f;
 }
-.ya-login .hideBtn svg{
-
+.ya-login .hideBtn {
+  display: inline-block;
+  padding: 10px 6px 9px 6px;
+  margin: 0;
+  border-radius: 6px;
 }
-
-.loginEntrance {
-    background: #5cccda;
+.ya-login .loginEntrance {
+  border: 1px solid white;
+  margin: 0 4px 0 0;
+  padding: 4px 8px;
+  color: white;
+  border-radius: 2px;
+  height: 10px;
+  transition: all 0.5s;
+  background: #5cccda;
 }
-
-.loginEntrance:hover, .loginEntrance:active {
-    background: #00bcd4;
-    border: 1px solid #00bcd4;
-    border-radius: 5px;
+.ya-login .loginEntrance:hover {
+  background: #00bcd4;
+  border: 1px solid #00bcd4;
+  border-radius: 5px;
 }
-
-.registerEntrance {
-    background: #fd8880;
+.ya-login .loginEntrance:active {
+  background: #00bcd4;
+  border: 1px solid #00bcd4;
+  border-radius: 5px;
 }
-
-.registerEntrance:hover, .registerEntrance:active {
-    background: #ff5722;
-    border: 1px solid #ff5722;
-    border-radius: 5px;
+.ya-login .registerEntrance {
+  border: 1px solid white;
+  margin: 0 4px 0 0;
+  padding: 4px 8px;
+  color: white;
+  border-radius: 2px;
+  height: 10px;
+  transition: all 0.5s;
+  background: #5cccda;
+  background: #fd8880;
 }
-
-.noLogin.active .loginEntrance, .noLogin.active .registerEntrance {
-    background: white;
-    border: 1px solid white;
-    color: #6f6f6f;
+.ya-login .registerEntrance:hover {
+  background: #00bcd4;
+  border: 1px solid #00bcd4;
+  border-radius: 5px;
 }
-
+.ya-login .registerEntrance:active {
+  background: #00bcd4;
+  border: 1px solid #00bcd4;
+  border-radius: 5px;
+}
+.ya-login .registerEntrance:hover {
+  background: #ff5722;
+  border: 1px solid #ff5722;
+  border-radius: 5px;
+}
+.ya-login .registerEntrance:active {
+  background: #ff5722;
+  border: 1px solid #ff5722;
+  border-radius: 5px;
+}
 .ya-login .corePassword {
-    display: block;
+  display: block;
 }
-
-.ya-login .corePassword input, .verificationCode input, .pin input {
-    display: block;
-    margin: 10px 10px 0;
-    border-radius: 10px;
-    border: 1px solid #d6d6d6;
-    padding: 5px 15px;
-    width: 142px;
-    color: #6f6f6f;
-    font-size: 16px;
-    ime-mode: disabled;
-}
-
-.ya-login .corePassword input:focus, .verificationCode input:focus, .pin input:focus {
-    outline: 0;
-    border: 1px solid #87d5ce;
-    border-radius: 10px;
-}
-
-.ya-login.verificationCode {
-
-}
-
-.pinTitle {
-    text-align: center;
-    letter-spacing: 2px;
-    color: #6f6f6f;
-}
-
-.ya-login .pin {
-}
-
+.ya-login .corePassword input,
+.ya-login .verificationCode input,
 .ya-login .pin input {
-    width: 20px;
-    margin: 10px 2px 0;
-    padding: 5px;
-    display: inline-block;
-    text-align: center;
-    font-size: 22px;
+  display: block;
+  margin: 10px 10px 0;
+  border-radius: 10px;
+  border: 1px solid #d6d6d6;
+  padding: 6px 16px;
+  width: 142px;
+  color: #6f6f6f;
+  font-size: 16px;
+  -webkit-appearance: none;
+  ime-mode: disabled;
 }
-
-.ya-login.action {
-
+.ya-login .corePassword input:focus,
+.ya-login .verificationCode input:focus,
+.ya-login .pin input:focus {
+  outline: 0;
+  border: 1px solid #87d5ce;
+  border-radius: 10px;
 }
-
+.ya-login .pinTitle {
+  text-align: center;
+  letter-spacing: 2px;
+  color: #6f6f6f;
+}
+.ya-login .pin input {
+  width: 20px;
+  margin: 10px 2px 0;
+  padding: 5px;
+  display: inline-block;
+  text-align: center;
+  font-size: 22px;
+}
 .ya-login .operate {
-    text-align: center;
-    display: flex;
-    padding: 10px 5px 0;
+  text-align: center;
+  display: flex;
+  padding: 10px 5px 0;
 }
-
-.ya-login .loginBtn, .registerBtn {
-    background: #87d5ce;
-    color: white;
-    flex: 1;
-    border: 0;
-    border-radius: 10px;
-    margin: 0 5px;
-    padding: 4px 0;
+.ya-login .loginBtn,
+.ya-login .registerBtn {
+  background: #87d5ce;
+  color: white;
+  flex: 1;
+  border: 0;
+  border-radius: 10px;
+  margin: 0 5px;
+  padding: 4px 0;
+  font-size: 16px;
 }
-
-.ya-login .loginBtn:hover, .registerBtn:hover {
-    background: #009688;
-    cursor: pointer;
+.ya-login .loginBtn:hover,
+.ya-login .registerBtn:hover {
+  background: #009688;
+  cursor: pointer;
 }
-
-.nickname {
-    line-height: 1;
-    vertical-align: text-top;
+.ya-login .nickname {
+  line-height: 1;
+  vertical-align: text-top;
 }
-
-.headPortrait {
-    margin: 0 2px;
+.ya-login .headPortrait {
+  margin: 0 2px;
 }
-
-.headPortrait .icon {
-    height: 20px;
-    width: 20px;
+.ya-login .headPortrait .icon {
+  height: 20px;
+  width: 20px;
 }
-
-.phoneNum {
-    display: block;
+.ya-login .phoneNum {
+  display: block;
 }
-
-.verificationCodeEnter {
-    display: inline-block !important;
-    width: 85px !important;
-    margin-right: 5px !important;
+.ya-login .verificationCode .verificationItem {
+  display: flex;
 }
-
-.getVerificationCode, .actionBtn {
-    display: inline-block !important;
-    width: 52px !important;
-    margin: 0 !important;
-    border-radius: 10px;
-    border: 1px solid #d6d6d6;
-    padding: 5px 0;
-    color: #6f6f6f;
-    background: white;
-    vertical-align: bottom;
-    outline: 0;
-    line-height: 15px;
+.ya-login .verificationCode .verificationItem .verificationCodeEnter {
+  display: inline-block !important;
+  width: 85px !important;
+  margin-right: 5px !important;
 }
-
-.getVerificationCode:hover, .actionBtn:hover {
-    background: #87d5ce;
-    cursor: pointer;
-    color: white;
+.ya-login .verificationCode .verificationItem .getVerificationCode,
+.ya-login .verificationCode .verificationItem .actionBtn {
+  display: inline-block !important;
+  width: 50px !important;
+  margin: 10px 0 0 0 !important;
+  border-radius: 10px;
+  border: 1px solid #d6d6d6;
+  color: #747474;
+  background: white;
+  vertical-align: bottom;
+  outline: 0;
+  line-height: 32px;
 }
-
-.actionBtn {
-    margin: 10px 10px 0 !important;
-    min-width: 110px;
+.ya-login .verificationCode .verificationItem .getVerificationCode:hover,
+.ya-login .verificationCode .verificationItem .actionBtn:hover {
+  background: #87d5ce;
+  cursor: pointer;
+  color: white;
 }
-
-.creditLogin {
-    color: #6f6f6f;
-    margin: 10px 50px 0;
-    text-align: center;
-    display: flex;
-    width: 80px;
-    height: 18px;
-    padding: 3px;
+.ya-login .actionBtn {
+  margin: 10px 10px 0 !important;
+  min-width: 110px;
 }
-
-.creditLogin span {
-    flex: 1;
-    text-align: center;
+.ya-login .creditLogin {
+  color: #6f6f6f;
+  margin: 4px auto;
+  display: flex;
+  width: 120px;
+  height: 18px;
+  padding: 4px;
 }
-
-.verificationCodeLogin {
+.ya-login .creditLogin span {
+  flex: 1;
+  text-align: center;
+  margin: 0 5px;
 }
-
-.qrCode {
-    text-align: center;
+.ya-login .creditLogin span svg {
+  width: 20px;
+  height: 20px;
 }
-
-.qrCode .tips, .loginBack {
-    text-align: center;
-    color: #6f6f6f;
+.ya-login .qrCode {
+  text-align: center;
 }
-
+.ya-login .qrCode .tips,
 .ya-login .loginBack {
-    border: 1px solid #d6d6d6;
-    border-radius: 10px;
-    margin: 10px;
-    padding: 3px 0;
+  text-align: center;
+  color: #6f6f6f;
 }
-
-.qrCodeContent {
-    padding: 10px;
+.ya-login .loginBack {
+  border: 1px solid #d6d6d6;
+  border-radius: 10px;
+  margin: 10px;
+  padding: 3px 0;
 }
-
-
+.ya-login .qrCodeContent {
+  padding: 10px;
+}
 .ya-login .title {
-    text-align: center;
+  text-align: center;
 }
-
 .ya-login .close {
-    position: absolute;
-    right: 6px;
-    top: 6px;
-    width: 20px;
-    height: 20px;
-    color: #6f6f6f;
+  position: absolute;
+  right: 6px;
+  top: 6px;
+  width: 20px;
+  height: 20px;
+  color: #6f6f6f;
 }
-
-.clearLoginHistory {
-    text-align: center;
-    color: #6f6f6f;
+.ya-login .clearLoginHistory {
+  text-align: center;
+  color: #6f6f6f;
 }
-
-.pin-mask {
-    width: 100%;
-    height: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    background: #f1f1f1;
-    z-index: 999;
-    text-align: center;
-    padding-top: 20%;
-    font-size: 150px;
-    color: white;
+.ya-login .pin-mask {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #f1f1f1;
+  z-index: 999;
+  text-align: center;
+  padding-top: 20%;
+  font-size: 150px;
+  color: white;
 }
-
-.autoLogin {
-    margin: 10px 10px 5px;
-    color: #6f6f6f;
-    font-size: 9px;
-    text-align: center;
+.ya-login .autoLogin {
+  margin: 10px 10px 5px;
+  color: #6f6f6f;
+  font-size: 9px;
+  text-align: center;
 }
-
-.autoLogin:hover {
-    color: #009688;
+.ya-login .autoLogin:hover {
+  color: #009688;
 }
-
-.autoLoginInput {
-    vertical-align: middle;
+.ya-login .autoLoginInput {
+  vertical-align: middle;
 }
-
-.autoLoginText {
-    vertical-align: middle;
+.ya-login .autoLoginText {
+  vertical-align: middle;
 }
-
-.agreement {
-    margin: 10px;
-    width: 174px;
-    line-height: 20px;
+.ya-login .agreement {
+  margin: 10px;
+  width: 174px;
+  line-height: 20px;
+  font-size: 12px;
+  text-align: left;
 }
-
-.agreement .title {
-    font-size: 18px;
-    font-weight: 800;
-    padding: 10px 0;
-    text-align: left;
+.ya-login .agreement .title {
+  font-size: 18px;
+  font-weight: 800;
+  padding: 10px 0;
+  text-align: left;
 }
-
-.agreementConfirm {
-    margin: 5px 10px 0;
-    color: #6f6f6f;
-    font-size: 9px;
-    text-align: center;
+.ya-login .agreementConfirm {
+  margin: 5px 10px 0;
+  color: #6f6f6f;
+  font-size: 9px;
+  text-align: center;
 }
-
-.agreementLink {
-    color: #009688;
-    cursor: pointer;
+.ya-login .agreementLink {
+  color: #009688;
+  cursor: pointer;
 }
-
-.agreementLink:hover {
-    color: #11ccbb;
+.ya-login .agreementLink :hover {
+  color: #11ccbb;
 }
-
-.agreementInput {
-    vertical-align: middle;
+.ya-login .agreementInput {
+  vertical-align: middle;
 }
-
-.agreementText {
-    vertical-align: middle;
+.ya-login .agreementText {
+  vertical-align: middle;
 }
-
-.max {
-    max-height: 100%;
+.ya-login .max {
+  max-height: 100%;
 }
-
-.showPsw {
-    position: relative;
-    float: right;
-    margin-top: -23px;
-    margin-right: 20px;
+.ya-login .showPsw {
+  position: absolute;
+  right: 12px;
+  margin-top: -32px;
+  padding: 7px;
 }
-
-.showPsw svg {
-    fill: #c1c1c1;
+.ya-login .showPsw svg {
+  fill: #c1c1c1;
 }
-
-.showPsw svg:hover {
-    fill: #6f6f6f;
+.ya-login .showPsw svg :hover {
+  fill: #6f6f6f;
 }
-
+/*# sourceMappingURL=login.css.map */

@@ -1,13 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import './components/common/css/index.css';
 import './components/Animate/animate.css'
-import UI from "./pages/UI/UI";
 import {Route, Switch} from "react-router";
 import {BrowserRouter} from "react-router-dom";
-import Test from "./pages/Test/Test";
+import Test from "./components/UI/Test/Test";
+import {Login, UI, Brand} from "./components";
 
 let root = <React.Fragment>
+    <Brand/>
+    <Login/>
     <BrowserRouter>
         <Switch>
             <Route exact path={'/'} component={UI}/>

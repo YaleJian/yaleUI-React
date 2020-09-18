@@ -1,0 +1,26 @@
+.ya-brand {
+  padding: 10px;
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+  background: linear-gradient(to right, #03A9F4, #8ece44);
+}
+.ya-brand .brand-icon {
+  width: 36px;
+  height: 36px;
+  transition: all 0.3s;
+}
+.ya-brand .brand-icon:hover {
+  width: 46px;
+  height: 46px;
+}
+.ya-brand .name {
+  line-height: 24px;
+  padding: 0 0 0 5px;
+  transition: all 0.3s;
+  color: white;
+  font-weight: bold;
+}
+/*# sourceMappingURL=Brand.css.map */
