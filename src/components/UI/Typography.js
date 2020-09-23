@@ -87,12 +87,9 @@ const Typography = ()=> {
 
             <h3 className="ya-title">高斯模糊的背景</h3>
             <div className={"ya-flex"}>
-                <div className={"width300"} style={{"background": "linear-gradient(to right, #03A9F4, #8ece44)"}}>
-                    <div className="ya-bg-blur ya-white width300 height50 center">背景高斯模糊效果</div>
-                </div>
-                <div className={"width300"}
-                     style={{"background": "url(https://img-prod-cms-rt-microsoft-com.akamaized.net/cms/api/am/imageFileData/RE1Mu3b?ver=5c31) center no-repeat"}}>
-                    <div className="ya-bg-blur ya-white width300 height50 center">背景高斯模糊效果</div>
+                <div
+                     style={{"background": "url(https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3562402085,653512730&fm=26&gp=0.jpg) center no-repeat"}}>
+                    <div className="ya-bg-blur ya-white padding0-10 height50 center">模糊五彩的图片</div>
                 </div>
             </div>
         </div>

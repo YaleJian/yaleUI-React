@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {Datepicker, getNavData, Tree} from "../../../index";
 import {Input} from "../../../index";
-import {TimePicker} from "../../../Datepicker/Datepicker";
+import {TimePicker} from "../../../func/Datepicker/Datepicker";
 
 const enText = {
     year: "/",

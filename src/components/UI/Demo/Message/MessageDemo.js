@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import "./message.css";
 import {Icon, Button, Message, getNavData} from "../../../index";
 import ButtonDemo from "../Button/ButtonDemo";
-import {Confirm} from "../../../Message/Message";
+import {Confirm} from "../../../base/Message/Message";
 
 /**
  * 按钮组

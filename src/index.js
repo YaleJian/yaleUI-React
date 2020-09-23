@@ -1,14 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './components/common/css/index.css';
-import './components/Animate/animate.css'
+import './components/layout/css/index.css';
+import './components/UI/Demo/Button/Animate/animate.css'
 import {Route, Switch} from "react-router";
 import {BrowserRouter} from "react-router-dom";
 import Test from "./components/UI/Test/Test";
 import {Login, UI, Brand} from "./components";
 
-let root = <React.Fragment>
-    <Brand/>
+let root = <>
     <Login/>
     <BrowserRouter>
         <Switch>
@@ -17,5 +16,5 @@ let root = <React.Fragment>
             <Route path={'/test'} component={Test}/>
         </Switch>
     </BrowserRouter>
-</React.Fragment>
+</>
 ReactDOM.render(root, document.getElementById('root'));

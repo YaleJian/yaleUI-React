@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Button, Tree} from '../../../index';
-import {testTreeData, textNodeAddList, testSelectedIdsData, getNavData} from '../../../Tree/TreeUtil';
+import {testTreeData, textNodeAddList, testSelectedIdsData, getNavData} from '../../../base/Tree/TreeUtil';
 import {Icon} from "../../../index";
 
 /**

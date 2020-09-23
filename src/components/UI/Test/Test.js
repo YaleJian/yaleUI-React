@@ -11,9 +11,9 @@ class Test extends Component {
     }
 
     render() {
-        return <React.Fragment>
+        return <>
 
-        </React.Fragment>;
+        </>;
     }
 
     Test(){

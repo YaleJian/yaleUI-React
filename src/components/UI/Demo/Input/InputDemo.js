@@ -30,7 +30,7 @@ const InputDemo = () => {
     const [iconInput, set_iconInput] = useState("");
     const [textareaInput, set_textareaInput] = useState("");
 
-    return <React.Fragment>
+    return <>
         <Tree treeData={navData}
               treeType={3}
               openBtn={false}
@@ -169,7 +169,7 @@ const InputDemo = () => {
                 <TreeDemo getReturnData={e => set_returnData(e)}/>
             </Input>
         </div>
-    </React.Fragment>;
+    </>;
 
     function onChange(id, e) {
     }
