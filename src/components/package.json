@@ -7,7 +7,8 @@
     "echarts": "^4.8.0",
     "cos-js-sdk-v5": "^0.5.27",
     "axios": "^0.19.2",
-    "qrcode.react": "^1.0.0"
+    "qrcode.react": "^1.0.0",
+    "@amap/amap-jsapi-loader": "0.0.4"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

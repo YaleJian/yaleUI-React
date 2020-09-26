@@ -1,84 +1,81 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useRef, useState} from 'react'
 import "./weather.css";
 import {axios} from "../../utils/Axios";
 import {result} from "../..";
 import {Icon} from "../..";
 import {Message} from "../..";
 import {dataUtils} from "../..";
-
-const AMap = window.AMap;
+import AMapLoader from '@amap/amap-jsapi-loader';
+import {initAMap} from "../../utils/amap";
+import {caiYunData} from "../../utils/caiyun";
 
 const Weather = (props)=> {
     const [status, set_status] = useState(0);
     const [location, set_location] = useState(false);
-    const [updateTime, set_updateTime] = useState(false);
     const [address, set_address] = useState("");
-    const [longitudeAndLatitude, set_longitudeAndLatitude] = useState([]);
-    const [keyPoint, set_keyPoint] = useState("");
-    const [warning, set_warning] = useState([[]]);
-    const [temperature, set_temperature] = useState("");
-    const [apparentTemperature, set_apparentTemperature] = useState("");
-    const [weather, set_weather] = useState("");
-    const [trend, set_trend] = useState("");
-    const [sun, set_sun] = useState("");
-    const [aqi, set_aqi] = useState("");
-    const [windSpeed, set_windSpeed] = useState("");
-    const [windDirection, set_windDirection] = useState("");
-    const [uv, set_uv] = useState("");
-    const [visibility, set_visibility] = useState("");
-    const [humidity, set_humidity] = useState("");
-    const [airPressure, set_airPressure] = useState("");
-    const [carWashing, set_carWashing] = useState("");
-    const [coldRisk, set_coldRisk] = useState("");
-    const [hourly, set_hourly] = useState([]);
-    const [daily, set_daily] = useState([]);
-    const [pm25, set_pm25] = useState("");
-    const [pm10, set_pm10] = useState("");
-    const [o3, set_o3] = useState("");
-    const [no2, set_no2] = useState("");
-    const [so2, set_so2] = useState("");
-    const [co, set_co] = useState("");
-    const [wData, set_wData] = useState("");
+    const [realtime, set_realtime] = useState(false);
+    const [hourly, set_hourly] = useState(false);
+    const [daily, set_daily] = useState(false);
+    const containerRef = useRef();
 
     useEffect(()=>{
-        if(status === 0){
-            getLocation();
+        if(status === 0) initWeather()
+    },[])
+
+    //获取天气数据
+    let initWeather = ()=>{
+        //获取定位信息
+        initAMap(containerRef,(ampData)=>{
+            //获取天气信息
+            axios.get(props.url + "?location=" + ampData.ya_location.toString() + "&version=v2.5&type=weather", {withCredentials: true})
+                .then(res => {
+                    result(res, weatherData => {
+                        console.log("天气结果",weatherData);
+                        let cData = caiYunData(weatherData);
+                        set_realtime(cData.realtime)
+                        set_hourly(cData.hourly)
+                        set_daily(cData.daily)
+                        set_location([dataUtils.formatDegree(ampData.ya_location[0]),dataUtils.formatDegree(ampData.ya_location[1])])
+                        set_address(ampData.ya_address)
+                        set_status(1)
+                    });
+                })
+                .catch(function (res) {
+                    console.log(res);
+                });
+        },props.jsKey)
+    }
+
+    //获取今天是星期几
+    let getDayName = (index) => {
+        let dayText = ["昨天", "今天"];
+        let nowDate = new Date();
+        let weekName = ["日", "一", "二", "三", "四", "五", "六"];
+        let tDate = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate() + index - 1);
+        if (index <= 1) {
+            return dayText[index];
+        } else if (index > 1 && index < 3) {
+            return "周" + weekName[tDate.getDay()];
+        } else {
+            return (tDate.getMonth() + 1) + "." + tDate.getDate();
         }
-    })
+    }
 
     let pages = {
-        updateTime: () => {
-            return <div className={"row updateTime"}>
-                {"更新时间：" + updateTime}
-            </div>
-        },
-        location: () => {
-            return <div className={"row location"}>
-                <div className={"address"}>
-                    <Icon name={"i-zu-copy"}/>
-                    <span className={"content"}>{address}</span>
-                </div>
-                <div className={"longLat"}>
-                    <Icon name={"i-zhengsheyingxiangzhuanhuanweijingweidugeshi"}/>
-                    <span
-                        className={"content"}>{longitudeAndLatitude[0]} {longitudeAndLatitude[1]}</span>
-                </div>
-            </div>
-        },
         tips: () => {
             return <>
                 <div className={"row tips"}>
                     <div className={"forecastKeyPoint"}>
                         <Icon name={"i-tongzhi1"}/>
-                        <span className={"content"}> {keyPoint}</span>
+                        <span className={"content"}> {realtime.keyPoint}</span>
                     </div>
                 </div>
             </>;
         },
         warning: () => {
-
-            if (!warning || warning[0].length === 0) return "";
-            let warnings = warning[0].map((item, index) => {
+            if(!realtime) return "";
+            if (!realtime.warning || realtime.warning[0].length === 0) return "";
+            let warnings = realtime.warning[0].map((item, index) => {
                     return <div className={"text " + item[2]} key={index}>
                         <Icon name={"i-jinggao"}/>
                         <span className={"content"}>{item[0] + item[1] + "预警"}</span>
@@ -88,84 +85,95 @@ const Weather = (props)=> {
             return <div className={"row warning"}>{warnings}</div>;
         },
         realTimeMin: () => {
+            if(!realtime) return "";
             return <>
                 <div className={"row realTime-min"}>
+                    <div className={"updateTime"} hidden>
+                        {"更新时间：" + realtime.updateTime}
+                    </div>
+                    <div className={"address"}>
+                        <Icon name={"i-zu-copy"}/>
+                        <span className={"content"}>{address}</span>
+                        <span className={"longLat"}>{location[0]}  {location[1]}</span>
+                    </div>
                     <div className={"top"}>
                         <div className={"column temperature-container"}>
                             <div className={"temperature"}>
                                 <Icon name={"i-wendu"}/>
-                                <span>{Math.round(temperature)}°</span>
+                                <span>{Math.round(realtime.temperature)}°</span>
                             </div>
                             <div className={"bodyFeelingTemp"}>
                                 <Icon name={"i---rentitu"}/>
-                                <span className={"content"}>{apparentTemperature}°</span>
+                                <span className={"content"}>{realtime.apparentTemperature}°</span>
                             </div>
                         </div>
                         <div className={"column weatherIcon"}>
-                            <div className={"iconArea"}><Icon name={"i-" + weather[0]}/></div>
+                            <Icon className={"iconArea"} name={"i-" + realtime.weather[0]}/>
                         </div>
                     </div>
-                    <div className={"bottom"}>{trend}</div>
+                    <div className={"bottom"}>{realtime.keyPoint}</div>
                 </div>
             </>
         },
         realTimeDetail: () => {
+            if(!realtime) return "";
             return <div className={"row realTime-detail"}>
                 <div className={"sun"}>
                     <span className={"sunrise"}>
                         <Icon name={"i-richu4"}/>
-                        <span className={"content"}>{sun[0]}</span>
+                        <span className={"content"}>{realtime.sun[0]}</span>
                     </span>
                     <span className={"sunset"}>
                         <Icon name={"i-rila4"}/>
-                        <span className={"content"}>{sun[1]}</span>
+                        <span className={"content"}>{realtime.sun[1]}</span>
                     </span>
                 </div>
                 <div className={"detailed"}>
                     <div className={"col aqi"}>
                         <Icon name={"i-kongqizhiliang"}/>
-                        <span className={"content"}> {aqi[1]}</span>
+                        <span className={"content"}> {realtime.aqi[1]}</span>
                     </div>
                     <div className={"col wind"}>
                         <Icon name={"i-icon-fengsu-"}/>
-                        <span className={"content"}> {windSpeed[1]}</span>
+                        <span className={"content"}> {realtime.windSpeed[1]}</span>
                     </div>
                     <div className={"col windDirection"}>
                         <Icon name={"i-fengxiang"}/>
-                        <span className={"content"}>{windDirection[1]}</span>
+                        <span className={"content"}>{realtime.windDirection[1]}</span>
                     </div>
                     <div className={"col uv"}>
                         <Icon name={"i-ziwaixian"}/>
-                        <span className={"content"}>{uv[1]}</span>
+                        <span className={"content"}>{realtime.uv[1]}</span>
                     </div>
                     <div className={"col visibility"}>
                         <Icon name={"i-nengjiandu"}/>
                         <span
-                            className={"content"}>{visibility < 1 ? visibility * 1000 + "m" : visibility + "km"}</span>
+                            className={"content"}>{realtime.visibility < 1 ? realtime.visibility * 1000 + "m" : realtime.visibility + "km"}</span>
                     </div>
                     <div className={"col humidity"}>
                         <Icon name={"i-shidu"}/>
-                        <span className={"content"}>{humidity}%</span>
+                        <span className={"content"}>{realtime.humidity}%</span>
                     </div>
                     <div className={"col pres"}>
                         <Icon name={"i-daqiyali"}/>
-                        <span className={"content"}>{airPressure}kpa</span>
+                        <span className={"content"}>{realtime.airPressure}kpa</span>
                     </div>
                     <div className={"col carWash"}>
                         <Icon name={"i-shuangse-xichefuwu"}/>
-                        <span className={"content"}>{carWashing}</span>
+                        <span className={"content"}>{realtime.carWashing}</span>
                     </div>
                     <div className={"col cold"}>
                         <Icon name={"i-ganmao"}/>
-                        <span className={"content"}>{coldRisk}</span>
+                        <span className={"content"}>{realtime.coldRisk}</span>
                     </div>
                 </div>
             </div>
         },
         recentHours: () => {
-            let hour24Tag = hourly.map((item, index) => {
+            if(!hourly) return "";
+            let hour48Tag = hourly.map((item, index) => {
                 return <div className={"day"} key={index}>
-                    <div className={""}>{index + ":00"}</div>
+                    <div className={""}>{index % 24 + ":00"}</div>
                     <div className={"air ya-greenBorder"}>
                         <span>{item.aqi}</span>
                     </div>
@@ -174,294 +182,109 @@ const Weather = (props)=> {
                     </div>
                     <div>
                         <Icon name={"i-" + item.weather[0]}/>
-                        <span className={"content sky"}>{item.weather[1]}</span>
                     </div>
+                    <div className={"content sky"}>{item.weather[1]}</div>
                 </div>
             });
-            return <div className={"row recentDay"}>{hour24Tag}</div>
+            return <div className={"row recentDay"}>{hour48Tag}</div>
         },
         recentDays: () => {
+            if(!daily) return "";
             let day16Tag = daily.map((item, index) => {
                 return <div className={"day"} key={index}>
-                    <div className={""}> {data.getRecentDay(index)}</div>
+                    <div className={""}> {getDayName(index)}</div>
                     <div className={"air ya-greenBorder"}>
                         <span>{item.aqi}</span>
                     </div>
                     <div className={"temp"}>
-                        <span>{item.temperatureRange[0] + "° ~ " + item.temperatureRange[1] + "°"}</span>
+                        <span>{item.temperatureRange[0] + "°~" + item.temperatureRange[1] + "°"}</span>
                     </div>
                     <div>
                         <Icon name={"i-" + item.weather[0]}/>
-                        <span className={"content sky"}>{item.weather[1]}</span>
                     </div>
+                    <div className={"content sky"}>{item.weather[1]}</div>
                 </div>
             });
             return <div className={"row recentDay"}>{day16Tag}</div>
         },
         airDetail: () => {
+            if(!realtime) return "";
             return <div className={"row airDetail"}>
                 <div className={"col"}>
                     <Icon name={"i-pmcopy"}/>
-                    <span className={"content"}>{pm25}</span>
+                    <span className={"content"}>{realtime.pm25}</span>
                 </div>
                 <div className={"col"}>
                     <Icon name={"i-PM"}/>
-                    <span className={"content"}>{pm10}</span>
+                    <span className={"content"}>{realtime.pm10}</span>
                 </div>
                 <div className={"col"}>
                     <Icon name={"i-chouyang"}/>
-                    <span className={"content"}>{o3}</span>
+                    <span className={"content"}>{realtime.o3}</span>
                 </div>
                 <div className={"col"}>
                     <Icon name={"i-eryanghuadan"}/>
-                    <span className={"content"}>{no2}</span>
+                    <span className={"content"}>{realtime.no2}</span>
                 </div>
                 <div className={"col"}>
                     <Icon name={"i-eryanghualiu2"}/>
-                    <span className={"content"}>{so2}</span>
+                    <span className={"content"}>{realtime.so2}</span>
                 </div>
                 <div className={"col"}>
                     <Icon name={"i-yiyanghuatan"}/>
-                    <span className={"content"}>{co}</span>
+                    <span className={"content"}>{realtime.co}</span>
                 </div>
             </div>
-        }
-    };
-    let data = {
-
-        //获取今天是第几周
-        getRecentDay: (index) => {
-            let dayText = ["昨天", "今天"];
-            let nowDate = new Date();
-            let weekName = ["日", "一", "二", "三", "四", "五", "六"];
-            let tDate = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate() + index - 1);
-            if (index <= 1) {
-                return dayText[index];
-            } else if (index > 1 && index < 3) {
-                return "周" + weekName[tDate.getDay()];
-            } else {
-                return (tDate.getMonth() + 1) + "." + tDate.getDate();
-            }
         },
-        //天气状况
-        skyCon: {
-            "CLEAR_DAY": "晴",
-            "CLEAR_NIGHT": "晴",
-            "PARTLY_CLOUDY_DAY": "多云",
-            "PARTLY_CLOUDY_NIGHT": "多云",
-            "CLOUDY": "阴",
-            "LIGHT_HAZE": "轻度雾霾",
-            "MODERATE_HAZE": "中度雾霾",
-            "HEAVY_HAZE": "重度雾霾",
-            "LIGHT_RAIN": "小雨",
-            "MODERATE_RAIN": "中雨",
-            "HEAVY_RAIN": "大雨",
-            "STORM_RAIN": "暴雨",
-            "FOG": "雾",
-            "LIGHT_SNOW": "小雪",
-            "MODERATE_SNOW": "中雪",
-            "HEAVY_SNOW": "大雪",
-            "STORM_SNOW": "暴雪",
-            "DUST": "浮尘",
-            "SAND": "沙尘",
-            "WIND": "大风",
-            "THUNDER_SHOWER": "雷阵雨",
-            "HAIL": "冰雹",
-            "SLEET": "雨夹雪",
-        },
-        rainOrSnowFall: (level, sky) => {
-            if ((sky !== undefined && !sky.includes("雨") && !sky.includes("雪")) || level < 0.03) return 0;
-            let desc = Number.parseInt(level);
-            if (level > 0) desc = "小";
-            if (level > 0.03) desc = "小";
-            if (level > 0.25) desc = "中";
-            if (level > 0.35) desc = "大";
-            if (level > 0.48) desc = "暴";
-            desc += sky || "";
-            return desc;
-        },
-        direction: (direction) => {
-            let i = Math.round(direction / 22.5);
-            let dName = ["北", "东北偏北", "东北", "东北偏东", "东", "东南偏东", "东南", "东南偏南", "南", "西南偏南", "西南", "西南偏西", "西", "西北偏西", "西北", "西北偏北"];
-            return dName[i];
-        },
-        windSpeed: (speed) => {
-            if (speed < 1) return "无风";
-            if (speed < 20) return "风小";
-            return "风大";
-        },
-        warning: (content) => {
-            if (content.length === 0) return "";
-            let type = ["台风", "暴雨", "暴雪", "寒潮", "大风", "沙尘暴", "高温", "干旱", "雷电", "冰雹", "霜冻", "大雾", "霾", "道路结冰", "森林火灾", "雷雨大风"];
-            let grade = ["蓝色", "黄色", "橙色", "红色"];
-            let color = ["blue", "yellow", "orange", "red"];
-
-            let result = [];
-            for (let i in content) {
-                let code = content[i].code;
-                let typeNum = Number(code.substring(0, 2)) - 1;
-                let gradeNum = code[3] - 1;
-                result.push([type[typeNum], grade[gradeNum], color[gradeNum]]);
-            }
-            return result;
-        },
-    };
-    //处理数据
-    let setData = (locationData, weatherData) => {
-        let r = weatherData.result.realtime;
-        let h = weatherData.result.hourly;
-        let d = weatherData.result.daily;
-        let longitudeAndLatitude = locationData.position.toString().split(',');
-        longitudeAndLatitude[0] = dataUtils.formatDegree(longitudeAndLatitude[0]);
-        longitudeAndLatitude[1] = dataUtils.formatDegree(longitudeAndLatitude[1]);
-        let nowDate = new Date();
-        let time = nowDate.getFullYear() + "-" + (nowDate.getMonth() + 1) + "-" + nowDate.getDate() + " " + nowDate.getHours() + ":" + nowDate.getMinutes();
-        let wData = {
-            status: 1,
-            updateTime: time,
-            locationData,
-            weatherData,
-            longitudeAndLatitude,
-            address: locationData.addressComponent.district + locationData.addressComponent.township,
-            keyPoint: weatherData.result.forecast_keypoint,//分钟级分析关键句
-            trend: h.description,//小时级分析
-            weather: [r.skycon, data.skyCon[r.skycon]],
-            apparentTemperature: Math.round(r.apparent_temperature),//体感温度
-            temperature: Math.round(r.temperature),//温度
-            windSpeed: [Math.round(r.wind.speed), data.windSpeed(r.wind.speed)],//风速
-            windDirection: [r.wind.direction, data.direction(r.wind.direction)],//风向
-            uv: [r.life_index.ultraviolet.index, r.life_index.ultraviolet.desc],//紫外线
-            aqi: [r.air_quality.aqi.chn, r.air_quality.description.chn],//空气质量
-            visibility: Math.round(r.visibility),//能见度
-            humidity: Math.round(r.humidity * 100),//湿度
-            airPressure: Math.round(r.pressure / 1000),//气压
-            cloudCover: r.cloudrate,//云量
-            shortwaveRadiation: r.dswrf,//短波辐射
-            precipitationIntensity: r.precipitation.local.intensity,//降水强度
-            closestPrecipitationDistance: Math.round(r.precipitation.nearest.distance),//最近降水距离
-            closestPrecipitationIntensity: r.precipitation.nearest.intensity,//最近降水强度
-            co: r.air_quality.co,
-            no2: r.air_quality.no2,
-            o3: r.air_quality.o3,
-            pm10: r.air_quality.pm10,
-            pm25: r.air_quality.pm25,
-            so2: r.air_quality.so2,
-            sun: [d.astro[0].sunrise.time, d.astro[0].sunset.time],
-            warning: weatherData.result.alert.content.length > 0 ? [data.warning(weatherData.result.alert.content), weatherData.result.alert.content] : false,
-            carWashing: d.life_index.carWashing[0].desc,
-            coldRisk: d.life_index.coldRisk[0].desc,
-            daily: [],
-            hourly:[],
-        };
-
-        //24小时天气
-        for (let i = 0; i < 24; i++) {
-            wData.hourly.push({
-                weather: [h.skycon[i].value, data.skyCon[h.skycon[i].value]],
-                temperature: Math.round(h.temperature[i].value),
-                aqi: Math.round(h.air_quality.aqi[i].value.chn),
-            });
-        }
-
-        //16天预报 + 昨天
-        for (let i = 0; i < 16; i++) {
-            wData.daily.push({
-                weather: [d.skycon[i].value, data.skyCon[d.skycon[i].value]],
-                temperatureRange: [Math.round(d.temperature[i].min), Math.round(d.temperature[i].max)],
-                aqi: Math.round(d.air_quality.aqi[i].avg.chn),
-            });
-        }
-        set_wData(wData);
-    }
-
-    //获取当前定位
-    let getLocation = () => {
-        let map, geolocation;
-        //加载地图，调用浏览器定位服务
-        map = new AMap.Map('container', {
-            resizeEnable: true
-        });
-
-        let onComplete, onError;
-        map.plugin('AMap.Geolocation', () => {
-            geolocation = new AMap.Geolocation({
-                enableHighAccuracy: true, //是否使用高精度定位，默认:true
-                timeout: 10000, //超过10秒后停止定位，默认：无穷大
-                zoomToAccuracy: true, //定位成功后调整地图视野范围使定位位置及精度范围视野内可见，默认：false
-                buttonPosition: 'RT',
-                buttonOffset: new AMap.Pixel(10, 70),
-            });
-            map.addControl(geolocation);
-            geolocation.getCurrentPosition((status, result) => {
-                if (status === 'complete') {
-                    onComplete(result)
-                } else {
-                    onError(result)
-                }
-            });
-        });
-
-        // 绑定事件
-        let clickHandler = (e) => {
-            Message('您在[ ' + e.lnglat.getLng() + ',' + e.lnglat.getLat() + ' ]的位置点击了地图！拖动点选位置获取天气信息功能即将上线！', false, true);
-        };
-        map.on('click', clickHandler);
-
-        //解析定位结果
-        onComplete = (locationData) => {
-            console.log(locationData);
-            let location = locationData.position.toString().split(',');
-
-            //获取天气信息
-            let url = props.url + "?location=" + location.toString() + "&version=v2.5&type=weather";
-            axios.get(url, {withCredentials: true})
-                .then((res) => {
-                    result(res, (weatherData) => {
-                        console.log(weatherData);
-                        setData(locationData, weatherData);
-                        set_status(1)
-                    });
-                })
-                .catch(function (res) {
-                    console.log(res);
-                });
-        };
-
-        //解析定位错误信息
-        onError = (data) => {
-            alert('定位失败', data)
+        text:() =>{
+            if(!realtime) return "";
+            return <>
+                <span className={"item"}>{realtime.address}</span>
+                <span className={"item"}><Icon name={"i-" + realtime.weather[0]}/>{realtime.weather[1]}</span>
+                <span className={"item"}>{Math.round(realtime.temperature)}°  {realtime.windDirection[1]}{realtime.windSpeed[1]}</span>
+                <span className={"item"}>{realtime.aqi[0]}{realtime.aqi[1]}</span>
+            </>
         }
     };
 
-
-    let widget = <div className={"ya-loading"}>
+    let loading = <div className={"ya-loading"} hidden={status === 1}>
         <div className="loader3"><span/><span/></div>
     </div>;
-    if (status === 1) {
-        console.log(location);
-        widget = <>
-            <div className={"widget-container"}>
-                <div className={"widget"}>
-                    {pages.updateTime()}
-                    {pages.location()}
-                    {pages.tips()}
-                    {pages.warning()}
-                    {pages.realTimeMin()}
-                    {pages.realTimeDetail()}
-                    {pages.recentHours()}
-                    {pages.recentDays()}
-                    {pages.airDetail()}
+    let wContent = ""
+    if(props.widget){
+        wContent = <div className={"ya-weather-widget"}>
+            {loading}
+            {pages.warning()}
+            {pages.realTimeMin()}
+            <div id="container" className="map" ref={containerRef} hidden/>
+        </div>
+    }else if(props.text){
+        wContent = <div className={"ya-weather-text"}>
+            {loading}
+            {pages.text()}
+            <div id="container" className="map" ref={containerRef} hidden/>
+        </div>
+    }else {
+        wContent = <>
+            <div className={"ya-weather-app padding0"}>
+                {loading}
+                <div className={"ya-weather"}>
+                    <div className={"widget-container"}>
+                        <div className={"ya-weather-widget"}>
+                            {pages.warning()}
+                            {pages.realTimeMin()}
+                            {pages.realTimeDetail()}
+                            {pages.recentHours()}
+                            {pages.recentDays()}
+                            {pages.airDetail()}
+                        </div>
+                    </div>
                 </div>
+                <div id="container" className="map" ref={containerRef}/>
             </div>
         </>
     }
-    return (<>
-            <div className={"padding0 heightFull"}>
-                <div id="container" className="map"/>
-                <div className={"ya-weather"}>{widget}</div>
-            </div>
-        </>
-    )
+    return wContent;
 }
 
 export default Weather

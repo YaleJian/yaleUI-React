@@ -4,6 +4,7 @@
   "private": false,
   "main": "src/components/index.js",
   "dependencies": {
+    "@amap/amap-jsapi-loader": "0.0.4",
     "@babel/runtime": "^7.11.2",
     "axios": "^0.19.2",
     "cos-js-sdk-v5": "^0.5.27",

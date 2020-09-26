@@ -5,232 +5,223 @@
 @red: #fd8880;
 @orange: #ffad49;
 @green: #44e293;
-#container {
-  position: fixed !important;
+
+.ya-weather-app{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  #container {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+  }
+}
+.ya-weather {
+  position: absolute;
+  top: 0;
+  bottom: 0;
   left: 0;
   right: 0;
-  bottom: 0;
-  top: 0;
-
-}
-
-.ya-weather {
-
+  overflow: auto;
   .widget-container {
     width: 100%;
+    margin-top: 400px;
     position: absolute;
-    transform: translateY(400px);
-
-    &::-webkit-scrollbar {
-      width: 0;
-      height: 0;
-    }
-
-    .loader3 {
-      background: white;
-    }
-
-    .widget {
-      margin: 10px 8px 0;
-
+    z-index: 999;
+    //transform: translateY(400px);
+    .ya-weather-widget {
+      margin: 14px 14px 0;
       .row {
         margin: 0 0 8px 0;
-        padding: 10px;
-        background: white;
-        border-radius: 10px;
-        line-height: 24px;
-        font-size: 16px;
-        .icon {
-          width: 22px;
-          height: 22px;
-        }
-        .column {
-          flex: 1;
-        }
-        .content {
-          padding: 0 4px;
-          line-height: 22px;
-          vertical-align: text-bottom;
-          display: inline-block;
-        }
-      }
-
-      .updateTime{
-        font-size: 12px;
-        display: inline-block;
-        color: #37393d;
-        padding: 0 10px;
-        margin: 0 0 5px 0;
-      }
-      .location {
-        display: flex;
-        font-size: 13px;
-        color: #6f6f6f;
-        line-height: 16px;
-        white-space: nowrap;
-
-        .address {
-          text-overflow: ellipsis;
-          overflow: hidden;
-        }
-
-        .longLat {
-        }
-
-        .content {
-
-        }
-      }
-      .tips {
-        .forecastKeyPoint {
-          font-size: 12px;
-        }
-      }
-      .warning {
-        margin: 0 0 -4px 0;
-        font-size: 12px;
-        text-align: center;
-        .text {
-          display: inline-block;
-          padding: 0 10px;
-          background: green;
-          color: #fff;
-          line-height: 16px;
-          &.blue {
-            background: @blue
-          }
-
-          &.yellow {
-            color: yellow;
-          }
-
-          &.orange {
-            color: @orange;
-          }
-
-          &.red {
-            color: @red;
-          }
-        }
-      }
-      .realTime-min {
-        text-align: center;
-
-        .top {
-          display: flex;
-          align-items: center;
-          text-align: center;
-
-          .temperature-container{
-            text-align: left;
-            padding-left: 10px;
-            .temperature {
-              font-size: 43px;
-              font-weight: 300;
-              line-height: 50px;
-              display: inline-block;
-              .icon {
-                width: 36px;
-                height: 42px;
-                margin-left: -10px;
-              }
-            }
-            .bodyFeelingTemp{
-              display: inline-block;
-            }
-          }
-          .weatherIcon {
-            text-align: right;
-            padding-right: 15px;
-            font-size: 12px;
-            .iconArea {
-              margin: 10px 0;
-              .icon {
-                height: 45px;
-                width: 45px;
-              }
-            }
-          }
-        }
-        .bottom{
-          font-size: 12px;
-          margin: 5px;
-          padding: 0 5px;
-          border: 1px solid #e7e7e7;
-          color: #505050;
-          border-radius: 5px;
-        }
-      }
-      .realTime-detail{
-
-        .sun{
-          font-size: 12px;
-          color: #5e5e5e;
-          text-align: center;
-        }
-        .detailed {
-          display: flex;
-          flex-wrap: wrap;
-          font-size: 12px;
-          line-height: 14px;
-
-          .col {
-            flex: 1;
-            padding: 5px 0;
-            text-align: center;
-
-            .icon {
-            }
-
-            .content {
-              display: block;
-              line-height: 20px;
-              word-break: keep-all;
-            }
-          }
-        }
-      }
-
-      .recentDay {
-        white-space: nowrap;
-        text-align: center;
-        font-size: 13px;
-        overflow-x: auto;
-
-        .day {
-          margin: 0 5px;
-          display: inline-block;
-          .air{
-            &.ya-greenBorder{
-              line-height: 16px;
-              margin: 2px 0;
-            }
-          }
-        }
-      }
-      .airDetail{
-        display: flex;
-        flex-wrap: wrap;
-        font-size: 12px;
-        text-align: center;
-        .col{
-          flex: 1;
-        }
       }
     }
   }
 }
-
-@media only screen and (min-width: 900px) {
-  .ya-weather {
-    .widget-container{
-      width: 400px;
-      background: linear-gradient(#f67191, rgba(180, 95, 159, 0.72) 44.96%, #8787f6);
-      right: 10px;
-      border-radius: 10px;
+.ya-weather-widget {
+  position: relative;
+  .row {
+    padding: 10px;
+    background: white;
+    border-radius: 10px;
+    line-height: 24px;
+    font-size: 16px;
+    .icon {
+      width: 22px;
+      height: 22px;
     }
+    .column {
+      flex: 1;
+    }
+    .content {
+      padding: 0 3px;
+      line-height: 22px;
+      vertical-align: text-bottom;
+      display: inline-block;
+    }
+  }
+
+  .updateTime{
+    font-size: 12px;
+    color: #37393d;
+    padding: 0 10px;
+    /* margin: 0 0 5px 0; */
+    /* text-align: right; */
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .tips {
+    .forecastKeyPoint {
+      font-size: 12px;
+    }
+  }
+  .warning {
+    margin: 0 0 -4px 0;
+    font-size: 12px;
+    text-align: center;
+    .text {
+      display: inline-block;
+      padding: 0 10px;
+      background: green;
+      color: #fff;
+      line-height: 16px;
+      &.blue {
+        background: @blue
+      }
+
+      &.yellow {
+        color: yellow;
+      }
+
+      &.orange {
+        color: @orange;
+      }
+
+      &.red {
+        color: @red;
+      }
+    }
+  }
+  .realTime-min {
+    text-align: center;
+    .address{
+      text-align: left;
+      height: 22px;
+      line-height: 22px;
+      .longLat {
+        font-size: 12px;
+        color: #5e5e5e;
+      }
+    }
+    .top {
+      display: flex;
+      align-items: center;
+      text-align: center;
+      margin: 10px 0;
+
+      .temperature-container{
+        text-align: left;
+        .temperature {
+          font-size: 43px;
+          font-weight: 300;
+          line-height: 50px;
+          display: inline-block;
+          .icon {
+            width: 36px;
+            height: 42px;
+            margin-left: -8px;
+          }
+        }
+        .bodyFeelingTemp{
+          display: inline-block;
+        }
+      }
+      .weatherIcon {
+        text-align: right;
+        .iconArea {
+          height: 46px;
+          width: 46px;
+        }
+      }
+    }
+    .bottom{
+      font-size: 12px;
+      border: 1px solid #e7e7e7;
+      color: #505050;
+      border-radius: 5px;
+    }
+  }
+  .realTime-detail{
+
+    .sun{
+      font-size: 12px;
+      color: #5e5e5e;
+      text-align: center;
+    }
+    .detailed {
+      display: flex;
+      flex-wrap: wrap;
+      font-size: 12px;
+      line-height: 14px;
+
+      .col {
+        flex: 1;
+        padding: 5px 0;
+        text-align: center;
+
+        .icon {
+        }
+
+        .content {
+          display: block;
+          line-height: 20px;
+          word-break: keep-all;
+        }
+      }
+    }
+  }
+
+  .recentDay {
+    white-space: nowrap;
+    text-align: center;
+    font-size: 13px;
+    overflow-x: auto;
+    .day {
+      box-sizing: border-box;
+      padding: 0 5px;
+      display: inline-block;
+      border: 1px solid #f6f6f6;
+      border-right: 0;
+      .air{
+        &.ya-greenBorder{
+          display: inline-block;
+          line-height: 16px;
+          color: #00af00;
+          border: 1px solid #00af00;
+          border-radius: 6px;
+          padding: 0 4px;
+        }
+      }
+    }
+  }
+  .airDetail{
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 12px;
+    text-align: center;
+    .col{
+      flex: 1;
+    }
+  }
+}
+.ya-weather-text{
+  position: relative;
+  .item{
+    margin-right: 10px;
   }
 }
 .amap-logo, .amap-copyright {
-  //display: none !important;
+  opacity: 0.2;
 }

@@ -61,6 +61,10 @@
   height: 100px;
   line-height: 100px;
 }
+.height160 {
+  height: 160px;
+  line-height: 160px;
+}
 .height200 {
   height: 200px;
   line-height: 200px;
@@ -68,6 +72,10 @@
 .height400 {
   height: 400px;
   line-height: 400px;
+}
+.height800 {
+  height: 800px;
+  line-height: 800px;
 }
 .heightFull {
   height: 100%;
