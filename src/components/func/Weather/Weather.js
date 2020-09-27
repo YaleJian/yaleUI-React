@@ -11,11 +11,11 @@ import {caiYunData} from "../../utils/caiyun";
 
 const Weather = (props)=> {
     const [status, set_status] = useState(0);
-    const [location, set_location] = useState(false);
-    const [address, set_address] = useState("");
-    const [realtime, set_realtime] = useState(false);
-    const [hourly, set_hourly] = useState(false);
-    const [daily, set_daily] = useState(false);
+    const [latLon, set_latLon] = useState(false);//经纬度
+    const [address, set_address] = useState("");//定位地址
+    const [realtime, set_realtime] = useState(false);//实时
+    const [hourly, set_hourly] = useState(false);//小时
+    const [daily, set_daily] = useState(false);//天
     const containerRef = useRef();
 
     useEffect(()=>{
@@ -26,6 +26,9 @@ const Weather = (props)=> {
     let initWeather = ()=>{
         //获取定位信息
         initAMap(containerRef,(ampData)=>{
+            set_latLon([dataUtils.formatDegree(ampData.ya_location[0]),dataUtils.formatDegree(ampData.ya_location[1])])
+            set_address(ampData.ya_address)
+
             //获取天气信息
             axios.get(props.url + "?location=" + ampData.ya_location.toString() + "&version=v2.5&type=weather", {withCredentials: true})
                 .then(res => {
@@ -35,8 +38,6 @@ const Weather = (props)=> {
                         set_realtime(cData.realtime)
                         set_hourly(cData.hourly)
                         set_daily(cData.daily)
-                        set_location([dataUtils.formatDegree(ampData.ya_location[0]),dataUtils.formatDegree(ampData.ya_location[1])])
-                        set_address(ampData.ya_address)
                         set_status(1)
                     });
                 })
@@ -46,7 +47,7 @@ const Weather = (props)=> {
         },props.jsKey)
     }
 
-    //获取今天是星期几
+    //获取今天的日期/星期
     let getDayName = (index) => {
         let dayText = ["昨天", "今天"];
         let nowDate = new Date();
@@ -54,7 +55,7 @@ const Weather = (props)=> {
         let tDate = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate() + index - 1);
         if (index <= 1) {
             return dayText[index];
-        } else if (index > 1 && index < 3) {
+        } else if (index === 2 || (index > 6 && (tDate.getDay() === 0 || tDate.getDay() === 6) )) {
             return "周" + weekName[tDate.getDay()];
         } else {
             return (tDate.getMonth() + 1) + "." + tDate.getDate();
@@ -94,7 +95,7 @@ const Weather = (props)=> {
                     <div className={"address"}>
                         <Icon name={"i-zu-copy"}/>
                         <span className={"content"}>{address}</span>
-                        <span className={"longLat"}>{location[0]}  {location[1]}</span>
+                        <span className={"longLat"}>{latLon[0]}  {latLon[1]}</span>
                     </div>
                     <div className={"top"}>
                         <div className={"column temperature-container"}>
@@ -171,9 +172,21 @@ const Weather = (props)=> {
         },
         recentHours: () => {
             if(!hourly) return "";
+            let hours = new Date().getHours();
             let hour48Tag = hourly.map((item, index) => {
+                if(index < hours || (index - hours) > 48) return "";//当前时间开始渲染
+                let h = index % 24 + ":00";
+                if(index === 24){
+                    h = "明天"
+                }else if(index === 48){
+                    h = "后天"
+                }else if(index % 24 ===0 && index > 48){
+                    let tDate = new Date();
+                    tDate.setDate(tDate.getDate() + Math.ceil(index / 24));
+                    h = <strong>{(tDate.getMonth() + 1) + "." + tDate.getDate()}</strong>
+                }
                 return <div className={"day"} key={index}>
-                    <div className={""}>{index % 24 + ":00"}</div>
+                    <div className={""}>{h}</div>
                     <div className={"air ya-greenBorder"}>
                         <span>{item.aqi}</span>
                     </div>

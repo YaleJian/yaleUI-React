@@ -92,8 +92,8 @@ let caiYunData = (weatherData) => {
         coldRisk: d.life_index.coldRisk[0].desc,
     };
 
-    //48小时天气
-    for (let i = 0; i < 48; i++) {
+    //360小时天气
+    for (let i = 0; i < 360; i++) {
         hourly.push({
             weather: [h.skycon[i].value, dataConvert.skyCon[h.skycon[i].value]],
             temperature: Math.round(h.temperature[i].value),

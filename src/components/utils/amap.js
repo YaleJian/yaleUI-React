@@ -1,7 +1,7 @@
 import AMapLoader from "@amap/amap-jsapi-loader";
 import {Message} from "..";
 
-let initAMap = (containerRef, setMaoData, jsKey) => {
+let initAMap = (containerRef, res, jsKey) => {
     AMapLoader.load({
         "key": jsKey || "3e1573216986096de00822a455a0a852",              // 申请好的Web端开发者Key，首次调用 load 时必填
         "version": "",   // 指定要加载的 JSAPI 的版本，缺省时默认为 1.4.15
@@ -11,7 +11,7 @@ let initAMap = (containerRef, setMaoData, jsKey) => {
             "plugins":[],       // 需要加载的 AMapUI ui插件
         },
     }).then((AMap)=>{
-        let map, geolocation;
+        let map;
         if(containerRef.current) {
             map = new AMap.Map(containerRef.current, {
                 resizeEnable: true
@@ -45,7 +45,7 @@ let initAMap = (containerRef, setMaoData, jsKey) => {
                 console.log("定位结果：", locationData);
                 locationData.ya_location = locationData.position.toString().split(',');
                 locationData.ya_address = locationData.addressComponent.district + locationData.addressComponent.township
-                setMaoData(locationData)
+                res(locationData)
             };
 
             //解析定位错误信息
