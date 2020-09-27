@@ -1,5 +1,5 @@
-import React, {Component, useEffect, useState} from 'react';
-import {Button, Icon} from "../index";
+import React, {useEffect, useRef, useState} from 'react';
+import {Icon} from "../index";
 import {Tree} from "../index";
 import {getNavData} from "..";
 import {Checkbox} from "../index";
@@ -18,15 +18,14 @@ const Typography = ()=> {
             setNavData(getNavData())
             setLoading(false)
         }
-    })
+    },[loading])
+    const tree = useRef();
     return <div>
         <Tree treeData={navData}
               treeType={3}
               openBtn={false}
               openLevel={"all"}
-              ref={tree => {
-                  window.tree = tree
-              }}
+              ref={tree}
         />
         <h1 className="ya-title">排版</h1>
 

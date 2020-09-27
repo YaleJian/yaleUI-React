@@ -3,13 +3,11 @@ import "./weather.css";
 import {axios} from "../../utils/Axios";
 import {result} from "../..";
 import {Icon} from "../..";
-import {Message} from "../..";
 import {dataUtils} from "../..";
-import AMapLoader from '@amap/amap-jsapi-loader';
 import {initAMap} from "../../utils/amap";
 import {caiYunData} from "../../utils/caiyun";
 
-const Weather = (props)=> {
+const Weather = (props) => {
     const [status, set_status] = useState(0);
     const [latLon, set_latLon] = useState(false);//经纬度
     const [address, set_address] = useState("");//定位地址
@@ -18,34 +16,31 @@ const Weather = (props)=> {
     const [daily, set_daily] = useState(false);//天
     const containerRef = useRef();
 
-    useEffect(()=>{
-        if(status === 0) initWeather()
-    },[])
+    useEffect(() => {
+        if (status === 0) {
+            //获取定位信息
+            initAMap(containerRef, (ampData) => {
+                set_latLon([dataUtils.formatDegree(ampData.ya_location[0]), dataUtils.formatDegree(ampData.ya_location[1])])
+                set_address(ampData.ya_address)
 
-    //获取天气数据
-    let initWeather = ()=>{
-        //获取定位信息
-        initAMap(containerRef,(ampData)=>{
-            set_latLon([dataUtils.formatDegree(ampData.ya_location[0]),dataUtils.formatDegree(ampData.ya_location[1])])
-            set_address(ampData.ya_address)
-
-            //获取天气信息
-            axios.get(props.url + "?location=" + ampData.ya_location.toString() + "&version=v2.5&type=weather", {withCredentials: true})
-                .then(res => {
-                    result(res, weatherData => {
-                        console.log("天气结果",weatherData);
-                        let cData = caiYunData(weatherData);
-                        set_realtime(cData.realtime)
-                        set_hourly(cData.hourly)
-                        set_daily(cData.daily)
-                        set_status(1)
+                //获取天气信息
+                axios.get(props.url + "?location=" + ampData.ya_location.toString() + "&version=v2.5&type=weather", {withCredentials: true})
+                    .then(res => {
+                        result(res, weatherData => {
+                            console.log("天气结果", weatherData);
+                            let cData = caiYunData(weatherData);
+                            set_realtime(cData.realtime)
+                            set_hourly(cData.hourly)
+                            set_daily(cData.daily)
+                            set_status(1)
+                        });
+                    })
+                    .catch(function (res) {
+                        console.log(res);
                     });
-                })
-                .catch(function (res) {
-                    console.log(res);
-                });
-        },props.jsKey)
-    }
+            }, props.jsKey)
+        }
+    }, [status, props.jsKey, props.url])
 
     //获取今天的日期/星期
     let getDayName = (index) => {
@@ -55,7 +50,7 @@ const Weather = (props)=> {
         let tDate = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate() + index - 1);
         if (index <= 1) {
             return dayText[index];
-        } else if (index === 2 || (index > 6 && (tDate.getDay() === 0 || tDate.getDay() === 6) )) {
+        } else if (index === 2 || (index > 6 && (tDate.getDay() === 0 || tDate.getDay() === 6))) {
             return "周" + weekName[tDate.getDay()];
         } else {
             return (tDate.getMonth() + 1) + "." + tDate.getDate();
@@ -74,7 +69,7 @@ const Weather = (props)=> {
             </>;
         },
         warning: () => {
-            if(!realtime) return "";
+            if (!realtime) return "";
             if (!realtime.warning || realtime.warning[0].length === 0) return "";
             let warnings = realtime.warning[0].map((item, index) => {
                     return <div className={"text " + item[2]} key={index}>
@@ -86,7 +81,7 @@ const Weather = (props)=> {
             return <div className={"row warning"}>{warnings}</div>;
         },
         realTimeMin: () => {
-            if(!realtime) return "";
+            if (!realtime) return "";
             return <>
                 <div className={"row realTime-min"}>
                     <div className={"updateTime"} hidden>
@@ -95,7 +90,7 @@ const Weather = (props)=> {
                     <div className={"address"}>
                         <Icon name={"i-zu-copy"}/>
                         <span className={"content"}>{address}</span>
-                        <span className={"longLat"}>{latLon[0]}  {latLon[1]}</span>
+                        <span className={"longLat"}>{latLon[0]} {latLon[1]}</span>
                     </div>
                     <div className={"top"}>
                         <div className={"column temperature-container"}>
@@ -117,7 +112,7 @@ const Weather = (props)=> {
             </>
         },
         realTimeDetail: () => {
-            if(!realtime) return "";
+            if (!realtime) return "";
             return <div className={"row realTime-detail"}>
                 <div className={"sun"}>
                     <span className={"sunrise"}>
@@ -171,16 +166,16 @@ const Weather = (props)=> {
             </div>
         },
         recentHours: () => {
-            if(!hourly) return "";
+            if (!hourly) return "";
             let hours = new Date().getHours();
             let hour48Tag = hourly.map((item, index) => {
-                if(index < hours || (index - hours) > 48) return "";//当前时间开始渲染
+                if (index < hours || (index - hours) > 48) return "";//当前时间开始渲染
                 let h = index % 24 + ":00";
-                if(index === 24){
+                if (index === 24) {
                     h = "明天"
-                }else if(index === 48){
+                } else if (index === 48) {
                     h = "后天"
-                }else if(index % 24 ===0 && index > 48){
+                } else if (index % 24 === 0 && index > 48) {
                     let tDate = new Date();
                     tDate.setDate(tDate.getDate() + Math.ceil(index / 24));
                     h = <strong>{(tDate.getMonth() + 1) + "." + tDate.getDate()}</strong>
@@ -202,7 +197,7 @@ const Weather = (props)=> {
             return <div className={"row recentDay"}>{hour48Tag}</div>
         },
         recentDays: () => {
-            if(!daily) return "";
+            if (!daily) return "";
             let day16Tag = daily.map((item, index) => {
                 return <div className={"day"} key={index}>
                     <div className={""}> {getDayName(index)}</div>
@@ -221,7 +216,7 @@ const Weather = (props)=> {
             return <div className={"row recentDay"}>{day16Tag}</div>
         },
         airDetail: () => {
-            if(!realtime) return "";
+            if (!realtime) return "";
             return <div className={"row airDetail"}>
                 <div className={"col"}>
                     <Icon name={"i-pmcopy"}/>
@@ -249,12 +244,13 @@ const Weather = (props)=> {
                 </div>
             </div>
         },
-        text:() =>{
-            if(!realtime) return "";
+        text: () => {
+            if (!realtime) return "";
             return <>
                 <span className={"item"}>{realtime.address}</span>
                 <span className={"item"}><Icon name={"i-" + realtime.weather[0]}/>{realtime.weather[1]}</span>
-                <span className={"item"}>{Math.round(realtime.temperature)}°  {realtime.windDirection[1]}{realtime.windSpeed[1]}</span>
+                <span
+                    className={"item"}>{Math.round(realtime.temperature)}° {realtime.windDirection[1]}{realtime.windSpeed[1]}</span>
                 <span className={"item"}>{realtime.aqi[0]}{realtime.aqi[1]}</span>
             </>
         }
@@ -264,20 +260,20 @@ const Weather = (props)=> {
         <div className="loader3"><span/><span/></div>
     </div>;
     let wContent = ""
-    if(props.widget){
+    if (props.widget) {
         wContent = <div className={"ya-weather-widget"}>
             {loading}
             {pages.warning()}
             {pages.realTimeMin()}
             <div id="container" className="map" ref={containerRef} hidden/>
         </div>
-    }else if(props.text){
+    } else if (props.text) {
         wContent = <div className={"ya-weather-text"}>
             {loading}
             {pages.text()}
             <div id="container" className="map" ref={containerRef} hidden/>
         </div>
-    }else {
+    } else {
         wContent = <>
             <div className={"ya-weather-app padding0"}>
                 {loading}
@@ -300,4 +296,4 @@ const Weather = (props)=> {
     return wContent;
 }
 
-export default Weather
+export {Weather}

@@ -13,7 +13,7 @@ const Input = (props) => {
     let autoContent = props.autoContent || typeof props.autoContent === "number";
     useEffect(() => {
         setValue(props.value)
-    })
+    },[props.value])
 
     //普通输入框
     let input = (className) => {
@@ -37,8 +37,8 @@ const Input = (props) => {
 
     //带图标的输入框
     let inputGroup = (className, left, right) => {
-        if (typeof left === "string") left = <Icon name={left}/>
-        if (typeof right === "string") right = <Icon name={right}/>
+        if (typeof left === "string") left = <Icon name={left} onClick={iconClick.bind(this)}/>
+        if (typeof right === "string") right = <Icon name={right} onClick={iconClick.bind(this)}/>
         return <div className={"inputGroup" + (right ? " suffix" : "")} onClick={onClick.bind(this)}>
             {left ? <span className={"left"}>{left}</span> : ""}
             {input(className)}

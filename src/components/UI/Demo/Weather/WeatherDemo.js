@@ -1,5 +1,5 @@
 import React from "react";
-import Weather from "../../../func/Weather/Weather";
+import {Weather} from "../../..";
 
 const WeatherDemo = () => {
     const url = "https://yalejian.com/service/weather/getData", jsKey = "3e1573216986096de00822a455a0a852"
@@ -20,7 +20,7 @@ const WeatherDemo = () => {
 
         <h2>天气应用</h2>
         <div className={"ya-p"}>
-            <div className={"ya-shadow width400 height800"}>
+            <div className={"ya-shadow width360 height800"}>
                 <Weather url={url} jsKey={jsKey}/>
             </div>
         </div>

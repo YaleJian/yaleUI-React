@@ -32,6 +32,7 @@ import {Footer} from './layout/Footer';
 import {Progress} from './base/Progress/Progress';
 import {Hang} from "./base/Hang/Hang";
 import {Brand} from "./layout/Brand/Brand";
+import {Weather} from "./func/Weather/Weather";
 import './layout/css/index.css';
 import './layout/css/fastUse.css';
 import './layout/css/color.css';
@@ -67,4 +68,5 @@ export {
     Progress,
     Hang,
     Brand,
+    Weather,
 }

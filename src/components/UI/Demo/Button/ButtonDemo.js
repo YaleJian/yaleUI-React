@@ -1,4 +1,4 @@
-import React, {Component, useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Button, getNavData, Tree} from "../../../index";
 import "./button.css"
 
@@ -15,7 +15,7 @@ const ButtonDemo = () => {
             setNavData(getNavData())
             setLoading(false)
         }
-    })
+    },[loading])
 
     return (
         <div className={"ya-buttonDemo"}>

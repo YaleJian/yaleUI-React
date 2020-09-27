@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import "./message.css";
-import {Icon, Button, Message, getNavData} from "../../../index";
+import {Button, Message, getNavData, Tree} from "../../../index";
 import ButtonDemo from "../Button/ButtonDemo";
 import {Confirm} from "../../../base/Message/Message";
 
@@ -17,30 +17,35 @@ const MessageDemo = () => {
             setNavData(getNavData())
             setLoading(false)
         }
-    })
+    },[loading])
     return <div>
+        <Tree treeData={navData}
+              treeType={3}
+              openBtn={false}
+              openLevel={"all"}
+        />
         <div className="ya-p">
-            <h2>基础提示框</h2>
+            <h2 className="ya-title">基础提示框</h2>
             <Button color={"blue"} onClick={() => Message("默认2秒消失",)}>{"基础提示框"}</Button>
         </div>
         <div className="ya-p">
-            <h2>不自动移除的提示框</h2>
+            <h2 className="ya-title">不自动移除的提示框</h2>
             <Button color={"blue"} onClick={() => Message("不自动移除", false)}>{"不自动移除的提示框"}</Button>
         </div>
 
         <div className="ya-p">
-            <h2>自定义消失时间的提示框</h2>
+            <h2 className="ya-title">自定义消失时间的提示框</h2>
             <Button color={"blue"} onClick={() => Message("4000毫秒后消失", 4000)}>{"自定义4000毫秒后消失的提示框"}</Button>
         </div>
         <div className="ya-p">
-            <h2>带确认的提示框</h2>
+            <h2 className="ya-title">带确认的提示框</h2>
             <Button color={"blue"}
                     onClick={() => Confirm({content: "基础提示框"}, () => Message("点击了Yes"), () => Message("点击了No"))}>
                 {"带确认的提示框"}
             </Button>
         </div>
         <div className="ya-p">
-            <h2>自定义内容</h2>
+            <h2 className="ya-title">自定义内容</h2>
             <Button color={"blue"} onClick={() => Message(<ButtonDemo/>, false)}>{"自定义内容"}</Button>
         </div>
     </div>

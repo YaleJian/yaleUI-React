@@ -24,7 +24,7 @@ const DatepickerDemo = () => {
             setNavData(getNavData())
             setLoading(false)
         }
-    })
+    },[loading])
 
     const [year, set_year] = useState("")
     const [month, set_month] = useState("")

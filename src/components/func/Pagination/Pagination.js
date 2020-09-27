@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from "react";
 import {Input} from "../../index";
-import {Icon} from "../../index";
 import {Button} from "../../index";
 import "./pagination.css";
 
@@ -16,7 +15,7 @@ const Pagination = (props) => {
         set_page(page);
         set_eachPage(eachPage);
         set_total(total);
-    })
+    },[page,eachPage,total])
 
     let getSelectData = (page) => {
         props.getPage(page);

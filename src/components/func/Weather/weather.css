@@ -195,6 +195,14 @@
 .ya-weather-text .item {
   margin-right: 10px;
 }
+@media only screen and (min-width: 900px) {
+  .ya-weather .widget-container {
+    width: 400px;
+    right: 10px;
+    border-radius: 10px;
+    box-shadow: 0 2px 16px #eaeaea;
+  }
+}
 .amap-logo,
 .amap-copyright {
   opacity: 0.2;

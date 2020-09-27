@@ -1,4 +1,3 @@
-import {dataUtils} from "./dataUtils";
 let dataConvert = {
     //天气状况
     skyCon: {

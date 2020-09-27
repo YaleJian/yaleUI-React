@@ -1,6 +1,5 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import {Button, getNavData, Input} from "../../../index";
-import {Icon} from "../../../index";
 import {Tree} from "../../../index";
 import TreeDemo from "../Tree/TreeDemo";
 import {Message, testTreeData} from "../../..";
@@ -15,9 +14,9 @@ const InputDemo = () => {
             setNavData(getNavData())
             setLoading(false)
         }
-    })
+    },[loading])
 
-    const [treeData, set_treeData] = useState(testTreeData(5, 20));
+    const [treeData] = useState(testTreeData(5, 20));
     const [selectData, set_selectData] = useState("");
     const [selectData2, set_selectData2] = useState("");
     const [checkboxData, set_checkboxData] = useState("");
@@ -30,14 +29,13 @@ const InputDemo = () => {
     const [iconInput, set_iconInput] = useState("");
     const [textareaInput, set_textareaInput] = useState("");
 
+    const tree = useRef();
     return <>
         <Tree treeData={navData}
               treeType={3}
               openBtn={false}
               openLevel={"all"}
-              ref={tree => {
-                  tree = tree
-              }}
+              ref={tree}
         />
         <h1>输入框</h1>
         <h2 className="ya-title">基础输入框</h2>
@@ -170,9 +168,6 @@ const InputDemo = () => {
             </Input>
         </div>
     </>;
-
-    function onChange(id, e) {
-    }
 }
 
 export default InputDemo;

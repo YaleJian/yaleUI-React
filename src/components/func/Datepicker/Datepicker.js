@@ -358,6 +358,10 @@ const Datepicker = (props) => {
             content = view.renderMonth(selectDate.getMonth(), selectDate.getFullYear());
             contentClass += " weeks";
             break;
+        default:
+            content = view.renderMonth(selectDate.getMonth(), selectDate.getFullYear());
+            contentClass += " weeks";
+            break;
     }
 
     let selectHours = selectDate.getHours() < 10 ? ("0" + selectDate.getHours()) : selectDate.getHours();

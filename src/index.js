@@ -5,7 +5,7 @@ import './components/UI/Demo/Button/Animate/animate.css'
 import {Route, Switch} from "react-router";
 import {BrowserRouter} from "react-router-dom";
 import Test from "./components/UI/Test/Test";
-import {Login, UI, Brand} from "./components";
+import {Login, UI} from "./components";
 
 let root = <>
     <Login/>

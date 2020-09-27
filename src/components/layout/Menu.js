@@ -1,4 +1,4 @@
-import React, {Component, useState} from 'react';
+import React, {useRef, useState} from 'react';
 import {Tree} from "..";
 import {Icon} from "..";
 import {Button} from "..";
@@ -9,6 +9,7 @@ const Menu = (props) => {
 
     let toggleClass = isShow ? " animated fastest fadeInDownSmall" : " hide";
 
+    const tree = useRef();
     return (
         <>
             <div className={isShow ? "ya-menu" : "ya-menu  hide"}>
@@ -22,9 +23,7 @@ const Menu = (props) => {
                           menuStyle={"dark"}
                           rightClickMenu={true}
 
-                          ref={tree => {
-                              tree = tree
-                          }}
+                          ref={tree}
                     />
                 </div>
                 <Button className={"toggle"} onClick={() => set_isShow(!isShow)}>

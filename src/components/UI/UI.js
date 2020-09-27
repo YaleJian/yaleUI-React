@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import ButtonDemo from "./Demo/Button/ButtonDemo";
 import TreeDemo from "./Demo/Tree/TreeDemo";
 import {Route} from "react-router";
@@ -11,7 +11,7 @@ import MessageDemo from "./Demo/Message/MessageDemo";
 import DatepickerDemo from "./Demo/Datepicker/DatepickerDemo";
 import PaginationDemo from "./Demo/Pagination/PaginationDemo";
 import ChartDemo from "./Demo/Chart/ChartDemo";
-import {Header, Menu, Main} from "..";
+import {Header, Main} from "..";
 import WeatherDemo from "./Demo/Weather/WeatherDemo";
 
 const menuData = [
