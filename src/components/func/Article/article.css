@@ -1,0 +1,21 @@
+.ya-article {
+  background: white;
+  padding: 32px;
+  margin: 20px auto;
+  color: #353535;
+}
+.ya-article .info {
+  font-size: 16px;
+  padding: 10px 5px;
+  margin: 0 0 10px 0;
+  background: aliceblue;
+  outline: 1px solid #f3f3f3;
+}
+.ya-article .info .item {
+  padding: 0 10px;
+  margin: 0 2px;
+}
+.ya-article .info .authorName {
+  font-weight: 800;
+}
+/*# sourceMappingURL=article.css.map */

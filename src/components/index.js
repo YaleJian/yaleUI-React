@@ -33,6 +33,7 @@ import {Progress} from './base/Progress/Progress';
 import {Hang} from "./base/Hang/Hang";
 import {Brand} from "./layout/Brand/Brand";
 import {Weather} from "./func/Weather/Weather";
+import {Article} from "./func/Article/Article";
 import './layout/css/index.css';
 import './layout/css/fastUse.css';
 import './layout/css/color.css';
@@ -69,4 +70,5 @@ export {
     Hang,
     Brand,
     Weather,
+    Article,
 }

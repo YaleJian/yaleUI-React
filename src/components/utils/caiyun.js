@@ -43,10 +43,12 @@ let dataConvert = {
 
         let result = [];
         for (let i in content) {
-            let code = content[i].code;
-            let typeNum = Number(code.substring(0, 2)) - 1;
-            let gradeNum = code[3] - 1;
-            result.push([type[typeNum], grade[gradeNum], color[gradeNum]]);
+            if(content.hasOwnProperty(i)) {
+                let code = content[i].code;
+                let typeNum = Number(code.substring(0, 2)) - 1;
+                let gradeNum = code[3] - 1;
+                result.push([type[typeNum], grade[gradeNum], color[gradeNum]]);
+            }
         }
         return result;
     },
@@ -91,8 +93,8 @@ let caiYunData = (weatherData) => {
         coldRisk: d.life_index.coldRisk[0].desc,
     };
 
-    //360小时天气
-    for (let i = 0; i < 360; i++) {
+    //未来360小时天气
+    for (let i = 24; i < 360; i++) {
         hourly.push({
             weather: [h.skycon[i].value, dataConvert.skyCon[h.skycon[i].value]],
             temperature: Math.round(h.temperature[i].value),
