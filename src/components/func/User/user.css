@@ -1,0 +1,67 @@
+.ya-login .userArea {
+  width: 100%;
+  transition: all 0.8s;
+  color: #6f6f6f;
+}
+.ya-login .userArea .title .user {
+  display: inline-block;
+  padding: 3px 0 3px 0;
+}
+.ya-login .userArea .title .userSettingBtn {
+  display: none;
+  text-align: center;
+  margin: 0 0 0 5px;
+  height: 16px;
+  width: 16px;
+}
+.ya-login .userArea .title .userSettingBtn:hover {
+  transition: 0.5s;
+  animation: rotate360 1.5s linear infinite;
+}
+.ya-login .userArea .title:hover .userSettingBtn,
+.ya-login .userArea .title .userSettingBtn.show {
+  display: inline-block;
+}
+.ya-login .userArea .userSetting {
+  margin: 10px 0;
+}
+.ya-login .userArea .userSetting .column {
+  min-width: 100px;
+  height: 30px;
+  line-height: 30px;
+  vertical-align: middle;
+  padding: 0 10px;
+  border-radius: 10px;
+  box-shadow: 0 0 2px 1px #e6e6e6;
+  margin: 5px 0;
+}
+.ya-login .userArea .userSetting .left {
+  margin: 0 5px;
+}
+.ya-login .userArea .userSetting .right {
+  float: right;
+  vertical-align: middle;
+}
+.ya-login .userArea .userSetting .right input {
+  border: 0;
+  text-align: right;
+  width: 100px;
+  outline: none;
+  color: #6f6f6f;
+  font-size: 12px;
+}
+.ya-login .userArea .userSetting .operate button {
+  background: #87d5ce;
+  color: white;
+  flex: 1;
+  border: 0;
+  border-radius: 10px;
+  margin: 0 5px;
+  padding: 4px 0;
+  text-align: center;
+}
+.ya-login .userArea .userSetting .operate button :hover {
+  background: #009688;
+  cursor: pointer;
+}
+/*# sourceMappingURL=user.css.map */

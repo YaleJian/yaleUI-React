@@ -1,10 +1,10 @@
 import React from "react";
-import ReactDOM from 'react-dom';
 import "./message.css";
 import {Icon} from "../../index";
 import {Button} from "../../index";
 import {DomUtils} from "../../index";
 import {dataUtils} from "../../index";
+import {createRoot} from "react-dom/client";
 
 /**
  * 提示框
@@ -48,14 +48,14 @@ function baseMsg(config, func1, func2, isConFirm) {
 
         let msgListTag = document.createElement("div");
         msgListTag.className = "ya-msgList";
-        ReactDOM.render(<div className="ya-message">{messageContain}</div>, msgListTag);
+        createRoot(msgListTag).render(<div className="ya-message">{messageContain}</div>);
 
         document.body.appendChild(msgListTag);
         msg = msgListTag.getElementsByClassName("ya-message")[0];
     } else {
         let msgTag = document.createElement("div");
         msgTag.className = "ya-message";
-        ReactDOM.render(messageContain, msgTag);
+        createRoot(msgTag).render(messageContain);
 
         messageTag[0].appendChild(msgTag);
         msg = msgTag;

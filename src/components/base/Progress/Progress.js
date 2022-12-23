@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import ReactDOM from 'react-dom';
 import './progress.css'
+import {createRoot} from "react-dom/client";
 
 let defaultState = {show: false};
 
@@ -41,5 +41,5 @@ class ProgressBox extends Component {
 let progress = document.createElement('ya-progress');
 document.body.appendChild(progress);
 
-let Progress = ReactDOM.render(<ProgressBox/>, progress);
+let Progress = createRoot(progress).render(<ProgressBox/>);
 export {Progress};
