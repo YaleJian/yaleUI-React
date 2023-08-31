@@ -1,7 +1,7 @@
 import React from 'react';
 import ButtonDemo from "./Demo/Button/ButtonDemo";
 import TreeDemo from "./Demo/Tree/TreeDemo";
-import {Route} from "react-router";
+import {Route, Routes, useLocation, useMatch} from "react-router";
 import {Animate, Brand, CloudDrive} from "../index";
 import DesignStandard from "./DesignStandard";
 import Typography from "./Typography";
@@ -36,30 +36,32 @@ const menuData = [
 /**
  * API文档
  */
-const UI = (props) => {
+const UI = () => {
 
-    let path = props.match.path || "";
+    let path = '/ui';
 
     let pages = <>
-        <Route exact path={path} component={DesignStandard}/>
-        <Route path={`${path}/designStandard`} component={DesignStandard}/>
-        <Route path={`${path}/typography`} component={Typography}/>
-        <Route path={`${path}/animation`} component={Animate}/>
-        <Route path={`${path}/tree`} component={TreeDemo}/>
-        <Route path={`${path}/richTextEditor`} component={RichTextEditorDemo}/>
-        <Route path={`${path}/cloudDrive`} component={CloudDrive}/>
-        <Route path={`${path}/button`} component={ButtonDemo}/>
-        <Route path={`${path}/input`} component={InputDemo}/>
-        <Route path={`${path}/message`} component={MessageDemo}/>
-        <Route path={`${path}/date`} component={DatepickerDemo}/>
-        <Route path={`${path}/pagination`} component={PaginationDemo}/>
-        <Route path={`${path}/map`} component={""}/>
-        <Route path={`${path}/chart`} component={ChartDemo}/>
-        <Route path={`${path}/weather`} component={WeatherDemo}/>
+        <Routes>
+            <Route exact path={"*"} element={<DesignStandard/>}/>
+            <Route path={`${path}/designStandard`} element={<DesignStandard/>}/>
+            <Route path={`${path}/typography`} element={<Typography/>}/>
+            <Route path={`${path}/animation`} element={<Animate/>}/>
+            <Route path={`${path}/tree`} element={<TreeDemo/>}/>
+            <Route path={`${path}/richTextEditor`} element={<RichTextEditorDemo/>}/>
+            <Route path={`${path}/cloudDrive`} element={<CloudDrive/>}/>
+            <Route path={`${path}/button`} element={<ButtonDemo/>}/>
+            <Route path={`${path}/input`} element={<InputDemo/>}/>
+            <Route path={`${path}/message`} element={<MessageDemo/>}/>
+            <Route path={`${path}/date`} element={<DatepickerDemo/>}/>
+            <Route path={`${path}/pagination`} element={<PaginationDemo/>}/>
+            <Route path={`${path}/map`} element={""}/>
+            <Route path={`${path}/chart`} element={<ChartDemo/>}/>
+            <Route path={`${path}/weather`} element={<WeatherDemo/>}/>
+        </Routes>
     </>;
 
 
-    let pathname= props.location.pathname;
+    let pathname= useLocation().pathname;
     let indexId = pathname.substring(pathname.lastIndexOf("/") + 1);
     if (indexId === 'ui') indexId = menuData[0].id;
 

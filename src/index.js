@@ -12,9 +12,9 @@ let root = <>
     <Login/>
     <BrowserRouter>
         <Routes>
-            <Route exact path={'/'} component={UI}/>
-            <Route path={'/ui'} component={UI}/>
-            <Route path={'/test'} component={Test}/>
+            <Route exact path={'*'} element={<UI/>}/>
+            <Route path={'/ui'} element={<UI/>}/>
+            <Route path={'/test'} element={<Test/>}/>
         </Routes>
     </BrowserRouter>
 </>

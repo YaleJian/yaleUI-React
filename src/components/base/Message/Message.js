@@ -34,60 +34,47 @@ function baseMsg(config, func1, func2, isConFirm) {
         <div className={"ya-message-container" + animated_down}>
             {title}
             <div className="ya-message-content">{config.content}</div>
-            <Button className="closeBtn"><Icon name="i-close"/></Button>
+            <Button className="closeBtn" onClick={e=>{DomUtils.remove(e.target.parentElement.parentElement.parentElement)}}><Icon name="i-close"/></Button>
             {confirmBtn}
         </div>
     </>;
 
-    //弹框容器
-    let messageTag = document.getElementsByClassName("ya-msgList");
 
-    let msg;
-    //判断页面是否是第一次提示，是多一层提示区
-    if (messageTag.length === 0) {
-
-        let msgListTag = document.createElement("div");
+    //创建弹框组
+    let msgListTag = document.getElementsByClassName("ya-msgList");
+    if (msgListTag.length === 0) {
+        msgListTag = document.createElement("div");
         msgListTag.className = "ya-msgList";
-        createRoot(msgListTag).render(<div className="ya-message">{messageContain}</div>);
-
-        document.body.appendChild(msgListTag);
-        msg = msgListTag.getElementsByClassName("ya-message")[0];
-    } else {
-        let msgTag = document.createElement("div");
-        msgTag.className = "ya-message";
-        createRoot(msgTag).render(messageContain);
-
-        messageTag[0].appendChild(msgTag);
-        msg = msgTag;
+        msgListTag = document.body.appendChild(msgListTag)
     }
 
-    //给当前消息的按钮绑定移除事件
-    let closeBtn = msg.getElementsByClassName("closeBtn")[0];
-    closeBtn.onclick = () => {
-        DomUtils.remove(msg);
-    };
+    //创建弹框
+    let msgTag = document.createElement("div");
+    msgTag.className = "ya-message";
+    createRoot(msgTag).render(messageContain);
+    msgListTag.appendChild(msgTag);
 
     //提示默认自动移除,非确认框或设置没有设置为关
     if (config.autoRemove !== false && !isConFirm) {
         setTimeout(() => {
-            DomUtils.remove(msg);
+            DomUtils.remove(msgTag);
         }, dataUtils.isNaN(config.autoRemove) ? config.autoRemove : 2000);
     }
 
     if (isConFirm) {
         //确定回调事件
         if (typeof func1 === "function") {
-            let yesBtn = msg.getElementsByClassName("ya-yesBtn")[0];
+            let yesBtn = msgTag.getElementsByClassName("ya-yesBtn")[0];
             yesBtn.onclick = () => {
-                msg.remove();
+                msgTag.remove();
                 func1();
             }
         }
         //关闭事件
         if (typeof func1 === "function") {
-            let noBtn = msg.getElementsByClassName("ya-noBtn")[0];
+            let noBtn = msgTag.getElementsByClassName("ya-noBtn")[0];
             noBtn.onclick = () => {
-                msg.remove();
+                msgTag.remove();
                 func2();
             };
         }

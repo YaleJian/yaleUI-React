@@ -6,32 +6,23 @@ import {Hang} from "../..";
 /**
  * 品牌
  */
-class Brand extends React.Component {
-    static defaultProps = {
-        className: "",
-        name: "Yale UI",
-        logo: ""
+function Brand(props = {
+    className: "",
+    name: "Yale UI",
+    logo: ""
+}) {
+    let logo = props.logo || <Icon name={"i-logo"} className={"brand-icon"}/>;
+    if (typeof props.logo === "object") {
+        logo = <Icon name={props.logo} className={"brand-icon"}/>
     }
-
-    constructor(props) {
-        super(props);
-        this.state = {}
-    }
-
-    render() {
-        let logo = this.props.logo || <Icon name={"i-logo"} className={"brand-icon"}/>;
-        if (typeof this.props.logo === "object") {
-            logo = <Icon name={this.props.logo} className={"brand-icon"}/>
-        }
-        return (
-            <Hang>
-                <div className={"ya-brand " + this.props.className}>
-                    <a href={"/"}>{logo}</a>
-                    <span className={"name"}>{this.props.name}</span>
-                </div>
-            </Hang>
-        );
-    }
+    return (
+        <Hang>
+            <div className={"ya-brand " + props.className}>
+                <a href={"/"}>{logo}</a>
+                <span className={"name"}>{props.name}</span>
+            </div>
+        </Hang>
+    );
 }
 
 export {Brand}
