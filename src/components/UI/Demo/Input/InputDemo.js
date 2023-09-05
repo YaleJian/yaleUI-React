@@ -132,7 +132,7 @@ const InputDemo = () => {
             <span className={"margin0-10"}>入参为字符串数组：</span>
             <Input type="select"
                    dropDownBoxData={["item1", "item2", "item3", "item4", "item5", "item6",]}
-                   onChange={e => set_selectData(e.target.value)}
+                   onChange={e => set_selectData(e)}
                    value={selectData}
                    placeholder={"请选择"}/>
             <span>选中的值：{selectData.toString()}</span>
@@ -143,7 +143,7 @@ const InputDemo = () => {
                        id: 3,
                        text: "item4"
                    }, {id: 4, text: "item5"},]}
-                   onChange={e => set_selectData2(e.target.value)}
+                   onChange={e => set_selectData2(e)}
                    value={selectData2}
                    placeholder={"请选择"}/>
             <span className={"margin0-10"}>选中的值：{selectData2.toString()}</span>

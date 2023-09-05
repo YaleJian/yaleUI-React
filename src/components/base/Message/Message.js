@@ -46,13 +46,15 @@ function baseMsg(config, func1, func2, isConFirm) {
         msgListTag = document.createElement("div");
         msgListTag.className = "ya-msgList";
         msgListTag = document.body.appendChild(msgListTag)
+    }else {
+        msgListTag = msgListTag[0]
     }
 
     //创建弹框
     let msgTag = document.createElement("div");
     msgTag.className = "ya-message";
     createRoot(msgTag).render(messageContain);
-    msgListTag.appendChild(msgTag);
+    msgTag = msgListTag.appendChild(msgTag);
 
     //提示默认自动移除,非确认框或设置没有设置为关
     if (config.autoRemove !== false && !isConFirm) {
@@ -62,22 +64,24 @@ function baseMsg(config, func1, func2, isConFirm) {
     }
 
     if (isConFirm) {
-        //确定回调事件
-        if (typeof func1 === "function") {
-            let yesBtn = msgTag.getElementsByClassName("ya-yesBtn")[0];
-            yesBtn.onclick = () => {
-                msgTag.remove();
-                func1();
+        setTimeout( ()=>{
+            //确定回调事件
+            if (typeof func1 === "function") {
+                let yesBtn = msgTag.getElementsByClassName("ya-yesBtn")[0];
+                yesBtn.onclick = () => {
+                    msgTag.remove();
+                    func1();
+                }
             }
-        }
-        //关闭事件
-        if (typeof func1 === "function") {
-            let noBtn = msgTag.getElementsByClassName("ya-noBtn")[0];
-            noBtn.onclick = () => {
-                msgTag.remove();
-                func2();
-            };
-        }
+            //关闭事件
+            if (typeof func1 === "function") {
+                let noBtn = msgTag.getElementsByClassName("ya-noBtn")[0];
+                noBtn.onclick = () => {
+                    msgTag.remove();
+                    func2();
+                };
+            }
+        },50)
     }
 
 }

@@ -414,6 +414,7 @@
 }
 .ya-hide {
   animation-name: hide;
+  display: none;
 }
 @keyframes fadeInDownSmall {
   from {
