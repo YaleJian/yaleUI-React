@@ -34,7 +34,7 @@ function baseMsg(config, func1, func2, isConFirm) {
         <div className={"ya-message-container" + animated_down}>
             {title}
             <div className="ya-message-content">{config.content}</div>
-            <Button className="closeBtn" onClick={e=>{DomUtils.remove(e.target.parentElement.parentElement.parentElement)}}><Icon name="i-close"/></Button>
+            <Button className="closeBtn" onClick={e=>{DomUtils.remove(e.target.parentNode.parentNode.parentNode)}}><Icon name="i-close"/></Button>
             {confirmBtn}
         </div>
     </>;
